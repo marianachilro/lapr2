@@ -10,8 +10,11 @@ package lapr.project.model;
  * @author Rita
  */
 public class Stand {
-    
+
+    /**
+     * Construtor de um Stand.
+     */
     public Stand() {
-        
+
     }
 }

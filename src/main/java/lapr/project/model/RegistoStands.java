@@ -14,20 +14,43 @@ import java.util.List;
  */
 public class RegistoStands {
 
+    /**
+     * List de Stands.
+     */
     private List<Stand> listaStands;
 
+    /**
+     * Construtor de um Registo de Stands.
+     */
     public RegistoStands() {
         this.listaStands = new ArrayList<>();
     }
 
+    /**
+     * Devolve a List de Stands.
+     *
+     * @return List de Stands
+     */
     public List<Stand> getListaStands() {
         return listaStands;
     }
 
+    /**
+     * Modifica a List de Stands.
+     *
+     * @param listaStands List de Stands
+     */
     public void setListaStands(List<Stand> listaStands) {
         this.listaStands = listaStands;
     }
 
+    /**
+     * Devolve uma List de Stands que ainda não foram atribuídos a uma
+     * Candidatura.
+     *
+     * @param lc List de Candidaturas
+     * @return List de Stands
+     */
     public List<Stand> getListaStandsNaoAtribuidos(List<Candidatura> lc) {
         List<Stand> listaStandsNaoAtribuidos = new ArrayList<>();
         boolean b = false;
@@ -42,5 +65,44 @@ public class RegistoStands {
             }
         }
         return listaStandsNaoAtribuidos;
+    }
+
+    /**
+     * Validação que devolve um boolean. True se o Stand já existir na List.
+     * False se ainda não existir.
+     *
+     * @param s Stand
+     * @return boolean
+     */
+    public boolean validaStand(Stand s) {
+        return listaStands.contains(s);
+    }
+
+    /**
+     * Adiciona um Stand ao list e devolve um boolean. True se esta for
+     * adicionado com sucesso. False se esta não for adicionada com sucesso.
+     *
+     * @param s Stand
+     * @return boolean
+     */
+    public boolean addStand(Stand s) {
+        return listaStands.add(s);
+    }
+
+    /**
+     * Adiciona um Stand à List, apenas se esta ainda não existir na mesma.
+     * Devolve um boolean, true se a operação tiver sucesso, false se não tiver
+     * sucesso.
+     *
+     * @param s Stand
+     * @return boolean
+     */
+    public boolean registaStand(Stand s) {
+        if (validaStand(s)) {
+            addStand(s);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

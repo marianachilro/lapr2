@@ -5,11 +5,91 @@
  */
 package lapr.project.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Rita
  */
 public class ListaProdutos {
-    
-    
+
+    /**
+     * List de Produtos.
+     */
+    private List<Produto> listaProdutos;
+
+    /**
+     * Construtor de uma Lista de Produtos.
+     */
+    public ListaProdutos() {
+        this.listaProdutos = new ArrayList<>();
+    }
+
+    /**
+     * Devolve a List de Produtos.
+     *
+     * @return List de Produtos
+     */
+    public List<Produto> getListaProdutos() {
+        return listaProdutos;
+    }
+
+    /**
+     * Modifica a List de Produtos.
+     *
+     * @param listaProdutos List de Produtos
+     */
+    public void setListaProdutos(List<Produto> listaProdutos) {
+        this.listaProdutos = listaProdutos;
+    }
+
+    /**
+     * Devolve um novo Produto.
+     *
+     * @return Produto
+     */
+    public Produto novoProduto() {
+        return new Produto();
+    }
+
+    /**
+     * Validação que devolve um boolean. True se o Produto já existir na List.
+     * False se ainda não existir.
+     *
+     * @param p Produto
+     * @return boolean
+     */
+    public boolean validaProduto(Produto p) {
+        return listaProdutos.contains(p);
+    }
+
+    /**
+     * Adiciona um Produto ao list e devolve um boolean. True se esta for
+     * adicionado com sucesso. False se esta não for adicionada com sucesso.
+     *
+     * @param p Produto
+     * @return boolean
+     */
+    public boolean addProduto(Produto p) {
+        return listaProdutos.add(p);
+    }
+
+    /**
+     * Adiciona um Organizador à List, apenas se esta ainda não existir na
+     * mesma. Devolve um boolean, true se a operação tiver sucesso, false se não
+     * tiver sucesso.
+     *
+     * @param p Produto
+     * @return boolean
+     */
+    public boolean registaProduto(Produto p) {
+        if (validaProduto(p)) {
+            addProduto(p);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
