@@ -28,6 +28,8 @@ public class CentroExposicoes {
      */
     private final RegistoStands rs;
 
+    private final RegistoLocais rl;
+
     /**
      * Construtor de um Centro de Exposições.
      */
@@ -36,6 +38,7 @@ public class CentroExposicoes {
         this.re = new RegistoExposicoes();
         this.ru = new RegistoUtilizadores();
         this.rs = new RegistoStands();
+        this.rl = new RegistoLocais();
     }
 
     /**
@@ -73,5 +76,14 @@ public class CentroExposicoes {
      */
     public RegistoStands getRegistoStands() {
         return rs;
+    }
+
+    /**
+     * Devolve o registo de todos os locais.
+     *
+     * @return Registo de locais
+     */
+    public RegistoLocais getRegistoLocais() {
+        return rl;
     }
 }

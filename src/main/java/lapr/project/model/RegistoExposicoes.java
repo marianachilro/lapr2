@@ -27,6 +27,15 @@ public class RegistoExposicoes {
     }
 
     /**
+     * Cria uma nova exposição.
+     *
+     * @return exposicao
+     */
+    public Exposicao newExposicao() {
+        return new Exposicao();
+    }
+
+    /**
      * Devolve a List de Exposições.
      *
      * @return List de Exposições
@@ -70,7 +79,7 @@ public class RegistoExposicoes {
      * @param e Exposição
      * @return boolean
      */
-    public boolean validaExposicao(Exposicao e) {
+    public boolean valida(Exposicao e) {
         return listaExposicoes.contains(e);
     }
 
@@ -94,11 +103,12 @@ public class RegistoExposicoes {
      * @return boolean
      */
     public boolean registaExposicao(Exposicao e) {
-        if (validaExposicao(e)) {
+        if (valida(e)) {
             addExposicao(e);
             return true;
         } else {
-            return false;
+            throw new IllegalArgumentException("Este exposição já existe!");
+
         }
     }
 }

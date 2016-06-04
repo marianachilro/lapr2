@@ -62,14 +62,18 @@ public class ListaOrganizadores {
     }
 
     /**
-     * Validação que devolve um boolean. True se o Organizador já existir na
-     * List. False se ainda não existir.
+     * Verifica se o organizador já existe na lista de organizadores da
+     * exposição.
      *
-     * @param org Organizador
-     * @return boolean
+     * @param o organizador.
+     * @return
      */
-    public boolean validaOrganizador(Organizador org) {
-        return listaOrganizadores.contains(org);
+    public boolean validaOrganizador(Organizador o) {
+        if(listaOrganizadores.contains(o)){
+            throw new IllegalArgumentException("Este organizador já foi selecionado!");
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -79,7 +83,7 @@ public class ListaOrganizadores {
      * @param org Organizador
      * @return boolean
      */
-    public boolean addOrganizador(Organizador org) {
+    public boolean add(Organizador org) {
         return listaOrganizadores.add(org);
     }
 
@@ -93,7 +97,7 @@ public class ListaOrganizadores {
      */
     public boolean registaOrganizador(Organizador org) {
         if (validaOrganizador(org)) {
-            addOrganizador(org);
+            add(org);
             return true;
         } else {
             return false;

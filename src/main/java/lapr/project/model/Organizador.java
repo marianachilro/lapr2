@@ -7,47 +7,103 @@ package lapr.project.model;
 
 /**
  *
- * @author Rita
+ * @author catarinarib
  */
 public class Organizador {
 
     /**
-     * Utilizador correspondente ao Organizador.
+     * Utilizador.
      */
-    private Utilizador u;
+    private Utilizador m_oUtilizador;
 
     /**
-     * Construtor de um Organizador com o Utilizador ainda nulo.
-     */
-    public Organizador() {
-        u = null;
-    }
-
-    /**
-     * Construtor de um Organizador com o Utilizador recebido por parâmetro.
+     * Construtor de um Organizador com os atributos recebidos por parâmetro.
      *
-     * @param u Utilizador
+     * @param u utilizador
      */
     public Organizador(Utilizador u) {
-        this.u = u;
+        this.m_oUtilizador = u;
+    }
+
+    public Organizador() {
+
     }
 
     /**
-     * Devolve o Utilizador.
+     * Modifica o organizador.
      *
-     * @return Utilizador.
+     * @param u novo organizador
      */
-    public Utilizador getU() {
-        return u;
+    public void setUtilizador(Utilizador u) {
+        this.m_oUtilizador = u;
     }
 
     /**
-     * Modifica o Utilizador.
+     * Valida o organizador.
      *
-     * @param u Utilizador
+     * @return boolean
      */
-    public void setU(Utilizador u) {
-        this.u = u;
+    public boolean valida() {
+        // Introduzir as validações aqui
+        return true;
     }
 
+    /**
+     * Devolve a descrição textual do organizador no formato: nome, username,
+     * mail, password.
+     *
+     * @return carateristicas do organizador
+     */
+    @Override
+    public String toString() {
+        return this.m_oUtilizador.toString();
+    }
+
+    /**
+     * Verificar se é um utilizador.
+     *
+     * @param u utilizador
+     * @return boolean
+     */
+    public boolean isUtilizador(Utilizador u) {
+        if (this.m_oUtilizador != null) {
+            return this.m_oUtilizador.equals(u);
+        }
+        return false;
+    }
+
+    /**
+     * Devolve o username do organizador.
+     *
+     * @return username
+     */
+    public String getID() {
+        return this.m_oUtilizador.getUsername();
+    }
+
+    /**
+     * Devolve o utilizador
+     *
+     * @return utilizador
+     */
+    public Utilizador getUtilizador() {
+        return m_oUtilizador;
+    }
+
+    /**
+     * Permite comparar um objecto/organizador por parametro por outro
+     * organizador.
+     *
+     * @param o organizador
+     * @return boolean
+     */
+    @Override
+    public boolean equals(Object o) {
+
+        Utilizador u1 = (Utilizador) o;
+        if (this.m_oUtilizador.getUsername().equals(u1.getUsername())) {
+            return true;
+        }
+        return false;
+    }
 }

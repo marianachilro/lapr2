@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.util.Date;
+
 /**
  *
  * @author Rita
@@ -22,15 +24,34 @@ public class Exposicao {
     /**
      * Data de inicio da Exposição.
      */
-    private String dataInicio;
+    private Date dataInicio;
     /**
      * Data de fim da Exposição.
      */
-    private String dataFim;
+    private Date dataFim;
     /**
      * Local da Exposição.
      */
     private String local;
+
+    /**
+     * Data final de submissao de candidaturas;
+     */
+    private Date dataFimSubCand;
+    /**
+     * Data final de atualização de conflitos.
+     */
+    private Date dataFimAtcConf;
+
+    /**
+     * Data final de avaliação de candidaturas.
+     */
+    private Date dataFimAvCandidatura;
+
+    /**
+     * Data final de decidir candidaturas.
+     */
+    private Date dataFimDcCandidaturas;
     /**
      * Lista de Organizadores da Exposição
      */
@@ -43,6 +64,7 @@ public class Exposicao {
      * Lista de Demonstrações da Exposição.
      */
     private final ListaDemonstracoes listaDemonstracoes;
+
     /**
      * Valor do Título de Exposição por omissão.
      */
@@ -70,8 +92,12 @@ public class Exposicao {
     public Exposicao() {
         this.titulo = TITULO_OMISSAO;
         this.descricao = DESCRICAO_OMISSAO;
-        this.dataInicio = DATA_INICIO_OMISSAO;
-        this.dataFim = DATA_FIM_OMISSAO;
+        this.dataInicio = null;
+        this.dataFim = null;
+        this.dataFimSubCand = null;
+        this.dataFimAtcConf = null;
+        this.dataFimAvCandidatura = null;
+        this.dataFimDcCandidaturas = null;
         this.local = LOCAL_OMISSAO;
         listaOrg = new ListaOrganizadores();
         listaCandidaturas = new ListaCandidaturas();
@@ -87,13 +113,23 @@ public class Exposicao {
      * @param dataInicio Data de Inicio da Exposição
      * @param dataFim Data de Fim da Exposição
      * @param local Local da Exposição.
+     * @param dataFimSubCand Data fim de submissao de candidaturas
+     * @param dataFimAtcConf Data fim de atualização de conflitos
+     * @param dataFimDcCandidaturas Data fim de decidir candidaturas
+     * @param dataFimAvCandidatura Data fim de avaliar candidaturas
      */
-    public Exposicao(String titulo, String descricao, String dataInicio, String dataFim, String local) {
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
-        this.local = local;
+    public Exposicao(String titulo, String descricao, Date dataInicio, Date dataFim, String local, Date dataFimSubCand,
+            Date dataFimAtcConf, Date dataFimAvCandidatura, Date dataFimDcCandidaturas) {
+
+        setTitulo(titulo);
+        setDescricao(descricao);
+        setDataInicio(dataInicio);
+        setDataFim(dataFim);
+        setLocal(local);
+        setDataFimSubCand(dataFimSubCand);
+        setDataFimAtcConf(dataFimAtcConf);
+        setDataFimAvCandidatura(dataFimAvCandidatura);
+        setDataFimDcCandidaturas(dataFimDcCandidaturas);
         listaOrg = new ListaOrganizadores();
         listaCandidaturas = new ListaCandidaturas();
         listaDemonstracoes = new ListaDemonstracoes();
@@ -122,7 +158,7 @@ public class Exposicao {
      *
      * @return Data de Inicio
      */
-    public String getDataInicio() {
+    public Date getDataInicio() {
         return dataInicio;
     }
 
@@ -131,7 +167,7 @@ public class Exposicao {
      *
      * @return Data de Fim
      */
-    public String getDataFim() {
+    public Date getDataFim() {
         return dataFim;
     }
 
@@ -176,7 +212,10 @@ public class Exposicao {
      *
      * @param titulo Título
      */
-    public void setTitulo(String titulo) {
+    public final void setTitulo(String titulo) {
+        if (titulo == null || titulo.trim().isEmpty()) {
+            throw new IllegalArgumentException("Título inválido!");
+        }
         this.titulo = titulo;
     }
 
@@ -185,7 +224,10 @@ public class Exposicao {
      *
      * @param descricao Descrição
      */
-    public void setDescricao(String descricao) {
+    public final void setDescricao(String descricao) {
+        if (descricao == null || descricao.trim().isEmpty()) {
+            throw new IllegalArgumentException("Descrição inválida!");
+        }
         this.descricao = descricao;
     }
 
@@ -194,7 +236,10 @@ public class Exposicao {
      *
      * @param dataInicio Data de Inicio
      */
-    public void setDataInicio(String dataInicio) {
+    public final void setDataInicio(Date dataInicio) {
+        if (dataInicio == null) {
+            throw new IllegalArgumentException("Data inválida!");
+        }
         this.dataInicio = dataInicio;
     }
 
@@ -203,7 +248,10 @@ public class Exposicao {
      *
      * @param dataFim Data de Fim
      */
-    public void setDataFim(String dataFim) {
+    public final void setDataFim(Date dataFim) {
+        if (dataFim == null) {
+            throw new IllegalArgumentException("Data inválida!");
+        }
         this.dataFim = dataFim;
     }
 
@@ -212,8 +260,118 @@ public class Exposicao {
      *
      * @param local Local
      */
-    public void setLocal(String local) {
+    public final void setLocal(String local) {
+        if (local == null || local.trim().isEmpty()) {
+            throw new IllegalArgumentException("Local inválido!");
+        }
         this.local = local;
+    }
+
+    /**
+     * Devolve a data fim de submisao de candidaturas
+     *
+     * @return data fim de submissao de candidaturas
+     */
+    public Date getDataFimSubCand() {
+        return dataFimSubCand;
+    }
+
+    /**
+     * Modifica a data fim de submisao de candidaturas
+     *
+     * @param dataFimSubCand data fim de submisao de candidaturas
+     */
+    public final void setDataFimSubCand(Date dataFimSubCand) {
+        if (dataFimSubCand == null) {
+            throw new IllegalArgumentException("Data inválida!");
+        }
+        this.dataFimSubCand = dataFimSubCand;
+    }
+
+    /**
+     * Devolve a data fim de atualização de conflitos
+     *
+     * @return data fim de atualização de conflitos
+     */
+    public Date getDataFimAtcConf() {
+        return dataFimAtcConf;
+    }
+
+    /**
+     * Modifica a data fim de atualização de conflitos
+     *
+     * @param dataFimAtcConf data fim de atualização de conflitos
+     */
+    public final void setDataFimAtcConf(Date dataFimAtcConf) {
+        if (dataFimAtcConf == null) {
+            throw new IllegalArgumentException("Data inválida!");
+        }
+        this.dataFimAtcConf = dataFimAtcConf;
+    }
+
+    /**
+     * Devolve a data fim de avaliar candidaturas
+     *
+     * @return data fim de avaliar candidaturas
+     */
+    public Date getDataFimAvCandidatura() {
+        return dataFimAvCandidatura;
+    }
+
+    /**
+     * Modifica a data fim de avaliar candidaturas
+     *
+     * @param dataFimAvCandidatura data fim de avaliar candidaturas
+     */
+    public final void setDataFimAvCandidatura(Date dataFimAvCandidatura) {
+        if (dataFimAvCandidatura == null) {
+            throw new IllegalArgumentException("Data inválida!");
+        }
+        this.dataFimAvCandidatura = dataFimAvCandidatura;
+    }
+
+    /**
+     * Devolve a data fim de decidir candidaturas
+     *
+     * @return data fim de decidir candidaturas
+     */
+    public Date getDataFimDcCandidaturas() {
+        return dataFimDcCandidaturas;
+    }
+
+    /**
+     * Modifica a data fim de decidir candidaturas
+     *
+     * @param dataFimDcCandidaturas data fim de decidir candidaturas
+     */
+    public final void setDataFimDcCandidaturas(Date dataFimDcCandidaturas) {
+        if (dataFimDcCandidaturas == null) {
+            throw new IllegalArgumentException("Data inválida!");
+        }
+        this.dataFimDcCandidaturas = dataFimDcCandidaturas;
+    }
+
+    /**
+     * Adiciona organizador à lista de organizadores da exposição.
+     *
+     * @param u utilizador/organizador
+     */
+    public void addOrganizador(Utilizador u) {
+        Organizador org = new Organizador();
+        org.setUtilizador(u);
+        if (listaOrg.validaOrganizador(org)) {
+            addOrganizador(org);
+        }
+    }
+
+    /**
+     * Adiciona organizador à lista de organizadores da exposição.
+     *
+     * @param o organizador
+     * @return lista de organizadores
+     */
+    private boolean addOrganizador(Organizador o) {
+        return this.listaOrg.add(o);
     }
 
 }
