@@ -20,6 +20,10 @@ public class TipoConflito {
      */
     private String dados;
 
+    public TipoConflito(){
+        nome = "";
+        dados = "";
+    }
     /**
      * Método que modifica o nome do tipo de conflito.
      *

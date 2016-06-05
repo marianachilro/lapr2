@@ -51,12 +51,15 @@ public class RegistoTipoConflitos {
      * @return
      */
     public boolean validaTipo(TipoConflito t) {
+        if(listaConflitos.isEmpty()){
+            return true;
+        }
         for (TipoConflito tipo : listaConflitos) {
             if (tipo.equals(t)) {
                 return false;
             }
 
         }
-        return false;
+        return true;
     }
 }

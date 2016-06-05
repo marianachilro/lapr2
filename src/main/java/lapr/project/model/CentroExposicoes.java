@@ -14,7 +14,7 @@ public class CentroExposicoes {
     /**
      * Registo com todos os tipos de conflitos.
      */
-    private final RegistoTipoConflitos rc;
+    private  RegistoTipoConflitos rc;
     /**
      * Registo com todas as exposições.
      */
@@ -85,5 +85,8 @@ public class CentroExposicoes {
      */
     public RegistoLocais getRegistoLocais() {
         return rl;
+    }
+    public void setRegistoTipoConflitos(RegistoTipoConflitos rc){
+        this.rc=rc;
     }
 }
