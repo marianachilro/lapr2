@@ -5,40 +5,40 @@
  */
 package lapr.project.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
- * @author Rita
+ * @author catarinarib
  */
-public class Candidatura {
+public abstract class Candidatura {
 
     /**
-     * Nome de Expositor
+     * Nome da empresa da candidatura.
      */
-    private String nomeEmpresa;
+    private String m_sNomeEmpresa;
+
     /**
-     * Morada de Expositor
+     * Morada da candidatura.
      */
-    private String morada;
+    private String m_sMorada;
+
     /**
-     * Número de telemóvel de Expositor.
+     * Numero de telemovel da candidatura.
      */
-    private int telemovel;
+    private int m_sTelemovel;
+
     /**
-     * Área pretendida pelo Expositor.
+     * Area da candidatura.
      */
-    private float area;
+    private double m_sArea;
+
     /**
-     * Número de Convites pretendidos pelo Expositor.
+     * Numero de convites da candidatura.
      */
-    private int numeroConvites;
-    /**
-     * Stand atribuído à Candidatura
-     */
-    private Stand stand;
-    /**
-     * Lista de Produtos da Candidatura.
-     */
-    private final ListaProdutos listaProdutos;
+    private int m_sConvites;
+
     /**
      * Valor do nome do expositor por omissão.
      */
@@ -61,151 +61,282 @@ public class Candidatura {
     private static final int NUM_CONV_OMISSAO = 0;
 
     /**
+     * Titulo da exposição da candidatura.
+     */
+    private String m_sTituloExp;
+
+    /**
+     * Nome do representante que criou a candidatura.
+     */
+    private String m_snomeRepresentante;
+
+    /**
+     * Fae atribuido à candidatura.
+     */
+    private FAE fae;
+
+    /**
+     * Lista de avaliações sobre a candidatura.
+     */
+    private final ListaAvaliacoes listaAvaliacoes;
+
+    /**
      * Construtor de uma candidatura com todos os atributos por omissão.
      */
     public Candidatura() {
-        this.nomeEmpresa = NOME_OMISSAO;
-        this.morada = MORADA_OMISSAO;
-        this.telemovel = TELEMOVEL_OMISSAO;
-        this.area = AREA_OMISSAO;
-        this.numeroConvites = NUM_CONV_OMISSAO;
-        listaProdutos = new ListaProdutos();
+        this.m_sNomeEmpresa = NOME_OMISSAO;
+        this.m_sMorada = MORADA_OMISSAO;
+        this.m_sTelemovel = TELEMOVEL_OMISSAO;
+        this.m_sArea = AREA_OMISSAO;
+        this.m_sConvites = NUM_CONV_OMISSAO;
+        this.listaAvaliacoes = new ListaAvaliacoes();
+
     }
 
     /**
-     * Construtor de uma candidatura com todos os atributos recebidos por
-     * parâmetro.
+     * Constrói uma instância de Candidatura recebendo nome do representante,
+     * titulo da exposição, nome da empresa, morada, numero de
+     * telemovel,area,produtos,convites,demonstracao.
      *
-     * @param nomeEmpresa nome de expositor
-     * @param morada morada de expositor
-     * @param telemovel número de telemóvel de expositor
-     * @param area área pretendida
-     * @param numeroConvites número de convites pretendidos pelo expositor
+     * @param nomeRepresentante o nome do representante da candidatura
+     * @param sTituloExp o titulo da exposicao da candidatura
+     * @param sNomeEmpresa o nome da empresa da candidatura
+     * @param sMorada a morada da candidatura
+     * @param sTelemovel o numero de telemovel da candidatura
+     * @param sArea a area da candidatura
+     *
+     * @param sConvites o numero de convites da candidatura
+     *
      */
-    public Candidatura(String nomeEmpresa, String morada, int telemovel, float area, int numeroConvites) {
-        this.nomeEmpresa = nomeEmpresa;
-        this.morada = morada;
-        this.telemovel = telemovel;
-        this.area = area;
-        this.numeroConvites = numeroConvites;
-        listaProdutos = new ListaProdutos();
+    public Candidatura(String nomeRepresentante, String sTituloExp, String sNomeEmpresa, String sMorada,
+            int sTelemovel, double sArea, int sConvites) {
+
+        setNomeEmpresa(sNomeEmpresa);
+        setMorada(sMorada);
+        setTelemovel(sTelemovel);
+        this.m_sArea = sArea;
+
+        this.m_sConvites = sConvites;
+
+        this.m_sTituloExp = sTituloExp;
+
+        this.m_snomeRepresentante = nomeRepresentante;
+        this.listaAvaliacoes = new ListaAvaliacoes();
+
     }
 
     /**
-     * Devolve o nome de expositor
+     * Devolve o nome da empresa da candidatura.
      *
-     * @return nome de expositor
+     * @return nome empresa da candidatura
      */
     public String getNomeEmpresa() {
-        return nomeEmpresa;
+        return m_sNomeEmpresa;
     }
 
     /**
-     * Devolve morada de expositor.
+     * Devolve a lista de avaliações da candidatura.
      *
-     * @return morada de expositor
+     * @return lista de avaliacoes da candidatura
+     */
+    public ListaAvaliacoes getListaAvaliacoes() {
+        return listaAvaliacoes;
+    }
+
+    /**
+     * Modifica o nome da empresa.
+     *
+     * @param m_sNomeEmpresa novo nome da empresa da candidatura
+     */
+    public final void setNomeEmpresa(String m_sNomeEmpresa) {
+        if (m_sNomeEmpresa == null || m_sNomeEmpresa.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome da empresa é inválido!");
+        }
+        this.m_sNomeEmpresa = m_sNomeEmpresa;
+    }
+
+    /**
+     * Devolve a morada da candidatura.
+     *
+     * @return morada da candidatura
      */
     public String getMorada() {
-        return morada;
+        return m_sMorada;
     }
 
     /**
-     * Devolve número de telemóvel do expositor.
+     * Modifica a morada.
      *
-     * @return número de telemóvel do expositor
+     * @param m_sMorada nova morada da candidatura
+     */
+    public final void setMorada(String m_sMorada) {
+        if (m_sMorada == null || m_sMorada.trim().isEmpty()) {
+            throw new IllegalArgumentException("Morada é inválida!");
+        }
+        this.m_sMorada = m_sMorada;
+    }
+
+    /**
+     * Devolve o numero de telemovel da candidatura.
+     *
+     * @return numero de telemovel da candidatura
      */
     public int getTelemovel() {
-        return telemovel;
+        return m_sTelemovel;
     }
 
     /**
-     * Devolve a área pretendida pelo expositor.
+     * Modifica numero de telemovel.
      *
-     * @return área pretendida pelo expositor
+     * @param m_sTelemovel novo numero de telemovel da candidatura
      */
-    public float getArea() {
-        return area;
+    public final void setTelemovel(int m_sTelemovel) {
+        if (m_sTelemovel < 100000000 || m_sTelemovel > 999999999) {
+            throw new IllegalArgumentException("Telemovel é inválido! Introduza 9 Digitos!");
+        }
+        this.m_sTelemovel = m_sTelemovel;
     }
 
     /**
-     * Devolve número de convites pretendidos pelo expositor.
+     * Devolve a area da candidatura
      *
-     * @return número de convites pretendidos pelo expositor
+     * @return area da candidatura
      */
-    public int getNumeroConvites() {
-        return numeroConvites;
+    public double getArea() {
+        return m_sArea;
     }
 
     /**
-     * Devolve o stand atribuído à candidatura.
+     * Modifica area da candidatura
      *
-     * @return stand de candidatura
+     * @param m_sArea nova area da candidatura
      */
-    public Stand getStand() {
-        return stand;
+    public void setArea(double m_sArea) {
+
+        this.m_sArea = m_sArea;
     }
 
     /**
-     * Devolve a lista de produtos da candidatura.
+     * Devolve o numero de convites da candidatura
      *
-     * @return lista de proutos de candidatura
+     * @return numero de convites da candidatura
      */
-    public ListaProdutos getListaProdutos() {
-        return listaProdutos;
+    public int getConvites() {
+        return m_sConvites;
     }
 
     /**
-     * Modifica o nome do expositor.
+     * Modifica o numero de convites da candidatura
      *
-     * @param nomeEmpresa nome do expositor
+     * @param m_sConvites novo numero de convites da candidatura
      */
-    public void setNomeEmpresa(String nomeEmpresa) {
-        this.nomeEmpresa = nomeEmpresa;
+    public void setConvites(int m_sConvites) {
+        this.m_sConvites = m_sConvites;
     }
 
     /**
-     * Modifica a morada do expositor.
+     * Devolve o fae atribuido à candidatura
      *
-     * @param morada morada do expositor
+     * @return fae atribuido à candidatura
      */
-    public void setMorada(String morada) {
-        this.morada = morada;
+    public FAE getFae() {
+        return fae;
     }
 
     /**
-     * Modifica o número de telemóvel do expositor.
+     * Modifica o fae atribuido à candidatura
      *
-     * @param telemovel número de telemóvel do expositor
+     * @param fae novo fae da candidatura
      */
-    public void setTelemovel(int telemovel) {
-        this.telemovel = telemovel;
+    public void setFae(FAE fae) {
+        this.fae = fae;
     }
 
     /**
-     * Modifica a área pretendida pelo expositor.
+     * Devolve o titulo da exposição da candidatura.
      *
-     * @param area área pretendida pelo expositor
+     * @return titulo da exposicao
      */
-    public void setArea(float area) {
-        this.area = area;
+    public String getM_sTituloExp() {
+        return m_sTituloExp;
     }
 
     /**
-     * Modifica o número de convites pretendidos pelo expositor.
+     * Modifica o titulo da exposicao da candidatura
      *
-     * @param numeroConvites número de convites pretendidos pelo expositor
+     * @param m_sTituloExp novo titulo da exposicao
      */
-    public void setNumeroConvites(int numeroConvites) {
-        this.numeroConvites = numeroConvites;
+    public void setM_sTituloExp(String m_sTituloExp) {
+        this.m_sTituloExp = m_sTituloExp;
     }
 
     /**
-     * Modifica o stand atribuído à candidatura.
+     * Devolve o nome do representante da candidatura.
      *
-     * @param stand stand de candidatura
+     * @return nome do representante
      */
-    public void setStand(Stand stand) {
-        this.stand = stand;
+    public String getM_snomeRepresentante() {
+        return m_snomeRepresentante;
+    }
+
+    /**
+     * Modifica o nome do representante da candidatura
+     *
+     * @param m_snomeRepresentante novo nome do representante
+     */
+    public void setM_snomeRepresentante(String m_snomeRepresentante) {
+        this.m_snomeRepresentante = m_snomeRepresentante;
+    }
+
+    /**
+     * Devolve a descrição textual da candidatura no formato: nome do
+     * represenante, titulo da exposicao, nome da empresa,
+     * morada,telemovel,area,produtos,convites,demonstracao.
+     *
+     * @return caraterísticas da candidatura
+     */
+    @Override
+    public String toString() {
+
+        return String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;\n", this.m_snomeRepresentante, this.m_sTituloExp,
+                this.m_sNomeEmpresa, this.m_sMorada, this.m_sTelemovel, this.m_sArea,
+                this.m_sConvites);
+    }
+
+    /**
+     * Permite comparar um objecto/candidatura por parametro por outra
+     * candidatura.
+     *
+     * @param c candidatura
+     * @return boolean
+     */
+    @Override
+    public boolean equals(Object c) {
+
+        Candidatura c1 = (Candidatura) c;
+        if (this.m_sArea == c1.getArea() && this.m_sNomeEmpresa.equals(c1.getNomeEmpresa()) && this.m_sMorada.equals(c1.getMorada()) && this.m_sTelemovel == c1.getTelemovel() && this.m_sConvites == c1.getConvites()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Verificar se o fae que esta a avaliar a candidatura é um organizador da
+     * mesma exposição
+     *
+     * @param fae fae
+     * @param expo exposicao da candidatura
+     * @return boolean
+     */
+    public boolean isOrganizador(FAE fae, Exposicao expo) {
+        List<Organizador> lorg = expo.getListaOrganizadores().getListaOrganizadores();
+
+        for (Organizador org : lorg) {
+            if (org.getID().equals(fae.getID())) {
+                throw new IllegalArgumentException("Este fae é um organizador da exposição! \nNão pode desempenhar os dois papeis na mesma exposição!");
+            }
+        }
+        return false;
     }
 
 }

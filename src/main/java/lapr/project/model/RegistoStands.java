@@ -51,11 +51,11 @@ public class RegistoStands {
      * @param lc List de Candidaturas
      * @return List de Stands
      */
-    public List<Stand> getListaStandsNaoAtribuidos(List<Candidatura> lc) {
+    public List<Stand> getListaStandsNaoAtribuidos(List<CandidaturaExposicao> lc) {
         List<Stand> listaStandsNaoAtribuidos = new ArrayList<>();
         boolean b = false;
         for (Stand st : listaStands) {
-            for (Candidatura c : lc) {
+            for (CandidaturaExposicao c : lc) {
                 if (c.getStand().equals(st)) {
                     b = true;
                 }

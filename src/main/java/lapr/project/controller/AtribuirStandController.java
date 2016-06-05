@@ -6,10 +6,10 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.model.Candidatura;
+import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
-import lapr.project.model.ListaCandidaturas;
+import lapr.project.model.ListaCandidaturasExposicoes;
 import lapr.project.model.RegistoExposicoes;
 import lapr.project.model.RegistoStands;
 import lapr.project.model.RegistoUtilizadores;
@@ -23,13 +23,13 @@ public class AtribuirStandController {
 
     private CentroExposicoes ce;
     private Exposicao e;
-    private Candidatura c;
+    private CandidaturaExposicao c;
     private Stand s;
     private RegistoExposicoes re;
     private RegistoUtilizadores ru;
     private RegistoStands rs;
-    private ListaCandidaturas rc;
-    private List<Candidatura> lc;
+    private ListaCandidaturasExposicoes rc;
+    private List<CandidaturaExposicao> lc;
     private List<Stand> ls;
 
     public AtribuirStandController(CentroExposicoes ce) {
@@ -46,13 +46,13 @@ public class AtribuirStandController {
         this.e = e;
     }
 
-    public List<Candidatura> getListaCandidaturas() {
+    public List<CandidaturaExposicao> getListaCandidaturas() {
         rc = e.getListaCandidaturas();
         lc = rc.getListCandidaturas();
         return lc;
     }
 
-    public void selectCandidatura(Candidatura c) {
+    public void selectCandidatura(CandidaturaExposicao c) {
         this.c = c;
     }
 

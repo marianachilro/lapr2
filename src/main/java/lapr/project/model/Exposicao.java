@@ -59,11 +59,16 @@ public class Exposicao {
     /**
      * Lista de Candidaturas da Exposição.
      */
-    private final ListaCandidaturas listaCandidaturas;
+    private final ListaCandidaturasExposicoes listaCandidaturas;
     /**
      * Lista de Demonstrações da Exposição.
      */
     private final ListaDemonstracoes listaDemonstracoes;
+
+    /**
+     * Lista de FAEs da exposicao.
+     */
+    private final ListaFAEs listaFAEs;
 
     /**
      * Valor do Título de Exposição por omissão.
@@ -100,8 +105,9 @@ public class Exposicao {
         this.dataFimDcCandidaturas = null;
         this.local = LOCAL_OMISSAO;
         listaOrg = new ListaOrganizadores();
-        listaCandidaturas = new ListaCandidaturas();
+        listaCandidaturas = new ListaCandidaturasExposicoes();
         listaDemonstracoes = new ListaDemonstracoes();
+        listaFAEs = new ListaFAEs();
     }
 
     /**
@@ -131,8 +137,9 @@ public class Exposicao {
         setDataFimAvCandidatura(dataFimAvCandidatura);
         setDataFimDcCandidaturas(dataFimDcCandidaturas);
         listaOrg = new ListaOrganizadores();
-        listaCandidaturas = new ListaCandidaturas();
+        listaCandidaturas = new ListaCandidaturasExposicoes();
         listaDemonstracoes = new ListaDemonstracoes();
+        listaFAEs = new ListaFAEs();
     }
 
     /**
@@ -185,7 +192,7 @@ public class Exposicao {
      *
      * @return Lista de Candidaturas
      */
-    public ListaCandidaturas getListaCandidaturas() {
+    public ListaCandidaturasExposicoes getListaCandidaturas() {
         return listaCandidaturas;
     }
 
@@ -374,4 +381,19 @@ public class Exposicao {
         return this.listaOrg.add(o);
     }
 
+    /**
+     * Devolve fae da exposição
+     *
+     * @param u utilizador
+     * @return fae da exposicao
+     */
+    public FAE getFAE(Utilizador u) {
+        for (FAE fae : listaFAEs.getListaFAEs()) {
+            if (fae.equals(u)) {
+                return fae;
+            }
+        }
+
+        return null;
+    }
 }

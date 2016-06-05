@@ -111,4 +111,22 @@ public class RegistoExposicoes {
 
         }
     }
+
+    /**
+     * Devolve lista de exposições do fae.
+     *
+     * @param u utilizador
+     * @return lista de exposições do fae
+     */
+    public List<Exposicao> getListaExposicoesDoFAE(Utilizador u) {
+        List<Exposicao> l_ExpDoFAE = new ArrayList();
+
+        for (Exposicao m : listaExposicoes) {
+            if (m.getFAE(u) != null) {
+                l_ExpDoFAE.add(m);
+            }
+
+        }
+        return l_ExpDoFAE;
+    }
 }

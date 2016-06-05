@@ -20,6 +20,10 @@ public class Demonstracao {
      */
     private String descricao;
     /**
+     * Lista de Candidaturas da demonstracao.
+     */
+    private final ListaCandidaturasDemonstracoes listaCandidaturas;
+    /**
      * Valor do código de Demonstração por omissão.
      */
     private static final String CODIGO_OMISSAO = "";
@@ -34,6 +38,7 @@ public class Demonstracao {
     public Demonstracao() {
         this.codigo = CODIGO_OMISSAO;
         this.descricao = DESCRICAO_OMISSAO;
+        listaCandidaturas=new ListaCandidaturasDemonstracoes();
     }
 
     /**
@@ -46,6 +51,7 @@ public class Demonstracao {
     public Demonstracao(String codigo, String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
+        listaCandidaturas=new ListaCandidaturasDemonstracoes();
     }
 
     /**
@@ -84,4 +90,9 @@ public class Demonstracao {
         this.descricao = descricao;
     }
 
+    public ListaCandidaturasDemonstracoes getListaCandidaturas() {
+        return listaCandidaturas;
+    }
+
+    
 }
