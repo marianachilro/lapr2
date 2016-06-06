@@ -20,6 +20,10 @@ public class Demonstracao {
      */
     private String descricao;
     /**
+     * A confirmação de que a Demonstração se vai realizar.
+     */
+    private boolean confirmacao;
+    /**
      * Lista de Candidaturas da demonstracao.
      */
     private final ListaCandidaturasDemonstracoes listaCandidaturas;
@@ -71,6 +75,13 @@ public class Demonstracao {
     public String getDescricao() {
         return descricao;
     }
+    /**
+     * Devolve a confirmação da realização da Demonstração.
+     * @return 
+     */
+    public boolean getConfirmação(){
+        return this.confirmacao;
+    }
 
     /**
      * Modifica o Código da Demonstração
@@ -88,6 +99,13 @@ public class Demonstracao {
      */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+    /**
+     * Modifica a confirmação da Demonstração.
+     * @param confirmacao a confirmação da realização
+     */
+    public void setConfirmação(boolean confirmacao){
+        this.confirmacao=confirmacao;
     }
 
     public ListaCandidaturasDemonstracoes getListaCandidaturas() {
