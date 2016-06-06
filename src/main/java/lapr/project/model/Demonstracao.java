@@ -5,11 +5,13 @@
  */
 package lapr.project.model;
 
+import java.util.List;
+
 /**
  *
  * @author Rita
  */
-public class Demonstracao {
+public class Demonstracao implements Avaliavel{
 
     /**
      * Código único de Demonstração.
@@ -27,6 +29,12 @@ public class Demonstracao {
      * Lista de Candidaturas da demonstracao.
      */
     private final ListaCandidaturasDemonstracoes listaCandidaturas;
+
+    /**
+     * Lista de atribuicoes da exposicao.
+     */
+    private final ListaAtribuicoes listaAtribuicoes;
+
     /**
      * Valor do código de Demonstração por omissão.
      */
@@ -42,8 +50,9 @@ public class Demonstracao {
     public Demonstracao() {
         this.codigo = CODIGO_OMISSAO;
         this.descricao = DESCRICAO_OMISSAO;
-        this.realizacao=false;
-        listaCandidaturas=new ListaCandidaturasDemonstracoes();
+        this.realizacao = false;
+        listaCandidaturas = new ListaCandidaturasDemonstracoes();
+        listaAtribuicoes = new ListaAtribuicoes();
     }
 
     /**
@@ -56,8 +65,9 @@ public class Demonstracao {
     public Demonstracao(String codigo, String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
-        this.realizacao=false;
-        listaCandidaturas=new ListaCandidaturasDemonstracoes();
+        this.realizacao = false;
+        listaCandidaturas = new ListaCandidaturasDemonstracoes();
+        listaAtribuicoes = new ListaAtribuicoes();
     }
 
     /**
@@ -77,11 +87,13 @@ public class Demonstracao {
     public String getDescricao() {
         return descricao;
     }
+
     /**
      * Devolve a confirmação da realização da Demonstração.
-     * @return 
+     *
+     * @return
      */
-    public boolean getRealizacao(){
+    public boolean getRealizacao() {
         return this.realizacao;
     }
 
@@ -102,17 +114,36 @@ public class Demonstracao {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
     /**
      * Modifica a confirmação da Demonstração.
+     *
      * @param confirmacao a confirmação da realização
      */
-    public void setRealizacao(boolean confirmacao){
-        this.realizacao=confirmacao;
+    public void setRealizacao(boolean confirmacao) {
+        this.realizacao = confirmacao;
     }
 
     public ListaCandidaturasDemonstracoes getListaCandidaturas() {
         return listaCandidaturas;
     }
 
-    
+    /**
+     * Devolve a lista de atribuicoes da exposição.
+     *
+     * @return lista de atribuicoes
+     */
+    public List<Candidatura> getListaAtribuicoesFAE(FAE fae) {
+        return listaAtribuicoes.getListaCandidaturasFAE(fae);
+    }
+
+    /**
+     * Devolve lista de candidaturas de demonstracoes do fae
+     * @param fae fae respondavel pela candidatura
+     * @return lista candidaturas
+     */
+    @Override
+    public List<Candidatura> getAvaliaveis(FAE fae) {
+        return listaAtribuicoes.getListaCandidaturasFAE(fae);
+    }
 }

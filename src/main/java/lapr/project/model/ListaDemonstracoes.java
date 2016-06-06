@@ -91,4 +91,19 @@ public class ListaDemonstracoes {
             return false;
         }
     }
+    
+    /**
+     * Devolve as demonstracoes
+     * @return demonstracoes
+     */
+    public List<Demonstracao> getDemonstracao(){
+        List<Demonstracao> ld = new ArrayList<>();
+        if(!listaDemonstracao.isEmpty()){
+        for(Demonstracao d: listaDemonstracao){
+            ld.add(d);
+        }
+    }
+        return ld;
+    }
+    
 }

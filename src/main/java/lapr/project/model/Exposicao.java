@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Rita
  */
-public class Exposicao {
+public class Exposicao implements Avaliavel{
 
     /**
      * Título da Exposição
@@ -444,5 +444,15 @@ public class Exposicao {
     }
     public void setAtribuicoes(List<Atribuicao> lA){
      listaAtribuicoes.getLista().addAll(lA);
+    }
+
+    /**
+     * Devolve a lista de candidaturas de um fae de uma exposição
+     * @param fae fae da exposicao
+     * @return lista de candidaturas
+     */
+    @Override
+    public List<Candidatura> getAvaliaveis(FAE fae) {
+      return listaAtribuicoes.getListaCandidaturasFAE(fae);
     }
 }

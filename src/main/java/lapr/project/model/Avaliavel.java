@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.util.List;
+
 
 
 /**
@@ -13,5 +15,6 @@ package lapr.project.model;
  */
 public interface Avaliavel {
     
+    public abstract List<Candidatura> getAvaliaveis(FAE fae);
    
 }
