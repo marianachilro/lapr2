@@ -60,10 +60,6 @@ public class CriarExposicaoController {
         return this.m_oCE.getRegistoUtilizadores();
     }
 
-    public void seleciona(Utilizador u) {
-        addOrganizador(u);
-    }
-
     public ListaOrganizadores getListaOrganizadores() {
         return this.m_exposicao.getListaOrganizadores();
     }

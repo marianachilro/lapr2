@@ -6,6 +6,7 @@
 package lapr.project.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -69,6 +70,11 @@ public class Exposicao {
      * Lista de FAEs da exposicao.
      */
     private final ListaFAEs listaFAEs;
+    
+    /**
+     * Lista de atribuicoes da exposicao.
+     */
+    private final ListaAtribuicoes listaAtribuicoes;
 
     /**
      * Valor do Título de Exposição por omissão.
@@ -108,6 +114,7 @@ public class Exposicao {
         listaCandidaturas = new ListaCandidaturasExposicoes();
         listaDemonstracoes = new ListaDemonstracoes();
         listaFAEs = new ListaFAEs();
+        listaAtribuicoes= new ListaAtribuicoes();
     }
 
     /**
@@ -140,6 +147,7 @@ public class Exposicao {
         listaCandidaturas = new ListaCandidaturasExposicoes();
         listaDemonstracoes = new ListaDemonstracoes();
         listaFAEs = new ListaFAEs();
+        listaAtribuicoes= new ListaAtribuicoes();
     }
 
     /**
@@ -395,5 +403,13 @@ public class Exposicao {
         }
 
         return null;
+    }
+    
+    /**
+     * Devolve a lista de atribuicoes da exposição.
+     * @return lista de atribuicoes
+     */
+    public List<Candidatura> getListaAtribuicoesFAE(FAE fae){
+        return listaAtribuicoes.getListaCandidaturasFAE(fae);
     }
 }

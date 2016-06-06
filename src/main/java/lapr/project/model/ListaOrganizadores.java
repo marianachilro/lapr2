@@ -18,6 +18,7 @@ public class ListaOrganizadores {
      * List de Organizadores.
      */
     private List<Organizador> listaOrganizadores;
+    
 
     /**
      * Construtor de uma Lista de Organizadores.
@@ -103,4 +104,14 @@ public class ListaOrganizadores {
             return false;
         }
     }
+    /**
+     * Criar novo organizador
+     * @param u utilizador
+     * @return novo organizador
+     */
+    public Organizador novoOrganizador(Utilizador u) {
+        return new Organizador(u);
+    }
+    
+    
 }

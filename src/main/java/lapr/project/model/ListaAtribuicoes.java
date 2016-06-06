@@ -75,4 +75,20 @@ public class ListaAtribuicoes {
     public void setLista(List<Atribuicao> la) {
         this.la = la;
     }
+    
+    /**
+     * Devolve a lista de candidaturas do fae
+     * @param fae fae
+     * @return lista de candidaturas
+     */
+    public List <Candidatura> getListaCandidaturasFAE(FAE fae){
+        List<Candidatura> lc = new ArrayList<>();
+        
+        for(Atribuicao a : la){
+            if(a.getFAE().equals(fae)){
+                lc.add(a.getCandidatura());
+            }
+        }
+        return lc;
+    }
 }
