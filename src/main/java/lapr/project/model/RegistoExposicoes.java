@@ -71,6 +71,22 @@ public class RegistoExposicoes {
         }
         return listaExposicoesOrganizador;
     }
+    /**
+     * Devolve uma List com os titulos das exposições de um organizador, que é identificado pelo username.
+     * @param username
+     * @param ru
+     * @return 
+     */
+    public List<String> getListaExposicoesOrganizadorToString(String username, RegistoUtilizadores ru){
+         Utilizador u = ru.getUtilizador(username);
+        List<String> listaExposicoesOrganizador = new ArrayList<String>();
+        for (Exposicao e : listaExposicoes) {
+            if (e.getListaOrganizadores().hasOrganizador(u)) {
+                listaExposicoesOrganizador.add(e.getTitulo());
+            }
+        }
+        return listaExposicoesOrganizador;
+    }
 
     /**
      * Validação que devolve um boolean. True se a Exposição já existir na List.
@@ -128,5 +144,13 @@ public class RegistoExposicoes {
 
         }
         return l_ExpDoFAE;
+    }
+    public Exposicao getExpo(String expo){
+        for(Exposicao e : listaExposicoes){
+            if(e.getTitulo().equalsIgnoreCase(expo)){
+                return e;
+            }
+        }
+        return null;
     }
 }

@@ -54,6 +54,10 @@ public class Exposicao {
      */
     private Date dataFimDcCandidaturas;
     /**
+     * Estado da exposição.
+     */
+    private EstadoExpo st;
+    /**
      * Lista de Organizadores da Exposição
      */
     private final ListaOrganizadores listaOrg;
@@ -65,6 +69,10 @@ public class Exposicao {
      * Lista de Demonstrações da Exposição.
      */
     private final ListaDemonstracoes listaDemonstracoes;
+    /**
+     * Lista de conflitos da exposição.
+     */
+    private final ListaConflitos listaConflitos;
 
     /**
      * Lista de FAEs da exposicao.
@@ -115,6 +123,7 @@ public class Exposicao {
         listaDemonstracoes = new ListaDemonstracoes();
         listaFAEs = new ListaFAEs();
         listaAtribuicoes= new ListaAtribuicoes();
+        listaConflitos = new ListaConflitos();
     }
 
     /**
@@ -148,6 +157,7 @@ public class Exposicao {
         listaDemonstracoes = new ListaDemonstracoes();
         listaFAEs = new ListaFAEs();
         listaAtribuicoes= new ListaAtribuicoes();
+        listaConflitos = new ListaConflitos();
     }
 
     /**
@@ -203,6 +213,9 @@ public class Exposicao {
     public ListaCandidaturasExposicoes getListaCandidaturas() {
         return listaCandidaturas;
     }
+    public ListaConflitos getListaConflitos(){
+        return listaConflitos;
+    }
 
     /**
      * Devolve a Lista de Organizadores da Exposição.
@@ -244,6 +257,9 @@ public class Exposicao {
             throw new IllegalArgumentException("Descrição inválida!");
         }
         this.descricao = descricao;
+    }
+    public ListaFAEs getListaFAES(){
+        return listaFAEs;
     }
 
     /**
@@ -411,5 +427,22 @@ public class Exposicao {
      */
     public List<Candidatura> getListaAtribuicoesFAE(FAE fae){
         return listaAtribuicoes.getListaCandidaturasFAE(fae);
+    }
+    /**
+     * Método que retorna o estado atual da exposição.
+     * @return 
+     */
+    public EstadoExpo getEstado(){
+        return st;
+    }
+    /**
+     * Método que modifica o estado atual da exposição.
+     * @param novoSt 
+     */
+    public void setEstado(EstadoExpo novoSt){
+        st = novoSt;
+    }
+    public void setAtribuicoes(List<Atribuicao> lA){
+     listaAtribuicoes.getLista().addAll(lA);
     }
 }
