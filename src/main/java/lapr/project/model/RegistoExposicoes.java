@@ -72,6 +72,22 @@ public class RegistoExposicoes {
         return listaExposicoesOrganizador;
     }
     /**
+     * Devolve lista de exposiçoes do organizador
+     * @param org organizador
+     * @return lista de exposiçoes
+     */
+    public List<Exposicao>getListaExposicoesOrganizador(Organizador org){
+        List<Exposicao> le = new ArrayList<>();
+        
+        for(Exposicao e:listaExposicoes){
+            if(e.VerificarSeEOrganizadorDaExpo(org)){
+                le.add(e);
+            }
+        }
+        return le;
+    }
+    
+    /**
      * Devolve uma List com os titulos das exposições de um organizador, que é identificado pelo username.
      * @param username
      * @param ru

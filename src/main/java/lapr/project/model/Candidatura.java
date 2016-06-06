@@ -76,6 +76,11 @@ public abstract class Candidatura {
     private FAE fae;
 
     /**
+     * Decisao da candidatura.
+     */
+    private String decisao;
+
+    /**
      * Lista de avaliações sobre a candidatura.
      */
     private final ListaAvaliacoes listaAvaliacoes;
@@ -90,6 +95,7 @@ public abstract class Candidatura {
         this.m_sArea = AREA_OMISSAO;
         this.m_sConvites = NUM_CONV_OMISSAO;
         this.listaAvaliacoes = new ListaAvaliacoes();
+        this.decisao = null;
 
     }
 
@@ -107,6 +113,7 @@ public abstract class Candidatura {
      *
      * @param sConvites o numero de convites da candidatura
      *
+     *
      */
     public Candidatura(String nomeRepresentante, String sTituloExp, String sNomeEmpresa, String sMorada,
             int sTelemovel, double sArea, int sConvites) {
@@ -122,6 +129,7 @@ public abstract class Candidatura {
 
         this.m_snomeRepresentante = nomeRepresentante;
         this.listaAvaliacoes = new ListaAvaliacoes();
+        this.decisao = null;
 
     }
 
@@ -286,6 +294,24 @@ public abstract class Candidatura {
      */
     public void setM_snomeRepresentante(String m_snomeRepresentante) {
         this.m_snomeRepresentante = m_snomeRepresentante;
+    }
+
+    /**
+     * Devolve a decisao da candidatura
+     *
+     * @return decisao
+     */
+    public String getDecisao() {
+        return decisao;
+    }
+
+    /**
+     * Modifica a decisao da candidatura
+     *
+     * @param decisao nova decisao da candidatura
+     */
+    public void setDecisao(String decisao) {
+        this.decisao = decisao;
     }
 
     /**
