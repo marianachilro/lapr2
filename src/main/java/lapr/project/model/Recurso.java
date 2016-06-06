@@ -50,4 +50,8 @@ public class Recurso {
         this.nome= nome;
     }
     
+    public boolean valida(){
+        return true;
+    }
+    
 }

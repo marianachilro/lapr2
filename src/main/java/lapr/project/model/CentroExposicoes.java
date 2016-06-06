@@ -30,6 +30,8 @@ public class CentroExposicoes {
 
     private final RegistoLocais rl;
     
+    private final RegistoRecursos rr;
+    
     /**
      * Registo ocm todos os mecanismos.
      */
@@ -44,6 +46,7 @@ public class CentroExposicoes {
         this.ru = new RegistoUtilizadores();
         this.rs = new RegistoStands();
         this.rl = new RegistoLocais();
+        this.rr = new RegistoRecursos();
         rm = new RegistoMecanismos();
     }
 
@@ -92,6 +95,11 @@ public class CentroExposicoes {
     public RegistoLocais getRegistoLocais() {
         return rl;
     }
+    
+    public RegistoRecursos getRegistoRecursos(){
+        return rr;
+    }
+    
     public RegistoMecanismos getRegistoMecanismos(){
         return rm;
     }
