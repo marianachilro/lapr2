@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Rita
  */
-public class Demonstracao implements Avaliavel, Decisivel {
+public class Demonstracao {
 
     /**
      * Código único de Demonstração.
@@ -137,24 +137,4 @@ public class Demonstracao implements Avaliavel, Decisivel {
         return listaAtribuicoes.getListaCandidaturasFAE(fae);
     }
 
-    /**
-     * Devolve lista de candidaturas de demonstracoes do fae
-     *
-     * @param fae fae respondavel pela candidatura
-     * @return lista candidaturas
-     */
-    @Override
-    public List<Candidatura> getAvaliaveis(FAE fae) {
-        return listaAtribuicoes.getListaCandidaturasFAE(fae);
-    }
-
-    /**
-     * Devolve a lista de candidaturas por decidir
-     *
-     * @return lista de candidaturas
-     */
-    @Override
-    public List<Candidatura> getDecisiveis() {
-        return (List<Candidatura>) ((Candidatura) listaCandidaturas.getListCandidaturas());
-    }
 }

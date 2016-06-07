@@ -12,6 +12,6 @@ import java.util.List;
  * @author miniondevil
  */
 public interface MecanismoAtribuicao {
-  public List<Atribuicao> atribui(List<FAE> listaf, ListaConflitos rconf, EstadoExpo st);  
+  public List<Atribuicao> atribui(List<FAE> listaf, ListaConflitos rconf, ExposicaoEstado st);  
   public void defineAssociacoes();
 }

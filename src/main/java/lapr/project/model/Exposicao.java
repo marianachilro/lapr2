@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author Rita
  */
-public class Exposicao implements Avaliavel,Decisivel {
+public class Exposicao implements Avaliavel, Decisivel {
 
     /**
      * Título da Exposição
@@ -56,7 +57,7 @@ public class Exposicao implements Avaliavel,Decisivel {
     /**
      * Estado da exposição.
      */
-    private EstadoExpo st;
+    private ExposicaoEstado st;
     /**
      * Lista de Organizadores da Exposição
      */
@@ -124,6 +125,7 @@ public class Exposicao implements Avaliavel,Decisivel {
         listaFAEs = new ListaFAEs();
         listaAtribuicoes = new ListaAtribuicoes();
         listaConflitos = new ListaConflitos();
+        // inicializar estado
     }
 
     /**
@@ -452,7 +454,7 @@ public class Exposicao implements Avaliavel,Decisivel {
      *
      * @return
      */
-    public EstadoExpo getEstado() {
+    public ExposicaoEstado getEstado() {
         return st;
     }
 
@@ -461,8 +463,45 @@ public class Exposicao implements Avaliavel,Decisivel {
      *
      * @param novoSt
      */
-    public void setEstado(EstadoExpo novoSt) {
+    public void setEstado(ExposicaoEstado novoSt) {
         st = novoSt;
+    }
+
+    /**
+     * Modifica o estado da exposição
+     *
+     * @return boolean
+     */
+    public boolean setExposicaoConfltiosAlterados() {
+        return st.setExposicaoConfltiosAlterados();
+    }
+
+    /**
+     * Modifica o estado da exposição
+     *
+     * @return boolean
+     */
+    public boolean setExposicaoCandidaturasAtribuidas() {
+        return st.setExposicaoCandidaturasAtribuidas();
+    }
+
+    /**
+     * Modifica o estado da exposição
+     *
+     * @return boolean
+     */
+    public boolean setExposicaoCandidaturasAvaliadas() {
+        return st.setExposicaoCandidaturasAvaliadas();
+
+    }
+
+    /**
+     * Modifica o estado da exposição
+     *
+     * @return boolean
+     */
+    public boolean setExposicaoCandidaturasDecididas() {
+        return st.setExposicaoCandidaturasDecididas();
     }
 
     public void setAtribuicoes(List<Atribuicao> lA) {
@@ -481,11 +520,21 @@ public class Exposicao implements Avaliavel,Decisivel {
     }
 
     /**
-     * Devolve a lista das candidaturas por decidir 
+     * Devolve a lista das candidaturas por decidir
+     *
      * @return lista de candidaturas
      */
     @Override
     public List<Candidatura> getDecisiveis() {
-      return  (List<Candidatura>) ((Candidatura)listaCandidaturas.getListCandidaturas());
+        if (st.setDemonstracaoCandidaturasAvaliadas()) {
+            return (List<Candidatura>) ((Candidatura) listaCandidaturas.getListCandidaturas());
+        } else {
+            List<Candidatura> listaCandTodasDemonstracoes = new ArrayList<>();
+            for (Demonstracao d : listaDemonstracoes.getListaDemonstracao()) {
+                listaCandTodasDemonstracoes.add((Candidatura) d.getListaCandidaturas().getListCandidaturas());
+            }
+            return listaCandTodasDemonstracoes;
+        }
     }
+
 }

@@ -7,19 +7,11 @@ package lapr.project.model;
 
 /**
  *
- * @author marianachilro
+ * @author catarinarib
  */
-public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
-    
-    private Exposicao exposicao;
-    
-    public ExposicaoCandidaturasDemosAbertasEstado(Exposicao expo){
-        this.exposicao=expo;
-    }
+public class DemonstracoesConfirmadasEstado implements ExposicaoEstado {
 
-    @Override
-    public boolean setConfirmacaoRealizacaoDemos() {
-        return false;
+    public DemonstracoesConfirmadasEstado(Exposicao m_e) {
     }
 
     @Override
@@ -78,6 +70,11 @@ public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
     }
 
     @Override
+    public boolean setConfirmacaoRealizacaoDemos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public boolean setDemonstracaoCandidaturasAbertas() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -121,4 +118,5 @@ public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
     public boolean setStandsConfirmado() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

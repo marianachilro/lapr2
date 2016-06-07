@@ -91,7 +91,5 @@ public class ListaCandidaturasDemonstracoes {
         }
     }
     
-    public List<CandidaturaDemonstracao> getListaAtribuicoesDasCandidaturasDaDemostracaoPorAvaliar(FAE fae){
-        return null;
-    }
+    
 }

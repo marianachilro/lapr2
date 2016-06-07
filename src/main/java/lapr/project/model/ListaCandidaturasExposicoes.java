@@ -92,7 +92,5 @@ public class ListaCandidaturasExposicoes {
         }
     }
     
-    public List<CandidaturaExposicao> getListaAtribuicoesDasCandidaturasExposicaoPorAvaliar(FAE fae){
-        return null;
-    }
+    
 }
