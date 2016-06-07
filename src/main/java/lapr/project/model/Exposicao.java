@@ -445,4 +445,7 @@ public class Exposicao {
     public void setAtribuicoes(List<Atribuicao> lA){
      listaAtribuicoes.getLista().addAll(lA);
     }
+    public ListaAtribuicoes getListaAtribuicoes(){
+        return listaAtribuicoes;
+    }
 }

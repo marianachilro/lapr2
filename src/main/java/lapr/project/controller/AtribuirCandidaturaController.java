@@ -11,6 +11,7 @@ import lapr.project.model.CentroExposicoes;
 import lapr.project.model.EstadoExpo;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
+import lapr.project.model.ListaAtribuicoes;
 import lapr.project.model.ListaConflitos;
 import lapr.project.model.ListaFAEs;
 import lapr.project.model.MecanismoAtribuicao;
@@ -33,6 +34,7 @@ public class AtribuirCandidaturaController {
     private List<FAE> listaf;
     private MecanismoAtribuicao mecanismo;
     private List<Atribuicao> lA;
+    private ListaAtribuicoes listaAtribuicoes;
 
     public AtribuirCandidaturaController(CentroExposicoes ce) {
         this.ce = ce;
@@ -50,6 +52,7 @@ public class AtribuirCandidaturaController {
         e = re.getExpo(expo);
         st = e.getEstado();
         if (checkEstado()) {
+            listaAtribuicoes = e.getListaAtribuicoes();
             rconf = e.getListaConflitos();
             ListaFAEs rf = e.getListaFAES();
             listaf = rf.getListaFAEs();

@@ -96,6 +96,9 @@ public class RegistoExposicoes {
      * @return boolean
      */
     public boolean valida(Exposicao e) {
+        if(listaExposicoes.isEmpty()){
+            return false;
+        }
         return listaExposicoes.contains(e);
     }
 
@@ -119,7 +122,7 @@ public class RegistoExposicoes {
      * @return boolean
      */
     public boolean registaExposicao(Exposicao e) {
-        if (valida(e)) {
+        if (!valida(e)) {
             addExposicao(e);
             return true;
         } else {
