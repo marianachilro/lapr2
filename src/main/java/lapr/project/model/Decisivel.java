@@ -7,14 +7,11 @@ package lapr.project.model;
 
 import java.util.List;
 
-
-
 /**
  *
  * @author catarinarib
  */
-public interface Avaliavel {
+public interface Decisivel {
     
-    public abstract List<Candidatura> getAvaliaveis(FAE fae);
-   
+    public abstract List<Candidatura> getDecisiveis();
 }

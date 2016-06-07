@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Rita
  */
-public class Exposicao {
+public class Exposicao implements Avaliavel,Decisivel {
 
     /**
      * Título da Exposição
@@ -78,7 +78,7 @@ public class Exposicao {
      * Lista de FAEs da exposicao.
      */
     private final ListaFAEs listaFAEs;
-    
+
     /**
      * Lista de atribuicoes da exposicao.
      */
@@ -122,7 +122,7 @@ public class Exposicao {
         listaCandidaturas = new ListaCandidaturasExposicoes();
         listaDemonstracoes = new ListaDemonstracoes();
         listaFAEs = new ListaFAEs();
-        listaAtribuicoes= new ListaAtribuicoes();
+        listaAtribuicoes = new ListaAtribuicoes();
         listaConflitos = new ListaConflitos();
     }
 
@@ -156,7 +156,7 @@ public class Exposicao {
         listaCandidaturas = new ListaCandidaturasExposicoes();
         listaDemonstracoes = new ListaDemonstracoes();
         listaFAEs = new ListaFAEs();
-        listaAtribuicoes= new ListaAtribuicoes();
+        listaAtribuicoes = new ListaAtribuicoes();
         listaConflitos = new ListaConflitos();
     }
 
@@ -213,7 +213,8 @@ public class Exposicao {
     public ListaCandidaturasExposicoes getListaCandidaturas() {
         return listaCandidaturas;
     }
-    public ListaConflitos getListaConflitos(){
+
+    public ListaConflitos getListaConflitos() {
         return listaConflitos;
     }
 
@@ -258,7 +259,8 @@ public class Exposicao {
         }
         this.descricao = descricao;
     }
-    public ListaFAEs getListaFAES(){
+
+    public ListaFAEs getListaFAES() {
         return listaFAEs;
     }
 
@@ -420,30 +422,71 @@ public class Exposicao {
 
         return null;
     }
-    
+
+    /**
+     * Verifica se o organizador é um organizador da exposição
+     *
+     * @param org organizador
+     * @return boolean
+     */
+    public boolean VerificarSeEOrganizadorDaExpo(Organizador org) {
+        for (Organizador o : listaOrg.getListaOrganizadores()) {
+            if (o.equals(org)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Devolve a lista de atribuicoes da exposição.
+     *
      * @return lista de atribuicoes
      */
-    public List<Candidatura> getListaAtribuicoesFAE(FAE fae){
+    public List<Candidatura> getListaAtribuicoesFAE(FAE fae) {
         return listaAtribuicoes.getListaCandidaturasFAE(fae);
     }
+
     /**
      * Método que retorna o estado atual da exposição.
-     * @return 
+     *
+     * @return
      */
-    public EstadoExpo getEstado(){
+    public EstadoExpo getEstado() {
         return st;
     }
+
     /**
      * Método que modifica o estado atual da exposição.
-     * @param novoSt 
+     *
+     * @param novoSt
      */
-    public void setEstado(EstadoExpo novoSt){
+    public void setEstado(EstadoExpo novoSt) {
         st = novoSt;
     }
-    public void setAtribuicoes(List<Atribuicao> lA){
-     listaAtribuicoes.getLista().addAll(lA);
+
+    public void setAtribuicoes(List<Atribuicao> lA) {
+        listaAtribuicoes.getLista().addAll(lA);
+    }
+
+    /**
+     * Devolve a lista de candidaturas de um fae de uma exposição
+     *
+     * @param fae fae da exposicao
+     * @return lista de candidaturas
+     */
+    @Override
+    public List<Candidatura> getAvaliaveis(FAE fae) {
+        return listaAtribuicoes.getListaCandidaturasFAE(fae);
+    }
+
+    /**
+     * Devolve a lista das candidaturas por decidir 
+     * @return lista de candidaturas
+     */
+    @Override
+    public List<Candidatura> getDecisiveis() {
+      return  (List<Candidatura>) ((Candidatura)listaCandidaturas.getListCandidaturas());
     }
     public ListaAtribuicoes getListaAtribuicoes(){
         return listaAtribuicoes;

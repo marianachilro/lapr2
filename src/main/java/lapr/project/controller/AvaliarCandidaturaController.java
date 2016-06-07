@@ -7,6 +7,7 @@ package lapr.project.controller;
 
 import java.util.List;
 import lapr.project.model.Avaliacao;
+import lapr.project.model.Avaliavel;
 import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
@@ -26,11 +27,12 @@ public class AvaliarCandidaturaController {
     private FAE m_oFAE;
     private ListaAvaliacoes listaAvaliacoes;
     private Candidatura candidatura;
+    private Avaliavel interfaceAvaliavel;
 
-    public AvaliarCandidaturaController(CentroExposicoes ce,FAE fae) {
+    public AvaliarCandidaturaController(CentroExposicoes ce, FAE fae) {
         this.m_oCE = ce;
-        this.m_oFAE=fae;
-        
+        this.m_oFAE = fae;
+
     }
 
     public List<Exposicao> getListaExposicoesFAE(Utilizador u) {
@@ -38,18 +40,21 @@ public class AvaliarCandidaturaController {
     }
 
     public void selecionaExposicao(Exposicao e) {
-           this.m_exposicao=e;
+        this.m_exposicao = e;
     }
 
     public List<Candidatura> getInformacaoDasCandidaturasPorAvaliar(FAE fae) {
         return this.m_exposicao.getListaAtribuicoesFAE(fae);
     }
 
-    public void selectCandidatura(Candidatura c){
-        this.candidatura=c;
+    public void selectCandidatura(Candidatura c) {
+        this.candidatura = c;
     }
-    
-    
+
+    public List<Candidatura> getAvaliaveis(FAE fae) {
+             return this.interfaceAvaliavel.getAvaliaveis(fae);
+    }
+
     public void setAvaliacao(String fae, String candidatura, String decisao, String txt, int respostaTemaExpo, int respostaAdequacaoCand,
             int respostaAdequacaoNumConvites, int respostaRecomendacaoGlobal) {
 

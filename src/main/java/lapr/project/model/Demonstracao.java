@@ -5,11 +5,13 @@
  */
 package lapr.project.model;
 
+import java.util.List;
+
 /**
  *
  * @author Rita
  */
-public class Demonstracao {
+public class Demonstracao implements Avaliavel, Decisivel {
 
     /**
      * Código único de Demonstração.
@@ -22,11 +24,17 @@ public class Demonstracao {
     /**
      * A confirmação de que a Demonstração se vai realizar.
      */
-    private boolean confirmacao;
+    private boolean realizacao;
     /**
      * Lista de Candidaturas da demonstracao.
      */
     private final ListaCandidaturasDemonstracoes listaCandidaturas;
+
+    /**
+     * Lista de atribuicoes da exposicao.
+     */
+    private final ListaAtribuicoes listaAtribuicoes;
+
     /**
      * Valor do código de Demonstração por omissão.
      */
@@ -42,7 +50,9 @@ public class Demonstracao {
     public Demonstracao() {
         this.codigo = CODIGO_OMISSAO;
         this.descricao = DESCRICAO_OMISSAO;
-        listaCandidaturas=new ListaCandidaturasDemonstracoes();
+        this.realizacao = false;
+        listaCandidaturas = new ListaCandidaturasDemonstracoes();
+        listaAtribuicoes = new ListaAtribuicoes();
     }
 
     /**
@@ -55,7 +65,9 @@ public class Demonstracao {
     public Demonstracao(String codigo, String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
-        listaCandidaturas=new ListaCandidaturasDemonstracoes();
+        this.realizacao = false;
+        listaCandidaturas = new ListaCandidaturasDemonstracoes();
+        listaAtribuicoes = new ListaAtribuicoes();
     }
 
     /**
@@ -75,12 +87,14 @@ public class Demonstracao {
     public String getDescricao() {
         return descricao;
     }
+
     /**
      * Devolve a confirmação da realização da Demonstração.
-     * @return 
+     *
+     * @return
      */
-    public boolean getConfirmação(){
-        return this.confirmacao;
+    public boolean getRealizacao() {
+        return this.realizacao;
     }
 
     /**
@@ -100,17 +114,47 @@ public class Demonstracao {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
     /**
      * Modifica a confirmação da Demonstração.
+     *
      * @param confirmacao a confirmação da realização
      */
-    public void setConfirmação(boolean confirmacao){
-        this.confirmacao=confirmacao;
+    public void setRealizacao(boolean confirmacao) {
+        this.realizacao = confirmacao;
     }
 
     public ListaCandidaturasDemonstracoes getListaCandidaturas() {
         return listaCandidaturas;
     }
 
-    
+    /**
+     * Devolve a lista de atribuicoes da exposição.
+     *
+     * @return lista de atribuicoes
+     */
+    public List<Candidatura> getListaAtribuicoesFAE(FAE fae) {
+        return listaAtribuicoes.getListaCandidaturasFAE(fae);
+    }
+
+    /**
+     * Devolve lista de candidaturas de demonstracoes do fae
+     *
+     * @param fae fae respondavel pela candidatura
+     * @return lista candidaturas
+     */
+    @Override
+    public List<Candidatura> getAvaliaveis(FAE fae) {
+        return listaAtribuicoes.getListaCandidaturasFAE(fae);
+    }
+
+    /**
+     * Devolve a lista de candidaturas por decidir
+     *
+     * @return lista de candidaturas
+     */
+    @Override
+    public List<Candidatura> getDecisiveis() {
+        return (List<Candidatura>) ((Candidatura) listaCandidaturas.getListCandidaturas());
+    }
 }

@@ -102,7 +102,7 @@ public class Avaliacao {
 
     /**
      * Constrói uma instância de Avaliacao recebendo o fae, a candidatura, a
-     * decisao e o texto justificativo.
+     * decisao, texto justificativo e respostas do inquerito.
      *
      * @param fae o fae da avaliacao.
      * @param candidatura a candidatura da avaliacao.
@@ -128,6 +128,28 @@ public class Avaliacao {
         this.respostaAdequacaoNumConvites = respostaAdequacaoNumConvites;
         this.respostaRecomendacaoGlobal = respostaRecomendacaoGlobal;
 
+    }
+
+    /**
+     * Constrói uma instância de Avaliacao recebendo o fae, a candidatura, a
+     * decisao, texto justificativo e resposta do inquerito.
+     *
+     * @param fae o fae da avaliacao
+     * @param candidatura a candidatura da avaliacao
+     * @param decisao a decisao da avaliacao
+     * @param txt o texto justificativo da avaliacao
+     * @param respostaAdequacaoCand a resposta da adquação do inquerito so
+     * inquerito
+     * @param respostaRecomendacaoGlobal a resposta da recomendação global do
+     * inquerito
+     */
+    public Avaliacao(String fae, String candidatura, String decisao, String txt, int respostaAdequacaoCand, int respostaRecomendacaoGlobal) {
+        this.fae = fae;
+        this.candidatura = candidatura;
+        setDecisao(decisao);
+        setTextoJustificativo(txt);
+        this.respostaAdequacaoCand = respostaAdequacaoCand;
+        this.respostaRecomendacaoGlobal = respostaRecomendacaoGlobal;
     }
 
     /**

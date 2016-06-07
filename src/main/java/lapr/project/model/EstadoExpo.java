@@ -11,4 +11,7 @@ package lapr.project.model;
  */
 public interface EstadoExpo {
     
+    public boolean setConfirmacaoRealizacaoDemos();
+    
+    
 }
