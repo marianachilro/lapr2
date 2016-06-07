@@ -536,5 +536,7 @@ public class Exposicao implements Avaliavel, Decisivel {
             return listaCandTodasDemonstracoes;
         }
     }
-
+    public ListaAtribuicoes getListaAtribuicoes(){
+        return listaAtribuicoes;
+    }
 }

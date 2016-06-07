@@ -106,4 +106,15 @@ public class ListaDemonstracoes {
         return ld;
     }
     
+    public List<Demonstracao> getListaDemonstracoesDisponiveis() {
+        List<Demonstracao> ld = new ArrayList<>();
+        
+        for (Demonstracao d : listaDemonstracao) {
+            if(d.getRealizacao()==true) {
+                ld.add(d);
+            }
+        }
+        return ld;
+    }
+    
 }

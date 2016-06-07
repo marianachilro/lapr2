@@ -9,31 +9,64 @@ package lapr.project.model;
  *
  * @author catarinarib
  */
-public class CandidaturaDemonstracao extends Candidatura {
+public class CandidaturaDemonstracao implements Candidatura {
+
+    private String emailRep;
+    private String decisao;
+    private CandidaturaEstado estado;
+    public final ListaAvaliacoes listaAvaliacoes;
     
 
     /**
      * Construtor de uma candidatura com todos os atributos por omissão.
      */
     public CandidaturaDemonstracao() {
-        super();
+        listaAvaliacoes = new ListaAvaliacoes();
     }
 
     /**
      * Construtor de uma candidatura com todos os atributos recebidos por
      * parâmetro.
      *
-     * 
-     * @param nomeRepresentante nome do representante da candidatura
-     * @param sTituloExp titulo da exposicao
-     * @param sNomeEmpresa nome de expositor
-     * @param sMorada morada de expositor
-     * @param sTelemovel número de telemóvel de expositor
-     * @param sArea área pretendida
-     * @param sConvites número de convites pretendidos pelo expositor
+     *
+     * @param emailRep email de representante
      */
-    public CandidaturaDemonstracao(String nomeRepresentante, String sTituloExp, String sNomeEmpresa, String sMorada,int sTelemovel, double sArea, int sConvites) {
-        super(nomeRepresentante,sTituloExp,sNomeEmpresa, sMorada, sTelemovel, sArea, sConvites);
-
+    public CandidaturaDemonstracao(String emailRep) {
+        this.emailRep = emailRep;
+        listaAvaliacoes = new ListaAvaliacoes();
     }
+
+    @Override
+    public String getEmailRep() {
+        return emailRep;
+    }
+
+    @Override
+    public void setEmailRep(String email) {
+        this.emailRep = email;
+    }
+
+    @Override
+    public ListaAvaliacoes getListaAvaliacoes() {
+        return listaAvaliacoes;
+    }
+
+    @Override
+    public void setDecisao(String decisao) {
+        this.decisao = decisao;
+    }
+
+    @Override
+    public String getDecisao() {
+        return decisao;
+    }
+    
+    public CandidaturaEstado getEstado() {
+        return estado;
+    }
+    
+    public void setEstado(CandidaturaEstado estado) {
+        this.estado = estado;
+    }
+
 }

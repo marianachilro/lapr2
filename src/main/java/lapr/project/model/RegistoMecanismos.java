@@ -23,4 +23,7 @@ public class RegistoMecanismos {
     public List<MecanismoAtribuicao> getListaMecanismos() {
         return lm;
     }
+    public void setListaMecanismos(List<MecanismoAtribuicao> lm){
+        this.lm=lm;
+    }
 }

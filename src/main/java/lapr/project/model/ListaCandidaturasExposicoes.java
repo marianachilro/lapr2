@@ -91,6 +91,18 @@ public class ListaCandidaturasExposicoes {
             return false;
         }
     }
-    
-    
+
+    public List<CandidaturaExposicao> getListaAtribuicoesDasCandidaturasExposicaoPorAvaliar(FAE fae) {
+        return null;
+    }
+
+    public List<CandidaturaExposicao> getListaCandidaturasRep(String email) {
+        List<CandidaturaExposicao> le = new ArrayList<>();
+        for (CandidaturaExposicao c : listaCandidaturas) {
+            if (c.getEmailRep().equals(email)) {
+                le.add(c);
+            }
+        }
+        return le;
+    }
 }
