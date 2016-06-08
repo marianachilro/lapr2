@@ -62,29 +62,29 @@ public class Exposicao implements Avaliavel, Decisivel {
     /**
      * Lista de Organizadores da Exposição
      */
-    private final ListaOrganizadores listaOrg;
+    private ListaOrganizadores listaOrg;
     /**
      * Lista de Candidaturas da Exposição.
      */
-    private final ListaCandidaturasExposicoes listaCandidaturas;
+    private ListaCandidaturasExposicoes listaCandidaturas;
     /**
      * Lista de Demonstrações da Exposição.
      */
-    private final ListaDemonstracoes listaDemonstracoes;
+    private ListaDemonstracoes listaDemonstracoes;
     /**
      * Lista de conflitos da exposição.
      */
-    private final ListaConflitos listaConflitos;
+    private ListaConflitos listaConflitos;
 
     /**
      * Lista de FAEs da exposicao.
      */
-    private final ListaFAEs listaFAEs;
+    private ListaFAEs listaFAEs;
 
     /**
      * Lista de atribuicoes da exposicao.
      */
-    private final ListaAtribuicoes listaAtribuicoes;
+    private ListaAtribuicoes listaAtribuicoes;
 
     /**
      * Valor do Título de Exposição por omissão.
@@ -216,11 +216,30 @@ public class Exposicao implements Avaliavel, Decisivel {
     public ListaCandidaturasExposicoes getListaCandidaturas() {
         return listaCandidaturas;
     }
+    
+    /**
+     * Modifica a lista de candidaturas da exposicoa
+     * @param lc nova lista de candidaturas
+     */
+    public void setListaCandidaturas(ListaCandidaturasExposicoes lc) {
+       this.listaCandidaturas=lc;
+    }
 
+    /**
+     * Devolve lista de conflitos
+     * @return lista de conflitos
+     */
     public ListaConflitos getListaConflitos() {
         return listaConflitos;
     }
 
+    /**
+     * Modifica a lista de conflitos
+     * @param lc nova lista de conflitos
+     */
+    public void setListaConflitos(ListaConflitos lc){
+        this.listaConflitos=lc;
+    }
     /**
      * Devolve a Lista de Organizadores da Exposição.
      *
@@ -228,6 +247,14 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     public ListaOrganizadores getListaOrganizadores() {
         return listaOrg;
+    }
+    
+    /**
+     * Modifica lista de organizadores
+     * @param lo nova lista de organizadores
+     */
+    public void setListaOrganizadores(ListaOrganizadores lo){
+        this.listaOrg=lo;
     }
 
     /**
@@ -237,6 +264,13 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     public ListaDemonstracoes getListaDemonstracoes() {
         return listaDemonstracoes;
+    }
+    /**
+     * Modifica lista de demonstracoes
+     * @param ld nova lista de demonstracoes
+     */
+    public void setListaDemonstracoes(ListaDemonstracoes ld){
+        this.listaDemonstracoes=ld;
     }
 
     /**
@@ -263,8 +297,20 @@ public class Exposicao implements Avaliavel, Decisivel {
         this.descricao = descricao;
     }
 
+    /**
+     * Devolve lista de faes da exposicao
+     * @return lista de faes
+     */
     public ListaFAEs getListaFAES() {
         return listaFAEs;
+    }
+    
+    /**
+     * Modifica lista de faes da exposicao
+     * @param lfae nova lista de faes
+     */
+    public void setListaFAES(ListaFAEs lfae){
+        this.listaFAEs=lfae;
     }
 
     /**
@@ -449,6 +495,7 @@ public class Exposicao implements Avaliavel, Decisivel {
     public List<Candidatura> getListaAtribuicoesFAE(FAE fae) {
         return listaAtribuicoes.getListaCandidaturasFAE(fae);
     }
+    
 
     /**
      * Método que retorna o estado atual da exposição.
@@ -537,7 +584,23 @@ public class Exposicao implements Avaliavel, Decisivel {
             return listaCandTodasDemonstracoes;
         }
     }
+    
+    /**
+     * Devolve lista de atribuicoes da exposicao
+     * @return nova lista de atribuicoes
+     */
     public ListaAtribuicoes getListaAtribuicoes(){
         return listaAtribuicoes;
     }
+
+    /**
+     * Modifica lista de atribuicoes da exposicao
+     * @param la nova lista de atribuicoes
+     */
+    public void setListaAtribuicoes(ListaAtribuicoes la){
+        this.listaAtribuicoes=la;
+    }
+            
+
+   
 }

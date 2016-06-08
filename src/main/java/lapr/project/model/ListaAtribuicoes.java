@@ -91,4 +91,18 @@ public class ListaAtribuicoes {
         }
         return lc;
     }
+    
+    /**
+     * Verificar se existe fae na lista de atribuicoes
+     * @param fae fae 
+     * @return boolean
+     */
+    public boolean verificarSeContemFAE(FAE fae){
+        for(Atribuicao a: la){
+            if(a.getFAE().equals(fae)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

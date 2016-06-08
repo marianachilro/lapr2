@@ -5,6 +5,10 @@
  */
 package lapr.project.utils;
 
+/**
+ *
+ * @author catarinarib
+ */
 public class Data {
         
     /**
