@@ -67,6 +67,19 @@ public class CandidaturaExposicao implements Candidatura {
         listaKeywords = new ListaKeywords();
         listaDemonstracoes = new ListaDemonstracoes();
     }
+    public CandidaturaExposicao(CandidaturaExposicao c){
+        this.emailRep = c.getEmailRep();
+        this.sNomeEmpresa = c.getNomeRepresentante();
+        this.sMorada = c.getsMorada();
+        this.sTelemovel = c.getsTelemovel();
+        this.sArea = c.getsArea();
+        this.sConvites = c.getsConvites();
+        listaAvaliacoes = new ListaAvaliacoes();
+        listaDemonstracoes = new ListaDemonstracoes();
+        listaProdutos = new ListaProdutos(c.getListaProdutos());
+        listaKeywords = new ListaKeywords(c.getListaKeywords());
+        
+    }
 
     /**
      * Devolve o stand atribuído à candidatura.

@@ -25,6 +25,9 @@ public class ListaProdutos {
     public ListaProdutos() {
         this.listaProdutos = new ArrayList<>();
     }
+    public ListaProdutos(ListaProdutos lista){
+        this.listaProdutos = new ArrayList<Produto>(lista.getListaProdutos());
+    }
 
     /**
      * Devolve a List de Produtos.

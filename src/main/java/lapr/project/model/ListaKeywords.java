@@ -25,6 +25,9 @@ public class ListaKeywords {
     public ListaKeywords() {
         this.listaKeywords = new ArrayList<>();
     }
+    public ListaKeywords(ListaKeywords lista){
+        this.listaKeywords = new ArrayList<Keyword>(lista.getListaKeywords());
+    }
 
     /**
      * Devolve a List de Keywords.

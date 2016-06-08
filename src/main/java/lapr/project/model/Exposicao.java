@@ -5,9 +5,9 @@
  */
 package lapr.project.model;
 
-import data.Data;
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.utils.Data;
 
 
 /**

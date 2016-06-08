@@ -120,4 +120,7 @@ public class ListaCandidaturasExposicoes {
         }
         return candRep;
     }
+    public void removeCandidatura(CandidaturaExposicao c){
+        listaCandidaturas.remove(c);
+    }
 }
