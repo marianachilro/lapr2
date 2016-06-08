@@ -39,12 +39,12 @@ public class CriarExposicaoController {
     public void setDadosExposicao(String sTitulo, String sDescritivo, Date oDtInicio, Date oDtFim, Date oDtFimSubCand, Date oDtFimActConf, Date oDtFimAvCand, Date oDtFimDcCand) {
         this.m_exposicao.setTitulo(sTitulo);
         this.m_exposicao.setDescricao(sDescritivo);
-        this.m_exposicao.setDataInicio(oDtInicio);
-        this.m_exposicao.setDataFim(oDtFim);
-        this.m_exposicao.setDataFimSubCand(oDtFimSubCand);
-        this.m_exposicao.setDataFimAtcConf(oDtFimActConf);
-        this.m_exposicao.setDataFimAvCandidatura(oDtFimAvCand);
-        this.m_exposicao.setDataFimDcCandidaturas(oDtFimDcCand);
+//        this.m_exposicao.setDataInicio(oDtInicio);
+//        this.m_exposicao.setDataFim(oDtFim);
+//        this.m_exposicao.setDataFimSubCand(oDtFimSubCand);
+//        this.m_exposicao.setDataFimAtcConf(oDtFimActConf);
+//        this.m_exposicao.setDataFimAvCandidatura(oDtFimAvCand);
+//        this.m_exposicao.setDataFimDcCandidaturas(oDtFimDcCand);
 
     }
 

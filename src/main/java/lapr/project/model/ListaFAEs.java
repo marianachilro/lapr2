@@ -13,20 +13,22 @@ import java.util.List;
  * @author catarinarib
  */
 public class ListaFAEs {
+
     /**
      * Lista de FAEs da exposição
      */
     private List<FAE> listaFAEs;
-    
+
     /**
      * Contrutor de uma lista de FAEs
      */
-    public ListaFAEs(){
-        this.listaFAEs=new ArrayList<>();
+    public ListaFAEs() {
+        this.listaFAEs = new ArrayList<>();
     }
 
     /**
      * Devolve a lista de FAEs.
+     *
      * @return lista de FAEs
      */
     public List<FAE> getListaFAEs() {
@@ -35,13 +37,72 @@ public class ListaFAEs {
 
     /**
      * Modifica a lista de FAEs
+     *
      * @param listaFAEs lista de FAEs
      */
     public void setListaFAEs(List<FAE> listaFAEs) {
         this.listaFAEs = listaFAEs;
     }
 
-  
-    
-    
+    /**
+     * Devolve um novo FAE
+     *
+     * @return FAE
+     */
+    public FAE novoFae() {
+        return new FAE();
+    }
+
+    /**
+     * Adiciona um Fae à List, apenas se esta ainda não existir na mesma.
+     * Devolve um boolean, true se a operação tiver sucesso, false se não tiver
+     * sucesso.
+     *
+     * @param fae FAE
+     * @return boolean
+     */
+    public boolean registaFae(FAE fae) {
+        if (validaFae(fae)) {
+            addFae(fae);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Validação que devolve um boolean. True se o FAE já existir na List. False
+     * se ainda não existir.
+     *
+     * @param fae FAE
+     * @return boolean
+     */
+    public boolean validaFae(FAE fae) {
+        if (tamanho() > 0) {
+            return listaFAEs.contains(fae);
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Adiciona um Fae ao list e devolve um boolean. True se esta for adicionado
+     * com sucesso. False se esta não for adicionada com sucesso.
+     *
+     * @param fae FAE
+     * @return boolean
+     */
+    public boolean addFae(FAE fae) {
+        return listaFAEs.add(fae);
+    }
+
+    /**
+     * Devolve o número de FAEs que a List contém
+     *
+     * @return número de FAEs existentes
+     */
+    public int tamanho() {
+        return listaFAEs.size();
+    }
+
 }
