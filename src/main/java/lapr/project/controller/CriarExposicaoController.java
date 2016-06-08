@@ -5,7 +5,7 @@
  */
 package lapr.project.controller;
 
-import java.util.Date;
+import lapr.project.utils.Data;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.ListaOrganizadores;
@@ -36,7 +36,7 @@ public class CriarExposicaoController {
         this.m_exposicao = RegistoExposicoes.newExposicao();
     }
 
-    public void setDadosExposicao(String sTitulo, String sDescritivo, Date oDtInicio, Date oDtFim, Date oDtFimSubCand, Date oDtFimActConf, Date oDtFimAvCand, Date oDtFimDcCand) {
+    public void setDadosExposicao(String sTitulo, String sDescritivo, Data oDtInicio, Data oDtFim, Data oDtFimSubCand, Data oDtFimActConf, Data oDtFimAvCand, Data oDtFimDcCand) {
         this.m_exposicao.setTitulo(sTitulo);
         this.m_exposicao.setDescricao(sDescritivo);
 //        this.m_exposicao.setDataInicio(oDtInicio);
