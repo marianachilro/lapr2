@@ -105,4 +105,19 @@ public class ListaCandidaturasExposicoes {
         }
         return le;
     }
+    /**
+     * Método que retorna a lista de candidaturas do representante qeu já tem stand atribuido.
+     * @param email
+     * @return 
+     */
+    public List<CandidaturaExposicao> getListacandidaturaRepresentanteComStand(String email){
+        List<CandidaturaExposicao> aux = getListaCandidaturasRep(email);
+        List<CandidaturaExposicao> candRep = new ArrayList<CandidaturaExposicao>();
+        for(CandidaturaExposicao cand : aux){
+            if(cand.getStand()!=null){
+                candRep.add(cand);
+            }
+        }
+        return candRep;
+    }
 }

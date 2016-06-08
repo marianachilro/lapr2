@@ -31,4 +31,5 @@ public interface CandidaturaEstado {
 
     public boolean setEstatiscticaKeywordsCriada();
 
+    public boolean setConfirmarStandEstado();
 }

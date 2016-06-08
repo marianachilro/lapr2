@@ -67,7 +67,7 @@ public class RegistoExposicoesTest {
         e.getListaOrganizadores().add(org);
         instance.addExposicao(e);
         List<String> expResult = new ArrayList<String>();
-        
+        expResult.add(e.getTitulo());
         List<String> result = instance.getListaExposicoesOrganizadorToString(username, ru);
         assertEquals(expResult, result);
       
