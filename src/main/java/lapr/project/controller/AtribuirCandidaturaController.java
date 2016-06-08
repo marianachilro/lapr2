@@ -8,7 +8,6 @@ package lapr.project.controller;
 import java.util.List;
 import lapr.project.model.Atribuicao;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.EstadoExpo;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
 import lapr.project.model.ListaAtribuicoes;
@@ -18,6 +17,7 @@ import lapr.project.model.MecanismoAtribuicao;
 import lapr.project.model.RegistoExposicoes;
 import lapr.project.model.RegistoMecanismos;
 import lapr.project.model.RegistoUtilizadores;
+import lapr.project.model.ExposicaoEstado;
 
 /**
  *
@@ -29,7 +29,7 @@ public class AtribuirCandidaturaController {
     private RegistoExposicoes re;
     private Exposicao e;
     private RegistoMecanismos rm;
-    private EstadoExpo st;
+    private ExposicaoEstado st;
     private ListaConflitos rconf;
     private List<FAE> listaf;
     private MecanismoAtribuicao mecanismo;

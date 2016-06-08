@@ -9,44 +9,38 @@ package lapr.project.model;
  *
  * @author Rita
  */
-public class CandidaturaCriadaEstado implements CandidaturaEstado {
+public class CandidaturaCompletaEstado implements CandidaturaEstado {
 
-    private Candidatura cand; 
-    
-    public CandidaturaCriadaEstado(Candidatura cand) {
+    private Candidatura cand;
+
+    public CandidaturaCompletaEstado(Candidatura cand) {
         this.cand = cand;
     }
-    
+
     @Override
     public boolean setCriada() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean setAlterada() {
-        CandidaturaAlteradaEstado novoSt = new CandidaturaAlteradaEstado(cand);
-        if(valida()) {
-            cand.setEstado(novoSt);
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     @Override
     public boolean setCompleta() {
-        CandidaturaCompletaEstado novoSt = new CandidaturaCompletaEstado(cand);
-        if(valida()) {
+        return true;
+    }
+
+    @Override
+    public boolean setConflitosDetetados() {
+        CandidaturaConflitosDetetadosEstado novoSt = new CandidaturaConflitosDetetadosEstado(cand);
+        if (valida()) {
             cand.setEstado(novoSt);
             return true;
         } else {
             return false;
         }
-    }
-
-    @Override
-    public boolean setConflitosDetetados() {
-        return false;
     }
 
     @Override
@@ -78,9 +72,9 @@ public class CandidaturaCriadaEstado implements CandidaturaEstado {
     public boolean setEstatiscticaKeywordsCriada() {
         return false;
     }
-    
+
     private boolean valida() {
-        if(cand.getEstado().setCriada()) {
+        if (cand.getEstado().setCompleta()) {
             return true;
         } else {
             return false;

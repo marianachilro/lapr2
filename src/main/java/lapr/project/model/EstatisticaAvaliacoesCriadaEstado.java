@@ -9,39 +9,27 @@ package lapr.project.model;
  *
  * @author Rita
  */
-public class CandidaturaCriadaEstado implements CandidaturaEstado {
+public class EstatisticaAvaliacoesCriadaEstado implements CandidaturaEstado {
 
-    private Candidatura cand; 
-    
-    public CandidaturaCriadaEstado(Candidatura cand) {
+    private Candidatura cand;
+
+    public EstatisticaAvaliacoesCriadaEstado(Candidatura cand) {
         this.cand = cand;
     }
-    
+
     @Override
     public boolean setCriada() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean setAlterada() {
-        CandidaturaAlteradaEstado novoSt = new CandidaturaAlteradaEstado(cand);
-        if(valida()) {
-            cand.setEstado(novoSt);
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     @Override
     public boolean setCompleta() {
-        CandidaturaCompletaEstado novoSt = new CandidaturaCompletaEstado(cand);
-        if(valida()) {
-            cand.setEstado(novoSt);
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     @Override
@@ -66,21 +54,25 @@ public class CandidaturaCriadaEstado implements CandidaturaEstado {
 
     @Override
     public boolean setEstatisticaAvaliacoesCriadas() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean setDecidida() {
-        return false;
+        if (valida()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean setEstatiscticaKeywordsCriada() {
         return false;
     }
-    
+
     private boolean valida() {
-        if(cand.getEstado().setCriada()) {
+        if (cand.getEstado().getClass().equals(this.getClass())) {
             return true;
         } else {
             return false;
@@ -91,4 +83,5 @@ public class CandidaturaCriadaEstado implements CandidaturaEstado {
     public boolean setConfirmarStandEstado() {
         return false;
     }
+
 }
