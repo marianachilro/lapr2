@@ -6,6 +6,7 @@
 package lapr.project.model;
 
 import java.util.Date;
+import javax.xml.crypto.Data;
 
 /**
  *
@@ -70,11 +71,11 @@ public class ExposicaoCandidaturasAtribuidasEstado implements ExposicaoEstado {
     }
 
     private boolean valida() {
-        Date date = new Date();
+//        Data date = new Data();
 
-        if (m_e.getDataFimAvCandidatura().getDay() == date.getDay() && m_e.getDataFimAvCandidatura().getMonth() == date.getMonth() && m_e.getDataFimAvCandidatura().getYear() == date.getYear()) {
-            return true;
-        }
+//        if (m_e.getDataFimAvCandidatura() == date.getDay() && m_e.getDataFimAvCandidatura().getMonth() == date.getMonth() && m_e.getDataFimAvCandidatura().getYear() == date.getYear()) {
+//            return true;
+//        }
 
         return false;
     }

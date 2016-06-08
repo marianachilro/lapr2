@@ -89,8 +89,8 @@ public class Avaliacao {
      * Construtor sem parametros
      */
     public Avaliacao() {
-        this.fae = null;
-        this.candidatura = null;
+        this.fae = "";
+        this.candidatura = "";
         this.decisao = DECISAO_OMISSAO;
         this.txt = TXT_OMISSAO;
         this.respostaTemaExpo = RESP_TEMA_EXPO_OMISSAO;
@@ -138,18 +138,13 @@ public class Avaliacao {
      * @param candidatura a candidatura da avaliacao
      * @param decisao a decisao da avaliacao
      * @param txt o texto justificativo da avaliacao
-     * @param respostaAdequacaoCand a resposta da adquação do inquerito so
-     * inquerito
-     * @param respostaRecomendacaoGlobal a resposta da recomendação global do
-     * inquerito
      */
-    public Avaliacao(String fae, String candidatura, String decisao, String txt, int respostaAdequacaoCand, int respostaRecomendacaoGlobal) {
+    public Avaliacao(String fae, String candidatura, String decisao, String txt) {
         this.fae = fae;
         this.candidatura = candidatura;
         setDecisao(decisao);
         setTextoJustificativo(txt);
-        this.respostaAdequacaoCand = respostaAdequacaoCand;
-        this.respostaRecomendacaoGlobal = respostaRecomendacaoGlobal;
+      
     }
 
     /**
@@ -326,6 +321,7 @@ public class Avaliacao {
     public boolean equals(Object a) {
 
         Avaliacao a1 = (Avaliacao) a;
+       
         if (this.candidatura.equalsIgnoreCase(a1.getCandidatura()) && this.fae.equalsIgnoreCase(a1.getFae())) {
             return true;
         }

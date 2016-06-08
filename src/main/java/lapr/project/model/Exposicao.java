@@ -5,9 +5,10 @@
  */
 package lapr.project.model;
 
+import data.Data;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
 
 /**
  *
@@ -26,11 +27,11 @@ public class Exposicao implements Avaliavel, Decisivel {
     /**
      * Data de inicio da Exposição.
      */
-    private Date dataInicio;
+    private Data dataInicio;
     /**
      * Data de fim da Exposição.
      */
-    private Date dataFim;
+    private Data dataFim;
     /**
      * Local da Exposição.
      */
@@ -39,21 +40,21 @@ public class Exposicao implements Avaliavel, Decisivel {
     /**
      * Data final de submissao de candidaturas;
      */
-    private Date dataFimSubCand;
+    private Data dataFimSubCand;
     /**
      * Data final de atualização de conflitos.
      */
-    private Date dataFimAtcConf;
+    private Data dataFimAtcConf;
 
     /**
      * Data final de avaliação de candidaturas.
      */
-    private Date dataFimAvCandidatura;
+    private Data dataFimAvCandidatura;
 
     /**
      * Data final de decidir candidaturas.
      */
-    private Date dataFimDcCandidaturas;
+    private Data dataFimDcCandidaturas;
     /**
      * Estado da exposição.
      */
@@ -142,8 +143,8 @@ public class Exposicao implements Avaliavel, Decisivel {
      * @param dataFimDcCandidaturas Data fim de decidir candidaturas
      * @param dataFimAvCandidatura Data fim de avaliar candidaturas
      */
-    public Exposicao(String titulo, String descricao, Date dataInicio, Date dataFim, String local, Date dataFimSubCand,
-            Date dataFimAtcConf, Date dataFimAvCandidatura, Date dataFimDcCandidaturas) {
+    public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, String local, Data dataFimSubCand,
+            Data dataFimAtcConf, Data dataFimAvCandidatura, Data dataFimDcCandidaturas) {
 
         setTitulo(titulo);
         setDescricao(descricao);
@@ -185,7 +186,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @return Data de Inicio
      */
-    public Date getDataInicio() {
+    public Data getDataInicio() {
         return dataInicio;
     }
 
@@ -194,7 +195,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @return Data de Fim
      */
-    public Date getDataFim() {
+    public Data getDataFim() {
         return dataFim;
     }
 
@@ -271,7 +272,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param dataInicio Data de Inicio
      */
-    public final void setDataInicio(Date dataInicio) {
+    public final void setDataInicio(Data dataInicio) {
         if (dataInicio == null) {
             throw new IllegalArgumentException("Data inválida!");
         }
@@ -283,7 +284,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param dataFim Data de Fim
      */
-    public final void setDataFim(Date dataFim) {
+    public final void setDataFim(Data dataFim) {
         if (dataFim == null) {
             throw new IllegalArgumentException("Data inválida!");
         }
@@ -307,7 +308,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @return data fim de submissao de candidaturas
      */
-    public Date getDataFimSubCand() {
+    public Data getDataFimSubCand() {
         return dataFimSubCand;
     }
 
@@ -316,7 +317,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param dataFimSubCand data fim de submisao de candidaturas
      */
-    public final void setDataFimSubCand(Date dataFimSubCand) {
+    public final void setDataFimSubCand(Data dataFimSubCand) {
         if (dataFimSubCand == null) {
             throw new IllegalArgumentException("Data inválida!");
         }
@@ -328,7 +329,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @return data fim de atualização de conflitos
      */
-    public Date getDataFimAtcConf() {
+    public Data getDataFimAtcConf() {
         return dataFimAtcConf;
     }
 
@@ -337,7 +338,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param dataFimAtcConf data fim de atualização de conflitos
      */
-    public final void setDataFimAtcConf(Date dataFimAtcConf) {
+    public final void setDataFimAtcConf(Data dataFimAtcConf) {
         if (dataFimAtcConf == null) {
             throw new IllegalArgumentException("Data inválida!");
         }
@@ -349,7 +350,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @return data fim de avaliar candidaturas
      */
-    public Date getDataFimAvCandidatura() {
+    public Data getDataFimAvCandidatura() {
         return dataFimAvCandidatura;
     }
 
@@ -358,7 +359,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param dataFimAvCandidatura data fim de avaliar candidaturas
      */
-    public final void setDataFimAvCandidatura(Date dataFimAvCandidatura) {
+    public final void setDataFimAvCandidatura(Data dataFimAvCandidatura) {
         if (dataFimAvCandidatura == null) {
             throw new IllegalArgumentException("Data inválida!");
         }
@@ -370,7 +371,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @return data fim de decidir candidaturas
      */
-    public Date getDataFimDcCandidaturas() {
+    public Data getDataFimDcCandidaturas() {
         return dataFimDcCandidaturas;
     }
 
@@ -379,7 +380,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param dataFimDcCandidaturas data fim de decidir candidaturas
      */
-    public final void setDataFimDcCandidaturas(Date dataFimDcCandidaturas) {
+    public final void setDataFimDcCandidaturas(Data dataFimDcCandidaturas) {
         if (dataFimDcCandidaturas == null) {
             throw new IllegalArgumentException("Data inválida!");
         }

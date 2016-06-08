@@ -14,28 +14,34 @@ public class CentroExposicoes {
     /**
      * Registo com todos os tipos de conflitos.
      */
-    private  RegistoTipoConflitos rc;
+    private RegistoTipoConflitos rc;
     /**
      * Registo com todas as exposições.
      */
-    private final RegistoExposicoes re;
+    private RegistoExposicoes re;
     /**
      * Registo com todos os utilizadores.
      */
-    private final RegistoUtilizadores ru;
+    private RegistoUtilizadores ru;
     /**
      * Registo com todos os stands.
      */
-    private final RegistoStands rs;
+    private RegistoStands rs;
 
-    private final RegistoLocais rl;
-    
-    private final RegistoRecursos rr;
-    
+    /**
+     * Registo de locais do centro
+     */
+    private RegistoLocais rl;
+
+    /**
+     * Registo de recursos do centro
+     */
+    private RegistoRecursos rr;
+
     /**
      * Registo ocm todos os mecanismos.
      */
-    private final RegistoMecanismos rm;
+    private RegistoMecanismos rm;
 
     /**
      * Construtor de um Centro de Exposições.
@@ -70,12 +76,30 @@ public class CentroExposicoes {
     }
 
     /**
+     * Modifica o registo de exposicoes do centro de exposicoes
+     *
+     * @param re novo registo de exposicoes
+     */
+    public void setRegistoExposicoes(RegistoExposicoes re) {
+        this.re = re;
+    }
+
+    /**
      * Devolve o registo de todos os utilizadores
      *
      * @return Registo De Utilizadores
      */
     public RegistoUtilizadores getRegistoUtilizadores() {
         return ru;
+    }
+
+    /**
+     * Modifica o registo de utilizadores do centro de exposicoes
+     *
+     * @param ru novo registo de utilizadores do centro de exposicoes
+     */
+    public void setRegistoUtilizadores(RegistoUtilizadores ru) {
+        this.ru = ru;
     }
 
     /**
@@ -88,6 +112,15 @@ public class CentroExposicoes {
     }
 
     /**
+     * Modifica o registo de Stands do centro de exposicoes
+     *
+     * @param rs novo registo de stands do centro de exposicoes
+     */
+    public void setRegistoStands(RegistoStands rs) {
+        this.rs = rs;
+    }
+
+    /**
      * Devolve o registo de todos os locais.
      *
      * @return Registo de locais
@@ -95,15 +128,53 @@ public class CentroExposicoes {
     public RegistoLocais getRegistoLocais() {
         return rl;
     }
-    
-    public RegistoRecursos getRegistoRecursos(){
+
+    /**
+     * Modifica registo de locais do centro de exposicoes
+     *
+     * @param rl novo registo de llocais do centro de exposicoes
+     */
+    public void setRegistoLocais(RegistoLocais rl) {
+        this.rl = rl;
+    }
+
+    /**
+     * Devolve o registo de recursos do centro de exposicoes
+     *
+     * @return registo de recursos do centro
+     */
+    public RegistoRecursos getRegistoRecursos() {
         return rr;
     }
-    
-    public RegistoMecanismos getRegistoMecanismos(){
+
+    /**
+     * Modifica o registo de recursos do centro de exposicoes
+     *
+     * @param rr novo registo de recursos do centro
+     */
+    public void setRegistoRecursos(RegistoRecursos rr) {
+        this.rr = rr;
+    }
+
+    /**
+     * Devolve o registo de mecanismos do centro de exposicoes
+     *
+     * @return registo de mecanismos do centro
+     */
+    public RegistoMecanismos getRegistoMecanismos() {
         return rm;
     }
-    public void setRegistoTipoConflitos(RegistoTipoConflitos rc){
-        this.rc=rc;
+
+    public void setRegistoMecanismos(RegistoMecanismos rm) {
+        this.rm = rm;
+    }
+
+    /**
+     * Modifica o registo de tipo de conflitos do centro
+     *
+     * @param rc novo registo de conflitos
+     */
+    public void setRegistoTipoConflitos(RegistoTipoConflitos rc) {
+        this.rc = rc;
     }
 }
