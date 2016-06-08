@@ -28,8 +28,10 @@ public class CandidaturaExposicao implements Candidatura {
     /**
      * Lista de Produtos da Candidatura.
      */
-    private final ListaProdutos listaProdutos;
-    private final ListaAvaliacoes listaAvaliacoes;
+    private ListaProdutos listaProdutos;
+    private ListaAvaliacoes listaAvaliacoes;
+    private ListaKeywords listaKeywords;
+    private ListaDemonstracoes listaDemonstracoes;
 
     /**
      * Construtor de uma candidatura com todos os atributos por omissão.
@@ -37,13 +39,15 @@ public class CandidaturaExposicao implements Candidatura {
     public CandidaturaExposicao() {
         listaProdutos = new ListaProdutos();
         listaAvaliacoes = new ListaAvaliacoes();
+        listaKeywords = new ListaKeywords();
+        listaDemonstracoes = new ListaDemonstracoes();
     }
 
     /**
      * Construtor de uma candidatura com todos os atributos recebidos por
      * parâmetro.
      *
-     *@param emailRep e-mail do representante
+     * @param emailRep e-mail do representante
      * @param sTituloExp titulo da exposicao
      * @param sNomeEmpresa nome de expositor
      * @param sMorada morada de expositor
@@ -60,6 +64,8 @@ public class CandidaturaExposicao implements Candidatura {
         this.sConvites = sConvites;
         listaProdutos = new ListaProdutos();
         listaAvaliacoes = new ListaAvaliacoes();
+        listaKeywords = new ListaKeywords();
+        listaDemonstracoes = new ListaDemonstracoes();
     }
 
     /**
@@ -178,6 +184,30 @@ public class CandidaturaExposicao implements Candidatura {
     @Override
     public void setEstado(CandidaturaEstado estado) {
         this.estado = estado;
+    }
+
+    public ListaKeywords getListaKeywords() {
+        return listaKeywords;
+    }
+
+    public void setListaProdutos(ListaProdutos listaProdutos) {
+        this.listaProdutos = listaProdutos;
+    }
+
+    public void setListaAvaliacoes(ListaAvaliacoes listaAvaliacoes) {
+        this.listaAvaliacoes = listaAvaliacoes;
+    }
+
+    public void setListaKeywords(ListaKeywords listaKeywords) {
+        this.listaKeywords = listaKeywords;
+    }
+
+    public ListaDemonstracoes getListaDemonstracoes() {
+        return listaDemonstracoes;
+    }
+
+    public void setListaDemonstracoes(ListaDemonstracoes listaDemonstracoes) {
+        this.listaDemonstracoes = listaDemonstracoes;
     }
 
 }
