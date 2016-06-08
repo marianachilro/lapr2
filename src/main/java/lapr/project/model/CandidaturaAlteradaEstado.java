@@ -29,7 +29,9 @@ public class CandidaturaAlteradaEstado implements CandidaturaEstado {
 
     @Override
     public boolean setCompleta() {
+        CandidaturaCompletaEstado novoSt = new CandidaturaCompletaEstado(cand);
         if (valida()) {
+            cand.setEstado(novoSt);
             return true;
         } else {
             return false;
@@ -72,7 +74,7 @@ public class CandidaturaAlteradaEstado implements CandidaturaEstado {
     }
 
     private boolean valida() {
-        if (cand.getEstado().getClass().equals(this.getClass())) {
+        if (cand.getEstado().setConflitosAlterados()) {
             return true;
         } else {
             return false;

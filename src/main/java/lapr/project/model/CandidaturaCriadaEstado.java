@@ -24,7 +24,9 @@ public class CandidaturaCriadaEstado implements CandidaturaEstado {
 
     @Override
     public boolean setAlterada() {
+        CandidaturaAlteradaEstado novoSt = new CandidaturaAlteradaEstado(cand);
         if(valida()) {
+            cand.setEstado(novoSt);
             return true;
         } else {
             return false;
@@ -33,7 +35,9 @@ public class CandidaturaCriadaEstado implements CandidaturaEstado {
 
     @Override
     public boolean setCompleta() {
+        CandidaturaCompletaEstado novoSt = new CandidaturaCompletaEstado(cand);
         if(valida()) {
+            cand.setEstado(novoSt);
             return true;
         } else {
             return false;
@@ -76,7 +80,7 @@ public class CandidaturaCriadaEstado implements CandidaturaEstado {
     }
     
     private boolean valida() {
-        if(cand.getEstado().getClass().equals(this)) {
+        if(cand.getEstado().setCriada()) {
             return true;
         } else {
             return false;

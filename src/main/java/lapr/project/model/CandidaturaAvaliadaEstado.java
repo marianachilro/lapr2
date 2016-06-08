@@ -54,7 +54,9 @@ public class CandidaturaAvaliadaEstado implements CandidaturaEstado {
 
     @Override
     public boolean setEstatisticaAvaliacoesCriadas() {
+        EstatisticaAvaliacoesCriadaEstado novoSt = new EstatisticaAvaliacoesCriadaEstado(cand);
         if (valida()) {
+            cand.setEstado(novoSt);
             return true;
         } else {
             return false;
@@ -72,7 +74,7 @@ public class CandidaturaAvaliadaEstado implements CandidaturaEstado {
     }
 
     private boolean valida() {
-        if (cand.getEstado().getClass().equals(this.getClass())) {
+        if (cand.getEstado().setAvaliada()) {
             return true;
         } else {
             return false;
