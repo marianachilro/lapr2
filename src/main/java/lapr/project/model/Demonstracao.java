@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,6 +26,16 @@ public class Demonstracao {
      * A confirmação de que a Demonstração se vai realizar.
      */
     private boolean realizacao;
+    /**
+     * O estado da Demonstração.
+     */
+    private DemonstracaoEstado estado;
+    
+    private Date dataInicioSubmissaoCandidaturas;
+    
+    private Date dataFimSubmissaoCandidaturas;
+    
+    private Date dataFimAtualizacaoConflitos;
     /**
      * Lista de Candidaturas da demonstracao.
      */
@@ -91,10 +102,38 @@ public class Demonstracao {
     /**
      * Devolve a confirmação da realização da Demonstração.
      *
-     * @return
+     * @return true se se for realizar e false, caso contrário
      */
     public boolean getRealizacao() {
         return this.realizacao;
+    }
+    /**
+     * Devolve o estado da Demonstração.
+     * @return o estado
+     */
+    public DemonstracaoEstado getEstado(){
+        return estado;
+    }
+    /**
+     * Devolve a data do Início do período de submissão de Candidaturas à Demonstração.
+     * @return a data do início do período de submissão de candidaturas
+     */
+    public Date getDataInicioSubmissaoCandidaturas(){
+        return this.dataInicioSubmissaoCandidaturas;
+    }
+    /**
+     * Devolve a data do Fim do período de submissão de Candidaturas à Demonstração.
+     * @return a data do fim do período de submissão de candidaturas
+     */
+    public Date getDataFimSubmissaoCandidaturas(){
+        return this.dataFimSubmissaoCandidaturas;
+    }
+    /**
+     * Devolve a data do Fim do período de atualização de conflitos da Demonstração.
+     * @return a data do fim do período de atualização de conflitos
+     */
+    public Date getDataFimAtualizacaoConflitos(){
+        return this.dataFimAtualizacaoConflitos;
     }
 
     /**
@@ -123,9 +162,41 @@ public class Demonstracao {
     public void setRealizacao(boolean confirmacao) {
         this.realizacao = confirmacao;
     }
+    /**
+     * Modifica o estado da Demonstração.
+     * @param estado o novo estado
+     */
+    public void setEstado(DemonstracaoEstado estado){
+        this.estado = estado;
+    }
+    /**
+     * Modifica a data de Início do período de submissão e candidaturas à Demonstração.
+     * @param data a nova data de início do período de submissão
+     */
+    public void setDataInicioSubmissaoCandidaturas(Date data){
+        this.dataInicioSubmissaoCandidaturas=data;
+    }
+    /**
+     * Modifica a data de Fim do período de submissão e candidaturas à Demonstração.
+     * @param data a nova data de fim do período de submissão
+     */
+    public void setDataFimSubmissaoCandidaturas(Date data){
+        this.dataFimSubmissaoCandidaturas=data;
+    }
+    /**
+     * Modifica a data de Fim do período de atualização de conflitos da Demonstração.
+     * @param data a nova data de fim de atualização de conflitos
+     */
+    public void setDataFimAtualizacaoConflitos(Date data){
+        this.dataFimAtualizacaoConflitos=data;
+    }
 
     public ListaCandidaturasDemonstracoes getListaCandidaturas() {
         return listaCandidaturas;
+    }
+    
+    public ListaAtribuicoes getListaAtribuicoes(){
+        return this.listaAtribuicoes;
     }
 
     /**
@@ -135,6 +206,13 @@ public class Demonstracao {
      */
     public List<Candidatura> getListaAtribuicoesFAE(FAE fae) {
         return listaAtribuicoes.getListaCandidaturasFAE(fae);
+    }
+    
+    public boolean valida(){
+        if(codigo == null || descricao == null){
+            throw new IllegalArgumentException("Demonstração inválida!");
+        }
+        return true;
     }
 
 }

@@ -6,6 +6,7 @@
 package lapr.project.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -91,30 +92,67 @@ public class ListaDemonstracoes {
             return false;
         }
     }
-    
+
     /**
      * Devolve as demonstracoes
+     *
      * @return demonstracoes
      */
-    public List<Demonstracao> getDemonstracao(){
+    public List<Demonstracao> getDemonstracao() {
         List<Demonstracao> ld = new ArrayList<>();
-        if(!listaDemonstracao.isEmpty()){
-        for(Demonstracao d: listaDemonstracao){
-            ld.add(d);
-        }
-    }
-        return ld;
-    }
-    
-    public List<Demonstracao> getListaDemonstracoesDisponiveis() {
-        List<Demonstracao> ld = new ArrayList<>();
-        
-        for (Demonstracao d : listaDemonstracao) {
-            if(d.getRealizacao()==true) {
+        if (!listaDemonstracao.isEmpty()) {
+            for (Demonstracao d : listaDemonstracao) {
                 ld.add(d);
             }
         }
         return ld;
     }
+
+    public List<Demonstracao> getListaDemonstracoesDisponiveis() {
+        List<Demonstracao> ld = new ArrayList<>();
+
+        for (Demonstracao d : listaDemonstracao) {
+            if (d.getRealizacao() == true) {
+                ld.add(d);
+            }
+        }
+        return ld;
+    }
+
+    /**
+     * Modifica as data de início do período de submissão de candidaturas de todas as Demonstrações da lista.
+     * @param data a data inicio período de submissão
+     */
+    public void setDataInicioSubmissaoCanididaturasDemos(Date data) {
+        if (data != null) {
+            for (Demonstracao d : this.listaDemonstracao) {
+                d.setDataInicioSubmissaoCandidaturas(data);
+            }
+        }
+    }
     
+    /**
+     * Modifica as data de fim do período de submissão de candidaturas de todas as Demonstrações da lista.
+     * @param data a data fim período de submissão
+     */
+    public void setDataFimSubmissaoCanididaturasDemos(Date data) {
+        if (data != null) {
+            for (Demonstracao d : this.listaDemonstracao) {
+                d.setDataFimSubmissaoCandidaturas(data);
+            }
+        }
+    }
+    
+   /**
+     * Modifica as data de fim do período de atualização de conflitos de todas as Demonstrações da lista.
+     * @param data a data final do período de atualização de conflitos
+     */ 
+    public void setDataFimAtualizacaoConflitosDemos(Date data) {
+        if (data != null) {
+            for (Demonstracao d : this.listaDemonstracao) {
+                d.setDataInicioSubmissaoCandidaturas(data);
+            }
+        }
+    }
+
 }
