@@ -58,7 +58,7 @@ public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
     }
 
     @Override
-    public boolean setExposicaoConfltiosAlterados() {
+    public boolean setExposicaoConflitosAtualizados() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -93,7 +93,7 @@ public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
     }
 
     @Override
-    public boolean setDemonstracaoConfltiosAlterados() {
+    public boolean setDemonstracaoConflitosAtualizados() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

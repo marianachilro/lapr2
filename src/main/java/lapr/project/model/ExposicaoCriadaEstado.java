@@ -6,52 +6,67 @@
 package lapr.project.model;
 
 /**
- *
- * @author catarinarib
+ * 
+ * @author marianachilro
  */
-class ExposicaoCandidaturasAvaliadasEstado implements ExposicaoEstado {
-
+public class ExposicaoCriadaEstado implements ExposicaoEstado{
     
-    Exposicao m_e;
+    /**
+     * A exposição.
+     */
+    private Exposicao exposicao;
     
-    public ExposicaoCandidaturasAvaliadasEstado(Exposicao m_e) {
-        this.m_e=m_e;
+    /**
+     * Contrutor do Estado de "Criada" da Exposição.
+     *
+     * @param exposicao a demonstração que vai transitar de estado
+     */
+    public ExposicaoCriadaEstado(Exposicao exposicao){
+        this.exposicao=exposicao;
     }
     
-
+    
     @Override
     public boolean setCriada() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean setFaeSemDemo() {
+        if(validaFAE()){
+            this.exposicao.setEstado(new ExposicaoFAESemDemoEstado(this.exposicao));
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean setDemoSemFae() {
-     return false;
+        if(validaDemos()){
+           // this.exposicao.setEstado(new ExposicaoDemoSemFAEEstado(this.exposicao));
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean setCompleta() {
-       return false;
+        return false;
     }
 
     @Override
     public boolean setExposicaoCandidaturasAbertas() {
-       return false;
+        return false;
     }
 
     @Override
     public boolean setExposicaoCandidaturasFechadas() {
-       return false;
+        return false;
     }
 
     @Override
     public boolean setExposicaoConflitosDetetados() {
-       return false;
+        return false;
     }
 
     @Override
@@ -61,7 +76,7 @@ class ExposicaoCandidaturasAvaliadasEstado implements ExposicaoEstado {
 
     @Override
     public boolean setExposicaoCandidaturasAtribuidas() {
-     return false;
+        return false;
     }
 
     @Override
@@ -71,43 +86,27 @@ class ExposicaoCandidaturasAvaliadasEstado implements ExposicaoEstado {
 
     @Override
     public boolean setExposicaoCandidaturasDecididas() {
-       if(valida()){
-            m_e.setEstado(new ExposicaoDemonstracoesConfirmadasEstado(m_e));
-            return true;
-       }else{
-           return false;
-       }
+        return false;
     }
 
-    public boolean valida(){
-        if(!m_e.getListaCandidaturas().getListCandidaturas().isEmpty()){
-            for(Candidatura c : m_e.getListaCandidaturas().getListCandidaturas()){
-                if(c.getDecisao()==null){
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    
     @Override
     public boolean setConfirmacaoRealizacaoDemos() {
         return false;
-                }
+    }
 
     @Override
     public boolean setDemonstracaoCandidaturasAbertas() {
-       return false;
+        return false;
     }
 
     @Override
     public boolean setDemonstracaoCandidaturasFechadas() {
-         return false;
+        return false;
     }
 
     @Override
     public boolean setDemonstracaoConflitosDetetados() {
-       return false;
+        return false;
     }
 
     @Override
@@ -127,7 +126,7 @@ class ExposicaoCandidaturasAvaliadasEstado implements ExposicaoEstado {
 
     @Override
     public boolean setDemonstracaoCandidaturasDecididas() {
-         return false;
+        return false;
     }
 
     @Override
@@ -140,4 +139,17 @@ class ExposicaoCandidaturasAvaliadasEstado implements ExposicaoEstado {
         return false;
     }
     
+    public boolean validaFAE(){
+        if(!this.exposicao.getListaFAES().getListaFAEs().isEmpty()){
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean validaDemos(){
+        if(!this.exposicao.getListaDemonstracoes().getListaDemonstracao().isEmpty()){
+            return true;
+        }
+        return false;
+    }
 }

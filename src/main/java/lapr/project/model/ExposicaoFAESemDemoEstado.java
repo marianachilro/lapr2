@@ -9,28 +9,13 @@ package lapr.project.model;
  *
  * @author marianachilro
  */
-public class ExposicaoCandidaturasExpoDecididasEstado implements ExposicaoEstado{
-    
+public class ExposicaoFAESemDemoEstado implements ExposicaoEstado{
+
     private Exposicao exposicao;
     
-    public ExposicaoCandidaturasExpoDecididasEstado(Exposicao expo){
-        this.exposicao=expo;
+    public ExposicaoFAESemDemoEstado(Exposicao exposicao){
+        this.exposicao=exposicao;
     }
-
-    @Override
-    public boolean setConfirmacaoRealizacaoDemos() {
-        if(valida())
-            this.exposicao.setEstado(new ExposicaoCandidaturasDemosAbertasEstado(exposicao));
-        return false;
-    }
-    
-    public boolean valida(){
-        for(Demonstracao d : exposicao.getListaDemonstracoes().getListaDemonstracao())
-            if(d.getRealizacao() == true)
-                return true;
-        return false;
-    }
-
     @Override
     public boolean setCriada() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -83,6 +68,11 @@ public class ExposicaoCandidaturasExpoDecididasEstado implements ExposicaoEstado
 
     @Override
     public boolean setExposicaoCandidaturasDecididas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean setConfirmacaoRealizacaoDemos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

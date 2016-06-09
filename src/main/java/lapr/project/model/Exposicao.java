@@ -8,6 +8,7 @@ package lapr.project.model;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.utils.Data;
+import lapr.project.model.ExposicaoInicialEstado;
 
 
 /**
@@ -126,7 +127,7 @@ public class Exposicao implements Avaliavel, Decisivel {
         listaFAEs = new ListaFAEs();
         listaAtribuicoes = new ListaAtribuicoes();
         listaConflitos = new ListaConflitos();
-        // inicializar estado
+        this.st= new ExposicaoInicialEstado(this);
     }
 
     /**
@@ -161,6 +162,7 @@ public class Exposicao implements Avaliavel, Decisivel {
         listaFAEs = new ListaFAEs();
         listaAtribuicoes = new ListaAtribuicoes();
         listaConflitos = new ListaConflitos();
+        this.st= new ExposicaoInicialEstado(this);
     }
 
     /**
@@ -520,8 +522,8 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @return boolean
      */
-    public boolean setExposicaoConfltiosAlterados() {
-        return st.setExposicaoConfltiosAlterados();
+    public boolean setExposicaoConflitosAtualizados() {
+        return st.setExposicaoConflitosAtualizados();
     }
 
     /**
@@ -600,7 +602,17 @@ public class Exposicao implements Avaliavel, Decisivel {
     public void setListaAtribuicoes(ListaAtribuicoes la){
         this.listaAtribuicoes=la;
     }
+
+    public boolean valida(){
+        if(this.titulo==null||this.descricao==null||this.listaOrg.getListaOrganizadores().isEmpty()
+                ||this.dataInicio==null||this.dataInicio==null||this.dataFimSubCand==null||
+                this.dataFimAtcConf==null || this.dataFimAvCandidatura == null
+                || this.dataFimDcCandidaturas==null){
+            return false;
             
+        }
+        return true;
+    }
 
    
 }

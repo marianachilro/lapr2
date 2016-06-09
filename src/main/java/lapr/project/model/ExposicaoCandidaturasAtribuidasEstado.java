@@ -57,7 +57,7 @@ public class ExposicaoCandidaturasAtribuidasEstado implements ExposicaoEstado {
     }
 
     @Override
-    public boolean setExposicaoConfltiosAlterados() {
+    public boolean setExposicaoConflitosAtualizados() {
         return false;
     }
 
@@ -112,7 +112,7 @@ public class ExposicaoCandidaturasAtribuidasEstado implements ExposicaoEstado {
     }
 
     @Override
-    public boolean setDemonstracaoConfltiosAlterados() {
+    public boolean setDemonstracaoConflitosAtualizados() {
         return false;
     }
 
