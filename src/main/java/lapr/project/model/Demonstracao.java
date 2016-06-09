@@ -36,11 +36,13 @@ public class Demonstracao {
     private Date dataFimSubmissaoCandidaturas;
     
     private Date dataFimAtualizacaoConflitos;
+    
+    private ListaConflitos listaConflitos;
     /**
      * Lista de Candidaturas da demonstracao.
      */
     private final ListaCandidaturasDemonstracoes listaCandidaturas;
-
+    
     /**
      * Lista de atribuicoes da exposicao.
      */
@@ -64,6 +66,7 @@ public class Demonstracao {
         this.realizacao = false;
         listaCandidaturas = new ListaCandidaturasDemonstracoes();
         listaAtribuicoes = new ListaAtribuicoes();
+        listaConflitos = new ListaConflitos();
     }
 
     /**
@@ -79,6 +82,7 @@ public class Demonstracao {
         this.realizacao = false;
         listaCandidaturas = new ListaCandidaturasDemonstracoes();
         listaAtribuicoes = new ListaAtribuicoes();
+        listaConflitos = new ListaConflitos();
     }
 
     /**
@@ -191,6 +195,10 @@ public class Demonstracao {
         this.dataFimAtualizacaoConflitos=data;
     }
 
+    public ListaConflitos getListaConflitos(){
+        return listaConflitos;
+    } 
+    
     public ListaCandidaturasDemonstracoes getListaCandidaturas() {
         return listaCandidaturas;
     }

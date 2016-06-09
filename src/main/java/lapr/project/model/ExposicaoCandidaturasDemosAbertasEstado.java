@@ -5,120 +5,258 @@
  */
 package lapr.project.model;
 
+import java.util.GregorianCalendar;
+import lapr.project.utils.Data;
+
 /**
- *
+ * Representa um dos Estados possíveis da Exposicao (Estado de "Candidaturas Abertas Demos").
  * @author marianachilro
  */
 public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
     
+    /**
+     * A exposição.
+     */
     private Exposicao exposicao;
     
-    public ExposicaoCandidaturasDemosAbertasEstado(Exposicao expo){
-        this.exposicao=expo;
+    /**
+     * Contrutor do Estado de "Candidaturas Abertas Demos" da Exposição.
+     *
+     * @param exposicao a demonstração que vai transitar de estado
+     */
+    public ExposicaoCandidaturasDemosAbertasEstado(Exposicao exposicao){
+        this.exposicao=exposicao;
+    }
+    
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Criada".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
+    @Override
+    public boolean setCriada() {
+        return false;
     }
 
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "FAE Sem Demo".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
+    @Override
+    public boolean setFaeSemDemo() {
+        return false;
+    }
+
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Demo Sem FAE".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
+    @Override
+    public boolean setDemoSemFae() {
+        return false;
+    }
+
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Demo Sem FAE".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
+    @Override
+    public boolean setCompleta() {
+        return false;
+    }
+
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Abertas Expo".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
+    @Override
+    public boolean setExposicaoCandidaturasAbertas() {
+        return false;
+    }
+
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Fechadas Expo".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
+    @Override
+    public boolean setExposicaoCandidaturasFechadas() {
+        return false;
+    }
+
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Conflitos Detetados Expo".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
+    @Override
+    public boolean setExposicaoConflitosDetetados() {
+        return false;
+    }
+
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Conflitos Atualizados Expo".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
+    @Override
+    public boolean setExposicaoConflitosAtualizados() {
+        return false;
+    }
+
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Atribuidas Expo".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
+    @Override
+    public boolean setExposicaoCandidaturasAtribuidas() {
+        return false;
+    }
+
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Avaliadas Expo".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
+    @Override
+    public boolean setExposicaoCandidaturasAvaliadas() {
+        return false;
+    }
+
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Decididas Expo".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
+    @Override
+    public boolean setExposicaoCandidaturasDecididas() {
+        return false;
+    }
+
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Demonstrações Confirmadas".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
     @Override
     public boolean setConfirmacaoRealizacaoDemos() {
         return false;
     }
 
-    @Override
-    public boolean setCriada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setFaeSemDemo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setDemoSemFae() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setCompleta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasAbertas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasFechadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoConflitosDetetados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoConflitosAtualizados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasAtribuidas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasAvaliadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasDecididas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    /**
+     * Método que indica que a Demonstração está no Estado "Candidaturas Abertas Demos".
+     *
+     * @return true, porque está neste estado
+     */
     @Override
     public boolean setDemonstracaoCandidaturasAbertas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
 
+    /**
+     * Método que muda o estado da Exposição para o Estado "Candidaturas Fechadas Demos".
+     *
+     * @return false, se não puder mudar para este estado e true, se conseguir
+     * mudar
+     */
     @Override
     public boolean setDemonstracaoCandidaturasFechadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(valida()){
+            this.exposicao.setEstado(new ExposicaoCandidaturasDemosFechadasEstado(this.exposicao));
+            return true;
+        }
+        return false;
     }
 
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Conflitos Detetados Demos".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
     @Override
     public boolean setDemonstracaoConflitosDetetados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Conflitos Atualizados Demos".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
     @Override
     public boolean setDemonstracaoConflitosAtualizados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Atribuidas Demos".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
     @Override
     public boolean setDemonstracaoCandidaturasAtribuidas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Avaliadas Demos".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
     @Override
     public boolean setDemonstracaoCandidaturasAvaliadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Decididas Demos".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
     @Override
     public boolean setDemonstracaoCandidaturasDecididas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Stands Atribuidos".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
     @Override
     public boolean setStandsAtribuidos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
+    /**
+     * Método que indica que a Exposição não pode mudar para o Estado "Stands Confirmados".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
     @Override
-    public boolean setStandsConfirmado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean setStandsConfirmados() {
+        return false;
+    }
+    
+    /**
+     * Verifica se a Exposição pode mudar para o Estado "Candidaturas Fechadas Demos".
+     *
+     * @return false, se não puder mudar para esse estado e true, se for
+     * possível mudar
+     */
+    public boolean valida(){
+        int diaHoje = GregorianCalendar.DAY_OF_MONTH;
+        int mesHoje = GregorianCalendar.MONTH;
+        int anoHoje = GregorianCalendar.YEAR;
+        Data dataHoje = new Data(anoHoje, mesHoje, diaHoje);
+        //if (dataHoje.isMaior(this.exposicao.getDataFimSubmissaoCandDemos())) {
+          //  return true;
+        //}
+        return false;
     }
 }

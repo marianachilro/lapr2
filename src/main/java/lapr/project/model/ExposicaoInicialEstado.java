@@ -260,7 +260,7 @@ public class ExposicaoInicialEstado implements ExposicaoEstado {
      * @return false, porque não pode mudar para este estado
      */
     @Override
-    public boolean setStandsConfirmado() {
+    public boolean setStandsConfirmados() {
         return false;
     }
 

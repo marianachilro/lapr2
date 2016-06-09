@@ -51,6 +51,6 @@ public interface ExposicaoEstado {
 
     public boolean setStandsAtribuidos();
 
-    public boolean setStandsConfirmado();
+    public boolean setStandsConfirmados();
 
 }

@@ -6,73 +6,69 @@
 package lapr.project.model;
 
 /**
- * Representa um dos Estados possíveis da Exposicao (Estado de "Criada").
+ * Representa um dos Estados possíveis da Exposicao (Estado de "Demo Sem FAE").
  * @author marianachilro
  */
-public class ExposicaoCriadaEstado implements ExposicaoEstado{
+public class ExposicaoDemoSemFAEEstado implements ExposicaoEstado{
     
-    /**
+     /**
      * A exposição.
      */
     private Exposicao exposicao;
     
     /**
-     * Contrutor do Estado de "Criada" da Exposição.
+     * Contrutor do Estado de "Demo Sem FAE" da Exposição.
      *
      * @param exposicao a demonstração que vai transitar de estado
      */
-    public ExposicaoCriadaEstado(Exposicao exposicao){
+    public ExposicaoDemoSemFAEEstado(Exposicao exposicao){
         this.exposicao=exposicao;
     }
     
     /**
-     * Método que indica que a Demonstração está no Estado "Criada".
-     *
-     * @return true, porque está neste estado
-     */
-    @Override
-    public boolean setCriada() {
-        return true;
-    }
-
-    /**
-     * Método que muda o estado da Exposição para o Estado "FAE Sem Demo".
-     *
-     * @return false, se não puder mudar para este estado e true, se conseguir
-     * mudar
-     */
-    @Override
-    public boolean setFaeSemDemo() {
-        if(validaFAE()){
-            this.exposicao.setEstado(new ExposicaoFAESemDemoEstado(this.exposicao));
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Método que muda o estado da Exposição para o Estado "Demo Sem FAE".
-     *
-     * @return false, se não puder mudar para este estado e true, se conseguir
-     * mudar
-     */
-    @Override
-    public boolean setDemoSemFae() {
-        if(validaDemos()){
-            this.exposicao.setEstado(new ExposicaoDemoSemFAEEstado(this.exposicao));
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Completa".
+     * Método que indica que a Exposição não pode mudar para o Estado "Criada".
      *
      * @return false, porque não pode mudar para este estado
      */
     @Override
-    public boolean setCompleta() {
+    public boolean setCriada() {
         return false;
+    }
+
+    /**
+     * Método que indica que a Demonstração não pode mudar para o Estado "FAE Sem Demo".
+     *
+     * @return false, porque não pode mudar para este estado
+     */
+    @Override
+    public boolean setFaeSemDemo() {
+        return false;
+    }
+
+    /**
+     * Método que indica que a Exposição está no Estado "Demo Sem FAE".
+     *
+     * @return true, porque está neste estado
+     */
+    @Override
+    public boolean setDemoSemFae() {
+        return false;
+    }
+
+    /**
+     * Método que muda o estado da Exposição para o Estado "Completa".
+     *
+     * @return false, se não puder mudar para este estado e true, se conseguir
+     * mudar
+     */
+    @Override
+    public boolean setCompleta() {
+        if(valida()){
+            this.exposicao.setEstado(new ExposicaoCompletaEstado(this.exposicao));
+            return true;
+        }
+        return false;
+        
     }
 
     /**
@@ -106,7 +102,7 @@ public class ExposicaoCriadaEstado implements ExposicaoEstado{
     }
 
     /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Conflitos Atualizados Expo".
+     * Método que indica que a Exposição não pode mudar para o Estado "Conflitos Detetados Expo".
      *
      * @return false, porque não pode mudar para este estado
      */
@@ -116,7 +112,7 @@ public class ExposicaoCriadaEstado implements ExposicaoEstado{
     }
 
     /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Atribuídas Expo".
+     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Atribuidas Expo".
      *
      * @return false, porque não pode mudar para este estado
      */
@@ -146,7 +142,7 @@ public class ExposicaoCriadaEstado implements ExposicaoEstado{
     }
 
     /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Demos Confirmadas".
+     * Método que indica que a Exposição não pode mudar para o Estado "Demonstrações Confirmadas".
      *
      * @return false, porque não pode mudar para este estado
      */
@@ -196,7 +192,7 @@ public class ExposicaoCriadaEstado implements ExposicaoEstado{
     }
 
     /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Atribuídas Demos".
+     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Atribuidas Demos".
      *
      * @return false, porque não pode mudar para este estado
      */
@@ -226,7 +222,7 @@ public class ExposicaoCriadaEstado implements ExposicaoEstado{
     }
 
     /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Stands Atribuídos".
+     * Método que indica que a Exposição não pode mudar para o Estado "Stands Atribuidos".
      *
      * @return false, porque não pode mudar para este estado
      */
@@ -246,28 +242,16 @@ public class ExposicaoCriadaEstado implements ExposicaoEstado{
     }
     
     /**
-     * Verifica se a Exposição pode mudar para o Estado "FAE Sem Demo".
+     * Verifica se a Exposição pode mudar para o Estado "Completa".
      *
      * @return false, se não puder mudar para esse estado e true, se for
      * possível mudar
      */
-    public boolean validaFAE(){
+    public boolean valida(){
         if(!this.exposicao.getListaFAES().getListaFAEs().isEmpty()){
             return true;
         }
         return false;
     }
     
-    /**
-     * Verifica se a Exposição pode mudar para o Estado "Demo Sem FAE".
-     *
-     * @return false, se não puder mudar para esse estado e true, se for
-     * possível mudar
-     */
-    public boolean validaDemos(){
-        if(!this.exposicao.getListaDemonstracoes().getListaDemonstracao().isEmpty()){
-            return true;
-        }
-        return false;
-    }
 }

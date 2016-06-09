@@ -9,12 +9,12 @@ package lapr.project.model;
  *
  * @author catarinarib
  */
-class ExposicaoCandidaturasAvaliadasEstado implements ExposicaoEstado {
+class ExposicaoCandidaturasExpoAvaliadasEstado implements ExposicaoEstado {
 
     
     Exposicao m_e;
     
-    public ExposicaoCandidaturasAvaliadasEstado(Exposicao m_e) {
+    public ExposicaoCandidaturasExpoAvaliadasEstado(Exposicao m_e) {
         this.m_e=m_e;
     }
     
@@ -136,7 +136,7 @@ class ExposicaoCandidaturasAvaliadasEstado implements ExposicaoEstado {
     }
 
     @Override
-    public boolean setStandsConfirmado() {
+    public boolean setStandsConfirmados() {
         return false;
     }
     

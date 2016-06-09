@@ -127,7 +127,7 @@ public class ExposicaoCandidaturasExpoDecididasEstado implements ExposicaoEstado
     }
 
     @Override
-    public boolean setStandsConfirmado() {
+    public boolean setStandsConfirmados() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

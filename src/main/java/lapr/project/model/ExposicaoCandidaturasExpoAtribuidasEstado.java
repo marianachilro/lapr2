@@ -13,11 +13,11 @@ import lapr.project.utils.Data;
  *
  * @author catarinarib
  */
-public class ExposicaoCandidaturasAtribuidasEstado implements ExposicaoEstado {
+public class ExposicaoCandidaturasExpoAtribuidasEstado implements ExposicaoEstado {
 
     Exposicao m_e;
 
-    public ExposicaoCandidaturasAtribuidasEstado(Exposicao e) {
+    public ExposicaoCandidaturasExpoAtribuidasEstado(Exposicao e) {
         this.m_e = e;
     }
 
@@ -64,7 +64,7 @@ public class ExposicaoCandidaturasAtribuidasEstado implements ExposicaoEstado {
     @Override
     public boolean setExposicaoCandidaturasAtribuidas() {
         if (valida()) {
-            m_e.setEstado(new ExposicaoCandidaturasAvaliadasEstado(m_e));
+            m_e.setEstado(new ExposicaoCandidaturasExpoAvaliadasEstado(m_e));
             return true;
         } else {
             return false;
@@ -137,7 +137,7 @@ public class ExposicaoCandidaturasAtribuidasEstado implements ExposicaoEstado {
     }
 
     @Override
-    public boolean setStandsConfirmado() {
+    public boolean setStandsConfirmados() {
         return false;
     }
 
