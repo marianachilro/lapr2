@@ -120,6 +120,17 @@ public class ListaCandidaturasExposicoes {
         }
         return candRep;
     }
+    public List<CandidaturaExposicao> getListaCandRepEstadoCriadoOuAlterado(String email){
+        List<CandidaturaExposicao> aux = getListaCandidaturasRep(email);
+        List<CandidaturaExposicao> candRep = new ArrayList<CandidaturaExposicao>();
+        for(CandidaturaExposicao cand : aux){
+            CandidaturaEstado st = cand.getEstado();
+            if(st.setAlterada() || st.setCriada()){
+                candRep.add(cand);
+            }
+        }
+        return candRep;
+    }
     public void removeCandidatura(CandidaturaExposicao c){
         listaCandidaturas.remove(c);
     }

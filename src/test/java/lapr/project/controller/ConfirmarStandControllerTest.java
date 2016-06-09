@@ -36,9 +36,9 @@ public class ConfirmarStandControllerTest {
         c.setEmailRep("123");
         c.setStand(new Stand());
         CandidaturaExposicao c1 = new CandidaturaExposicao();
-        c.setEmailRep("123");
+        c1.setEmailRep("123");
         CandidaturaExposicao c2 = new CandidaturaExposicao();
-        c.setEmailRep("1234");
+        c2.setEmailRep("1234");
         e.getListaCandidaturas().addCandidatura(c);
         e.getListaCandidaturas().addCandidatura(c1);
         e.getListaCandidaturas().addCandidatura(c2);
