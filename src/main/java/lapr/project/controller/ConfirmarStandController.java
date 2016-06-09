@@ -21,28 +21,32 @@ import lapr.project.model.Stand;
  * @author miniondevil
  */
 public class ConfirmarStandController {
+
     private CentroExposicoes ce;
     private String email;
     private CandidaturaExposicao c;
-    public ConfirmarStandController(CentroExposicoes ce, String email){
+
+    public ConfirmarStandController(CentroExposicoes ce, String email) {
         this.ce = ce;
         this.email = email;
     }
-    
-    public List<CandidaturaExposicao> geListaCandidaturaRep(){
+
+    public List<CandidaturaExposicao> geListaCandidaturaRep() {
         List<CandidaturaExposicao> lista = new ArrayList<CandidaturaExposicao>();
         RegistoExposicoes re = ce.getRegistoExposicoes();
-        for(Exposicao e : re.getListaExposicoes()){
+        for (Exposicao e : re.getListaExposicoes()) {
             ListaCandidaturasExposicoes lc = e.getListaCandidaturas();
             lista.addAll(lc.getListacandidaturaRepresentanteComStand(email));
         }
         return lista;
     }
-    public Stand getStand(CandidaturaExposicao c){
-        this.c=c;
-     return c.getStand();
+
+    public Stand getStand(CandidaturaExposicao c) {
+        this.c = c;
+        return c.getStand();
     }
-    public void setEstado(){
+
+    public void setEstado() {
         CandidaturaEstado st = c.getEstado();
         st.setConfirmarStandEstado();
     }

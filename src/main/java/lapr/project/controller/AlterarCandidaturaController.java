@@ -5,6 +5,7 @@
  */
 package lapr.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.CandidaturaEstado;
 import lapr.project.model.CandidaturaExposicao;
@@ -43,18 +44,17 @@ public class AlterarCandidaturaController {
         this.email = email;
     }
 
-    public List<Exposicao> getExposicoes() {
-        re = ce.getRegistoExposicoes();
-        return re.getListaExposicoes();
+    public List<CandidaturaExposicao> getListaCandidaturasRep() {
+        List<CandidaturaExposicao> lista = new ArrayList<CandidaturaExposicao>();
+        RegistoExposicoes re = ce.getRegistoExposicoes();
+        for (Exposicao e : re.getListaExposicoes()) {
+            ListaCandidaturasExposicoes lc = e.getListaCandidaturas();
+            lista.addAll(lc.getListaCandRepEstadoCriadoOuAlterado(email));
+        }
+        return lista;
     }
 
-    public List<CandidaturaExposicao> getCandidaturas(String expo) {
-         e = re.getExpo(expo);
-        lc = e.getListaCandidaturas();
-        return lc.getListaCandidaturasRep(email);
-    }
-
-    public CandidaturaExposicao getCandidatura(CandidaturaExposicao c) {
+    public CandidaturaExposicao clonarCandidatura(CandidaturaExposicao c) {
         this.c = c;
         cc = new CandidaturaExposicao(c);
         return cc;
@@ -69,46 +69,56 @@ public class AlterarCandidaturaController {
         cc.setsConvites(convites);
         lp = cc.getListaProdutos();
     }
-    public void criaProduto(){
+
+    public void criaProduto() {
         p = lp.novoProduto();
     }
-    public void setProduto(String nome){
+
+    public void setProduto(String nome) {
         p.setNome(nome);
         lp.validaProduto(p);
     }
-    public void addProduto(){
+
+    public void addProduto() {
         lp.addProduto(p);
     }
 
-public List<Keyword> getListaKeyWords(){
-return cc.getListaKeywords().getListaKeywords();
-}
-public Keyword novaKeyWord(String keyWord){
-     k = cc.getListaKeywords().novaKeyword();
-     return k;
-}
-public void registaKeyword(){
-    cc.getListaKeywords().addKeyword(k);
-}
-public List<Demonstracao> getListaDemonstracoesExposicao(){
-    rde = e.getListaDemonstracoes();
-    return rde.getListaDemonstracao();
-}
-public void getListaDemonstracoesCandidatura(){
-    lcd = cc.getListaDemonstracoes();
-}
-public void selectDemo(Demonstracao d){
-    this.d=d;
-    
-}
-public void registaDemo(){
-    lcd.registaDemonstracao(d);
-}
-public void alterarCandidatura(){
-    lc.removeCandidatura(c);
-    lc.registaCandidatura(cc);
-    CandidaturaEstado st = cc.getEstado();
-    st.setAlterada();
-    
-}
+    public List<Keyword> getListaKeyWords() {
+        return cc.getListaKeywords().getListaKeywords();
+    }
+
+    public Keyword novaKeyWord(String keyWord) {
+        k = cc.getListaKeywords().novaKeyword();
+        return k;
+    }
+
+    public void registaKeyword() {
+        cc.getListaKeywords().addKeyword(k);
+    }
+
+    public List<Demonstracao> getListaDemonstracoesExposicao() {
+        rde = e.getListaDemonstracoes();
+        return rde.getListaDemonstracao();
+    }
+
+    public void getListaDemonstracoesCandidatura() {
+        lcd = cc.getListaDemonstracoes();
+    }
+
+    public void selectDemo(Demonstracao d) {
+        this.d = d;
+
+    }
+
+    public void registaDemo() {
+        lcd.registaDemonstracao(d);
+    }
+
+    public void alterarCandidatura() {
+        lc.removeCandidatura(c);
+        lc.registaCandidatura(cc);
+        CandidaturaEstado st = cc.getEstado();
+        st.setAlterada();
+
+    }
 }
