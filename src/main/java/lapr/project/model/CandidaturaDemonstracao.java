@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author catarinarib
@@ -15,7 +17,6 @@ public class CandidaturaDemonstracao implements Candidatura {
     private String decisao;
     private CandidaturaEstado estado;
     public final ListaAvaliacoes listaAvaliacoes;
-    
 
     /**
      * Construtor de uma candidatura com todos os atributos por omissão.
@@ -60,13 +61,52 @@ public class CandidaturaDemonstracao implements Candidatura {
     public String getDecisao() {
         return decisao;
     }
-    
+
+    @Override
     public CandidaturaEstado getEstado() {
         return estado;
     }
-    
+
+    @Override
     public void setEstado(CandidaturaEstado estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + Objects.hashCode(this.emailRep);
+        hash = 61 * hash + Objects.hashCode(this.decisao);
+        hash = 61 * hash + Objects.hashCode(this.estado);
+        hash = 61 * hash + Objects.hashCode(this.listaAvaliacoes);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CandidaturaDemonstracao other = (CandidaturaDemonstracao) obj;
+        if (!Objects.equals(this.emailRep, other.emailRep)) {
+            return false;
+        }
+        if (!Objects.equals(this.decisao, other.decisao)) {
+            return false;
+        }
+        if (!Objects.equals(this.estado, other.estado)) {
+            return false;
+        }
+        if (!Objects.equals(this.listaAvaliacoes, other.listaAvaliacoes)) {
+            return false;
+        }
+        return true;
     }
 
 }

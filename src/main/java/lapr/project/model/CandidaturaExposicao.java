@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author Rita
@@ -67,7 +69,8 @@ public class CandidaturaExposicao implements Candidatura {
         listaKeywords = new ListaKeywords();
         listaDemonstracoes = new ListaDemonstracoes();
     }
-    public CandidaturaExposicao(CandidaturaExposicao c){
+
+    public CandidaturaExposicao(CandidaturaExposicao c) {
         this.emailRep = c.getEmailRep();
         this.sNomeEmpresa = c.getNomeRepresentante();
         this.sMorada = c.getsMorada();
@@ -78,7 +81,7 @@ public class CandidaturaExposicao implements Candidatura {
         listaDemonstracoes = new ListaDemonstracoes();
         listaProdutos = new ListaProdutos(c.getListaProdutos());
         listaKeywords = new ListaKeywords(c.getListaKeywords());
-        
+
     }
 
     /**
@@ -221,6 +224,87 @@ public class CandidaturaExposicao implements Candidatura {
 
     public void setListaDemonstracoes(ListaDemonstracoes listaDemonstracoes) {
         this.listaDemonstracoes = listaDemonstracoes;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.emailRep);
+        hash = 37 * hash + Objects.hashCode(this.nomeRepresentante);
+        hash = 37 * hash + Objects.hashCode(this.sTituloExp);
+        hash = 37 * hash + Objects.hashCode(this.sNomeEmpresa);
+        hash = 37 * hash + Objects.hashCode(this.sMorada);
+        hash = 37 * hash + this.sTelemovel;
+        hash = 37 * hash + (int) (Double.doubleToLongBits(this.sArea) ^ (Double.doubleToLongBits(this.sArea) >>> 32));
+        hash = 37 * hash + this.sConvites;
+        hash = 37 * hash + Objects.hashCode(this.decisao);
+        hash = 37 * hash + Objects.hashCode(this.estado);
+        hash = 37 * hash + Objects.hashCode(this.stand);
+        hash = 37 * hash + Objects.hashCode(this.listaProdutos);
+        hash = 37 * hash + Objects.hashCode(this.listaAvaliacoes);
+        hash = 37 * hash + Objects.hashCode(this.listaKeywords);
+        hash = 37 * hash + Objects.hashCode(this.listaDemonstracoes);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CandidaturaExposicao other = (CandidaturaExposicao) obj;
+        if (this.sTelemovel != other.sTelemovel) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.sArea) != Double.doubleToLongBits(other.sArea)) {
+            return false;
+        }
+        if (this.sConvites != other.sConvites) {
+            return false;
+        }
+        if (!Objects.equals(this.emailRep, other.emailRep)) {
+            return false;
+        }
+        if (!Objects.equals(this.nomeRepresentante, other.nomeRepresentante)) {
+            return false;
+        }
+        if (!Objects.equals(this.sTituloExp, other.sTituloExp)) {
+            return false;
+        }
+        if (!Objects.equals(this.sNomeEmpresa, other.sNomeEmpresa)) {
+            return false;
+        }
+        if (!Objects.equals(this.sMorada, other.sMorada)) {
+            return false;
+        }
+        if (!Objects.equals(this.decisao, other.decisao)) {
+            return false;
+        }
+        if (!Objects.equals(this.estado, other.estado)) {
+            return false;
+        }
+        if (!Objects.equals(this.stand, other.stand)) {
+            return false;
+        }
+        if (!Objects.equals(this.listaProdutos, other.listaProdutos)) {
+            return false;
+        }
+        if (!Objects.equals(this.listaAvaliacoes, other.listaAvaliacoes)) {
+            return false;
+        }
+        if (!Objects.equals(this.listaKeywords, other.listaKeywords)) {
+            return false;
+        }
+        if (!Objects.equals(this.listaDemonstracoes, other.listaDemonstracoes)) {
+            return false;
+        }
+        return true;
     }
 
 }
