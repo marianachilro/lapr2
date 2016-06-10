@@ -9,9 +9,9 @@ package lapr.project.model;
  *
  * @author catarinarib
  */
-public class DemonstracoesConfirmadasEstado implements ExposicaoEstado {
+public class ExposicaoDemonstracoesConfirmadasEstado implements ExposicaoEstado {
 
-    public DemonstracoesConfirmadasEstado(Exposicao m_e) {
+    public ExposicaoDemonstracoesConfirmadasEstado(Exposicao m_e) {
     }
 
     @Override
@@ -50,7 +50,7 @@ public class DemonstracoesConfirmadasEstado implements ExposicaoEstado {
     }
 
     @Override
-    public boolean setExposicaoConfltiosAlterados() {
+    public boolean setExposicaoConflitosAtualizados() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -90,7 +90,7 @@ public class DemonstracoesConfirmadasEstado implements ExposicaoEstado {
     }
 
     @Override
-    public boolean setDemonstracaoConfltiosAlterados() {
+    public boolean setDemonstracaoConflitosAtualizados() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -115,7 +115,7 @@ public class DemonstracoesConfirmadasEstado implements ExposicaoEstado {
     }
 
     @Override
-    public boolean setStandsConfirmado() {
+    public boolean setStandsConfirmados() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

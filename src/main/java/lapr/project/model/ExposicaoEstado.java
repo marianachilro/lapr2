@@ -25,7 +25,7 @@ public interface ExposicaoEstado {
 
     public boolean setExposicaoConflitosDetetados();
 
-    public boolean setExposicaoConfltiosAlterados();
+    public boolean setExposicaoConflitosAtualizados();
 
     public boolean setExposicaoCandidaturasAtribuidas();
 
@@ -41,7 +41,7 @@ public interface ExposicaoEstado {
 
     public boolean setDemonstracaoConflitosDetetados();
 
-    public boolean setDemonstracaoConfltiosAlterados();
+    public boolean setDemonstracaoConflitosAtualizados();
 
     public boolean setDemonstracaoCandidaturasAtribuidas();
 
@@ -51,6 +51,6 @@ public interface ExposicaoEstado {
 
     public boolean setStandsAtribuidos();
 
-    public boolean setStandsConfirmado();
+    public boolean setStandsConfirmados();
 
 }

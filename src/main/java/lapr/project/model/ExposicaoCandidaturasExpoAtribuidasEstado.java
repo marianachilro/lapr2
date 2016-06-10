@@ -5,19 +5,21 @@
  */
 package lapr.project.model;
 
+import lapr.project.utils.Data;
+
+
+
 /**
  *
  * @author catarinarib
  */
-class ExposicaoCandidaturasAvaliadasEstado implements ExposicaoEstado {
+public class ExposicaoCandidaturasExpoAtribuidasEstado implements ExposicaoEstado {
 
-    
     Exposicao m_e;
-    
-    public ExposicaoCandidaturasAvaliadasEstado(Exposicao m_e) {
-        this.m_e=m_e;
+
+    public ExposicaoCandidaturasExpoAtribuidasEstado(Exposicao e) {
+        this.m_e = e;
     }
-    
 
     @Override
     public boolean setCriada() {
@@ -31,37 +33,52 @@ class ExposicaoCandidaturasAvaliadasEstado implements ExposicaoEstado {
 
     @Override
     public boolean setDemoSemFae() {
-     return false;
+        return false;
     }
 
     @Override
     public boolean setCompleta() {
-       return false;
+        return false;
     }
 
     @Override
     public boolean setExposicaoCandidaturasAbertas() {
-       return false;
+        return false;
     }
 
     @Override
     public boolean setExposicaoCandidaturasFechadas() {
-       return false;
+        return false;
     }
 
     @Override
     public boolean setExposicaoConflitosDetetados() {
-       return false;
+        return false;
     }
 
     @Override
-    public boolean setExposicaoConfltiosAlterados() {
+    public boolean setExposicaoConflitosAtualizados() {
         return false;
     }
 
     @Override
     public boolean setExposicaoCandidaturasAtribuidas() {
-     return false;
+        if (valida()) {
+            m_e.setEstado(new ExposicaoCandidaturasExpoAvaliadasEstado(m_e));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean valida() {
+        Data date =new Data();
+
+        if (m_e.getDataFimAvCandidatura().getDia() == date.getDia() && m_e.getDataFimAvCandidatura().getMes() == date.getMes() && m_e.getDataFimAvCandidatura().getAno() == date.getAno()) {
+            return true;
+        }
+
+        return false;
     }
 
     @Override
@@ -71,47 +88,31 @@ class ExposicaoCandidaturasAvaliadasEstado implements ExposicaoEstado {
 
     @Override
     public boolean setExposicaoCandidaturasDecididas() {
-       if(valida()){
-            m_e.setEstado(new DemonstracoesConfirmadasEstado(m_e));
-            return true;
-       }else{
-           return false;
-       }
+        return false;
     }
 
-    public boolean valida(){
-        if(!m_e.getListaCandidaturas().getListCandidaturas().isEmpty()){
-            for(Candidatura c : m_e.getListaCandidaturas().getListCandidaturas()){
-                if(c.getDecisao()==null){
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    
     @Override
     public boolean setConfirmacaoRealizacaoDemos() {
         return false;
-                }
+    }
 
     @Override
     public boolean setDemonstracaoCandidaturasAbertas() {
-       return false;
+        return false;
     }
 
     @Override
     public boolean setDemonstracaoCandidaturasFechadas() {
-         return false;
+        return false;
     }
 
     @Override
     public boolean setDemonstracaoConflitosDetetados() {
-       return false;
+        return false;
     }
 
     @Override
-    public boolean setDemonstracaoConfltiosAlterados() {
+    public boolean setDemonstracaoConflitosAtualizados() {
         return false;
     }
 
@@ -127,7 +128,7 @@ class ExposicaoCandidaturasAvaliadasEstado implements ExposicaoEstado {
 
     @Override
     public boolean setDemonstracaoCandidaturasDecididas() {
-         return false;
+        return false;
     }
 
     @Override
@@ -136,8 +137,8 @@ class ExposicaoCandidaturasAvaliadasEstado implements ExposicaoEstado {
     }
 
     @Override
-    public boolean setStandsConfirmado() {
+    public boolean setStandsConfirmados() {
         return false;
     }
-    
+
 }

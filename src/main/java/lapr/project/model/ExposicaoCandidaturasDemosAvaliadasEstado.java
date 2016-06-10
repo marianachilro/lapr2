@@ -9,22 +9,21 @@ import java.util.GregorianCalendar;
 import lapr.project.utils.Data;
 
 /**
- * Representa um dos Estados possíveis da Exposicao (Estado de "Candidaturas Abertas Demos").
+ * Representa um dos Estados possíveis da Exposicao (Estado de "Candidaturas Avaliadas Demos").
  * @author marianachilro
  */
-public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
-    
+public class ExposicaoCandidaturasDemosAvaliadasEstado implements ExposicaoEstado{
     /**
      * A exposição.
      */
     private Exposicao exposicao;
     
     /**
-     * Contrutor do Estado de "Candidaturas Abertas Demos" da Exposição.
+     * Contrutor do Estado de "Candidaturas Avaliadas Demos" da Exposição.
      *
      * @param exposicao a demonstração que vai transitar de estado
      */
-    public ExposicaoCandidaturasDemosAbertasEstado(Exposicao exposicao){
+    public ExposicaoCandidaturasDemosAvaliadasEstado(Exposicao exposicao){
         this.exposicao=exposicao;
     }
     
@@ -149,27 +148,22 @@ public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
     }
 
     /**
-     * Método que indica que a Demonstração está no Estado "Candidaturas Abertas Demos".
+     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Abertas Demos".
      *
-     * @return true, porque está neste estado
+     * @return false, porque não pode mudar para este estado
      */
     @Override
     public boolean setDemonstracaoCandidaturasAbertas() {
-        return true;
+        return false;
     }
 
     /**
-     * Método que muda o estado da Exposição para o Estado "Candidaturas Fechadas Demos".
+     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Fechadas Demos".
      *
-     * @return false, se não puder mudar para este estado e true, se conseguir
-     * mudar
+     * @return false, porque não pode mudar para este estado
      */
     @Override
     public boolean setDemonstracaoCandidaturasFechadas() {
-        if(valida()){
-            this.exposicao.setEstado(new ExposicaoCandidaturasDemosFechadasEstado(this.exposicao));
-            return true;
-        }
         return false;
     }
 
@@ -204,22 +198,28 @@ public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
     }
 
     /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Avaliadas Demos".
+     * Método que indica que a Exposição está no Estado "Candidaturas Avaliadas Demos".
      *
-     * @return false, porque não pode mudar para este estado
+     * @return true, porque está neste estado
      */
     @Override
     public boolean setDemonstracaoCandidaturasAvaliadas() {
-        return false;
+        
+        return true;
     }
 
     /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Decididas Demos".
+     * Método que muda o estado da Exposição para o Estado "Candidaturas Decididas Demos".
      *
-     * @return false, porque não pode mudar para este estado
+     * @return false, se não puder mudar para este estado e true, se conseguir
+     * mudar
      */
     @Override
     public boolean setDemonstracaoCandidaturasDecididas() {
+        if(valida()){
+            this.exposicao.setEstado(new ExposicaoCandidaturasDemosDecididasEstado(this.exposicao));
+            return true;
+        }
         return false;
     }
 
@@ -244,7 +244,7 @@ public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
     }
     
     /**
-     * Verifica se a Exposição pode mudar para o Estado "Candidaturas Fechadas Demos".
+     * Verifica se a Exposição pode mudar para o Estado "Candidaturas Decididas Demos".
      *
      * @return false, se não puder mudar para esse estado e true, se for
      * possível mudar
@@ -254,8 +254,8 @@ public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
         int mesHoje = GregorianCalendar.MONTH;
         int anoHoje = GregorianCalendar.YEAR;
         Data dataHoje = new Data(anoHoje, mesHoje, diaHoje);
-        //if (dataHoje.isMaior(this.exposicao.getDataFimSubmissaoCandDemos())) {
-          //  return true;
+       // if (dataHoje.isMaior(this.exposicao.getDataFimDcCandidaturasDemos())) {
+         //   return true;
         //}
         return false;
     }

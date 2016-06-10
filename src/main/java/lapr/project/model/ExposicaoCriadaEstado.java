@@ -5,14 +5,11 @@
  */
 package lapr.project.model;
 
-import java.util.GregorianCalendar;
-import lapr.project.utils.Data;
-
 /**
- * Representa um dos Estados possíveis da Exposicao (Estado de "Candidaturas Abertas Demos").
+ * Representa um dos Estados possíveis da Exposicao (Estado de "Criada").
  * @author marianachilro
  */
-public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
+public class ExposicaoCriadaEstado implements ExposicaoEstado{
     
     /**
      * A exposição.
@@ -20,46 +17,56 @@ public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
     private Exposicao exposicao;
     
     /**
-     * Contrutor do Estado de "Candidaturas Abertas Demos" da Exposição.
+     * Contrutor do Estado de "Criada" da Exposição.
      *
      * @param exposicao a demonstração que vai transitar de estado
      */
-    public ExposicaoCandidaturasDemosAbertasEstado(Exposicao exposicao){
+    public ExposicaoCriadaEstado(Exposicao exposicao){
         this.exposicao=exposicao;
     }
     
     /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Criada".
+     * Método que indica que a Demonstração está no Estado "Criada".
      *
-     * @return false, porque não pode mudar para este estado
+     * @return true, porque está neste estado
      */
     @Override
     public boolean setCriada() {
-        return false;
+        return true;
     }
 
     /**
-     * Método que indica que a Exposição não pode mudar para o Estado "FAE Sem Demo".
+     * Método que muda o estado da Exposição para o Estado "FAE Sem Demo".
      *
-     * @return false, porque não pode mudar para este estado
+     * @return false, se não puder mudar para este estado e true, se conseguir
+     * mudar
      */
     @Override
     public boolean setFaeSemDemo() {
+        if(validaFAE()){
+            this.exposicao.setEstado(new ExposicaoFAESemDemoEstado(this.exposicao));
+            return true;
+        }
         return false;
     }
 
     /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Demo Sem FAE".
+     * Método que muda o estado da Exposição para o Estado "Demo Sem FAE".
      *
-     * @return false, porque não pode mudar para este estado
+     * @return false, se não puder mudar para este estado e true, se conseguir
+     * mudar
      */
     @Override
     public boolean setDemoSemFae() {
+        if(validaDemos()){
+            this.exposicao.setEstado(new ExposicaoDemoSemFAEEstado(this.exposicao));
+            return true;
+        }
         return false;
     }
 
     /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Demo Sem FAE".
+     * Método que indica que a Exposição não pode mudar para o Estado "Completa".
      *
      * @return false, porque não pode mudar para este estado
      */
@@ -109,7 +116,7 @@ public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
     }
 
     /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Atribuidas Expo".
+     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Atribuídas Expo".
      *
      * @return false, porque não pode mudar para este estado
      */
@@ -139,7 +146,7 @@ public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
     }
 
     /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Demonstrações Confirmadas".
+     * Método que indica que a Exposição não pode mudar para o Estado "Demos Confirmadas".
      *
      * @return false, porque não pode mudar para este estado
      */
@@ -149,27 +156,22 @@ public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
     }
 
     /**
-     * Método que indica que a Demonstração está no Estado "Candidaturas Abertas Demos".
+     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Abertas Demos".
      *
-     * @return true, porque está neste estado
+     * @return false, porque não pode mudar para este estado
      */
     @Override
     public boolean setDemonstracaoCandidaturasAbertas() {
-        return true;
+        return false;
     }
 
     /**
-     * Método que muda o estado da Exposição para o Estado "Candidaturas Fechadas Demos".
+     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Fechadas Demos".
      *
-     * @return false, se não puder mudar para este estado e true, se conseguir
-     * mudar
+     * @return false, porque não pode mudar para este estado
      */
     @Override
     public boolean setDemonstracaoCandidaturasFechadas() {
-        if(valida()){
-            this.exposicao.setEstado(new ExposicaoCandidaturasDemosFechadasEstado(this.exposicao));
-            return true;
-        }
         return false;
     }
 
@@ -194,7 +196,7 @@ public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
     }
 
     /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Atribuidas Demos".
+     * Método que indica que a Exposição não pode mudar para o Estado "Candidaturas Atribuídas Demos".
      *
      * @return false, porque não pode mudar para este estado
      */
@@ -224,7 +226,7 @@ public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
     }
 
     /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Stands Atribuidos".
+     * Método que indica que a Exposição não pode mudar para o Estado "Stands Atribuídos".
      *
      * @return false, porque não pode mudar para este estado
      */
@@ -244,19 +246,28 @@ public class ExposicaoCandidaturasDemosAbertasEstado implements ExposicaoEstado{
     }
     
     /**
-     * Verifica se a Exposição pode mudar para o Estado "Candidaturas Fechadas Demos".
+     * Verifica se a Exposição pode mudar para o Estado "FAE Sem Demo".
      *
      * @return false, se não puder mudar para esse estado e true, se for
      * possível mudar
      */
-    public boolean valida(){
-        int diaHoje = GregorianCalendar.DAY_OF_MONTH;
-        int mesHoje = GregorianCalendar.MONTH;
-        int anoHoje = GregorianCalendar.YEAR;
-        Data dataHoje = new Data(anoHoje, mesHoje, diaHoje);
-        //if (dataHoje.isMaior(this.exposicao.getDataFimSubmissaoCandDemos())) {
-          //  return true;
-        //}
+    public boolean validaFAE(){
+        if(!this.exposicao.getListaFAES().getListaFAEs().isEmpty()){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Verifica se a Exposição pode mudar para o Estado "Demo Sem FAE".
+     *
+     * @return false, se não puder mudar para esse estado e true, se for
+     * possível mudar
+     */
+    public boolean validaDemos(){
+        if(!this.exposicao.getListaDemonstracoes().getListaDemonstracao().isEmpty()){
+            return true;
+        }
         return false;
     }
 }

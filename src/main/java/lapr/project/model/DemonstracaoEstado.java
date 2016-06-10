@@ -10,25 +10,25 @@ package lapr.project.model;
  * @author marianachilro
  */
 public interface DemonstracaoEstado {
-    
+
     public boolean setCriada();
-    
+
     public boolean setConfirmada();
-    
+
     public boolean setNaoConfirmada();
-    
+
     public boolean setCandidaturasAbertas();
-    
+
     public boolean setCandidaturasFechadas();
-    
+
     public boolean setConflitosDetetados();
-    
+
     public boolean setConflitosAtualizados();
-    
+
     public boolean setCandidaturasAtribuidas();
-    
+
     public boolean setCandidaturasAvaliadas();
-    
+
     public boolean setCandidaturasDecididas();
-    
+
 }

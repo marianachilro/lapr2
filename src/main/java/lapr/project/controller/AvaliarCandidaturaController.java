@@ -56,7 +56,7 @@ public class AvaliarCandidaturaController {
     }
 
     public void setAvaliacao(String fae, String candidatura, String decisao, String txt, int respostaTemaExpo, int respostaAdequacaoCand,
-            int respostaAdequacaoNumConvites, int respostaRecomendacaoGlobal) {
+           int respostaAdequacaoCandDemo, int respostaAdequacaoNumConvites, int respostaRecomendacaoGlobal) {
 
         this.m_avaliacao = listaAvaliacoes.novaAvaliacao();
 
@@ -65,10 +65,23 @@ public class AvaliarCandidaturaController {
         this.m_avaliacao.setDecisao(decisao);
         this.m_avaliacao.setTextoJustificativo(txt);
         this.m_avaliacao.setRespostaTemaExpo(respostaTemaExpo);
-        this.m_avaliacao.setRespostaAdequacaoCand(respostaAdequacaoCand);
+        this.m_avaliacao.setRespostaAdequacaoCandExposicao(respostaAdequacaoCand);
+        this.m_avaliacao.setRespostaAdequacaoCandDemonstracao(respostaAdequacaoCandDemo);
         this.m_avaliacao.setRespostaAdequacaoNumConvites(respostaAdequacaoNumConvites);
         this.m_avaliacao.setRespostaRecomendacaoGlobal(respostaRecomendacaoGlobal);
+        
+        
     }
+    
+     public void setAvaliacao(String fae, String candidatura, String decisao, String txt){
+         this.m_avaliacao = listaAvaliacoes.novaAvaliacao();
+
+        this.m_avaliacao.setFae(fae);
+        this.m_avaliacao.setCandidatura(candidatura);
+        this.m_avaliacao.setDecisao(decisao);
+        this.m_avaliacao.setTextoJustificativo(txt);
+     }
+    
 
     public boolean registaAvaliacao() {
         if (this.listaAvaliacoes.validaAvaliacao(m_avaliacao) != true) {
