@@ -34,7 +34,7 @@ public class Keyword {
      * @param palavra Palavra
      */
     public Keyword(String palavra) {
-        this.palavra = palavra;
+        this.palavra = palavra.toLowerCase().trim();
     }
 
     /**

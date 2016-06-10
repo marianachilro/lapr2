@@ -27,9 +27,14 @@ public class Avaliacao {
     private int respostaTemaExpo;
 
     /**
-     * Resposta ao inquerito sobre a adquação da candidatura.
+     * Resposta ao inquerito sobre a adquação da candidatura à exposição.
      */
-    private int respostaAdequacaoCand;
+    private int respostaAdequacaoCandExposicao;
+
+    /**
+     * Resposta ao inquerito sobre a adquação da candidaturas às demonstrações
+     */
+    private int respostaAdequacaoCandDemonstracao;
 
     /**
      * Resposta ao inquerito sobre a adquação do numero de convites.
@@ -52,9 +57,14 @@ public class Avaliacao {
     private static final int RESP_TEMA_EXPO_OMISSAO = 0;
 
     /**
-     * Resposta sobre a adquação da candidatura por oomisao
+     * Resposta sobre a adquação da candidatura à exposicao por omisao
      */
-    private static final int RESP_ADEQUACAO_CAND_OMISSAO = 0;
+    private static final int RESP_ADEQUACAO_CAND_EXP_OMISSAO = 0;
+
+    /**
+     * Resposta sobre a adquação da candidatura à demonstracao por omissao
+     */
+    private static final int RESP_ADQUACAO_CAND_DEMOS_OMISSAO = 0;
 
     /**
      * Resposta sobre a adquação do numero de convites por omissao
@@ -94,7 +104,8 @@ public class Avaliacao {
         this.decisao = DECISAO_OMISSAO;
         this.txt = TXT_OMISSAO;
         this.respostaTemaExpo = RESP_TEMA_EXPO_OMISSAO;
-        this.respostaAdequacaoCand = RESP_ADEQUACAO_CAND_OMISSAO;
+        this.respostaAdequacaoCandExposicao = RESP_ADEQUACAO_CAND_EXP_OMISSAO;
+        this.respostaAdequacaoCandDemonstracao = RESP_ADQUACAO_CAND_DEMOS_OMISSAO;
         this.respostaAdequacaoNumConvites = RESP_ADEQUACAO_NUM_CONV_OMISSAO;
         this.respostaRecomendacaoGlobal = RESP_RECOMENDACAO_GLOBAL_OMISSAO;
 
@@ -109,24 +120,27 @@ public class Avaliacao {
      * @param decisao a decisao da avaliacao.
      * @param txt o texto justificativo da avaliacao.
      * @param respostaTemaExpo a resposta do inquerito sobre o tema da exposicao
-     * @param respostaAdequacaoCand a resposta ao inquerito sobre a adquação da
-     * candidatura
+     * @param respostaAdequacaoCandExpo a resposta ao inquerito sobre a adquação
+     * da candidatura à exposicoa
+     * @param respostaAdequacaoCandDemos à resposta ao inquerito sobre a
+     * adquação da candidaturas às demonstrações
      * @param respostaAdequacaoNumConvites a resposta ao inquerito sobre a
      * adquação do numero de convites
      * @param respostaRecomendacaoGlobal a respota ao inquerito sobre a
      * recomendação global
      */
-    public Avaliacao(String fae, String candidatura, String decisao, String txt, int respostaTemaExpo, int respostaAdequacaoCand,
-            int respostaAdequacaoNumConvites, int respostaRecomendacaoGlobal) {
+    public Avaliacao(String fae, String candidatura, String decisao, String txt, int respostaTemaExpo, int respostaAdequacaoCandExpo,
+            int respostaAdequacaoCandDemos, int respostaAdequacaoNumConvites, int respostaRecomendacaoGlobal) {
 
         this.fae = fae;
         this.candidatura = candidatura;
         setDecisao(decisao);
         setTextoJustificativo(txt);
-        this.respostaTemaExpo = respostaTemaExpo;
-        this.respostaAdequacaoCand = respostaAdequacaoCand;
-        this.respostaAdequacaoNumConvites = respostaAdequacaoNumConvites;
-        this.respostaRecomendacaoGlobal = respostaRecomendacaoGlobal;
+        setRespostaTemaExpo(respostaTemaExpo);
+        setRespostaAdequacaoCandExposicao(respostaAdequacaoCandExpo);
+        setRespostaAdequacaoCandDemonstracao(respostaAdequacaoCandDemos);
+        setRespostaAdequacaoNumConvites(respostaAdequacaoNumConvites);
+        setRespostaRecomendacaoGlobal(respostaRecomendacaoGlobal);
 
     }
 
@@ -144,7 +158,7 @@ public class Avaliacao {
         this.candidatura = candidatura;
         setDecisao(decisao);
         setTextoJustificativo(txt);
-      
+
     }
 
     /**
@@ -239,17 +253,21 @@ public class Avaliacao {
      *
      * @param respostaTemaExpo resposta do inquerito sobre o tema da exposicao
      */
-    public void setRespostaTemaExpo(int respostaTemaExpo) {
+    public final void setRespostaTemaExpo(int respostaTemaExpo) {
+        if (respostaTemaExpo < 6 || respostaTemaExpo > 0) {
+            throw new IllegalArgumentException("De 1 a 5!");
+        }
         this.respostaTemaExpo = respostaTemaExpo;
     }
 
     /**
-     * Devolve a resposta do inquerito sobre a adquação da candidatura
+     * Devolve a resposta do inquerito sobre a adquação da candidatura à
+     * exposicao
      *
      * @return resposta do inquerito sobre a adquação da candidatura
      */
-    public int getRespostaAdequacaoCand() {
-        return respostaAdequacaoCand;
+    public int getRespostaAdequacaoCandExposicao() {
+        return respostaAdequacaoCandExposicao;
     }
 
     /**
@@ -258,8 +276,36 @@ public class Avaliacao {
      * @param respostaAdequacaoCand resposta do inquerito sobre a adquação da
      * candidatura
      */
-    public void setRespostaAdequacaoCand(int respostaAdequacaoCand) {
-        this.respostaAdequacaoCand = respostaAdequacaoCand;
+    public final void setRespostaAdequacaoCandExposicao(int respostaAdequacaoCand) {
+        if (respostaAdequacaoCand < 6 || respostaAdequacaoCand > 0) {
+            throw new IllegalArgumentException("De 1 a 5!");
+        }
+        this.respostaAdequacaoCandExposicao = respostaAdequacaoCand;
+    }
+
+    /**
+     * Devolve a resposta ao inquerito sobre a adquação da candidatura às
+     * demonstracoes
+     *
+     * @return resposta ao inquerito sobre a adquação da candidatura às
+     * demonstracoes
+     */
+    public int getRespostaAdequacaoCandDemonstracao() {
+        return respostaAdequacaoCandDemonstracao;
+    }
+
+    /**
+     * Modifica a resposta ao inquerito sobre a adquação da candidatura às
+     * demonstracoes
+     *
+     * @param respostaAdequacaoCandDemonstracao resposta ao inquerito sobre a
+     * adquação da candidatura às demonstracoes
+     */
+    public final void setRespostaAdequacaoCandDemonstracao(int respostaAdequacaoCandDemonstracao) {
+        if (respostaAdequacaoCandDemonstracao < 6 || respostaAdequacaoCandDemonstracao > 0) {
+            throw new IllegalArgumentException("De 1 a 5!");
+        }
+        this.respostaAdequacaoCandDemonstracao = respostaAdequacaoCandDemonstracao;
     }
 
     /**
@@ -277,7 +323,10 @@ public class Avaliacao {
      * @param respostaAdequacaoNumConvites resposta ao inquerito sobre a
      * adquação do numero de convites
      */
-    public void setRespostaAdequacaoNumConvites(int respostaAdequacaoNumConvites) {
+    public final void setRespostaAdequacaoNumConvites(int respostaAdequacaoNumConvites) {
+        if (respostaAdequacaoNumConvites < 6 || respostaAdequacaoNumConvites > 0) {
+            throw new IllegalArgumentException("De 1 a 5!");
+        }
         this.respostaAdequacaoNumConvites = respostaAdequacaoNumConvites;
     }
 
@@ -296,7 +345,10 @@ public class Avaliacao {
      * @param respostaRecomendacaoGlobal resposta ao inquerito sobre a
      * recomendação global
      */
-    public void setRespostaRecomendacaoGlobal(int respostaRecomendacaoGlobal) {
+    public final void setRespostaRecomendacaoGlobal(int respostaRecomendacaoGlobal) {
+        if (respostaRecomendacaoGlobal < 6 || respostaRecomendacaoGlobal > 0) {
+            throw new IllegalArgumentException("De 1 a 5!");
+        }
         this.respostaRecomendacaoGlobal = respostaRecomendacaoGlobal;
     }
 
@@ -321,7 +373,7 @@ public class Avaliacao {
     public boolean equals(Object a) {
 
         Avaliacao a1 = (Avaliacao) a;
-       
+
         if (this.candidatura.equalsIgnoreCase(a1.getCandidatura()) && this.fae.equalsIgnoreCase(a1.getFae())) {
             return true;
         }

@@ -5,11 +5,11 @@
  */
 package lapr.project.model;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.utils.Data;
 import lapr.project.model.ExposicaoInicialEstado;
-
 
 /**
  *
@@ -60,6 +60,16 @@ public class Exposicao implements Avaliavel, Decisivel {
      * Estado da exposição.
      */
     private ExposicaoEstado st;
+
+    /**
+     * Contador de candidaturas aceites
+     */
+    private static int contCandAceites = 0;
+
+    /**
+     * Contador de candidaturas rejeitadas
+     */
+    private static int contCandRejeitadas = 0;
     /**
      * Lista de Organizadores da Exposição
      */
@@ -127,7 +137,7 @@ public class Exposicao implements Avaliavel, Decisivel {
         listaFAEs = new ListaFAEs();
         listaAtribuicoes = new ListaAtribuicoes();
         listaConflitos = new ListaConflitos();
-        this.st= new ExposicaoInicialEstado(this);
+        this.st = new ExposicaoInicialEstado(this);
     }
 
     /**
@@ -162,7 +172,7 @@ public class Exposicao implements Avaliavel, Decisivel {
         listaFAEs = new ListaFAEs();
         listaAtribuicoes = new ListaAtribuicoes();
         listaConflitos = new ListaConflitos();
-        this.st= new ExposicaoInicialEstado(this);
+        this.st = new ExposicaoInicialEstado(this);
     }
 
     /**
@@ -218,17 +228,19 @@ public class Exposicao implements Avaliavel, Decisivel {
     public ListaCandidaturasExposicoes getListaCandidaturas() {
         return listaCandidaturas;
     }
-    
+
     /**
      * Modifica a lista de candidaturas da exposicoa
+     *
      * @param lc nova lista de candidaturas
      */
     public void setListaCandidaturas(ListaCandidaturasExposicoes lc) {
-       this.listaCandidaturas=lc;
+        this.listaCandidaturas = lc;
     }
 
     /**
      * Devolve lista de conflitos
+     *
      * @return lista de conflitos
      */
     public ListaConflitos getListaConflitos() {
@@ -237,11 +249,13 @@ public class Exposicao implements Avaliavel, Decisivel {
 
     /**
      * Modifica a lista de conflitos
+     *
      * @param lc nova lista de conflitos
      */
-    public void setListaConflitos(ListaConflitos lc){
-        this.listaConflitos=lc;
+    public void setListaConflitos(ListaConflitos lc) {
+        this.listaConflitos = lc;
     }
+
     /**
      * Devolve a Lista de Organizadores da Exposição.
      *
@@ -250,13 +264,14 @@ public class Exposicao implements Avaliavel, Decisivel {
     public ListaOrganizadores getListaOrganizadores() {
         return listaOrg;
     }
-    
+
     /**
      * Modifica lista de organizadores
+     *
      * @param lo nova lista de organizadores
      */
-    public void setListaOrganizadores(ListaOrganizadores lo){
-        this.listaOrg=lo;
+    public void setListaOrganizadores(ListaOrganizadores lo) {
+        this.listaOrg = lo;
     }
 
     /**
@@ -267,12 +282,14 @@ public class Exposicao implements Avaliavel, Decisivel {
     public ListaDemonstracoes getListaDemonstracoes() {
         return listaDemonstracoes;
     }
+
     /**
      * Modifica lista de demonstracoes
+     *
      * @param ld nova lista de demonstracoes
      */
-    public void setListaDemonstracoes(ListaDemonstracoes ld){
-        this.listaDemonstracoes=ld;
+    public void setListaDemonstracoes(ListaDemonstracoes ld) {
+        this.listaDemonstracoes = ld;
     }
 
     /**
@@ -301,18 +318,20 @@ public class Exposicao implements Avaliavel, Decisivel {
 
     /**
      * Devolve lista de faes da exposicao
+     *
      * @return lista de faes
      */
     public ListaFAEs getListaFAES() {
         return listaFAEs;
     }
-    
+
     /**
      * Modifica lista de faes da exposicao
+     *
      * @param lfae nova lista de faes
      */
-    public void setListaFAES(ListaFAEs lfae){
-        this.listaFAEs=lfae;
+    public void setListaFAES(ListaFAEs lfae) {
+        this.listaFAEs = lfae;
     }
 
     /**
@@ -497,7 +516,6 @@ public class Exposicao implements Avaliavel, Decisivel {
     public List<Candidatura> getListaAtribuicoesFAE(FAE fae) {
         return listaAtribuicoes.getListaCandidaturasFAE(fae);
     }
-    
 
     /**
      * Método que retorna o estado atual da exposição.
@@ -586,33 +604,145 @@ public class Exposicao implements Avaliavel, Decisivel {
             return listaCandTodasDemonstracoes;
         }
     }
-    
+
     /**
      * Devolve lista de atribuicoes da exposicao
+     *
      * @return nova lista de atribuicoes
      */
-    public ListaAtribuicoes getListaAtribuicoes(){
+    public ListaAtribuicoes getListaAtribuicoes() {
         return listaAtribuicoes;
     }
 
     /**
      * Modifica lista de atribuicoes da exposicao
+     *
      * @param la nova lista de atribuicoes
      */
-    public void setListaAtribuicoes(ListaAtribuicoes la){
-        this.listaAtribuicoes=la;
+    public void setListaAtribuicoes(ListaAtribuicoes la) {
+        this.listaAtribuicoes = la;
     }
 
-    public boolean valida(){
-        if(this.titulo==null||this.descricao==null||this.listaOrg.getListaOrganizadores().isEmpty()
-                ||this.dataInicio==null||this.dataInicio==null||this.dataFimSubCand==null||
-                this.dataFimAtcConf==null || this.dataFimAvCandidatura == null
-                || this.dataFimDcCandidaturas==null){
+    public boolean valida() {
+        if (this.titulo == null || this.descricao == null || this.listaOrg.getListaOrganizadores().isEmpty()
+                || this.dataInicio == null || this.dataInicio == null || this.dataFimSubCand == null
+                || this.dataFimAtcConf == null || this.dataFimAvCandidatura == null
+                || this.dataFimDcCandidaturas == null) {
             return false;
-            
+
         }
         return true;
     }
 
-   
+    /**
+     * Devolve as listas das candidaturas que foram aceites pelo organizador
+     *
+     * @return lista de candidaturas da exposicao aceites
+     */
+    public List<CandidaturaExposicao> listacandidaturasAceites() {
+        List<CandidaturaExposicao> lcAceites = new ArrayList<>();
+
+        List<CandidaturaExposicao> lc = listaCandidaturas.getListCandidaturas();
+        String decisao = "Aceite";
+        if (!lc.isEmpty()) {
+            for (CandidaturaExposicao c : lc) {
+                if (c.getDecisao().equals(decisao.trim())) {
+                    lcAceites.add(c);
+                }
+            }
+        }
+        contCandAceites = lcAceites.size();
+        return lcAceites;
+    }
+
+    /**
+     * Devolve a lista de candidaturas que não foram aceites pelo organizador
+     *
+     * @return lista de candidaturas da exposicao nao aceites
+     */
+    public List<CandidaturaExposicao> listacandidaturasNaoAceites() {
+        List<CandidaturaExposicao> lcNaoAceites = new ArrayList<>();
+
+        List<CandidaturaExposicao> lc = listaCandidaturas.getListCandidaturas();
+        String decisao = "Não Aceite";
+        if (!lc.isEmpty()) {
+            for (CandidaturaExposicao c : lc) {
+                if (c.getDecisao().equals(decisao.trim())) {
+                    lcNaoAceites.add(c);
+                }
+            }
+        }
+        contCandRejeitadas = lcNaoAceites.size();
+        return lcNaoAceites;
+    }
+
+    /**
+     * Devolve uma lista com todas as keywords usadas em todas as candidaturas
+     *
+     * @return lista keyword
+     */
+    public List<Keyword> getlistaTodasKeywords() {
+        List<Keyword> lk = new ArrayList();
+
+        if (!listaCandidaturas.getListCandidaturas().isEmpty()) {
+            for (CandidaturaExposicao c : listaCandidaturas.getListCandidaturas()) {
+                if (!c.getListaKeywords().getListaKeywords().isEmpty()) {
+                    for (Keyword k : c.getListaKeywords().getListaKeywords()) {
+                        if (lk.contains(k) == false) {
+                            lk.add(k);
+                        }
+
+                    }
+                }
+            }
+        }
+        return lk;
+    }
+
+    /**
+     * Devolve uma list com a informação das probabilidades das keywords das
+     * candidaturas aceites e não aceites
+     *
+     * @return List com a informação das probabilidades das keywords das
+     * candidaturas aceites e não aceites
+     */
+    public List<String> estatisticaCandidaturas() {
+
+        List<String> estatisticaKeywords = new ArrayList<>();
+
+        List<CandidaturaExposicao> lcAceites = listacandidaturasAceites();
+        List<CandidaturaExposicao> lcNaoAceites = listacandidaturasNaoAceites();
+        List<Keyword> lk = getlistaTodasKeywords();
+
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMinimumFractionDigits(2);
+
+        for (Keyword k : lk) {
+            estatisticaKeywords.add(k + "");
+            int contNumRepAceites = 0;
+            int contNumRepNaoAceites = 0;
+            for (CandidaturaExposicao c : lcAceites) {
+                if (c.getListaKeywords().getListaKeywords().contains(k)) {
+                    contNumRepAceites++;
+
+                }
+            }
+            double probabilidadeCandAceite = contNumRepAceites / contCandAceites;
+
+            estatisticaKeywords.add(String.valueOf(nf.format(probabilidadeCandAceite)));
+
+            for (CandidaturaExposicao c : lcNaoAceites) {
+                if (c.getListaKeywords().getListaKeywords().contains(k)) {
+                    contNumRepNaoAceites++;
+                }
+            }
+
+            double probabilidadeCandNaoAceites = contNumRepNaoAceites / contCandRejeitadas;
+            estatisticaKeywords.add(String.valueOf(nf.format(probabilidadeCandNaoAceites)));
+
+        }
+
+        return estatisticaKeywords;
+    }
+
 }
