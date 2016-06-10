@@ -5,8 +5,8 @@
  */
 package lapr.project.model;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
+import lapr.project.utils.Data;
 
 /**
  * Representa um dos Estados possíveis da Demonstração (Estado de "Conflitos
@@ -156,8 +156,8 @@ public class DemonstracaoConflitosDetetadosEstado implements DemonstracaoEstado 
         int diaHoje = GregorianCalendar.DAY_OF_MONTH;
         int mesHoje = GregorianCalendar.MONTH;
         int anoHoje = GregorianCalendar.YEAR;
-        Date dataHoje = new Date(anoHoje, mesHoje, diaHoje);
-        if (dataHoje.compareTo(this.demonstracao.getDataFimAtualizacaoConflitos()) >= 0) {
+        Data dataHoje = new Data(anoHoje, mesHoje, diaHoje);
+        if (dataHoje.isMaior(this.demonstracao.getDataFimAtualizacaoConflitos())) {
             return true;
         }
         return false;

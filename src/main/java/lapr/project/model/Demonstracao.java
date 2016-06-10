@@ -7,6 +7,7 @@ package lapr.project.model;
 
 import java.util.Date;
 import java.util.List;
+import lapr.project.utils.Data;
 
 /**
  *
@@ -31,11 +32,11 @@ public class Demonstracao {
      */
     private DemonstracaoEstado estado;
     
-    private Date dataInicioSubmissaoCandidaturas;
+    private Data dataInicioSubmissaoCandidaturas;
     
-    private Date dataFimSubmissaoCandidaturas;
+    private Data dataFimSubmissaoCandidaturas;
     
-    private Date dataFimAtualizacaoConflitos;
+    private Data dataFimAtualizacaoConflitos;
     
     private ListaConflitos listaConflitos;
     /**
@@ -122,21 +123,21 @@ public class Demonstracao {
      * Devolve a data do Início do período de submissão de Candidaturas à Demonstração.
      * @return a data do início do período de submissão de candidaturas
      */
-    public Date getDataInicioSubmissaoCandidaturas(){
+    public Data getDataInicioSubmissaoCandidaturas(){
         return this.dataInicioSubmissaoCandidaturas;
     }
     /**
      * Devolve a data do Fim do período de submissão de Candidaturas à Demonstração.
      * @return a data do fim do período de submissão de candidaturas
      */
-    public Date getDataFimSubmissaoCandidaturas(){
+    public Data getDataFimSubmissaoCandidaturas(){
         return this.dataFimSubmissaoCandidaturas;
     }
     /**
      * Devolve a data do Fim do período de atualização de conflitos da Demonstração.
      * @return a data do fim do período de atualização de conflitos
      */
-    public Date getDataFimAtualizacaoConflitos(){
+    public Data getDataFimAtualizacaoConflitos(){
         return this.dataFimAtualizacaoConflitos;
     }
 
@@ -177,21 +178,21 @@ public class Demonstracao {
      * Modifica a data de Início do período de submissão e candidaturas à Demonstração.
      * @param data a nova data de início do período de submissão
      */
-    public void setDataInicioSubmissaoCandidaturas(Date data){
+    public void setDataInicioSubmissaoCandidaturas(Data data){
         this.dataInicioSubmissaoCandidaturas=data;
     }
     /**
      * Modifica a data de Fim do período de submissão e candidaturas à Demonstração.
      * @param data a nova data de fim do período de submissão
      */
-    public void setDataFimSubmissaoCandidaturas(Date data){
+    public void setDataFimSubmissaoCandidaturas(Data data){
         this.dataFimSubmissaoCandidaturas=data;
     }
     /**
      * Modifica a data de Fim do período de atualização de conflitos da Demonstração.
      * @param data a nova data de fim de atualização de conflitos
      */
-    public void setDataFimAtualizacaoConflitos(Date data){
+    public void setDataFimAtualizacaoConflitos(Data data){
         this.dataFimAtualizacaoConflitos=data;
     }
 
