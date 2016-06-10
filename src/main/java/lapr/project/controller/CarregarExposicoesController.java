@@ -20,17 +20,19 @@ import org.w3c.dom.Node;
 public class CarregarExposicoesController {
     private CentroExposicoes ce;
     private List<Exposicao> le;
+    private RegistoExposicoes re;
     public CarregarExposicoesController(CentroExposicoes ce){
         this.ce=ce;
         le = new ArrayList<Exposicao>();
     }
     public void lerExpo(Node ficheiro){
-        Exposicao e = new Exposicao();
+        re = ce.getRegistoExposicoes();
+        Exposicao e = re.newExposicao();
         e = LerFicheiroXML.lerExposicao(ficheiro);
         le.add(e);
     }
     public boolean addDados(){
-        RegistoExposicoes re = ce.getRegistoExposicoes();
+        
         return re.validaLista(le);
     }
 }

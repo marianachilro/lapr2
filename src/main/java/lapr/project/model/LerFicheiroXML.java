@@ -259,7 +259,7 @@ public class LerFicheiroXML {
  * @param node
  * @return 
  */
-    public static Exposicao lerExposicao(Node node) {
+    public static Exposicao lerExposicao(Node ficheiro) {
         Exposicao exposicao = new Exposicao();
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -269,7 +269,7 @@ public class LerFicheiroXML {
 
             //Obtain a new document
             Document document = builder.newDocument();
-            document.appendChild(document.importNode(node, true));
+            document.appendChild(document.importNode(ficheiro, true));
 
             NodeList elementsExposicao = document.getElementsByTagName(ROOT_ELEMENT_NAME_EXPOSICAO);
 
