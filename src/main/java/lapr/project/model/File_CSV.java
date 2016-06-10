@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -32,8 +33,9 @@ public class File_CSV {
 
     /**
      * Método que guarda num ficheiro csv o ranking das keywords.
+     * @throws java.io.FileNotFoundException
      */
-    public void ficheiro() {
+    public void ficheiro()throws FileNotFoundException {
 
         String DELIMITADOR_VIRGULA = ";";
         String NOVA_LINHA_SEPARADOR = "\n";
