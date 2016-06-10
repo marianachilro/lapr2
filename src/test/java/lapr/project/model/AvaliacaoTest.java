@@ -5,10 +5,6 @@
  */
 package lapr.project.model;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -106,9 +102,9 @@ public class AvaliacaoTest {
         System.out.println("TesteRespostaAdequacaoCand");
         int num = 2;
         Avaliacao instance = new Avaliacao();
-        instance.setRespostaAdequacaoCand(num);
+        instance.setRespostaAdequacaoCandDemonstracao(num);
         int expResult = 2;
-        int result = instance.getRespostaAdequacaoCand();
+        int result = instance.getRespostaAdequacaoCandDemonstracao();
         assertEquals(expResult, result);
     }
 

@@ -6,8 +6,8 @@
 package lapr.project.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import lapr.project.utils.Data;
 
 /**
  *
@@ -125,7 +125,7 @@ public class ListaDemonstracoes {
      *
      * @param data a data inicio período de submissão
      */
-    public void setDataInicioSubmissaoCanididaturasDemos(Date data) {
+    public void setDataInicioSubmissaoCanididaturasDemos(Data data) {
         if (data != null) {
             for (Demonstracao d : this.listaDemonstracao) {
                 d.setDataInicioSubmissaoCandidaturas(data);
@@ -139,7 +139,7 @@ public class ListaDemonstracoes {
      *
      * @param data a data fim período de submissão
      */
-    public void setDataFimSubmissaoCanididaturasDemos(Date data) {
+    public void setDataFimSubmissaoCanididaturasDemos(Data data) {
         if (data != null) {
             for (Demonstracao d : this.listaDemonstracao) {
                 d.setDataFimSubmissaoCandidaturas(data);
@@ -152,8 +152,8 @@ public class ListaDemonstracoes {
      * as Demonstrações da lista.
      *
      * @param data a data final do período de atualização de conflitos
-     */
-    public void setDataFimAtualizacaoConflitosDemos(Date data) {
+     */ 
+    public void setDataFimAtualizacaoConflitosDemos(Data data) {
         if (data != null) {
             for (Demonstracao d : this.listaDemonstracao) {
                 d.setDataInicioSubmissaoCandidaturas(data);

@@ -5,6 +5,7 @@
  */
 package lapr.project.controller;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
@@ -28,7 +29,7 @@ public class GerarRankingKeywordsController {
         return this.m_oCE.getRegistoExposicoes().getListaExposicoes();
     }
     
-    public void selectExposicao(Exposicao e){
+    public void selectExposicao(Exposicao e) throws FileNotFoundException{
         this.exposicao=e;
         e.estatisticaCandidaturas();
         File_CSV ficheiro = new File_CSV(this.exposicao);
