@@ -67,4 +67,6 @@ public class RegistoRecursos {
     public Recurso newRecurso(){
         return new Recurso();
     }
+    
+    
 }

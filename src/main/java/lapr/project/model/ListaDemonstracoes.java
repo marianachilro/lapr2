@@ -120,7 +120,9 @@ public class ListaDemonstracoes {
     }
 
     /**
-     * Modifica as data de início do período de submissão de candidaturas de todas as Demonstrações da lista.
+     * Modifica as data de início do período de submissão de candidaturas de
+     * todas as Demonstrações da lista.
+     *
      * @param data a data inicio período de submissão
      */
     public void setDataInicioSubmissaoCanididaturasDemos(Date data) {
@@ -130,9 +132,11 @@ public class ListaDemonstracoes {
             }
         }
     }
-    
+
     /**
-     * Modifica as data de fim do período de submissão de candidaturas de todas as Demonstrações da lista.
+     * Modifica as data de fim do período de submissão de candidaturas de todas
+     * as Demonstrações da lista.
+     *
      * @param data a data fim período de submissão
      */
     public void setDataFimSubmissaoCanididaturasDemos(Date data) {
@@ -142,11 +146,13 @@ public class ListaDemonstracoes {
             }
         }
     }
-    
-   /**
-     * Modifica as data de fim do período de atualização de conflitos de todas as Demonstrações da lista.
+
+    /**
+     * Modifica as data de fim do período de atualização de conflitos de todas
+     * as Demonstrações da lista.
+     *
      * @param data a data final do período de atualização de conflitos
-     */ 
+     */
     public void setDataFimAtualizacaoConflitosDemos(Date data) {
         if (data != null) {
             for (Demonstracao d : this.listaDemonstracao) {
@@ -155,4 +161,13 @@ public class ListaDemonstracoes {
         }
     }
 
+    public boolean validaCodigo(String codigo) {
+        boolean b = false;
+        for (Demonstracao d : listaDemonstracao) {
+            if (d.getCodigo().equals(codigo)) {
+                b = true;
+            }
+        }
+        return b;
+    }
 }

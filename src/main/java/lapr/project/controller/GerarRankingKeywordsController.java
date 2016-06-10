@@ -32,7 +32,7 @@ public class GerarRankingKeywordsController {
         this.exposicao=e;
         e.estatisticaCandidaturas();
         File_CSV ficheiro = new File_CSV(this.exposicao);
-        ficheiro.ficheiro();
+//        ficheiro.ficheiro();
        
     }
     

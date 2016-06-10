@@ -38,6 +38,8 @@ public class Demonstracao {
     private Date dataFimAtualizacaoConflitos;
     
     private ListaConflitos listaConflitos;
+    
+    private ListaRecursos listaRecursos;
     /**
      * Lista de Candidaturas da demonstracao.
      */
@@ -221,6 +223,14 @@ public class Demonstracao {
             throw new IllegalArgumentException("Demonstração inválida!");
         }
         return true;
+    }
+
+    public ListaRecursos getListaRecursos() {
+        return listaRecursos;
+    }
+
+    public void setListaRecursos(ListaRecursos listaRecursos) {
+        this.listaRecursos = listaRecursos;
     }
 
 }
