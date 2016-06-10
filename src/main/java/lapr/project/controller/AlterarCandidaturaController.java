@@ -62,11 +62,11 @@ public class AlterarCandidaturaController {
 
     public void setDados(String nome, String morada, int telemovel, double area, int convites) {
         cc.setEmailRep(email);
-        cc.setsNomeEmpresa(nome);
-        cc.setsMorada(morada);
-        cc.setsTelemovel(telemovel);
-        cc.setsArea(area);
-        cc.setsConvites(convites);
+        cc.setNomeEmpresa(nome);
+        cc.setMorada(morada);
+        cc.setTelemovel(telemovel);
+        cc.setArea(area);
+        cc.setConvites(convites);
         lp = cc.getListaProdutos();
     }
 

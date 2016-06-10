@@ -65,11 +65,11 @@ public class RegistarCandidaturaExposicaoController {
 
     public void setDados(String emailRep, String nomeEmpresa, String morada, int telemovel, float area, int numConvites) {
         c.setEmailRep(emailRep);
-        c.setsNomeEmpresa(nomeEmpresa);
-        c.setsMorada(morada);
-        c.setsTelemovel(telemovel);
-        c.setsArea(area);
-        c.setsConvites(numConvites);
+        c.setNomeEmpresa(nomeEmpresa);
+        c.setMorada(morada);
+        c.setTelemovel(telemovel);
+        c.setArea(area);
+        c.setConvites(numConvites);
     }
 
     public void getListaProdutos() {
