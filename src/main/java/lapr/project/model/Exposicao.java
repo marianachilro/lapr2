@@ -57,6 +57,18 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     private Data dataFimDcCandidaturas;
     /**
+     * Data de início do período de submissão de candidaturas às Demonstraçoes.
+     */
+    private Data dataInicioSubCandDemos;
+    /**
+     * Data de fim do período de submissão de candidaturas às Demonstraçoes.
+     */
+    private Data dataFimSubCandDemos;
+    /**
+     * Data fim do período de atualização de confitos nas Demonstrações da Exposição.
+     */
+    private Data dataFimAtualizacaoConflitosDemos;
+    /**
      * Estado da exposição.
      */
     private ExposicaoEstado st;
@@ -218,6 +230,48 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     public String getLocal() {
         return local;
+    }
+    /**
+     * Devolve a data de início do período de submissão de candidaturas às Demonstrações da Exposição.
+     * @return data início submissao candidaturas às demonstrações
+     */
+    public Data getDataInicioSubmissaoCandidaturasDemos(){
+        return this.dataInicioSubCandDemos;
+    }
+    /**
+     * Devolve a data de fim do período de submissão de candidaturas às Demonstrações da Exposição.
+     * @return data fim submissao candidaturas às demonstrações
+     */
+    public Data getDataFimSubmissaoCandidaturasDemos(){
+        return this.dataFimSubCandDemos;
+    }
+    /**
+     * Modifica a data de início do período de submissão de candidaturas às Demonstrações da Exposição.
+     * @param data a nova data
+     */
+    public void setDataInicioSubmissaoCandidaturasDemos(Data data){
+        this.dataInicioSubCandDemos=data;
+    }
+    /**
+     * Modifica a a data de fim do período de submissão de candidaturas às Demonstrações da Exposição.
+     * @param data a nova data
+     */
+    public void setDataFimSubmissaoCandidaturasDemos(Data data){
+        this.dataFimSubCandDemos=data;
+    }
+    /**
+     * Devolve a data de fim do período de avaliação de candidaturas às Demonstrações da Exposição.
+     * @return data fim submissao candidaturas às demonstrações
+     */
+    public Data getDataFimAtualizacaoConflitosDemos(Data data){
+        return this.dataFimAtualizacaoConflitosDemos;
+    }
+    /**
+     * Modifica a a data de fim do período de atualização de candidaturas às Demonstrações da Exposição.
+     * @param data a nova data
+     */
+    public void setDataFimAtualizacaoConflitosDemos(Data data){
+        this.dataFimAtualizacaoConflitosDemos=data;
     }
 
     /**

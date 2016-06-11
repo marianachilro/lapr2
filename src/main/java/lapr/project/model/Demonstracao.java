@@ -13,7 +13,7 @@ import lapr.project.utils.Data;
  *
  * @author Rita
  */
-public class Demonstracao {
+public class Demonstracao  implements Comparable <Demonstracao>{
 
     /**
      * Código único de Demonstração.
@@ -31,6 +31,10 @@ public class Demonstracao {
      * O estado da Demonstração.
      */
     private DemonstracaoEstado estado;
+    /**
+     * Número de Representantes interessados em participar na Demonstração.
+     */
+    private int numeroInteressados;
     
     private Data dataInicioSubmissaoCandidaturas;
     
@@ -122,6 +126,13 @@ public class Demonstracao {
         return estado;
     }
     /**
+     * Devolve o número de interessados (representantes) na Demonstração.
+     * @return 
+     */
+    public int getNumeroInteressados(){
+        return this.numeroInteressados;
+    }
+    /**
      * Devolve a data do Início do período de submissão de Candidaturas à Demonstração.
      * @return a data do início do período de submissão de candidaturas
      */
@@ -175,6 +186,13 @@ public class Demonstracao {
      */
     public void setEstado(DemonstracaoEstado estado){
         this.estado = estado;
+    }
+    /**
+     * Modifica o número de interessados na Demonstração.
+     * @param num 
+     */
+    public void setNumeroInteressados(int num){
+        this.numeroInteressados=num;
     }
     /**
      * Modifica a data de Início do período de submissão e candidaturas à Demonstração.
@@ -233,5 +251,11 @@ public class Demonstracao {
     public void setListaRecursos(ListaRecursos listaRecursos) {
         this.listaRecursos = listaRecursos;
     }
+
+    @Override
+    public int compareTo(Demonstracao d) {
+        return this.numeroInteressados - d.getNumeroInteressados();
+    }
+ 
 
 }

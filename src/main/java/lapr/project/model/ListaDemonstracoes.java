@@ -6,6 +6,7 @@
 package lapr.project.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lapr.project.utils.Data;
 
@@ -108,11 +109,29 @@ public class ListaDemonstracoes {
         return ld;
     }
 
+    /**
+     * Devolve uma lista com a Demonstrações que se vão realizar (cuja realização já foi confirmada).
+     * @return lista de demonstracoes confirmadas
+     */
     public List<Demonstracao> getListaDemonstracoesDisponiveis() {
         List<Demonstracao> ld = new ArrayList<>();
 
         for (Demonstracao d : listaDemonstracao) {
             if (d.getRealizacao() == true) {
+                ld.add(d);
+            }
+        }
+        return ld;
+    }
+    
+    /**
+     * Devolve uma lista com as Demonstrações cuja realização ainda não foi confirmada.
+     * @return lista de demonstracoes não confirmadas
+     */
+    public List <Demonstracao> getListaDemonstracoesNaoConfirmadas(){
+        List <Demonstracao> ld = new ArrayList<>();
+        for(Demonstracao d : listaDemonstracao){
+            if(d.getRealizacao() == false){
                 ld.add(d);
             }
         }
@@ -169,5 +188,9 @@ public class ListaDemonstracoes {
             }
         }
         return b;
+    }
+    
+    public void ordenarPorNumeroInteressados(){
+        Collections.sort(listaDemonstracao);
     }
 }
