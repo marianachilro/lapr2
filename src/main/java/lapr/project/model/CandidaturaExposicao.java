@@ -14,13 +14,11 @@ import java.util.Objects;
 public class CandidaturaExposicao implements Candidatura {
 
     private String emailRep;
-    private String nomeRepresentante;
-    private String sTituloExp;
-    private String sNomeEmpresa;
-    private String sMorada;
-    private int sTelemovel;
-    private double sArea;
-    private int sConvites;
+    private String nomeEmpresa;
+    private String morada;
+    private int telemovel;
+    private double area;
+    private int convites;
     private String decisao;
     private CandidaturaEstado estado;
     /**
@@ -50,20 +48,19 @@ public class CandidaturaExposicao implements Candidatura {
      * parâmetro.
      *
      * @param emailRep e-mail do representante
-     * @param sTituloExp titulo da exposicao
-     * @param sNomeEmpresa nome de expositor
-     * @param sMorada morada de expositor
-     * @param sTelemovel número de telemóvel de expositor
-     * @param sArea área pretendida
-     * @param sConvites número de convites pretendidos pelo expositor
+     * @param nomeEmpresa nome de expositor
+     * @param morada morada de expositor
+     * @param telemovel número de telemóvel de expositor
+     * @param area área pretendida
+     * @param convites número de convites pretendidos pelo expositor
      */
-    public CandidaturaExposicao(String emailRep, String sNomeEmpresa, String sMorada, int sTelemovel, double sArea, int sConvites) {
+    public CandidaturaExposicao(String emailRep, String nomeEmpresa, String morada, int telemovel, double area, int convites) {
         this.emailRep = emailRep;
-        this.sNomeEmpresa = sNomeEmpresa;
-        this.sMorada = sMorada;
-        this.sTelemovel = sTelemovel;
-        this.sArea = sArea;
-        this.sConvites = sConvites;
+        this.nomeEmpresa = nomeEmpresa;
+        this.morada = morada;
+        this.telemovel = telemovel;
+        this.area = area;
+        this.convites = convites;
         listaProdutos = new ListaProdutos();
         listaAvaliacoes = new ListaAvaliacoes();
         listaKeywords = new ListaKeywords();
@@ -72,11 +69,11 @@ public class CandidaturaExposicao implements Candidatura {
 
     public CandidaturaExposicao(CandidaturaExposicao c) {
         this.emailRep = c.getEmailRep();
-        this.sNomeEmpresa = c.getNomeRepresentante();
-        this.sMorada = c.getsMorada();
-        this.sTelemovel = c.getsTelemovel();
-        this.sArea = c.getsArea();
-        this.sConvites = c.getsConvites();
+        this.nomeEmpresa = c.getnomeEmpresa();
+        this.morada = c.getMorada();
+        this.telemovel = c.getTelemovel();
+        this.area = c.getArea();
+        this.convites = c.getConvites();
         listaAvaliacoes = new ListaAvaliacoes();
         listaDemonstracoes = new ListaDemonstracoes();
         listaProdutos = new ListaProdutos(c.getListaProdutos());
@@ -102,23 +99,9 @@ public class CandidaturaExposicao implements Candidatura {
         return listaProdutos;
     }
 
-    /**
-     * Modifica o stand atribuído à candidatura.
-     *
-     * @param stand stand de candidatura
-     */
-    public void setStand(Stand stand) {
-        this.stand = stand;
-    }
-
     @Override
     public String getEmailRep() {
         return emailRep;
-    }
-
-    @Override
-    public void setEmailRep(String email) {
-        this.emailRep = email;
     }
 
     @Override
@@ -126,65 +109,24 @@ public class CandidaturaExposicao implements Candidatura {
         return listaAvaliacoes;
     }
 
-    @Override
-    public void setDecisao(String decisao) {
-        this.decisao = decisao;
+    public String getnomeEmpresa() {
+        return nomeEmpresa;
     }
 
-    public String getNomeRepresentante() {
-        return nomeRepresentante;
+    public String getMorada() {
+        return morada;
     }
 
-    public String getsTituloExp() {
-        return sTituloExp;
+    public int getTelemovel() {
+        return telemovel;
     }
 
-    public String getsNomeEmpresa() {
-        return sNomeEmpresa;
+    public double getArea() {
+        return area;
     }
 
-    public String getsMorada() {
-        return sMorada;
-    }
-
-    public int getsTelemovel() {
-        return sTelemovel;
-    }
-
-    public double getsArea() {
-        return sArea;
-    }
-
-    public int getsConvites() {
-        return sConvites;
-    }
-
-    public void setNomeRepresentante(String nomeRepresentante) {
-        this.nomeRepresentante = nomeRepresentante;
-    }
-
-    public void setsTituloExp(String sTituloExp) {
-        this.sTituloExp = sTituloExp;
-    }
-
-    public void setsNomeEmpresa(String sNomeEmpresa) {
-        this.sNomeEmpresa = sNomeEmpresa;
-    }
-
-    public void setsMorada(String sMorada) {
-        this.sMorada = sMorada;
-    }
-
-    public void setsTelemovel(int sTelemovel) {
-        this.sTelemovel = sTelemovel;
-    }
-
-    public void setsArea(double sArea) {
-        this.sArea = sArea;
-    }
-
-    public void setsConvites(int sConvites) {
-        this.sConvites = sConvites;
+    public int getConvites() {
+        return convites;
     }
 
     @Override
@@ -197,13 +139,51 @@ public class CandidaturaExposicao implements Candidatura {
         return estado;
     }
 
+    public ListaKeywords getListaKeywords() {
+        return listaKeywords;
+    }
+
+    public ListaDemonstracoes getListaDemonstracoes() {
+        return listaDemonstracoes;
+    }
+
+    @Override
+    public void setEmailRep(String email) {
+        this.emailRep = email;
+    }
+
+    public void setNomeEmpresa(String nomeEmpresa) {
+        this.nomeEmpresa = nomeEmpresa;
+    }
+
+    public void setMorada(String morada) {
+        this.morada = morada;
+    }
+
+    public void setTelemovel(int telemovel) {
+        this.telemovel = telemovel;
+    }
+
+    public void setArea(double area) {
+        this.area = area;
+    }
+
+    public void setConvites(int convites) {
+        this.convites = convites;
+    }
+    
+    /**
+     * Modifica o stand atribuído à candidatura.
+     *
+     * @param stand stand de candidatura
+     */
+    public void setStand(Stand stand) {
+        this.stand = stand;
+    }
+
     @Override
     public void setEstado(CandidaturaEstado estado) {
         this.estado = estado;
-    }
-
-    public ListaKeywords getListaKeywords() {
-        return listaKeywords;
     }
 
     public void setListaProdutos(ListaProdutos listaProdutos) {
@@ -218,25 +198,24 @@ public class CandidaturaExposicao implements Candidatura {
         this.listaKeywords = listaKeywords;
     }
 
-    public ListaDemonstracoes getListaDemonstracoes() {
-        return listaDemonstracoes;
-    }
-
     public void setListaDemonstracoes(ListaDemonstracoes listaDemonstracoes) {
         this.listaDemonstracoes = listaDemonstracoes;
+    }
+
+    @Override
+    public void setDecisao(String decisao) {
+        this.decisao = decisao;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 37 * hash + Objects.hashCode(this.emailRep);
-        hash = 37 * hash + Objects.hashCode(this.nomeRepresentante);
-        hash = 37 * hash + Objects.hashCode(this.sTituloExp);
-        hash = 37 * hash + Objects.hashCode(this.sNomeEmpresa);
-        hash = 37 * hash + Objects.hashCode(this.sMorada);
-        hash = 37 * hash + this.sTelemovel;
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.sArea) ^ (Double.doubleToLongBits(this.sArea) >>> 32));
-        hash = 37 * hash + this.sConvites;
+        hash = 37 * hash + Objects.hashCode(this.nomeEmpresa);
+        hash = 37 * hash + Objects.hashCode(this.morada);
+        hash = 37 * hash + this.telemovel;
+        hash = 37 * hash + (int) (Double.doubleToLongBits(this.area) ^ (Double.doubleToLongBits(this.area) >>> 32));
+        hash = 37 * hash + this.convites;
         hash = 37 * hash + Objects.hashCode(this.decisao);
         hash = 37 * hash + Objects.hashCode(this.estado);
         hash = 37 * hash + Objects.hashCode(this.stand);
@@ -259,28 +238,22 @@ public class CandidaturaExposicao implements Candidatura {
             return false;
         }
         final CandidaturaExposicao other = (CandidaturaExposicao) obj;
-        if (this.sTelemovel != other.sTelemovel) {
+        if (this.telemovel != other.telemovel) {
             return false;
         }
-        if (Double.doubleToLongBits(this.sArea) != Double.doubleToLongBits(other.sArea)) {
+        if (Double.doubleToLongBits(this.area) != Double.doubleToLongBits(other.area)) {
             return false;
         }
-        if (this.sConvites != other.sConvites) {
+        if (this.convites != other.convites) {
             return false;
         }
         if (!Objects.equals(this.emailRep, other.emailRep)) {
             return false;
         }
-        if (!Objects.equals(this.nomeRepresentante, other.nomeRepresentante)) {
+        if (!Objects.equals(this.nomeEmpresa, other.nomeEmpresa)) {
             return false;
         }
-        if (!Objects.equals(this.sTituloExp, other.sTituloExp)) {
-            return false;
-        }
-        if (!Objects.equals(this.sNomeEmpresa, other.sNomeEmpresa)) {
-            return false;
-        }
-        if (!Objects.equals(this.sMorada, other.sMorada)) {
+        if (!Objects.equals(this.morada, other.morada)) {
             return false;
         }
         if (!Objects.equals(this.decisao, other.decisao)) {

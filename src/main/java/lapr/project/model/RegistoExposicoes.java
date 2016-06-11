@@ -172,4 +172,15 @@ public class RegistoExposicoes {
         }
         return null;
     }
+    public boolean validaLista(List<Exposicao> le){
+        for(Exposicao e : listaExposicoes){
+            for(Exposicao ex : le ){
+                if(ex.equals(e)){
+                    return false;
+                }
+            }
+        }
+        listaExposicoes.addAll(le);
+        return true;
+    }
 }
