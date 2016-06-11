@@ -34,6 +34,18 @@ public class ListaFAEs {
     public List<FAE> getListaFAEs() {
         return listaFAEs;
     }
+    /**
+     * Devolve o FAE associoado a um utilizador, se existir.
+     * @param u o utilizador associado ao FAE
+     * @return o FAE
+     */
+    public FAE getFAE(Utilizador u){
+        for(FAE f: this.listaFAEs){
+            if(f.getID().equalsIgnoreCase(u.getUsername()))
+                return f;
+        }
+        return null;
+    }
 
     /**
      * Modifica a lista de FAEs

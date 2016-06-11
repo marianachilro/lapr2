@@ -47,6 +47,13 @@ public class ListaConflitos {
     public Conflito newConflito(Candidatura c, FAE fae) {
         return new Conflito(fae, c);
     }
+    /**
+     * Método que retorna um novo conflito.
+     * @return conflito vazio
+     */
+    public Conflito newConflito(){
+        return new Conflito();
+    }
 
 
     /**
