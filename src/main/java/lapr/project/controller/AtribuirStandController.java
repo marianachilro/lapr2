@@ -21,7 +21,7 @@ import lapr.project.model.Stand;
  */
 public class AtribuirStandController {
 
-    private CentroExposicoes ce;
+    private final CentroExposicoes ce;
     private Exposicao e;
     private CandidaturaExposicao c;
     private Stand s;

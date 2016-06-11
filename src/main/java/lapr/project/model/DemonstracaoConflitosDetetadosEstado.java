@@ -157,10 +157,8 @@ public class DemonstracaoConflitosDetetadosEstado implements DemonstracaoEstado 
         int mesHoje = GregorianCalendar.MONTH;
         int anoHoje = GregorianCalendar.YEAR;
         Data dataHoje = new Data(anoHoje, mesHoje, diaHoje);
-        if (dataHoje.isMaior(this.demonstracao.getDataFimAtualizacaoConflitos())) {
-            return true;
-        }
-        return false;
+        
+        return (dataHoje.isMaior(this.demonstracao.getDataFimAtualizacaoConflitos()));
     }
 
 }

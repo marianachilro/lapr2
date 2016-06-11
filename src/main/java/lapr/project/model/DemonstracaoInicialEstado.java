@@ -148,10 +148,8 @@ public class DemonstracaoInicialEstado implements DemonstracaoEstado {
      * possível mudar
      */
     public boolean valida() {
-        if (demonstracao.valida()) {
-            return true;
-        }
-        return false;
+        
+        return demonstracao.valida();
     }
 
 }

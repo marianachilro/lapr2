@@ -25,8 +25,8 @@ import lapr.project.model.RegistoExposicoes;
  */
 public class AlterarCandidaturaController {
 
-    private CentroExposicoes ce;
-    private String email;
+    private final CentroExposicoes ce;
+    private final String email;
     private RegistoExposicoes re;
     private ListaCandidaturasExposicoes lc;
     private CandidaturaExposicao c;
@@ -45,10 +45,11 @@ public class AlterarCandidaturaController {
     }
 
     public List<CandidaturaExposicao> getListaCandidaturasRep() {
-        List<CandidaturaExposicao> lista = new ArrayList<CandidaturaExposicao>();
-        RegistoExposicoes re = ce.getRegistoExposicoes();
-        for (Exposicao e : re.getListaExposicoes()) {
-            ListaCandidaturasExposicoes lc = e.getListaCandidaturas();
+        List<CandidaturaExposicao> lista = new ArrayList<>();
+        this.re = ce.getRegistoExposicoes();
+        this.lc=e.getListaCandidaturas();
+        for (Exposicao expo : re.getListaExposicoes()) {
+            
             lista.addAll(lc.getListaCandRepEstadoCriadoOuAlterado(email));
         }
         return lista;

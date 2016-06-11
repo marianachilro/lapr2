@@ -539,7 +539,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     public FAE getFAE(Utilizador u) {
         for (FAE fae : listaFAEs.getListaFAEs()) {
-            if (fae.equals(u)) {
+            if (fae.getUtilizador().equals(u)) {
                 return fae;
             }
         }

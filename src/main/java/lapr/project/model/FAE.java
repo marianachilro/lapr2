@@ -49,6 +49,13 @@ public class FAE {
     public String getID() {
         return this.m_oUFae.getUsername();
     }
+    /**
+     * Devolve o utilizador que é o FAE.
+     * @return 
+     */
+    public Utilizador getUtilizador(){
+        return this.m_oUFae;
+    }
     
     /**
      * valida o fae.

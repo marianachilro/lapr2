@@ -22,15 +22,13 @@ import lapr.project.model.Utilizador;
  */
 public class AtualizarConflitoController {
     
-    private CentroExposicoes centro;
+    private final CentroExposicoes centro;
     
-    private Utilizador utilizador;
+    private final Utilizador utilizador;
     
-    private List <Exposicao> listaExposFAE;
+    private final List <Exposicao> listaExposFAE;
     
     private Exposicao exposicao;
-    
-    private String operacao;
     
     private Conflito conflito;
     
@@ -42,7 +40,6 @@ public class AtualizarConflitoController {
         this.centro=centro;
         this.utilizador=u;
         this.listaExposFAE=centro.getRegistoExposicoes().getListaExposicoesDoFAE(u);
-        this.operacao=operacao;
     }
     
     public void seleciona (Exposicao e){
