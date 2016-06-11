@@ -95,11 +95,13 @@ public class TipoConflito {
     @Override
     public boolean equals(Object t) {
         TipoConflito tipo = (TipoConflito) t;
+        if(tipo!=null){
         if (this == tipo) {
             return true;
 
         } else if (this.nome.equalsIgnoreCase(tipo.getNome()) && this.dados.equalsIgnoreCase(tipo.getDados())) {
             return true;
+        }
         }
         return false;
     }

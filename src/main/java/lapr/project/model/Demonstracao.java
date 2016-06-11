@@ -254,7 +254,7 @@ public class Demonstracao  implements Comparable <Demonstracao>{
 
     @Override
     public int compareTo(Demonstracao d) {
-        return this.numeroInteressados - d.getNumeroInteressados();
+        return this.numeroInteressados - d.numeroInteressados;
     }
  
 
