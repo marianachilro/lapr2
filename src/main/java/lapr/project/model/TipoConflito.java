@@ -5,6 +5,9 @@
  */
 package lapr.project.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author miniondevil
@@ -19,10 +22,15 @@ public class TipoConflito {
      * dados sobre o tipo de conflito.
      */
     private String dados;
+    /**
+     * Lista de Mecanismos que consegue detetar o Tipo de Conflito.
+     */
+    private List <MecanismoDetecaoConflito> listaMecanismos;
 
     public TipoConflito(){
         nome = "";
         dados = "";
+        this.listaMecanismos= new ArrayList<>();
     }
     /**
      * Método que modifica o nome do tipo de conflito.
@@ -58,6 +66,13 @@ public class TipoConflito {
      */
     public String getDados() {
         return dados;
+    }
+    /**
+     * Devolve a lista de Mecanismo de Deteção do Tipo de Conflito.
+     * @return lista de mecanismos de deteção
+     */
+    public List <MecanismoDetecaoConflito> getListaMecanismos(){
+        return this.listaMecanismos;
     }
 
     /**

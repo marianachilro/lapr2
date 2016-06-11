@@ -34,6 +34,18 @@ public class RegistoTipoConflitos {
     public List<TipoConflito> getListaTipoConflitos() {
         return listaConflitos;
     }
+    /**
+     * Devolve a lista dos Tipos de Conflito que já possuem métodos de deteção, ou seja, que estão ativos.
+     * @return lista tipos conflito ativos
+     */
+    public List <TipoConflito> getTiposConflitoAtivos(){
+        List <TipoConflito> lista = new ArrayList <>();
+        for(TipoConflito t : this.listaConflitos){
+            if(!t.getListaMecanismos().isEmpty())
+                lista.add(t);
+        }
+        return lista;
+    }
 
     /**
      * Método que cria um novo tipo de conflito.
