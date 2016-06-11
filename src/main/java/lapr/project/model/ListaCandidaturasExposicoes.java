@@ -18,12 +18,35 @@ public class ListaCandidaturasExposicoes {
      * List com Candidaturas.
      */
     private List<CandidaturaExposicao> listaCandidaturas;
+    private List<CandidaturaExposicao> listaCandidaturasRemovidas;
 
     /**
      * Construtor de uma Lista de Candidaturas.
      */
     public ListaCandidaturasExposicoes() {
         this.listaCandidaturas = new ArrayList<>();
+        this.listaCandidaturasRemovidas = new ArrayList<>();
+    }
+    /**
+     * retorna a lista de candidaturas removidas.
+     * @return 
+     */
+    public List<CandidaturaExposicao> getListaCandidaturasRemovidas(){
+        return listaCandidaturasRemovidas;
+    }
+    /**
+     * Adiciona uma candidatura à lista de candidaturas removidas.
+     * @param c 
+     */
+    public void registaCandidaturaRemovida(CandidaturaExposicao c){
+       listaCandidaturasRemovidas.add(c);
+    }
+    /**
+     * remove uma candidatura da lista de candidaturas.
+     * @param c 
+     */
+    public void removeCandidatura(CandidaturaExposicao c){
+        listaCandidaturas.remove(c);
     }
 
     /**
@@ -127,7 +150,5 @@ public class ListaCandidaturasExposicoes {
         }
         return candRep;
     }
-    public void removeCandidatura(CandidaturaExposicao c){
-        listaCandidaturas.remove(c);
-    }
+    
 }
