@@ -32,4 +32,13 @@ public interface Candidatura {
     public CandidaturaEstado getEstado();
     
     public void setEstado(CandidaturaEstado estado);
+    
+    @Override
+    public String toString();
+    
+    public boolean validaAvaliacao(Avaliacao ac);
+    
+    public boolean verificarEstadoAtribuida();
+    
+    public boolean verificarEstadoAvaliada();
 }

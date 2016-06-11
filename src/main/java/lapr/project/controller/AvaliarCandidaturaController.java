@@ -49,6 +49,7 @@ public class AvaliarCandidaturaController {
 
     public void selectCandidatura(Candidatura c) {
         this.candidatura = c;
+        c.toString();
     }
 
     public List<Candidatura> getAvaliaveis(FAE fae) {

@@ -92,10 +92,6 @@ public class ListaCandidaturasExposicoes {
         }
     }
 
-    public List<CandidaturaExposicao> getListaAtribuicoesDasCandidaturasExposicaoPorAvaliar(FAE fae) {
-        return null;
-    }
-
     public List<CandidaturaExposicao> getListaCandidaturasRep(String email) {
         List<CandidaturaExposicao> le = new ArrayList<>();
         for (CandidaturaExposicao c : listaCandidaturas) {

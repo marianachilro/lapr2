@@ -306,5 +306,27 @@ public class CandidaturaExposicao implements Candidatura {
         }
         return true;
     }
+    @Override
+    public String toString(){
+        return "";
+    }
+    
+    @Override
+     public boolean validaAvaliacao(Avaliacao ac){
+         //falta validação
+         return true;
+     }
+     
+     @Override
+     public boolean verificarEstadoAtribuida(){
+         //falta verificacoes
+         return true;
+     }
+     
+     @Override
+     public boolean verificarEstadoAvaliada(){
+         //falta verificacoes
+         return true;
+     }
 
 }
