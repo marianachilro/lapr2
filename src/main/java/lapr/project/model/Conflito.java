@@ -9,7 +9,7 @@ package lapr.project.model;
  *
  * @author marianachilro
  */
-class Conflito {
+public class Conflito {
     
      /**
      * FAE do Conflito.
@@ -19,6 +19,8 @@ class Conflito {
      * Candidatura do Conflito.
      */
     Candidatura c;
+    
+    TipoConflito tipo;
 
     /**
      * Construtor que tem como parametros o FAE e a Candidatura.
@@ -29,6 +31,22 @@ class Conflito {
     public Conflito(FAE fae, Candidatura c) {
         this.fae = fae;
         this.c = c;
+    }
+    /**
+     * Construtor que tem como parametro um Conflito (Construtor Cópia).
+     *
+     *
+     * @param c o conflito que se quer copiar
+     */
+    public Conflito(Conflito c){
+        this.fae=c.getFAE();
+        this.c=c.getCandidatura();
+    }
+    /**
+     * Contrutor vazio.
+     */
+    public Conflito(){
+        
     }
 
     /**
@@ -48,7 +66,34 @@ class Conflito {
     public Candidatura getCandidatura() {
         return c;
     }
-    
+    /**
+     * Devolve o tipo do conflito de interesse.
+     * @return o tipo do conflito
+     */
+    public TipoConflito getTipo(){
+        return tipo;
+    }
+    /**
+     * Modifica o FAE do Conflito.
+     * @param f o novo FAE
+     */
+    public void setFAE(FAE f){
+        this.fae=f;
+    }
+    /**
+     * Modifica a Candidatura do Conflito.
+     * @param c a nova candidatura do conflito
+     */
+    public void setCandidaturas(Candidatura c){
+        this.c=c;
+    }
+    /**
+     * Modifica o tipo do conflito.
+     * @param tipo o novo tipo do conflito
+     */
+    public void setTipo(TipoConflito tipo){
+        this.tipo=tipo;
+    }
     
     
 }
