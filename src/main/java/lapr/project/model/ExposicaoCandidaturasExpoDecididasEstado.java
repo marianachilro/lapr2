@@ -11,7 +11,7 @@ package lapr.project.model;
  */
 public class ExposicaoCandidaturasExpoDecididasEstado implements ExposicaoEstado{
     
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
     
     public ExposicaoCandidaturasExpoDecididasEstado(Exposicao expo){
         this.exposicao=expo;

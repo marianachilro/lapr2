@@ -15,14 +15,14 @@ public class DemonstracaoCriadaEstado implements DemonstracaoEstado {
     /**
      * A demonstração.
      */
-    private Demonstracao demonstracao;
+    private final Demonstracao demonstracao;
 
     /**
      * Contrutor do Estado de "Criada" da Demonstração.
      *
      * @param demonstracao a demonstração que vai transitar de estado
      */
-    public DemonstracaoCriadaEstado(Demonstracao desmonstracao) {
+    public DemonstracaoCriadaEstado(Demonstracao demonstracao) {
         this.demonstracao = demonstracao;
     }
 
@@ -152,10 +152,7 @@ public class DemonstracaoCriadaEstado implements DemonstracaoEstado {
      */
     public boolean valida() {
 
-        if (this.demonstracao.getRealizacao()) {
-            return true;
-        }
-        return false;
+        return this.demonstracao.getRealizacao();
     }
 
 }

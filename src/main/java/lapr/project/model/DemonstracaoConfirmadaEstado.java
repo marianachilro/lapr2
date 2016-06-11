@@ -18,7 +18,7 @@ public class DemonstracaoConfirmadaEstado implements DemonstracaoEstado {
     /**
      * A demonstração.
      */
-    private Demonstracao demonstracao;
+    private final Demonstracao demonstracao;
 
     /**
      * Contrutor do Estado de Confirmada da Demonstração.

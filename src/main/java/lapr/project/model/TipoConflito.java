@@ -25,7 +25,7 @@ public class TipoConflito {
     /**
      * Lista de Mecanismos que consegue detetar o Tipo de Conflito.
      */
-    private List <MecanismoDetecaoConflito> listaMecanismos;
+    private final List <MecanismoDetecaoConflito> listaMecanismos;
 
     public TipoConflito(){
         nome = "";
@@ -81,10 +81,7 @@ public class TipoConflito {
      * @return
      */
     public boolean valida() {
-        if (nome.isEmpty() || dados.isEmpty()) {
-            return false;
-        }
-        return true;
+        return !(nome.isEmpty() || dados.isEmpty());
 
     }
 

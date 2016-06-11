@@ -25,7 +25,7 @@ import lapr.project.model.ExposicaoEstado;
  */
 public class AtribuirCandidaturaController {
 
-    private CentroExposicoes ce;
+    private final CentroExposicoes ce;
     private RegistoExposicoes re;
     private Exposicao e;
     private RegistoMecanismos rm;

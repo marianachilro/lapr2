@@ -7,7 +7,6 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.Candidatura;
 import lapr.project.model.CandidaturaEstado;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
@@ -22,8 +21,8 @@ import lapr.project.model.Stand;
  */
 public class ConfirmarStandController {
 
-    private CentroExposicoes ce;
-    private String email;
+    private final CentroExposicoes ce;
+    private final String email;
     private CandidaturaExposicao c;
 
     public ConfirmarStandController(CentroExposicoes ce, String email) {
@@ -32,7 +31,7 @@ public class ConfirmarStandController {
     }
 
     public List<CandidaturaExposicao> geListaCandidaturaRep() {
-        List<CandidaturaExposicao> lista = new ArrayList<CandidaturaExposicao>();
+        List<CandidaturaExposicao> lista = new ArrayList<>();
         RegistoExposicoes re = ce.getRegistoExposicoes();
         for (Exposicao e : re.getListaExposicoes()) {
             ListaCandidaturasExposicoes lc = e.getListaCandidaturas();

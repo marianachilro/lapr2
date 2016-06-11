@@ -16,7 +16,7 @@ public class ExposicaoCandidaturasDemosAvaliadasEstado implements ExposicaoEstad
     /**
      * A exposição.
      */
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
     
     /**
      * Contrutor do Estado de "Candidaturas Avaliadas Demos" da Exposição.

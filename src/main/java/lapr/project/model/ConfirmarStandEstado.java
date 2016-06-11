@@ -10,7 +10,7 @@ package lapr.project.model;
  * @author miniondevil
  */
 public class ConfirmarStandEstado implements CandidaturaEstado {
-private Candidatura cand;
+private final Candidatura cand;
 public ConfirmarStandEstado(Candidatura cand){
     this.cand=cand;
 }

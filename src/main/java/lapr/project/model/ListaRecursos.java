@@ -13,7 +13,7 @@ import java.util.List;
  * @author Rita
  */
 public class ListaRecursos {
-     private List<Recurso> listaRecursos;
+     private final List<Recurso> listaRecursos;
      
      public ListaRecursos() {
          this.listaRecursos = new ArrayList<>();

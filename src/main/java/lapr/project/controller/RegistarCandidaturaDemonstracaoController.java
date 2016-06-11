@@ -23,8 +23,8 @@ import lapr.project.model.RegistoExposicoes;
  */
 public class RegistarCandidaturaDemonstracaoController {
 
-    private String email;
-    private CentroExposicoes ce;
+    private final String email;
+    private final CentroExposicoes ce;
     private Exposicao e;
     private Demonstracao d;
     private CandidaturaExposicao c;

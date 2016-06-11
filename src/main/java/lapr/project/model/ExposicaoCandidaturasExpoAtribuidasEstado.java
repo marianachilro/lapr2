@@ -74,11 +74,7 @@ public class ExposicaoCandidaturasExpoAtribuidasEstado implements ExposicaoEstad
     private boolean valida() {
         Data date =new Data();
 
-        if (m_e.getDataFimAvCandidatura().getDia() == date.getDia() && m_e.getDataFimAvCandidatura().getMes() == date.getMes() && m_e.getDataFimAvCandidatura().getAno() == date.getAno()) {
-            return true;
-        }
-
-        return false;
+        return m_e.getDataFimAvCandidatura().getDia() == date.getDia() && m_e.getDataFimAvCandidatura().getMes() == date.getMes() && m_e.getDataFimAvCandidatura().getAno() == date.getAno();
     }
 
     @Override

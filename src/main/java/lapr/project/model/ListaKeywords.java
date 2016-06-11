@@ -26,7 +26,7 @@ public class ListaKeywords {
         this.listaKeywords = new ArrayList<>();
     }
     public ListaKeywords(ListaKeywords lista){
-        this.listaKeywords = new ArrayList<Keyword>(lista.getListaKeywords());
+        this.listaKeywords = new ArrayList<>(lista.getListaKeywords());
     }
 
     /**

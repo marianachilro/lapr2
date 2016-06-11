@@ -7,10 +7,6 @@ package lapr.project.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -29,7 +25,7 @@ public class RegistoMecanismosTest {
        
         RegistoMecanismos instance = new RegistoMecanismos();
         
-        List<MecanismoAtribuicao> expResult = new ArrayList<MecanismoAtribuicao>();
+        List<MecanismoAtribuicao> expResult = new ArrayList<>();
         instance.setListaMecanismos(expResult);
         List<MecanismoAtribuicao> result = instance.getListaMecanismos();
         assertEquals(expResult, result);

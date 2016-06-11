@@ -11,7 +11,6 @@ import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Decisivel;
 import lapr.project.model.Exposicao;
-import lapr.project.model.ListaAvaliacoes;
 import lapr.project.model.Organizador;
 
 /**
@@ -21,8 +20,8 @@ import lapr.project.model.Organizador;
 public class DecidirCandidaturaController {
     
     
-    private CentroExposicoes ce;
-    private Organizador org;
+    private final CentroExposicoes ce;
+    private final Organizador org;
     private Exposicao exposicao;
     private Decisivel interfaceDecisivel;
     private Candidatura candidatura;

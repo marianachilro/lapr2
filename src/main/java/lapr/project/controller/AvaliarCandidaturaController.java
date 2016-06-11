@@ -24,7 +24,7 @@ public class AvaliarCandidaturaController {
     private Exposicao m_exposicao;
     private Avaliacao m_avaliacao;
     private final CentroExposicoes m_oCE;
-    private FAE m_oFAE;
+    private final FAE m_oFAE;
     private ListaAvaliacoes listaAvaliacoes;
     private Candidatura candidatura;
     private Avaliavel interfaceAvaliavel;

@@ -103,10 +103,7 @@ public class CandidaturaDemonstracao implements Candidatura {
         if (!Objects.equals(this.estado, other.estado)) {
             return false;
         }
-        if (!Objects.equals(this.listaAvaliacoes, other.listaAvaliacoes)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.listaAvaliacoes, other.listaAvaliacoes);
     }
     
     @Override

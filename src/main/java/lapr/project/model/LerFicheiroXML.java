@@ -65,16 +65,7 @@ public class LerFicheiroXML {
  */
     private static Demonstracao lerDemonstracao(Node node) {
         Demonstracao d = new Demonstracao();
-        try {
-            DocumentBuilderFactory factory
-                    = DocumentBuilderFactory.newInstance();
-            //Create document builder
-            DocumentBuilder builder = factory.newDocumentBuilder();
-
-            //Obtain a new document
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
+        
 
             Element atributos = (Element) node;
             //get atributos
@@ -95,10 +86,8 @@ public class LerFicheiroXML {
             aux = atributos.getElementsByTagName(DATA_FIM_CONFLITOS_DEMO).item(0).getNodeValue();
             aux1 = aux.split("/");
             d.setDataFimAtualizacaoConflitos(new Data(Integer.parseInt(aux1[2]), Integer.parseInt(aux1[1]), Integer.parseInt(aux1[0])));
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+        
+        
         return d;
     }
 /**
@@ -108,27 +97,16 @@ public class LerFicheiroXML {
  */
     private static Keyword lerKeyword(Node node) {
         Keyword keyword = new Keyword();
-        try {
-            DocumentBuilderFactory factory
-                    = DocumentBuilderFactory.newInstance();
-            //Create document builder
-            DocumentBuilder builder = factory.newDocumentBuilder();
+        Element element = (Element)node;
+       
 
-            //Obtain a new document
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
-
-            NodeList elementsKeyword = document.getElementsByTagName(PALAVRA_ELEMENT_NAME);
+            NodeList elementsKeyword = element.getElementsByTagName(PALAVRA_ELEMENT_NAME);
 
             Node elementKeyword = elementsKeyword.item(0);
 
             //Get value
             keyword.setPalavra(elementKeyword.getFirstChild().getNodeValue());
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+       
         return keyword;
     }
 /**
@@ -138,27 +116,16 @@ public class LerFicheiroXML {
  */
     private static Produto lerProduto(Node node) {
         Produto p = new Produto();
-        try {
-            DocumentBuilderFactory factory
-                    = DocumentBuilderFactory.newInstance();
-            //Create document builder
-            DocumentBuilder builder = factory.newDocumentBuilder();
+       
+            Element element = (Element)node;
 
-            //Obtain a new document
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
-
-            NodeList elementsProduto = document.getElementsByTagName(NOME_ELEMENT_NAME);
+            NodeList elementsProduto = element.getElementsByTagName(NOME_ELEMENT_NAME);
 
             Node elementKeyword = elementsProduto.item(0);
 
             //Get value
             p.setNome(elementKeyword.getFirstChild().getNodeValue());
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+      
         return p;
     }
 /**
@@ -168,16 +135,7 @@ public class LerFicheiroXML {
  */
     private static Avaliacao lerAvaliacao(Node node) {
         Avaliacao a = new Avaliacao();
-        try {
-            DocumentBuilderFactory factory
-                    = DocumentBuilderFactory.newInstance();
-            //Create document builder
-            DocumentBuilder builder = factory.newDocumentBuilder();
-
-            //Obtain a new document
-            Document document = builder.newDocument();
-
-            document.appendChild(document.importNode(node, true));
+    
 
             Element atributos = (Element) node;
             //get atributos
@@ -188,10 +146,7 @@ public class LerFicheiroXML {
             a.setRespostaAdequacaoNumConvites(Integer.parseInt(atributos.getElementsByTagName(ADEQUACAO_N_CONVITES_ELEMENT_NAME).item(0).getNodeValue()));
             a.setRespostaRecomendacaoGlobal(Integer.parseInt(atributos.getElementsByTagName(RECOMENDACAO_GLOBAL_ELEMENT_NAME).item(0).getNodeValue()));
 
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+      
         return a;
     }
 /**
@@ -236,9 +191,8 @@ public class LerFicheiroXML {
         NodeList keywords = elementsKeywords.item(0).getChildNodes();
         for (int position = 0; position < keywords.getLength(); position++) {
             Node keyword = keywords.item(position);
-            Keyword keywordExample = new Keyword();
 
-            keywordExample = lerKeyword(keyword);
+           Keyword keywordExample = lerKeyword(keyword);
             c.getListaKeywords().addKeyword(keywordExample);
         }
         //get demonstrações.
@@ -246,9 +200,8 @@ public class LerFicheiroXML {
         NodeList demonstracoes = elementsDemonstracoes.item(0).getChildNodes();
         for (int position = 0; position < demonstracoes.getLength(); position++) {
             Node demonstracao = demonstracoes.item(position);
-            Demonstracao demonstracaof = new Demonstracao();
 
-            demonstracaof = lerDemonstracao(demonstracao);
+           Demonstracao demonstracaof = lerDemonstracao(demonstracao);
             c.getListaDemonstracoes().addDemonstracao(demonstracaof);
         }
 
@@ -256,7 +209,7 @@ public class LerFicheiroXML {
     }
 /**
  * Método para ler uma exposição.
- * @param node
+ * @param ficheiro
  * @return 
  */
     public static Exposicao lerExposicao(Node ficheiro) {
@@ -313,13 +266,11 @@ public class LerFicheiroXML {
             NodeList demonstracoes = elementsDemonstracoes.item(0).getChildNodes();
             for (int position = 0; position < demonstracoes.getLength(); position++) {
                 Node demonstracao = demonstracoes.item(position);
-                Demonstracao demonstracaof = new Demonstracao();
 
-                demonstracaof = lerDemonstracao(demonstracao);
+               Demonstracao demonstracaof = lerDemonstracao(demonstracao);
                 exposicao.getListaDemonstracoes().addDemonstracao(demonstracaof);
             }
         } catch (ParserConfigurationException e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
 

@@ -108,7 +108,7 @@ public class ListaCandidaturasExposicoes {
      */
     public List<CandidaturaExposicao> getListacandidaturaRepresentanteComStand(String email){
         List<CandidaturaExposicao> aux = getListaCandidaturasRep(email);
-        List<CandidaturaExposicao> candRep = new ArrayList<CandidaturaExposicao>();
+        List<CandidaturaExposicao> candRep = new ArrayList<>();
         for(CandidaturaExposicao cand : aux){
             if(cand.getStand()!=null){
                 candRep.add(cand);
@@ -118,7 +118,7 @@ public class ListaCandidaturasExposicoes {
     }
     public List<CandidaturaExposicao> getListaCandRepEstadoCriadoOuAlterado(String email){
         List<CandidaturaExposicao> aux = getListaCandidaturasRep(email);
-        List<CandidaturaExposicao> candRep = new ArrayList<CandidaturaExposicao>();
+        List<CandidaturaExposicao> candRep = new ArrayList<>();
         for(CandidaturaExposicao cand : aux){
             CandidaturaEstado st = cand.getEstado();
             if(st.setAlterada() || st.setCriada()){

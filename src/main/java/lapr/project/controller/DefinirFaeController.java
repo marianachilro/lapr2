@@ -21,7 +21,7 @@ import lapr.project.model.Utilizador;
  */
 public class DefinirFaeController {
 
-    private CentroExposicoes ce;
+    private final CentroExposicoes ce;
     private Exposicao e;
     private FAE fae;
     private Utilizador u;

@@ -11,7 +11,7 @@ package lapr.project.model;
  */
 public class EstatisticaAvaliacoesCriadaEstado implements CandidaturaEstado {
 
-    private Candidatura cand;
+    private final Candidatura cand;
 
     public EstatisticaAvaliacoesCriadaEstado(Candidatura cand) {
         this.cand = cand;
@@ -59,11 +59,7 @@ public class EstatisticaAvaliacoesCriadaEstado implements CandidaturaEstado {
 
     @Override
     public boolean setDecidida() {
-        if (valida()) {
-            return true;
-        } else {
-            return false;
-        }
+        return valida();
     }
 
     @Override
@@ -72,11 +68,7 @@ public class EstatisticaAvaliacoesCriadaEstado implements CandidaturaEstado {
     }
 
     private boolean valida() {
-        if (cand.getEstado().getClass().equals(this.getClass())) {
-            return true;
-        } else {
-            return false;
-        }
+        return cand.getEstado().getClass().equals(this.getClass());
     }
 
     @Override

@@ -11,7 +11,7 @@ package lapr.project.model;
  */
 public class CandidaturaEstatisticaKeywordCriadaEstado implements CandidaturaEstado {
 
-    private Candidatura cand;
+    private final Candidatura cand;
 
     public CandidaturaEstatisticaKeywordCriadaEstado(Candidatura cand) {
         this.cand = cand;
@@ -77,11 +77,7 @@ public class CandidaturaEstatisticaKeywordCriadaEstado implements CandidaturaEst
         return false;
     }
      private boolean valida() {
-        if (cand.getEstado().setEstatiscticaKeywordsCriada()) {
-            return true;
-        } else {
-            return false;
-        }
+        return cand.getEstado().setEstatiscticaKeywordsCriada();
     }
 
 }

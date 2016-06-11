@@ -18,7 +18,7 @@ public class RegistoUtilizadores {
      * List de Utilizadores.
      */
     private List<Utilizador> listaUtilizadores;
-    private List<Utilizador> listaUtilizadoresNaoConfirmados;
+    private final List<Utilizador> listaUtilizadoresNaoConfirmados;
 
     /**
      * Construtor de um Registo de Utilizadores.

@@ -11,10 +11,6 @@ import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Stand;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -44,7 +40,7 @@ public class ConfirmarStandControllerTest {
         e.getListaCandidaturas().addCandidatura(c2);
         ce.getRegistoExposicoes().addExposicao(e);
         ConfirmarStandController instance = new ConfirmarStandController(ce,"123");
-        List<CandidaturaExposicao> expResult = new ArrayList<CandidaturaExposicao>();
+        List<CandidaturaExposicao> expResult = new ArrayList<>();
         expResult.add(c);
         List<CandidaturaExposicao> result = instance.geListaCandidaturaRep();
         assertEquals(expResult, result);

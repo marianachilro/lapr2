@@ -19,7 +19,7 @@ public class File_CSV {
     /**
      * Exposicao
      */
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
 
     /**
      * Construtor que recebe como parametro a exposicao à qual pretende saber o

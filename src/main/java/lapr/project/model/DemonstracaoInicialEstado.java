@@ -15,7 +15,7 @@ public class DemonstracaoInicialEstado implements DemonstracaoEstado {
     /**
      * A demonstração.
      */
-    private Demonstracao demonstracao;
+    private final Demonstracao demonstracao;
 
     /**
      * Contrutor do Estado de "Inicial" da Demonstração.

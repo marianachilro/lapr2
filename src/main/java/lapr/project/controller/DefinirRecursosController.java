@@ -5,7 +5,6 @@
  */
 package lapr.project.controller;
 
-import java.util.List;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Recurso;
 import lapr.project.model.RegistoRecursos;
@@ -16,7 +15,7 @@ import lapr.project.model.RegistoRecursos;
  */
 public class DefinirRecursosController {
 
-    private CentroExposicoes centro;
+    private final CentroExposicoes centro;
 
     private RegistoRecursos rc;
 

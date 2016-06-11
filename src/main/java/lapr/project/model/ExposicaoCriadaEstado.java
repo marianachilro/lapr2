@@ -14,7 +14,7 @@ public class ExposicaoCriadaEstado implements ExposicaoEstado{
     /**
      * A exposição.
      */
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
     
     /**
      * Contrutor do Estado de "Criada" da Exposição.
@@ -252,10 +252,7 @@ public class ExposicaoCriadaEstado implements ExposicaoEstado{
      * possível mudar
      */
     public boolean validaFAE(){
-        if(!this.exposicao.getListaFAES().getListaFAEs().isEmpty()){
-            return true;
-        }
-        return false;
+        return !this.exposicao.getListaFAES().getListaFAEs().isEmpty();
     }
     
     /**
@@ -265,9 +262,6 @@ public class ExposicaoCriadaEstado implements ExposicaoEstado{
      * possível mudar
      */
     public boolean validaDemos(){
-        if(!this.exposicao.getListaDemonstracoes().getListaDemonstracao().isEmpty()){
-            return true;
-        }
-        return false;
+        return !this.exposicao.getListaDemonstracoes().getListaDemonstracao().isEmpty();
     }
 }

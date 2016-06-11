@@ -23,7 +23,7 @@ public class ListaConflitos {
      * construtor sem parâmetros.
      */
     public ListaConflitos() {
-        lc = new ArrayList<Conflito>();
+        lc = new ArrayList<>();
     }
 
     /**

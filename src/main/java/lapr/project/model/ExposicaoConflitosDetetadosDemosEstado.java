@@ -16,7 +16,7 @@ public class ExposicaoConflitosDetetadosDemosEstado implements ExposicaoEstado{
     /**
      * A exposição.
      */
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
     
     /**
      * Contrutor do Estado de "Conflitos Detetados Demos" da Exposição.

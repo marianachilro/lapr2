@@ -16,7 +16,7 @@ public class DemonstracaoCandidaturasFechadasEstado implements DemonstracaoEstad
     /**
      * A demonstração.
      */
-    private Demonstracao demonstracao;
+    private final Demonstracao demonstracao;
 
     /**
      * Contrutor do Estado de Candidaturas Fechadas da Demonstração.

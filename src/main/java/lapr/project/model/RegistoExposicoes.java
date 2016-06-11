@@ -95,7 +95,7 @@ public class RegistoExposicoes {
      */
     public List<String> getListaExposicoesOrganizadorToString(String username, RegistoUtilizadores ru){
          Utilizador u = ru.getUtilizador(username);
-        List<String> listaExposicoesOrganizador = new ArrayList<String>();
+        List<String> listaExposicoesOrganizador = new ArrayList<>();
         for (Exposicao e : listaExposicoes) {
             if (e.getListaOrganizadores().hasOrganizador(u)) {
                 listaExposicoesOrganizador.add(e.getTitulo());

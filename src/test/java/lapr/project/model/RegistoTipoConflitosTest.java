@@ -7,10 +7,6 @@ package lapr.project.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -29,7 +25,7 @@ public class RegistoTipoConflitosTest {
         
         RegistoTipoConflitos instance = new RegistoTipoConflitos();
         
-        List<TipoConflito> expResult = new ArrayList<TipoConflito>();
+        List<TipoConflito> expResult = new ArrayList<>();
         List<TipoConflito> result = instance.getListaTipoConflitos();
         assertEquals(expResult, result);
     }
@@ -45,7 +41,7 @@ public class RegistoTipoConflitosTest {
         t2.setDados("teste");
         instance.getListaTipoConflitos().add(t2);
         instance.getListaTipoConflitos().add(t1);
-        List<TipoConflito> expResult=new ArrayList<TipoConflito>();
+        List<TipoConflito> expResult=new ArrayList<>();
         expResult.add(t2);
         expResult.add(t1);
         List<TipoConflito> result = instance.getListaTipoConflitos();

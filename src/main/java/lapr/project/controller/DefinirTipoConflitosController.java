@@ -14,7 +14,7 @@ import lapr.project.model.TipoConflito;
  * @author miniondevil
  */
 public class DefinirTipoConflitosController {
-    private CentroExposicoes ce;
+    private final CentroExposicoes ce;
     private lapr.project.model.RegistoTipoConflitos rc;
     private List<TipoConflito> ltc;
     private TipoConflito t;

@@ -23,7 +23,7 @@ import lapr.project.model.RegistoUtilizadores;
  */
 public class CriarDemonstracao {
     
-    private CentroExposicoes ce;
+    private final CentroExposicoes ce;
     private Exposicao expo;
     private Demonstracao demo;
     private Recurso r;
@@ -86,10 +86,6 @@ public class CriarDemonstracao {
     }
     
     private boolean checkEstado() {
-        if(st.setCriada() || st.setFaeSemDemo()) {
-            return true;
-        } else {
-            return false;
-        }
+        return st.setCriada() || st.setFaeSemDemo();
     }
 }

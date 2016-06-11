@@ -16,7 +16,7 @@ public class DemonstracaoConflitosAtualizadosEstado implements DemonstracaoEstad
     /**
      * A demonstração.
      */
-    private Demonstracao demonstracao;
+    private final Demonstracao demonstracao;
 
     /**
      * Contrutor do Estado de "Conflitos Atualizados" da Demonstração.

@@ -1,8 +1,5 @@
 package lapr.project.model;
 
-import lapr.project.model.Exposicao;
-import lapr.project.model.ExposicaoEstado;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,7 +15,7 @@ public class ExposicaoInicialEstado implements ExposicaoEstado {
     /**
      * A exposição.
      */
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
 
     /**
      * Contrutor do Estado de "Inicial" da Exposição.

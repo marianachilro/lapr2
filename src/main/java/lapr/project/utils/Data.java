@@ -131,6 +131,7 @@ public class Data {
      * 
      * @return caraterísticas da data
      */
+    @Override
     public String toString() {
         return diaDaSemana() + ", " + dia + " de " + nomeMes[mes] + " de " + ano;
         

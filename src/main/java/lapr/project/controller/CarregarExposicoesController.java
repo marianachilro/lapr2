@@ -18,12 +18,12 @@ import org.w3c.dom.Node;
  * @author miniondevil
  */
 public class CarregarExposicoesController {
-    private CentroExposicoes ce;
-    private List<Exposicao> le;
+    private final CentroExposicoes ce;
+    private final List<Exposicao> le;
     private RegistoExposicoes re;
     public CarregarExposicoesController(CentroExposicoes ce){
         this.ce=ce;
-        le = new ArrayList<Exposicao>();
+        le = new ArrayList<>();
     }
     public void lerExpo(Node ficheiro){
         re = ce.getRegistoExposicoes();

@@ -19,7 +19,7 @@ public class DemonstracaoCandidaturasAbertasEstado implements DemonstracaoEstado
     /**
      * A demonstração.
      */
-    private Demonstracao demonstracao;
+    private final Demonstracao demonstracao;
 
     /**
      * Contrutor do Estado de Candidaturas Abertas da Demonstração.
@@ -158,10 +158,7 @@ public class DemonstracaoCandidaturasAbertasEstado implements DemonstracaoEstado
         int mesHoje = GregorianCalendar.MONTH;
         int anoHoje = GregorianCalendar.YEAR;
         Data dataHoje = new Data(anoHoje, mesHoje, diaHoje);
-        if (dataHoje.isMaior(this.demonstracao.getDataFimSubmissaoCandidaturas())) {
-            return true;
-        }
-        return false;
+        return dataHoje.isMaior(this.demonstracao.getDataFimSubmissaoCandidaturas());
     }
 
 }

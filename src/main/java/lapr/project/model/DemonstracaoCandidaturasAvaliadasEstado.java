@@ -16,7 +16,7 @@ public class DemonstracaoCandidaturasAvaliadasEstado implements DemonstracaoEsta
     /**
      * A demonstração.
      */
-    private Demonstracao demonstracao;
+    private final Demonstracao demonstracao;
 
     /**
      * Contrutor do Estado de Candidaturas Avaliadas da Demonstração.

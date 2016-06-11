@@ -9,7 +9,6 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.utils.Data;
-import lapr.project.model.ExposicaoInicialEstado;
 
 /**
  *
@@ -261,6 +260,7 @@ public class Exposicao implements Avaliavel, Decisivel {
     }
     /**
      * Devolve a data de fim do período de avaliação de candidaturas às Demonstrações da Exposição.
+     * @param data
      * @return data fim submissao candidaturas às demonstrações
      */
     public Data getDataFimAtualizacaoConflitosDemos(Data data){
@@ -565,6 +565,7 @@ public class Exposicao implements Avaliavel, Decisivel {
     /**
      * Devolve a lista de atribuicoes da exposição.
      *
+     * @param fae
      * @return lista de atribuicoes
      */
     public List<Candidatura> getListaAtribuicoesFAE(FAE fae) {
@@ -678,14 +679,10 @@ public class Exposicao implements Avaliavel, Decisivel {
     }
 
     public boolean valida() {
-        if (this.titulo == null || this.descricao == null || this.listaOrg.getListaOrganizadores().isEmpty()
+        return !(this.titulo == null || this.descricao == null || this.listaOrg.getListaOrganizadores().isEmpty()
                 || this.dataInicio == null || this.dataInicio == null || this.dataFimSubCand == null
                 || this.dataFimAtcConf == null || this.dataFimAvCandidatura == null
-                || this.dataFimDcCandidaturas == null) {
-            return false;
-
-        }
-        return true;
+                || this.dataFimDcCandidaturas == null);
     }
 
     /**

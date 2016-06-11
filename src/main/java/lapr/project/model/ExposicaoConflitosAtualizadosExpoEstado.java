@@ -5,9 +5,6 @@
  */
 package lapr.project.model;
 
-import java.util.GregorianCalendar;
-import lapr.project.utils.Data;
-
 /**
  * Representa um dos Estados possíveis da Exposicao (Estado de "Conflitos Atualizados Expo").
  * @author marianachilro
@@ -17,7 +14,7 @@ public class ExposicaoConflitosAtualizadosExpoEstado implements ExposicaoEstado{
     /**
      * A exposição.
      */
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
     
     /**
      * Contrutor do Estado de "Conflitos Atualizados Expo" da Exposição.
@@ -251,10 +248,7 @@ public class ExposicaoConflitosAtualizadosExpoEstado implements ExposicaoEstado{
      */
     public boolean valida(){
         
-        if (!this.exposicao.getListaAtribuicoes().getLista().isEmpty()) {
-            return true;
-        }
-        return false;
+        return !this.exposicao.getListaAtribuicoes().getLista().isEmpty();
     }
     
 }

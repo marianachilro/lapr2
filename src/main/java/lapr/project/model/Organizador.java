@@ -101,9 +101,6 @@ public class Organizador {
     public boolean equals(Object o) {
 
         Utilizador u1 = (Utilizador) o;
-        if (this.m_oUtilizador.getUsername().equals(u1.getUsername())) {
-            return true;
-        }
-        return false;
+        return this.m_oUtilizador.getUsername().equals(u1.getUsername());
     }
 }

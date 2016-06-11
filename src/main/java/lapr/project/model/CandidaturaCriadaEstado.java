@@ -11,7 +11,7 @@ package lapr.project.model;
  */
 public class CandidaturaCriadaEstado implements CandidaturaEstado {
 
-    private Candidatura cand; 
+    private final Candidatura cand; 
     
     public CandidaturaCriadaEstado(Candidatura cand) {
         this.cand = cand;
@@ -80,11 +80,7 @@ public class CandidaturaCriadaEstado implements CandidaturaEstado {
     }
     
     private boolean valida() {
-        if(cand.getEstado().setCriada()) {
-            return true;
-        } else {
-            return false;
-        }
+        return cand.getEstado().setCriada();
     }
 
     @Override

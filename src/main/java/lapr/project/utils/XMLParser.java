@@ -27,6 +27,7 @@ public class XMLParser {
 	 *
 	 * @param document The XML Document to render.
 	 * @return A structured string for the XML Document.
+     * @throws javax.xml.transform.TransformerException
 	 */
 	public String convertToString(Document document) throws TransformerException {
 		//Set transformer properties
@@ -42,6 +43,7 @@ public class XMLParser {
 	 *
 	 * @param node The XML node to render.
 	 * @return A structured string for the XML node.
+     * @throws javax.xml.transform.TransformerException
 	 */
 	public String convertToString(Node node) throws TransformerException {
 		//Set transformer properties

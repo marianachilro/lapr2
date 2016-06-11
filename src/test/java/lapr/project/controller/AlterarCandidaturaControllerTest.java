@@ -50,7 +50,7 @@ CentroExposicoes ce = new CentroExposicoes();
         e.getListaCandidaturas().addCandidatura(c3);
         ce.getRegistoExposicoes().addExposicao(e);
         AlterarCandidaturaController instance = new AlterarCandidaturaController(ce,"123");
-        List<CandidaturaExposicao> expResult = new ArrayList<CandidaturaExposicao>();
+        List<CandidaturaExposicao> expResult = new ArrayList<>();
         expResult.add(c);
         expResult.add(c1);
         List<CandidaturaExposicao> result = instance.getListaCandidaturasRep();

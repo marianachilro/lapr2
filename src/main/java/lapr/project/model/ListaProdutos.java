@@ -26,7 +26,7 @@ public class ListaProdutos {
         this.listaProdutos = new ArrayList<>();
     }
     public ListaProdutos(ListaProdutos lista){
-        this.listaProdutos = new ArrayList<Produto>(lista.getListaProdutos());
+        this.listaProdutos = new ArrayList<>(lista.getListaProdutos());
     }
 
     /**

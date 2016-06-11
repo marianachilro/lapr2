@@ -5,7 +5,6 @@
  */
 package lapr.project.model;
 
-import java.util.Date;
 import java.util.List;
 import lapr.project.utils.Data;
 
@@ -231,6 +230,7 @@ public class Demonstracao  implements Comparable <Demonstracao>{
     /**
      * Devolve a lista de atribuicoes da exposição.
      *
+     * @param fae
      * @return lista de atribuicoes
      */
     public List<Candidatura> getListaAtribuicoesFAE(FAE fae) {

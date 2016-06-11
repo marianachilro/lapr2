@@ -17,7 +17,7 @@ public class RegistoMecanismos {
     private List<MecanismoAtribuicao> lm;
 
     public RegistoMecanismos() {
-        lm = new ArrayList<MecanismoAtribuicao>();
+        lm = new ArrayList<>();
     }
 
     public List<MecanismoAtribuicao> getListaMecanismos() {

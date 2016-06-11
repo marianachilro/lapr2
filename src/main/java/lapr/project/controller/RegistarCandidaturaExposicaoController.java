@@ -25,9 +25,9 @@ import lapr.project.model.RegistoExposicoes;
  */
 public class RegistarCandidaturaExposicaoController {
 
-    private String emailRep;
+    private final String emailRep;
     private CandidaturaEstado as;
-    private CentroExposicoes ce;
+    private final CentroExposicoes ce;
     private Exposicao e;
     private CandidaturaExposicao c;
     private Produto p;

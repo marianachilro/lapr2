@@ -17,13 +17,13 @@ public class RegistoTipoConflitos {
     /**
      * Lista com todos os tipos de conflitos.
      */
-    private List<TipoConflito> listaConflitos;
+    private final List<TipoConflito> listaConflitos;
 
     /**
      * Construtor sem parâmetros.
      */
     public RegistoTipoConflitos() {
-        this.listaConflitos = new ArrayList<TipoConflito>();
+        this.listaConflitos = new ArrayList<>();
     }
 
     /**

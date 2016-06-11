@@ -16,7 +16,7 @@ import lapr.project.model.Utilizador;
  */
 public class ConfirmarRegistoDeUtilizadorController {
 
-    private CentroExposicoes ce;
+    private final CentroExposicoes ce;
     private Utilizador u;
     private RegistoUtilizadores ru;
 

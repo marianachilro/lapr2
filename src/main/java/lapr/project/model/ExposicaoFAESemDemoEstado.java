@@ -14,7 +14,7 @@ public class ExposicaoFAESemDemoEstado implements ExposicaoEstado{
     /**
      * A exposição.
      */
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
     
     /**
      * Contrutor do Estado de "FAE Sem Demo" da Exposição.
@@ -248,10 +248,7 @@ public class ExposicaoFAESemDemoEstado implements ExposicaoEstado{
      * possível mudar
      */
     public boolean valida(){
-        if(!this.exposicao.getListaDemonstracoes().getListaDemonstracao().isEmpty()){
-            return true;
-        }
-        return false;
+        return !this.exposicao.getListaDemonstracoes().getListaDemonstracao().isEmpty();
     }
     
 }

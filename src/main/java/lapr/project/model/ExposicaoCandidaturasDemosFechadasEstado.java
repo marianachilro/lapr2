@@ -5,9 +5,6 @@
  */
 package lapr.project.model;
 
-import java.util.GregorianCalendar;
-import lapr.project.utils.Data;
-
 /**
  * Representa um dos Estados possíveis da Exposicao (Estado de "Candidaturas Fechadas Demos").
  * @author marianachilro
@@ -16,7 +13,7 @@ public class ExposicaoCandidaturasDemosFechadasEstado implements ExposicaoEstado
     /**
      * A exposição.
      */
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
     
     /**
      * Contrutor do Estado de "Candidaturas Fechadas Demos" da Exposição.

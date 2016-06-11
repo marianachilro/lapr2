@@ -16,7 +16,7 @@ public class ExposicaoStandsAtribuidosEstado implements ExposicaoEstado{
     /**
      * A exposição.
      */
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
     
     /**
      * Contrutor do Estado de "StandsAtribuidos" da Exposição.

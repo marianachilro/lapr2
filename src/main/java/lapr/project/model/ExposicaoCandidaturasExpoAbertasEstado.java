@@ -5,7 +5,6 @@
  */
 package lapr.project.model;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
 import lapr.project.utils.Data;
 
@@ -18,7 +17,7 @@ public class ExposicaoCandidaturasExpoAbertasEstado implements ExposicaoEstado{
     /**
      * A exposição.
      */
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
     
     /**
      * Contrutor do Estado de "Candidaturas Abertas Expo" da Exposição.
@@ -255,10 +254,7 @@ public class ExposicaoCandidaturasExpoAbertasEstado implements ExposicaoEstado{
         int mesHoje = GregorianCalendar.MONTH;
         int anoHoje = GregorianCalendar.YEAR;
         Data dataHoje = new Data(anoHoje, mesHoje, diaHoje);
-        if (dataHoje.isMaior(this.exposicao.getDataFimSubCand())) {
-            return true;
-        }
-        return false;
+        return dataHoje.isMaior(this.exposicao.getDataFimSubCand());
     }
     
     

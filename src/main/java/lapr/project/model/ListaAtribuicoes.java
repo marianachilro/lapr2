@@ -23,7 +23,7 @@ public class ListaAtribuicoes {
      * construtor sem parâmetros.
      */
     public ListaAtribuicoes() {
-        la = new ArrayList<Atribuicao>();
+        la = new ArrayList<>();
     }
 
     /**

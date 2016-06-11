@@ -274,10 +274,7 @@ public class CandidaturaExposicao implements Candidatura {
         if (!Objects.equals(this.listaKeywords, other.listaKeywords)) {
             return false;
         }
-        if (!Objects.equals(this.listaDemonstracoes, other.listaDemonstracoes)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.listaDemonstracoes, other.listaDemonstracoes);
     }
     @Override
     public String toString(){

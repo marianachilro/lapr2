@@ -7,10 +7,6 @@ package lapr.project.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -28,7 +24,7 @@ public class ListaFAEsTest {
     public void testGetAndSetListaFAEs() {
      
         ListaFAEs instance = new ListaFAEs();
-        List<FAE> expResult = new ArrayList<FAE>();
+        List<FAE> expResult = new ArrayList<>();
         instance.setListaFAEs(expResult);
         List<FAE> result = instance.getListaFAEs();
         assertEquals(expResult, result);

@@ -27,9 +27,9 @@ import lapr.project.model.TipoConflito;
  */
 public class DefinirConflitosController {
 
-    private CentroExposicoes centro;
+    private final CentroExposicoes centro;
 
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
 
     private RegistoTipoConflitos regTiposConflitos;
 

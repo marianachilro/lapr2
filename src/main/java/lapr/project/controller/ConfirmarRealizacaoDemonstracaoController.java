@@ -23,9 +23,9 @@ import lapr.project.utils.Data;
  */
 public class ConfirmarRealizacaoDemonstracaoController {
     
-    private CentroExposicoes centro;
+    private final CentroExposicoes centro;
     
-    private RegistoExposicoes registoExposicoes;
+    private final RegistoExposicoes registoExposicoes;
     
     private Exposicao exposicao;
     
@@ -80,9 +80,7 @@ public class ConfirmarRealizacaoDemonstracaoController {
     }
     
     public boolean validaDatas(Data data1, Data data2){
-        if(data1.isMaior(data2))
-            return false;
-        return true;
+        return !data1.isMaior(data2);
     }
     
     public void setDataInicioSubmissaoCandidaturasDemos(Data data1){

@@ -5,9 +5,6 @@
  */
 package lapr.project.model;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 /**
  * Representa um dos Estados possíveis da Exposicao (Estado de "Completa").
  * @author marianachilro
@@ -17,7 +14,7 @@ public class ExposicaoCompletaEstado implements ExposicaoEstado{
     /**
      * A exposição.
      */
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
     
     /**
      * Contrutor do Estado de "Completa" da Exposição.

@@ -17,7 +17,7 @@ public class ExposicaoConflitosDetetadosExpoEstado implements ExposicaoEstado{
     /**
      * A exposição.
      */
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
     
     /**
      * Contrutor do Estado de "Conflitos Detetados Expo" da Exposição.
@@ -254,10 +254,7 @@ public class ExposicaoConflitosDetetadosExpoEstado implements ExposicaoEstado{
         int mesHoje = GregorianCalendar.MONTH;
         int anoHoje = GregorianCalendar.YEAR;
         Data dataHoje = new Data(anoHoje, mesHoje, diaHoje);
-        if (dataHoje.isMaior(this.exposicao.getDataFimAtcConf())) {
-            return true;
-        }
-        return false;
+        return dataHoje.isMaior(this.exposicao.getDataFimAtcConf());
     }
     
 }

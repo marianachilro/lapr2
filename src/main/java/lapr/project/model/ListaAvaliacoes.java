@@ -16,13 +16,13 @@ public class ListaAvaliacoes {
      /**
      * lista com as Avaliações.
      */
-    private List<Avaliacao> la;
+    private final List<Avaliacao> la;
 
     /**
      * construtor sem parâmetros.
      */
     public ListaAvaliacoes() {
-        la = new ArrayList<Avaliacao>();
+        la = new ArrayList<>();
     }
 
     /**
