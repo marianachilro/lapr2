@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author catarinarib
@@ -103,5 +105,12 @@ public class FAE {
             return this.m_oUFae.getUsername().equals(u1.getUsername());
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.m_oUFae);
+        return hash;
     }
 }

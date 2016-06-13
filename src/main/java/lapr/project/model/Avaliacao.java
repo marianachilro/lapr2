@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author catarinarib
@@ -387,4 +389,14 @@ public class Avaliacao {
         }
         return false;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + Objects.hashCode(this.fae);
+        hash = 31 * hash + Objects.hashCode(this.candidatura);
+        return hash;
+    }
+    
+    
 }
