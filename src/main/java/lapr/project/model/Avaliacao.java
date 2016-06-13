@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author catarinarib
@@ -364,7 +366,7 @@ public class Avaliacao {
     }
 
     /**
-     * Permite comparar um objecto/avalicao por parametro por outra avaliacao.
+     * Permite comparar um objecto/avalicao por parametro com outra avaliacao.
      *
      * @param a uma avaliacao
      * @return boolean
@@ -372,8 +374,29 @@ public class Avaliacao {
     @Override
     public boolean equals(Object a) {
 
+        if (a == null) {
+            return false;
+        }
+
+        if (this.getClass() != a.getClass()) {
+            return false;
+        }
+
         Avaliacao a1 = (Avaliacao) a;
 
-        return this.candidatura.equalsIgnoreCase(a1.getCandidatura()) && this.fae.equalsIgnoreCase(a1.getFae());
+        if (a1 != null) {
+            return this.candidatura.equalsIgnoreCase(a1.getCandidatura()) && this.fae.equalsIgnoreCase(a1.getFae());
+        }
+        return false;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + Objects.hashCode(this.fae);
+        hash = 31 * hash + Objects.hashCode(this.candidatura);
+        return hash;
+    }
+    
+    
 }

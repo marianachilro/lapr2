@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author catarinarib
@@ -49,14 +51,16 @@ public class FAE {
     public String getID() {
         return this.m_oUFae.getUsername();
     }
+
     /**
      * Devolve o utilizador que é o FAE.
-     * @return 
+     *
+     * @return
      */
-    public Utilizador getUtilizador(){
+    public Utilizador getUtilizador() {
         return this.m_oUFae;
     }
-    
+
     /**
      * valida o fae.
      *
@@ -77,10 +81,9 @@ public class FAE {
     public String toString() {
         return this.m_oUFae != null ? this.m_oUFae.toString() : null;
     }
-    
+
     /**
-     * Permite comparar um objecto/fae por parametro por outro
-     * fae.
+     * Permite comparar um objecto/fae por parametro por outro fae.
      *
      * @param fae fae
      * @return boolean
@@ -88,7 +91,26 @@ public class FAE {
     @Override
     public boolean equals(Object fae) {
 
+        if (fae == null) {
+            return false;
+        }
+
+        if (this.getClass() != fae.getClass()) {
+            return false;
+        }
+
         Utilizador u1 = (Utilizador) fae;
-        return this.m_oUFae.getUsername().equals(u1.getUsername());
+
+        if (u1 != null) {
+            return this.m_oUFae.getUsername().equals(u1.getUsername());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.m_oUFae);
+        return hash;
     }
 }
