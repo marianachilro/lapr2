@@ -89,6 +89,10 @@ public class FAE {
     public boolean equals(Object fae) {
 
         Utilizador u1 = (Utilizador) fae;
-        return this.m_oUFae.getUsername().equals(u1.getUsername());
+        
+        if(u1 != null){
+            return this.m_oUFae.getUsername().equals(u1.getUsername());
+        }
+        return false;
     }
 }
