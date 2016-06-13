@@ -146,7 +146,7 @@ public class AvaliacaoTest {
         
         System.out.println("TestetoString");
         Avaliacao instance = new Avaliacao("fae", "cand", "decisao", "txt");
-        String expResult = "fae;cand;decisao;txt;\n";
+        String expResult = String.format("%s;%s;%s;%s;%n", "fae", "cand", "decisao", "txt");
         String result = instance.toString();
         assertEquals(expResult, result);
     }

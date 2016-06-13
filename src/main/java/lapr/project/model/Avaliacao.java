@@ -254,7 +254,7 @@ public class Avaliacao {
      * @param respostaTemaExpo resposta do inquerito sobre o tema da exposicao
      */
     public final void setRespostaTemaExpo(int respostaTemaExpo) {
-        if (respostaTemaExpo < 6 || respostaTemaExpo > 0) {
+        if (respostaTemaExpo > 6 || respostaTemaExpo < 0) {
             throw new IllegalArgumentException("De 1 a 5!");
         }
         this.respostaTemaExpo = respostaTemaExpo;
@@ -277,7 +277,7 @@ public class Avaliacao {
      * candidatura
      */
     public final void setRespostaAdequacaoCandExposicao(int respostaAdequacaoCand) {
-        if (respostaAdequacaoCand < 6 || respostaAdequacaoCand > 0) {
+        if (respostaAdequacaoCand > 6 || respostaAdequacaoCand < 0) {
             throw new IllegalArgumentException("De 1 a 5!");
         }
         this.respostaAdequacaoCandExposicao = respostaAdequacaoCand;
@@ -302,7 +302,7 @@ public class Avaliacao {
      * adquação da candidatura às demonstracoes
      */
     public final void setRespostaAdequacaoCandDemonstracao(int respostaAdequacaoCandDemonstracao) {
-        if (respostaAdequacaoCandDemonstracao < 6 || respostaAdequacaoCandDemonstracao > 0) {
+        if (respostaAdequacaoCandDemonstracao > 6 || respostaAdequacaoCandDemonstracao < 0) {
             throw new IllegalArgumentException("De 1 a 5!");
         }
         this.respostaAdequacaoCandDemonstracao = respostaAdequacaoCandDemonstracao;
@@ -324,7 +324,7 @@ public class Avaliacao {
      * adquação do numero de convites
      */
     public final void setRespostaAdequacaoNumConvites(int respostaAdequacaoNumConvites) {
-        if (respostaAdequacaoNumConvites < 6 || respostaAdequacaoNumConvites > 0) {
+        if (respostaAdequacaoNumConvites > 6 || respostaAdequacaoNumConvites < 0) {
             throw new IllegalArgumentException("De 1 a 5!");
         }
         this.respostaAdequacaoNumConvites = respostaAdequacaoNumConvites;
@@ -346,7 +346,7 @@ public class Avaliacao {
      * recomendação global
      */
     public final void setRespostaRecomendacaoGlobal(int respostaRecomendacaoGlobal) {
-        if (respostaRecomendacaoGlobal < 6 || respostaRecomendacaoGlobal > 0) {
+        if (respostaRecomendacaoGlobal > 6 || respostaRecomendacaoGlobal < 0) {
             throw new IllegalArgumentException("De 1 a 5!");
         }
         this.respostaRecomendacaoGlobal = respostaRecomendacaoGlobal;
