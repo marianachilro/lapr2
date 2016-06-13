@@ -54,4 +54,24 @@ public class Keyword {
     public void setPalavra(String palavra) {
         this.palavra = palavra;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Keyword)) {
+            return false;
+        }
+
+        Keyword that = (Keyword) o;
+
+        return getPalavra().equals(that.getPalavra());
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getPalavra().hashCode();
+    }
 }

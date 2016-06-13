@@ -7,6 +7,7 @@ package lapr.project.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -94,16 +95,24 @@ public class TipoConflito {
      */
     @Override
     public boolean equals(Object t) {
-        TipoConflito tipo = (TipoConflito) t;
-        if(tipo!=null){
-        if (this == tipo) {
-            return true;
+        if (t == null) {
+            return false;
+        }
 
-        } else if (this.nome.equalsIgnoreCase(tipo.getNome()) && this.dados.equalsIgnoreCase(tipo.getDados())) {
-            return true;
+        if (this.getClass() != t.getClass()) {
+            return false;
         }
-        }
-        return false;
+        TipoConflito tipo = (TipoConflito) t;
+        
+        return this.nome.equalsIgnoreCase(tipo.getNome()) && this.dados.equalsIgnoreCase(tipo.getDados());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.nome);
+        hash = 37 * hash + Objects.hashCode(this.dados);
+        return hash;
     }
 
 }

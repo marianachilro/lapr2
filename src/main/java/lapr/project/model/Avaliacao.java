@@ -382,7 +382,7 @@ public class Avaliacao {
             return false;
         }
 
-        Avaliacao a1 = (Avaliacao) a;
+        final Avaliacao a1 = (Avaliacao) a;
 
         return this.candidatura.equalsIgnoreCase(a1.getCandidatura()) && this.fae.equalsIgnoreCase(a1.getFae());
     }

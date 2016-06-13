@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author catarinarib
@@ -100,7 +102,22 @@ public class Organizador {
     @Override
     public boolean equals(Object o) {
 
+        if (o == null) {
+            return false;
+        }
+
+        if (this.getClass() != o.getClass()) {
+            return false;
+        }
         Utilizador u1 = (Utilizador) o;
+        
         return this.m_oUtilizador.getUsername().equals(u1.getUsername());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.m_oUtilizador);
+        return hash;
     }
 }
