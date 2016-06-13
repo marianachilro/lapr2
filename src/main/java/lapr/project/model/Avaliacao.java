@@ -364,7 +364,7 @@ public class Avaliacao {
     }
 
     /**
-     * Permite comparar um objecto/avalicao por parametro por outra avaliacao.
+     * Permite comparar um objecto/avalicao por parametro com outra avaliacao.
      *
      * @param a uma avaliacao
      * @return boolean
@@ -374,6 +374,9 @@ public class Avaliacao {
 
         Avaliacao a1 = (Avaliacao) a;
 
-        return this.candidatura.equalsIgnoreCase(a1.getCandidatura()) && this.fae.equalsIgnoreCase(a1.getFae());
+        if(a1 != null){
+            return this.candidatura.equalsIgnoreCase(a1.getCandidatura()) && this.fae.equalsIgnoreCase(a1.getFae());
+        }
+        return false;
     }
 }
