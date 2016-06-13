@@ -384,10 +384,7 @@ public class Avaliacao {
 
         Avaliacao a1 = (Avaliacao) a;
 
-        if (a1 != null) {
-            return this.candidatura.equalsIgnoreCase(a1.getCandidatura()) && this.fae.equalsIgnoreCase(a1.getFae());
-        }
-        return false;
+        return this.candidatura.equalsIgnoreCase(a1.getCandidatura()) && this.fae.equalsIgnoreCase(a1.getFae());
     }
 
     @Override

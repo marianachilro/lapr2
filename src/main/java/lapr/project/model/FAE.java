@@ -101,10 +101,7 @@ public class FAE {
 
         Utilizador u1 = (Utilizador) fae;
 
-        if (u1 != null) {
-            return this.m_oUFae.getUsername().equals(u1.getUsername());
-        }
-        return false;
+        return this.m_oUFae.getUsername().equals(u1.getUsername());
     }
 
     @Override
