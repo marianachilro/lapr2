@@ -22,6 +22,7 @@ public class CandidaturaDemonstracao implements Candidatura {
      * Construtor de uma candidatura com todos os atributos por omissão.
      */
     public CandidaturaDemonstracao() {
+        decisao="sem decisao";
         listaAvaliacoes = new ListaAvaliacoes();
     }
 
@@ -35,6 +36,7 @@ public class CandidaturaDemonstracao implements Candidatura {
     public CandidaturaDemonstracao(String emailRep) {
         this.emailRep = emailRep;
         listaAvaliacoes = new ListaAvaliacoes();
+        decisao="sem decisao";
     }
 
     @Override

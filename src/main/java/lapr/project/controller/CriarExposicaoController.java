@@ -36,15 +36,17 @@ public class CriarExposicaoController {
         this.m_exposicao = RegistoExposicoes.newExposicao();
     }
 
-    public void setDadosExposicao(String sTitulo, String sDescritivo, Data oDtInicio, Data oDtFim, Data oDtFimSubCand, Data oDtFimActConf, Data oDtFimAvCand, Data oDtFimDcCand) {
+    public void setDadosExposicao(String sTitulo, String sDescritivo, Data oDtInicio, Data oDtFim,Data oDtIniSubCand, Data oDtFimSubCand, Data oDtFimActConf, Data oDtFimAvCand, Data oDtIniDetConflitos) {
         this.m_exposicao.setTitulo(sTitulo);
         this.m_exposicao.setDescricao(sDescritivo);
         this.m_exposicao.setDataInicio(oDtInicio);
         this.m_exposicao.setDataFim(oDtFim);
+        this.m_exposicao.setDataIniSubCan(oDtIniSubCand);
         this.m_exposicao.setDataFimSubCand(oDtFimSubCand);
+        this.m_exposicao.setDataIniDetConflitos(oDtIniDetConflitos);
         this.m_exposicao.setDataFimAtcConf(oDtFimActConf);
         this.m_exposicao.setDataFimAvCandidatura(oDtFimAvCand);
-        this.m_exposicao.setDataFimDcCandidaturas(oDtFimDcCand);
+        
 
     }
 

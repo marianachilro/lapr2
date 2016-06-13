@@ -38,9 +38,19 @@ public class Exposicao implements Avaliavel, Decisivel {
     private String local;
 
     /**
+     * Data de inicio de submissao de candidaturas;
+     */
+    private Data dataIniSubCan;
+
+    /**
      * Data final de submissao de candidaturas;
      */
     private Data dataFimSubCand;
+
+    /**
+     * Data de inicio de deteção de conflitos.
+     */
+    private Data dataIniDetConflitos;
     /**
      * Data final de atualização de conflitos.
      */
@@ -52,10 +62,6 @@ public class Exposicao implements Avaliavel, Decisivel {
     private Data dataFimAvCandidatura;
 
     /**
-     * Data final de decidir candidaturas.
-     */
-    private Data dataFimDcCandidaturas;
-    /**
      * Data de início do período de submissão de candidaturas às Demonstraçoes.
      */
     private Data dataInicioSubCandDemos;
@@ -64,7 +70,8 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     private Data dataFimSubCandDemos;
     /**
-     * Data fim do período de atualização de confitos nas Demonstrações da Exposição.
+     * Data fim do período de atualização de confitos nas Demonstrações da
+     * Exposição.
      */
     private Data dataFimAtualizacaoConflitosDemos;
     /**
@@ -137,10 +144,11 @@ public class Exposicao implements Avaliavel, Decisivel {
         this.descricao = DESCRICAO_OMISSAO;
         this.dataInicio = null;
         this.dataFim = null;
+        this.dataIniSubCan = null;
         this.dataFimSubCand = null;
+        this.dataIniDetConflitos = null;
         this.dataFimAtcConf = null;
         this.dataFimAvCandidatura = null;
-        this.dataFimDcCandidaturas = null;
         this.local = LOCAL_OMISSAO;
         listaOrg = new ListaOrganizadores();
         listaCandidaturas = new ListaCandidaturasExposicoes();
@@ -160,23 +168,25 @@ public class Exposicao implements Avaliavel, Decisivel {
      * @param dataInicio Data de Inicio da Exposição
      * @param dataFim Data de Fim da Exposição
      * @param local Local da Exposição.
+     * @param dataIniSubCand data de iniicio de submissao de candidaturas
      * @param dataFimSubCand Data fim de submissao de candidaturas
      * @param dataFimAtcConf Data fim de atualização de conflitos
-     * @param dataFimDcCandidaturas Data fim de decidir candidaturas
+     * @param dataIniDetConflitos data de inicio de detecao de conlitos
      * @param dataFimAvCandidatura Data fim de avaliar candidaturas
      */
-    public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, String local, Data dataFimSubCand,
-            Data dataFimAtcConf, Data dataFimAvCandidatura, Data dataFimDcCandidaturas) {
+    public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, String local, Data dataIniSubCand, Data dataFimSubCand,
+            Data dataFimAtcConf, Data dataIniDetConflitos, Data dataFimAvCandidatura) {
 
         setTitulo(titulo);
         setDescricao(descricao);
         setDataInicio(dataInicio);
         setDataFim(dataFim);
         setLocal(local);
+        setDataIniSubCan(dataIniSubCand);
         setDataFimSubCand(dataFimSubCand);
+        setDataIniDetConflitos(dataIniDetConflitos);
         setDataFimAtcConf(dataFimAtcConf);
         setDataFimAvCandidatura(dataFimAvCandidatura);
-        setDataFimDcCandidaturas(dataFimDcCandidaturas);
         listaOrg = new ListaOrganizadores();
         listaCandidaturas = new ListaCandidaturasExposicoes();
         listaDemonstracoes = new ListaDemonstracoes();
@@ -230,48 +240,66 @@ public class Exposicao implements Avaliavel, Decisivel {
     public String getLocal() {
         return local;
     }
+
     /**
-     * Devolve a data de início do período de submissão de candidaturas às Demonstrações da Exposição.
+     * Devolve a data de início do período de submissão de candidaturas às
+     * Demonstrações da Exposição.
+     *
      * @return data início submissao candidaturas às demonstrações
      */
-    public Data getDataInicioSubmissaoCandidaturasDemos(){
+    public Data getDataInicioSubmissaoCandidaturasDemos() {
         return this.dataInicioSubCandDemos;
     }
+
     /**
-     * Devolve a data de fim do período de submissão de candidaturas às Demonstrações da Exposição.
+     * Devolve a data de fim do período de submissão de candidaturas às
+     * Demonstrações da Exposição.
+     *
      * @return data fim submissao candidaturas às demonstrações
      */
-    public Data getDataFimSubmissaoCandidaturasDemos(){
+    public Data getDataFimSubmissaoCandidaturasDemos() {
         return this.dataFimSubCandDemos;
     }
+
     /**
-     * Modifica a data de início do período de submissão de candidaturas às Demonstrações da Exposição.
+     * Modifica a data de início do período de submissão de candidaturas às
+     * Demonstrações da Exposição.
+     *
      * @param data a nova data
      */
-    public void setDataInicioSubmissaoCandidaturasDemos(Data data){
-        this.dataInicioSubCandDemos=data;
+    public void setDataInicioSubmissaoCandidaturasDemos(Data data) {
+        this.dataInicioSubCandDemos = data;
     }
+
     /**
-     * Modifica a a data de fim do período de submissão de candidaturas às Demonstrações da Exposição.
+     * Modifica a a data de fim do período de submissão de candidaturas às
+     * Demonstrações da Exposição.
+     *
      * @param data a nova data
      */
-    public void setDataFimSubmissaoCandidaturasDemos(Data data){
-        this.dataFimSubCandDemos=data;
+    public void setDataFimSubmissaoCandidaturasDemos(Data data) {
+        this.dataFimSubCandDemos = data;
     }
+
     /**
-     * Devolve a data de fim do período de avaliação de candidaturas às Demonstrações da Exposição.
+     * Devolve a data de fim do período de avaliação de candidaturas às
+     * Demonstrações da Exposição.
+     *
      * @param data
      * @return data fim submissao candidaturas às demonstrações
      */
-    public Data getDataFimAtualizacaoConflitosDemos(Data data){
+    public Data getDataFimAtualizacaoConflitosDemos(Data data) {
         return this.dataFimAtualizacaoConflitosDemos;
     }
+
     /**
-     * Modifica a a data de fim do período de atualização de candidaturas às Demonstrações da Exposição.
+     * Modifica a a data de fim do período de atualização de candidaturas às
+     * Demonstrações da Exposição.
+     *
      * @param data a nova data
      */
-    public void setDataFimAtualizacaoConflitosDemos(Data data){
-        this.dataFimAtualizacaoConflitosDemos=data;
+    public void setDataFimAtualizacaoConflitosDemos(Data data) {
+        this.dataFimAtualizacaoConflitosDemos = data;
     }
 
     /**
@@ -488,27 +516,6 @@ public class Exposicao implements Avaliavel, Decisivel {
     }
 
     /**
-     * Devolve a data fim de decidir candidaturas
-     *
-     * @return data fim de decidir candidaturas
-     */
-    public Data getDataFimDcCandidaturas() {
-        return dataFimDcCandidaturas;
-    }
-
-    /**
-     * Modifica a data fim de decidir candidaturas
-     *
-     * @param dataFimDcCandidaturas data fim de decidir candidaturas
-     */
-    public final void setDataFimDcCandidaturas(Data dataFimDcCandidaturas) {
-        if (dataFimDcCandidaturas == null) {
-            throw new IllegalArgumentException("Data inválida!");
-        }
-        this.dataFimDcCandidaturas = dataFimDcCandidaturas;
-    }
-
-    /**
      * Adiciona organizador à lista de organizadores da exposição.
      *
      * @param u utilizador/organizador
@@ -650,7 +657,9 @@ public class Exposicao implements Avaliavel, Decisivel {
     @Override
     public List<Candidatura> getDecisiveis() {
         if (st.setDemonstracaoCandidaturasAvaliadas()) {
-            return (List<Candidatura>) ((Candidatura) listaCandidaturas.getListCandidaturas());
+            List<Candidatura> listaCandExposicao = new ArrayList<>();
+            listaCandExposicao.add((Candidatura) listaCandidaturas.getListCandidaturas());
+            return listaCandExposicao;
         } else {
             List<Candidatura> listaCandTodasDemonstracoes = new ArrayList<>();
             for (Demonstracao d : listaDemonstracoes.getListaDemonstracao()) {
@@ -682,7 +691,7 @@ public class Exposicao implements Avaliavel, Decisivel {
         return !(this.titulo == null || this.descricao == null || this.listaOrg.getListaOrganizadores().isEmpty()
                 || this.dataInicio == null || this.dataFim == null || this.dataFimSubCand == null
                 || this.dataFimAtcConf == null || this.dataFimAvCandidatura == null
-                || this.dataFimDcCandidaturas == null);
+                || this.dataIniSubCan==null || this.dataIniDetConflitos==null);
     }
 
     /**
@@ -794,6 +803,48 @@ public class Exposicao implements Avaliavel, Decisivel {
         }
 
         return estatisticaKeywords;
+    }
+
+    /**
+     * Devolve a data de inicio de submissao de candidaturas
+     *
+     * @return data de inicio de submissao de candidaturas
+     */
+    public Data getDataIniSubCan() {
+        return dataIniSubCan;
+    }
+
+    /**
+     * Modifica a data de inicio de submissao de candidaturas
+     *
+     * @param dataIniSubCan data de inicio de submissao de candidaturas
+     */
+    public void setDataIniSubCan(Data dataIniSubCan) {
+        if (dataIniSubCan == null) {
+            throw new IllegalArgumentException("Data inválida!");
+        }
+        this.dataIniSubCan = dataIniSubCan;
+    }
+
+    /**
+     * Devolve a data de inicio de detecao de conflitos
+     *
+     * @return data de inicio de detecao de conflitos
+     */
+    public Data getDataIniDetConflitos() {
+        return dataIniDetConflitos;
+    }
+
+    /**
+     * Modifica a data de inicio de detecao de conflitos
+     *
+     * @param dataIniDetConflitos data de inicio de detecao de conflitos
+     */
+    public void setDataIniDetConflitos(Data dataIniDetConflitos) {
+        if (dataIniDetConflitos == null) {
+            throw new IllegalArgumentException("Data inválida!");
+        }
+        this.dataIniDetConflitos = dataIniDetConflitos;
     }
 
 }

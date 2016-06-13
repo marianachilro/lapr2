@@ -37,6 +37,7 @@ public class CandidaturaExposicao implements Candidatura {
      * Construtor de uma candidatura com todos os atributos por omissão.
      */
     public CandidaturaExposicao() {
+        decisao="sem decisao";
         listaProdutos = new ListaProdutos();
         listaAvaliacoes = new ListaAvaliacoes();
         listaKeywords = new ListaKeywords();
@@ -61,6 +62,7 @@ public class CandidaturaExposicao implements Candidatura {
         this.telemovel = telemovel;
         this.area = area;
         this.convites = convites;
+        decisao="sem decisao";
         listaProdutos = new ListaProdutos();
         listaAvaliacoes = new ListaAvaliacoes();
         listaKeywords = new ListaKeywords();
@@ -74,6 +76,7 @@ public class CandidaturaExposicao implements Candidatura {
         this.telemovel = c.getTelemovel();
         this.area = c.getArea();
         this.convites = c.getConvites();
+        decisao="sem decisao";
         listaAvaliacoes = new ListaAvaliacoes();
         listaDemonstracoes = new ListaDemonstracoes();
         listaProdutos = new ListaProdutos(c.getListaProdutos());
