@@ -27,6 +27,15 @@ public class RegistoStands {
     }
 
     /**
+     * Novo Stand
+     *
+     * @return Stand
+     */
+    public Stand novoStand() {
+        return new Stand();
+    }
+
+    /**
      * Devolve a List de Stands.
      *
      * @return List de Stands
@@ -104,5 +113,20 @@ public class RegistoStands {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Devolve a descrição textual do registo de stands no formato: stand.
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+        String lista = "";
+
+        for (Stand s : listaStands) {
+            lista = s.toString() + "\n";
+        }
+        return lista;
     }
 }

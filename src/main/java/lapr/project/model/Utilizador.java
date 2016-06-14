@@ -68,8 +68,8 @@ public class Utilizador {
      * @param password Password
      */
     public Utilizador(String nome, String username, String email, String password) {
-        this.nome = nome;
-        this.username = username;
+        setNome(nome);
+        setUsername(username);
         setEmail(email);
         setPassword(password);
     }
@@ -128,7 +128,10 @@ public class Utilizador {
      *
      * @param nome Nome
      */
-    public void setNome(String nome) {
+    public final void setNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome é inválido!");
+        }
         this.nome = nome;
     }
 
@@ -137,7 +140,10 @@ public class Utilizador {
      *
      * @param username Username
      */
-    public void setUsername(String username) {
+    public final void setUsername(String username) {
+        if (username == null || username.trim().isEmpty()) {
+            throw new IllegalArgumentException("Username é inválido!");
+        }
         this.username = username;
     }
 
@@ -146,7 +152,7 @@ public class Utilizador {
      *
      * @param email E-mail
      */
-    public void setEmail(String email) {
+    public final void setEmail(String email) {
         if (email == null || email.trim().isEmpty() || !(Pattern.matches("(.*)(\\@)(.*)", email))) {
             throw new IllegalArgumentException("E-mail inválido!");
         }
@@ -160,6 +166,10 @@ public class Utilizador {
      * @param password Password.
      */
     public final void setPassword(String password) {
+
+        if (password == null || password.trim().isEmpty()) {
+            throw new IllegalArgumentException("Password é inválida!");
+        }
 
         char pontuacao[] = {',', ';', '.', ':', '-'};
 
