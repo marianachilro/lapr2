@@ -127,7 +127,7 @@ public class RegistoUtilizadores {
 
     public boolean confirmaUtilizador(Utilizador u) {
         if (!validaUtilizadorNaoConfirmado(u)) {
-            addUtilizadorConfirmado(u);
+            addUtilizadorNaoConfirmado(u);
             return true;
         } else {
             return false;
@@ -157,7 +157,7 @@ public class RegistoUtilizadores {
      * @param u Utilizador
      * @return boolean
      */
-    public boolean addUtilizadorConfirmado(Utilizador u) {
+    public boolean addUtilizadorNaoConfirmado(Utilizador u) {
         return listaUtilizadoresNaoConfirmados.add(u);
     }
 
@@ -179,4 +179,12 @@ public class RegistoUtilizadores {
         return listaUtilizadores.size();
     }
 
+    /**
+     * Novo utilizador
+     * @return utilizador
+     */
+     public Utilizador novoUtilizador() {
+        return new Utilizador();
+    }
+    
 }
