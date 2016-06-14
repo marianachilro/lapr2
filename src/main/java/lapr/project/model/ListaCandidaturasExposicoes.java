@@ -18,29 +18,35 @@ public class ListaCandidaturasExposicoes {
      * List com Candidaturas.
      */
     private List<CandidaturaExposicao> listaCandidaturas;
-    private List<CandidaturaExposicao> listaCandidaturasRemovidas;
+   // private List<CandidaturaExposicao> listaCandidaturasRemovidas;
 
     /**
      * Construtor de uma Lista de Candidaturas.
      */
     public ListaCandidaturasExposicoes() {
         this.listaCandidaturas = new ArrayList<>();
-        this.listaCandidaturasRemovidas = new ArrayList<>();
+      //  this.listaCandidaturasRemovidas = new ArrayList<>();
     }
     /**
      * retorna a lista de candidaturas removidas.
      * @return 
      */
-    public List<CandidaturaExposicao> getListaCandidaturasRemovidas(){
-        return listaCandidaturasRemovidas;
+    public List<Candidatura> getListaCandRemovidas(){
+        List<Candidatura> lr = new ArrayList<>();
+       for(Candidatura c : listaCandidaturas){
+           CandidaturaEstado st = c.getEstado();
+        //   if(st.setRemovida()){
+               lr.add(c);
+           }
+           
+       
+       return lr;
     }
     /**
      * Adiciona uma candidatura à lista de candidaturas removidas.
      * @param c 
      */
-    public void registaCandidaturaRemovida(CandidaturaExposicao c){
-       listaCandidaturasRemovidas.add(c);
-    }
+  
     /**
      * remove uma candidatura da lista de candidaturas.
      * @param c 

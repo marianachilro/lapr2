@@ -6,7 +6,7 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.model.CandidaturaExposicao;
+import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.ListaCandidaturasExposicoes;
@@ -29,9 +29,11 @@ public class ListarCandRemovidasController {
         RegistoUtilizadores ru = ce.getRegistoUtilizadores();
         return re.getListaExposicoesOrganizador(username, ru);
     }
-    public List<CandidaturaExposicao>getListaCandRemovidas(Exposicao e){
+    public List<Candidatura>getListaCandRemovidas(Exposicao e){
        ListaCandidaturasExposicoes lc = e.getListaCandidaturas();
-       return lc.getListaCandidaturasRemovidas();
+       List<Candidatura> rc = lc.getListaCandRemovidas();
+       rc.addAll(e.getListaDemonstracoes().getListaCandRemovidas());
+       return rc;
     }
     
 }

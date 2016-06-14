@@ -8,6 +8,7 @@ package lapr.project.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 import lapr.project.utils.Data;
 
 /**
@@ -193,4 +194,21 @@ public class ListaDemonstracoes {
     public void ordenarPorNumeroInteressados(){
         Collections.sort(listaDemonstracao);
     }
+    /**
+     * Retorna a lista de candidaturas removidas de todas as demonstrações.
+     * @return 
+     */
+     public List<Candidatura> getListaCandRemovidas(){
+        List<Candidatura> lr = new ArrayList<>();
+        listaDemonstracao.stream().forEach((Demonstracao d) -> {
+            d.getListaCandidaturas().getListCandidaturas().stream().map((c) -> {
+                CandidaturaEstado st = c.getEstado();
+                return c;
+            }).forEach((c) -> {
+                //   if(st.setRemovida()){
+                lr.add(c);
+            });
+        });
+       return lr;
+}
 }
