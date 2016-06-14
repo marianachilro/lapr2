@@ -247,10 +247,7 @@ public class LerFicheiroXML {
             aux = atributos.getElementsByTagName(DATA_FIM_AV_CANDIDATURA).item(0).getNodeValue();
             aux1 = aux.split("/");
             exposicao.setDataFimAvCandidatura(new Data(Integer.parseInt(aux1[2]), Integer.parseInt(aux1[1]), Integer.parseInt(aux1[0])));
-            aux = atributos.getElementsByTagName(DATA_FIM_DECISAO_CANDIDATURA).item(0).getNodeValue();
-            aux1 = aux.split("/");
-            exposicao.setDataFimDcCandidaturas(new Data(Integer.parseInt(aux1[2]), Integer.parseInt(aux1[1]), Integer.parseInt(aux1[0])));
-
+            
             //Get candidaturas.
             NodeList elementsCandidatura = document.getElementsByTagName(ELEMENT_NAME_CANDIDATURA);
             NodeList candidaturas = elementsCandidatura.item(0).getChildNodes();
