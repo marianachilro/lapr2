@@ -27,28 +27,22 @@ public class ListaCandidaturasExposicoes {
         this.listaCandidaturas = new ArrayList<>();
         this.listaCandidaturasRemovidas = new ArrayList<>();
     }
-
     /**
      * retorna a lista de candidaturas removidas.
-     *
      * @return
      */
     public List<CandidaturaExposicao> getListaCandidaturasRemovidas() {
         return listaCandidaturasRemovidas;
     }
-
     /**
      * Adiciona uma candidatura à lista de candidaturas removidas.
-     *
      * @param c
      */
     public void registaCandidaturaRemovida(CandidaturaExposicao c) {
         listaCandidaturasRemovidas.add(c);
     }
-
     /**
      * remove uma candidatura da lista de candidaturas.
-     *
      * @param c
      */
     public void removeCandidatura(CandidaturaExposicao c) {
@@ -130,7 +124,6 @@ public class ListaCandidaturasExposicoes {
         }
         return le;
     }
-
     /**
      * Método que retorna a lista de candidaturas do representante qeu já tem
      * stand atribuido.
