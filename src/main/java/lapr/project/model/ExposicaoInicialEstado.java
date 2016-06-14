@@ -10,20 +10,15 @@ package lapr.project.model;
  *
  * @author marianachilro
  */
-public class ExposicaoInicialEstado implements ExposicaoEstado {
-
-    /**
-     * A exposição.
-     */
-    private final Exposicao exposicao;
+public class ExposicaoInicialEstado extends ExpoImpEstado {
 
     /**
      * Contrutor do Estado de "Inicial" da Exposição.
      *
-     * @param exposicao a demonstração que vai transitar de estado
+     * @param exposicao a exposição que vai transitar de estado
      */
     public ExposicaoInicialEstado(Exposicao exposicao) {
-        this.exposicao = exposicao;
+        super(exposicao);
     }
 
     /**
@@ -35,229 +30,9 @@ public class ExposicaoInicialEstado implements ExposicaoEstado {
     @Override
     public boolean setCriada() {
         if (valida()) {
-            this.exposicao.setEstado(new ExposicaoCriadaEstado(this.exposicao));
+            super.getExposicao().setEstado(new ExposicaoCriadaEstado(super.getExposicao()));
             return true;
         }
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado "FAE Sem
-     * Demo".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setFaeSemDemo() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Demo Sem
-     * FAE".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setDemoSemFae() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado
-     * "Completa".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCompleta() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado
-     * "Candidaturas Expo Abertas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setExposicaoCandidaturasAbertas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado
-     * "Candidaturas Expo Fechadas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setExposicaoCandidaturasFechadas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Conflitos
-     * Detetados Expo".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setExposicaoConflitosDetetados() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Conflitos
-     * Atualizados Expo".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setExposicaoConflitosAtualizados() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado
-     * "Candidaturas Expo Atribuídas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setExposicaoCandidaturasAtribuidas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado
-     * "Candidaturas Expo Avaliadas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setExposicaoCandidaturasAvaliadas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado
-     * "Candidaturas Expo Decididas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setExposicaoCandidaturasDecididas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado
-     * "Demonstrações Confirmadas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setConfirmacaoRealizacaoDemos() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado
-     * "Candidaturas Demos Abertas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setDemonstracaoCandidaturasAbertas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado
-     * "Candidaturas Demos Fechadas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setDemonstracaoCandidaturasFechadas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Conflitos
-     * Detetados Demos".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setDemonstracaoConflitosDetetados() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Conflitos
-     * Atualizados Demos".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setDemonstracaoConflitosAtualizados() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado
-     * "Candidaturas Demos Atribuídas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setDemonstracaoCandidaturasAtribuidas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado
-     * "Candidaturas Demos Avaliadas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setDemonstracaoCandidaturasAvaliadas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado
-     * "Candidaturas Demos Decididas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setDemonstracaoCandidaturasDecididas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Stands
-     * Atribuídos".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setStandsAtribuidos() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Exposição não pode mudar para o Estado "Stands
-     * Confirmados".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setStandsConfirmados() {
         return false;
     }
 
@@ -268,7 +43,7 @@ public class ExposicaoInicialEstado implements ExposicaoEstado {
      * possível mudar
      */
     public boolean valida() {
-        return this.exposicao.valida();
+        return super.getExposicao().valida();
     }
 
 }

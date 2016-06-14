@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +31,7 @@ public class Utilizador {
      * Password de Utilizador.
      */
     private String password;
+
     /**
      * Nome de Utilizador por omissão.
      */
@@ -68,8 +70,8 @@ public class Utilizador {
     public Utilizador(String nome, String username, String email, String password) {
         this.nome = nome;
         this.username = username;
-        this.email = email;
-        this.password = password;
+        setEmail(email);
+        setPassword(password);
     }
 
     /**
@@ -145,6 +147,10 @@ public class Utilizador {
      * @param email E-mail
      */
     public void setEmail(String email) {
+        if (email == null || email.trim().isEmpty() || !(Pattern.matches("(.*)(\\@)(.*)", email))) {
+            throw new IllegalArgumentException("E-mail inválido!");
+        }
+
         this.email = email;
     }
 
@@ -153,34 +159,119 @@ public class Utilizador {
      *
      * @param password Password.
      */
-    public void setPassword(String password) {
+    public final void setPassword(String password) {
+
+        char pontuacao[] = {',', ';', '.', ':', '-'};
+
+        int contUpper = 0;
+        int contLower = 0;
+        int contNum = 0;
+        int contPuctuation = 0;
+        char c;
+
+        for (int i = 0; i < password.length(); i++) {
+
+            String letra = convertToASCII(password.charAt(i) + "");
+            c = letra.charAt(0);
+
+            if (Character.isWhitespace(c)) {
+                throw new IllegalArgumentException("Sem Espaços!");
+
+            } else if (Character.isLowerCase(c)) {
+                contLower++;
+            } else if (Character.isUpperCase(c)) {
+                contUpper++;
+            } else if (Character.isDigit(c)) {
+                contNum++;
+
+            } else if (!Character.isWhitespace(c)) {
+
+                for (char p : pontuacao) {
+                    if (p == c) {
+                        contPuctuation++;
+                    }
+                }
+
+            }
+
+        }
+        if (contUpper == 0) {
+            throw new IllegalArgumentException("Tem de ter pelo menos uma letra maiuscula!");
+        } else if (contLower == 0) {
+            throw new IllegalArgumentException("Tem de ter pelo menos uma letra manuscula!");
+        } else if (contNum == 0) {
+            throw new IllegalArgumentException("Tem de ter pelo menos um numero!");
+        } else if (contPuctuation == 0) {
+            throw new IllegalArgumentException("Tem de ter pelo menos um destes carateres:\n ',', '.',';',':','-'");
+        }
+
         this.password = password;
     }
-    
+
     /**
-     * Modifica o Nome, o Username, o Email e Password de Utilizador, a partir de um outro Utilizador recebido por parâmetro.
-     * @param clone o Utilizador para o qual queremos alterar
+     * Converter letras com acentos para as respetivas letras sem acentos pela
+     * tabela ASCII
+     *
+     * @param text
+     * @return String
      */
-    public void setPerfilAlterado(Utilizador clone){
-        this.nome=clone.getNome();
-        this.username=clone.getUsername();
-        this.email=clone.getEmail();
-        this.password=clone.getPassword();
+    public String convertToASCII(String text) {
+        return text.replaceAll("[ãâàáä]", "a")
+                .replaceAll("[êèéë]", "e")
+                .replaceAll("[îìíï]", "i")
+                .replaceAll("[õôòóö]", "o")
+                .replaceAll("[ûúùü]", "u")
+                .replaceAll("[ÃÂÀÁÄ]", "A")
+                .replaceAll("[ÊÈÉË]", "E")
+                .replaceAll("[ÎÌÍÏ]", "I")
+                .replaceAll("[ÕÔÒÓÖ]", "O")
+                .replaceAll("[ÛÙÚÜ]", "U")
+                .replace('ç', 'c')
+                .replace('Ç', 'C')
+                .replace('ñ', 'n')
+                .replace('Ñ', 'N');
     }
 
     /**
-     * Verifica se os dados recebido por parãmetro são válidos.
-     * @param nome Nome
-     * @param username Username
-     * @param email E-mail
-     * @param password Password
-     * @return true se forem válido e false se forem inválidos
+     * Modifica o Nome, o Username, o Email e Password de Utilizador, a partir
+     * de um outro Utilizador recebido por parâmetro.
+     *
+     * @param clone o Utilizador para o qual queremos alterar
      */
-    public boolean validaDados(String nome, String username, String email, String password) {
+    public void setPerfilAlterado(Utilizador clone) {
+        this.nome = clone.getNome();
+        this.username = clone.getUsername();
+        this.email = clone.getEmail();
+        this.password = clone.getPassword();
+    }
 
-        String esp = "@centro.pt";
-        String text = email;
-        Matcher m = Pattern.compile(esp).matcher(text);
-        return m.find();
+    /**
+     * Permite comparar um objecto/utilizador por parametro por outro
+     * utilizador.
+     *
+     * @param utilizador utilizador
+     * @return boolean
+     */
+    @Override
+    public boolean equals(Object utilizador) {
+
+        if (utilizador == null) {
+            return false;
+        }
+
+        if (this.getClass() != utilizador.getClass()) {
+            return false;
+        }
+
+        Utilizador u1 = (Utilizador) utilizador;
+        return this.username.equals(u1.getUsername()) || this.email.equals(u1.getEmail());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 83 * hash + Objects.hashCode(this.username);
+        hash = 83 * hash + Objects.hashCode(this.email);
+        return hash;
     }
 }

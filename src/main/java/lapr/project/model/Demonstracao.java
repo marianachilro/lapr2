@@ -6,6 +6,7 @@
 package lapr.project.model;
 
 import java.util.List;
+import java.util.Objects;
 import lapr.project.utils.Data;
 
 /**
@@ -256,6 +257,31 @@ public class Demonstracao  implements Comparable <Demonstracao>{
     public int compareTo(Demonstracao d) {
         return this.numeroInteressados - d.numeroInteressados;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.codigo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Demonstracao other = (Demonstracao) obj;
+        
+        return this.codigo.equals(other.codigo);
+    }
+    
+    
  
 
 }

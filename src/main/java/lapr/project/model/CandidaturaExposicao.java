@@ -304,5 +304,43 @@ public class CandidaturaExposicao implements Candidatura {
          //falta verificacoes
          return true;
      }
+     
+     public String toStringEstatisticaAvaliacoes(){
+         
+         return String.format("%nResposta sobre o Tema da Exposição (média): %.2f%n"
+                 + "Resposta sobre a Adequação da Candidatura à Exposição (média): %.2f"
+                 + "Resposta sobre a Adequação das Candidaturas às Demonstrações (média): %.2f"
+                 + "Resposta sobre a Adequação do número de Convites (média): %.2f"
+                 + "Resposta sobre Recomendação Global (média): %.2f", estatisticaAvaliacoes(1),estatisticaAvaliacoes(2), estatisticaAvaliacoes(3), estatisticaAvaliacoes(4), estatisticaAvaliacoes(5));
+     }
+     
+     public float estatisticaAvaliacoes(int i){
+         int valores = 0;
+         int nAvaliacoes = 0;
+         for (Avaliacao a : this.getListaAvaliacoes().getListaAvaliacao()) {
+             if (a != null) {
+                 if(i==1){
+                    valores = valores + a.getRespostaTemaExpo();
+                 } else if(i==2){
+                    valores = valores + a.getRespostaAdequacaoCandExposicao();
+                 } else if(i ==3){
+                    valores = valores + a.getRespostaAdequacaoCandDemonstracao();
+                 } else if(i == 4){
+                    valores = valores + a.getRespostaAdequacaoNumConvites();
+                 } else if(i == 5){
+                     valores = valores + a.getRespostaRecomendacaoGlobal();
+                 }
+                 nAvaliacoes++;
+             }
+         }
+         float media = 0;
+         if(nAvaliacoes != 0){
+             media = valores/nAvaliacoes;
+         }
+         return media;
+         
+     }
+  
 
+     
 }

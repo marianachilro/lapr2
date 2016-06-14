@@ -10,131 +10,52 @@ import lapr.project.utils.Data;
 
 
 /**
- *
+ * Representa um dos Estados possíveis da Exposicao (Estado de "Candidaturas Atribuídas Expo").
  * @author catarinarib
  */
-public class ExposicaoCandidaturasExpoAtribuidasEstado implements ExposicaoEstado {
+public class ExposicaoCandidaturasExpoAtribuidasEstado extends ExpoImpEstado {
 
-    Exposicao m_e;
-
+    /**
+     * Contrutor do Estado de "Candidaturas Atribuidas Expo" da Exposição.
+     *
+     * @param e a exposicao que vai transitar de estado
+     */
     public ExposicaoCandidaturasExpoAtribuidasEstado(Exposicao e) {
-        this.m_e = e;
+        super(e);
     }
 
-    @Override
-    public boolean setCriada() {
-        return false;
-    }
-
-    @Override
-    public boolean setFaeSemDemo() {
-        return false;
-    }
-
-    @Override
-    public boolean setDemoSemFae() {
-        return false;
-    }
-
-    @Override
-    public boolean setCompleta() {
-        return false;
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasAbertas() {
-        return false;
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasFechadas() {
-        return false;
-    }
-
-    @Override
-    public boolean setExposicaoConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean setExposicaoConflitosAtualizados() {
-        return false;
-    }
-
+    /**
+     * Método que indica que a Exposição está no Estado "Candidaturas Atribuídas Expo".
+     *
+     * @return true, porque está neste estado
+     */
     @Override
     public boolean setExposicaoCandidaturasAtribuidas() {
-        if (valida()) {
-            m_e.setEstado(new ExposicaoCandidaturasExpoAvaliadasEstado(m_e));
-            return true;
-        } else {
-            return false;
-        }
+        return true;
     }
 
-    private boolean valida() {
-        Data date =new Data();
-
-        return m_e.getDataFimAvCandidatura().getDia() == date.getDia() && m_e.getDataFimAvCandidatura().getMes() == date.getMes() && m_e.getDataFimAvCandidatura().getAno() == date.getAno();
-    }
-
+    /**
+     * Método que muda o estado da Exposição para o Estado "Candidaturas Avaliadas Expo".
+     *
+     * @return false, se não puder mudar para este estado e true, se conseguir
+     * mudar
+     */
     @Override
     public boolean setExposicaoCandidaturasAvaliadas() {
+        if(valida()){
+            super.getExposicao().setEstado(new ExposicaoCandidaturasExpoAvaliadasEstado(super.getExposicao()));
+            return true;
+        }
         return false;
     }
 
-    @Override
-    public boolean setExposicaoCandidaturasDecididas() {
-        return false;
+    /**
+     * Verifica se a Exposição pode mudar para o Estado "Candidaturas Avaliadas Expo".
+     *
+     * @return false, se não puder mudar para esse estado e true, se for
+     * possível mudar
+     */
+    public boolean valida(){
+        return super.getExposicao().getEstado().setExposicaoCandidaturasAtribuidas();
     }
-
-    @Override
-    public boolean setConfirmacaoRealizacaoDemos() {
-        return false;
-    }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasAbertas() {
-        return false;
-    }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasFechadas() {
-        return false;
-    }
-
-    @Override
-    public boolean setDemonstracaoConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean setDemonstracaoConflitosAtualizados() {
-        return false;
-    }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasAtribuidas() {
-        return false;
-    }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasAvaliadas() {
-        return false;
-    }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasDecididas() {
-        return false;
-    }
-
-    @Override
-    public boolean setStandsAtribuidos() {
-        return false;
-    }
-
-    @Override
-    public boolean setStandsConfirmados() {
-        return false;
-    }
-
 }
