@@ -71,30 +71,34 @@ public class RegistoExposicoes {
         }
         return listaExposicoesOrganizador;
     }
+
     /**
      * Devolve lista de exposiçoes do organizador
+     *
      * @param org organizador
      * @return lista de exposiçoes
      */
-    public List<Exposicao>getListaExposicoesOrganizador(Organizador org){
+    public List<Exposicao> getListaExposicoesOrganizador(Organizador org) {
         List<Exposicao> le = new ArrayList<>();
-        
-        for(Exposicao e:listaExposicoes){
-            if(e.VerificarSeEOrganizadorDaExpo(org)){
+
+        for (Exposicao e : listaExposicoes) {
+            if (e.VerificarSeEOrganizadorDaExpo(org)) {
                 le.add(e);
             }
         }
         return le;
     }
-    
+
     /**
-     * Devolve uma List com os titulos das exposições de um organizador, que é identificado pelo username.
+     * Devolve uma List com os titulos das exposições de um organizador, que é
+     * identificado pelo username.
+     *
      * @param username
      * @param ru
-     * @return 
+     * @return
      */
-    public List<String> getListaExposicoesOrganizadorToString(String username, RegistoUtilizadores ru){
-         Utilizador u = ru.getUtilizador(username);
+    public List<String> getListaExposicoesOrganizadorToString(String username, RegistoUtilizadores ru) {
+        Utilizador u = ru.getUtilizador(username);
         List<String> listaExposicoesOrganizador = new ArrayList<>();
         for (Exposicao e : listaExposicoes) {
             if (e.getListaOrganizadores().hasOrganizador(u)) {
@@ -105,6 +109,22 @@ public class RegistoExposicoes {
     }
 
     /**
+     * Devolve uma lista com as Exposições do Organizador que estão no estado de Candidaturas Avaliadas.
+     * @param username
+     * @param ru
+     * @return 
+     */
+    public List<Exposicao> getExposicoesOrganizadorEstadoCandidaturasAvaliadas(String username, RegistoUtilizadores ru) {
+        Utilizador u = ru.getUtilizador(username);
+        List<Exposicao> listaExpos = new ArrayList<>();
+        //MUDAR MÉTODO QUE COMPARA OS ESTADOS!!
+        this.listaExposicoes.stream().filter((e) -> (e.getListaOrganizadores().hasOrganizador(u))).filter((e) -> (e.getEstado().setExposicaoCandidaturasAvaliadas())).forEach((e) -> {
+            listaExpos.add(e);
+        });
+        return listaExpos;
+    }
+
+    /**
      * Validação que devolve um boolean. True se a Exposição já existir na List.
      * False se ainda não existir.
      *
@@ -112,7 +132,7 @@ public class RegistoExposicoes {
      * @return boolean
      */
     public boolean valida(Exposicao e) {
-        if(listaExposicoes.isEmpty()){
+        if (listaExposicoes.isEmpty()) {
             return false;
         }
         return listaExposicoes.contains(e);
@@ -164,18 +184,20 @@ public class RegistoExposicoes {
         }
         return l_ExpDoFAE;
     }
-    public Exposicao getExpo(String expo){
-        for(Exposicao e : listaExposicoes){
-            if(e.getTitulo().equalsIgnoreCase(expo)){
+
+    public Exposicao getExpo(String expo) {
+        for (Exposicao e : listaExposicoes) {
+            if (e.getTitulo().equalsIgnoreCase(expo)) {
                 return e;
             }
         }
         return null;
     }
-    public boolean validaLista(List<Exposicao> le){
-        for(Exposicao e : listaExposicoes){
-            for(Exposicao ex : le ){
-                if(ex.equals(e)){
+
+    public boolean validaLista(List<Exposicao> le) {
+        for (Exposicao e : listaExposicoes) {
+            for (Exposicao ex : le) {
+                if (ex.equals(e)) {
                     return false;
                 }
             }
