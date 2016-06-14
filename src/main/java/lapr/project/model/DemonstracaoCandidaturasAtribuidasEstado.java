@@ -11,97 +11,18 @@ package lapr.project.model;
  *
  * @author marianachilro
  */
-public class DemonstracaoCandidaturasAtribuidasEstado implements DemonstracaoEstado {
+public class DemonstracaoCandidaturasAtribuidasEstado extends DemoImpEstado {
 
     /**
      * A demonstração.
      */
-    private final Demonstracao demonstracao;
-
     /**
      * Contrutor do Estado de Candidaturas Atribuídas da Demonstração.
      *
      * @param demonstracao a demonstração que vai transitar de estado
      */
     public DemonstracaoCandidaturasAtribuidasEstado(Demonstracao demonstracao) {
-        this.demonstracao = demonstracao;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Criada".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCriada() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Confirmada".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setConfirmada() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado "Não
-     * Confirmada".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setNaoConfirmada() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Abertas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasAbertas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Fechadas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasFechadas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Conflitos Detetados".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setConflitosDetetados() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Conflitos Atualizados".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setConflitosAtualizados() {
-        return false;
+        super(demonstracao);
     }
 
     /**
@@ -125,20 +46,9 @@ public class DemonstracaoCandidaturasAtribuidasEstado implements DemonstracaoEst
     @Override
     public boolean setCandidaturasAvaliadas() {
         if (valida()) {
-            this.demonstracao.setEstado(new DemonstracaoCandidaturasAvaliadasEstado(this.demonstracao));
+            super.getDemo().setEstado(new DemonstracaoCandidaturasAvaliadasEstado(super.getDemo()));
             return true;
         }
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Decididas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasDecididas() {
         return false;
     }
 

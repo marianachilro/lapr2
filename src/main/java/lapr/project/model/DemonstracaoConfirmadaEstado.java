@@ -13,12 +13,7 @@ import lapr.project.utils.Data;
  *
  * @author marianachilro
  */
-public class DemonstracaoConfirmadaEstado implements DemonstracaoEstado {
-
-    /**
-     * A demonstração.
-     */
-    private final Demonstracao demonstracao;
+public class DemonstracaoConfirmadaEstado extends DemoImpEstado {
 
     /**
      * Contrutor do Estado de Confirmada da Demonstração.
@@ -26,18 +21,7 @@ public class DemonstracaoConfirmadaEstado implements DemonstracaoEstado {
      * @param demonstracao a demonstração que vai transitar de estado
      */
     public DemonstracaoConfirmadaEstado(Demonstracao demonstracao) {
-        this.demonstracao = demonstracao;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Criada".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCriada() {
-        return false;
+        super(demonstracao);
     }
 
     /**
@@ -51,17 +35,6 @@ public class DemonstracaoConfirmadaEstado implements DemonstracaoEstado {
     }
 
     /**
-     * Método que indica que a Demonstração não pode mudar para o Estado "Não
-     * Confirmada".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setNaoConfirmada() {
-        return false;
-    }
-
-    /**
      * Método que muda o estado da Demonstração para o Estado "Candidaturas
      * Abertas".
      *
@@ -71,75 +44,9 @@ public class DemonstracaoConfirmadaEstado implements DemonstracaoEstado {
     @Override
     public boolean setCandidaturasAbertas() {
         if (valida()) {
-            this.demonstracao.setEstado(new DemonstracaoCandidaturasAbertasEstado(this.demonstracao));
+            super.getDemo().setEstado(new DemonstracaoCandidaturasAbertasEstado(super.getDemo()));
             return true;
         }
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Fechadas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasFechadas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Conflitos Detetados".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setConflitosDetetados() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Conflitos Atualizados".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setConflitosAtualizados() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Atribuidas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasAtribuidas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Avaliadas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasAvaliadas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Decididas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasDecididas() {
         return false;
     }
 
@@ -155,7 +62,7 @@ public class DemonstracaoConfirmadaEstado implements DemonstracaoEstado {
         int mesHoje = GregorianCalendar.MONTH;
         int anoHoje = GregorianCalendar.YEAR;
         Data dataHoje = new Data(anoHoje, mesHoje, diaHoje);
-        if (dataHoje.isMaior(this.demonstracao.getDataInicioSubmissaoCandidaturas())) {
+        if (dataHoje.isMaior(super.getDemo().getDataInicioSubmissaoCandidaturas())) {
             return true;
         }
         return false;

@@ -14,12 +14,8 @@ import lapr.project.utils.Data;
  *
  * @author marianachilro
  */
-public class DemonstracaoConflitosDetetadosEstado implements DemonstracaoEstado {
+public class DemonstracaoConflitosDetetadosEstado extends DemoImpEstado {
 
-    /**
-     * A demonstração.
-     */
-    private final Demonstracao demonstracao;
 
     /**
      * Contrutor do Estado de "Conflitos Detetados" da Demonstração.
@@ -27,64 +23,9 @@ public class DemonstracaoConflitosDetetadosEstado implements DemonstracaoEstado 
      * @param demonstracao a demonstração que vai transitar de estado
      */
     public DemonstracaoConflitosDetetadosEstado(Demonstracao demonstracao) {
-        this.demonstracao = demonstracao;
-    }
+super(demonstracao);    }
 
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Criada".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCriada() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Confirmada".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setConfirmada() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado "Não
-     * Confirmada".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setNaoConfirmada() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Abertas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasAbertas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Fechadas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasFechadas() {
-        return false;
-    }
-
+    
     /**
      * Método que indica que a Demonstração está no Estado "Conflitos
      * Detetados".
@@ -106,44 +47,12 @@ public class DemonstracaoConflitosDetetadosEstado implements DemonstracaoEstado 
     @Override
     public boolean setConflitosAtualizados() {
         if (valida()) {
-            this.demonstracao.setEstado(new DemonstracaoConflitosAtualizadosEstado(this.demonstracao));
+            super.getDemo().setEstado(new DemonstracaoConflitosAtualizadosEstado(super.getDemo()));
             return true;
         }
         return false;
     }
 
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Atribuídas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasAtribuidas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Avaliadas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasAvaliadas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Decididas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasDecididas() {
-        return false;
-    }
 
     /**
      * Verifica se a Demonstração pode mudar para o Estado "Candidaturas
@@ -158,7 +67,7 @@ public class DemonstracaoConflitosDetetadosEstado implements DemonstracaoEstado 
         int anoHoje = GregorianCalendar.YEAR;
         Data dataHoje = new Data(anoHoje, mesHoje, diaHoje);
         
-        return (dataHoje.isMaior(this.demonstracao.getDataFimAtualizacaoConflitos()));
+        return (dataHoje.isMaior(super.getDemo().getDataFimAtualizacaoConflitos()));
     }
 
 }
