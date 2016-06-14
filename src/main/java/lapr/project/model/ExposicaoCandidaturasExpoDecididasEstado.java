@@ -6,129 +6,54 @@
 package lapr.project.model;
 
 /**
- *
+ * Representa um dos Estados possíveis da Exposicao (Estado de "Candidaturas Decididas Expo").
  * @author marianachilro
  */
-public class ExposicaoCandidaturasExpoDecididasEstado implements ExposicaoEstado{
+public class ExposicaoCandidaturasExpoDecididasEstado extends ExpoImpEstado{
     
-    private final Exposicao exposicao;
-    
+    /**
+     * Contrutor do Estado de "Candidaturas Decididas Expo" da Exposição.
+     *
+     * @param exposicao a exposição que vai transitar de estado
+     */
     public ExposicaoCandidaturasExpoDecididasEstado(Exposicao expo){
-        this.exposicao=expo;
+        super(expo);
     }
 
+    /**
+     * Método que indica que a Exposição está no Estado "Candidaturas Avaliadas Expo".
+     *
+     * @return true, porque está neste estado
+     */
+    @Override
+    public boolean setExposicaoCandidaturasDecididas() {
+        return true;
+    }
+    
+    /**
+     * Método que muda o estado da Exposição para o Estado "Demonstrações Confirmadas".
+     *
+     * @return false, se não puder mudar para este estado e true, se conseguir
+     * mudar
+     */
     @Override
     public boolean setConfirmacaoRealizacaoDemos() {
         if(valida())
-            this.exposicao.setEstado(new ExposicaoCandidaturasDemosAbertasEstado(exposicao));
+            super.getExposicao().setEstado(new ExposicaoCandidaturasDemosAbertasEstado(super.getExposicao()));
         return false;
     }
     
+    /**
+     * Verifica se a Exposição pode mudar para o Estado "Demonstrações Confirmadas".
+     *
+     * @return false, se não puder mudar para esse estado e true, se for
+     * possível mudar
+     */
     public boolean valida(){
-        for(Demonstracao d : exposicao.getListaDemonstracoes().getListaDemonstracao())
-            if(d.getRealizacao() == true)
-                return true;
-        return false;
+        return super.getExposicao().getEstado().setExposicaoCandidaturasDecididas();
     }
-
-    @Override
-    public boolean setCriada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setFaeSemDemo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setDemoSemFae() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setCompleta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasAbertas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasFechadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoConflitosDetetados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoConflitosAtualizados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasAtribuidas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasAvaliadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasDecididas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasAbertas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasFechadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setDemonstracaoConflitosDetetados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setDemonstracaoConflitosAtualizados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasAtribuidas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasAvaliadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasDecididas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setStandsAtribuidos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setStandsConfirmados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
+    
+    
+
+    

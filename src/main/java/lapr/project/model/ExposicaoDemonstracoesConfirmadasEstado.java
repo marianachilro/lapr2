@@ -6,117 +6,55 @@
 package lapr.project.model;
 
 /**
- *
+ * Representa um dos Estados possíveis da Exposicao (Estado de "Demontrações Confirmadas").
  * @author catarinarib
  */
-public class ExposicaoDemonstracoesConfirmadasEstado implements ExposicaoEstado {
+public class ExposicaoDemonstracoesConfirmadasEstado extends ExpoImpEstado {
 
-    public ExposicaoDemonstracoesConfirmadasEstado(Exposicao m_e) {
+    /**
+     * Contrutor do Estado de "Demonstrações Confirmadas" da Exposição.
+     *
+     * @param exposicao a exposição que vai transitar de estado
+     */
+    public ExposicaoDemonstracoesConfirmadasEstado(Exposicao exposicao) {
+        super(exposicao);
     }
 
-    @Override
-    public boolean setCriada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setFaeSemDemo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setDemoSemFae() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setCompleta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasAbertas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasFechadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoConflitosDetetados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoConflitosAtualizados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasAtribuidas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasAvaliadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasDecididas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    /**
+     * Método que indica que a Exposição está no Estado "Demonstrações Confirmadas".
+     *
+     * @return true, porque está neste estado
+     */
     @Override
     public boolean setConfirmacaoRealizacaoDemos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
 
+    /**
+     * Método que muda o estado da Exposição para o Estado "Candidaturas abertas Demos".
+     *
+     * @return false, se não puder mudar para este estado e true, se conseguir
+     * mudar
+     */
     @Override
     public boolean setDemonstracaoCandidaturasAbertas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(valida()){
+            super.getExposicao().setEstado(new ExposicaoCandidaturasDemosAbertasEstado(super.getExposicao()));
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Verifica se a Exposição pode mudar para o Estado "Candidaturas Abertas Demos".
+     *
+     * @return false, se não puder mudar para esse estado e true, se for
+     * possível mudar
+     */
+    public boolean valida(){
+        return super.getExposicao().getEstado().setConfirmacaoRealizacaoDemos();
     }
 
-    @Override
-    public boolean setDemonstracaoCandidaturasFechadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setDemonstracaoConflitosDetetados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setDemonstracaoConflitosAtualizados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasAtribuidas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasAvaliadas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasDecididas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setStandsAtribuidos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setStandsConfirmados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
 }
