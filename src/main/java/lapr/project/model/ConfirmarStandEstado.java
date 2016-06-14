@@ -9,63 +9,9 @@ package lapr.project.model;
  *
  * @author miniondevil
  */
-public class ConfirmarStandEstado implements CandidaturaEstado {
-private final Candidatura cand;
+public class ConfirmarStandEstado extends CandImpEstado {
 public ConfirmarStandEstado(Candidatura cand){
-    this.cand=cand;
-}
-    @Override
-    public boolean setCriada() {
-        return false;
-    }
-
-    @Override
-    public boolean setAlterada() {
-        return false;
-    }
-
-    @Override
-    public boolean setCompleta() {
-        return false;
-    }
-
-    @Override
-    public boolean setConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean setConflitosAlterados() {
-        return false;
-    }
-
-    @Override
-    public boolean setAtribuida() {
-        return false;
-    }
-
-    @Override
-    public boolean setAvaliada() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstatisticaAvaliacoesCriadas() {
-        return false;
-    }
-
-    @Override
-    public boolean setDecidida() {
-        return false;
-
-    }
-
-    @Override
-    public boolean setEstatiscticaKeywordsCriada() {
-        return false;
-
-    }
-
+super(cand);}
     @Override
     public boolean setConfirmarStandEstado() {
         return true;

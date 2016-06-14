@@ -9,14 +9,12 @@ package lapr.project.model;
  *
  * @author Rita
  */
-public class CandidaturaCriadaEstado implements CandidaturaEstado {
+public class CandidaturaCriadaEstado extends CandImpEstado {
 
-    private final Candidatura cand; 
-    
     public CandidaturaCriadaEstado(Candidatura cand) {
-        this.cand = cand;
+        super(cand);
     }
-    
+
     @Override
     public boolean setCriada() {
         return true;
@@ -24,9 +22,9 @@ public class CandidaturaCriadaEstado implements CandidaturaEstado {
 
     @Override
     public boolean setAlterada() {
-        CandidaturaAlteradaEstado novoSt = new CandidaturaAlteradaEstado(cand);
-        if(valida()) {
-            cand.setEstado(novoSt);
+        CandidaturaAlteradaEstado novoSt = new CandidaturaAlteradaEstado(super.getCandidatura());
+        if (valida()) {
+            super.getCandidatura().setEstado(novoSt);
             return true;
         } else {
             return false;
@@ -35,56 +33,17 @@ public class CandidaturaCriadaEstado implements CandidaturaEstado {
 
     @Override
     public boolean setCompleta() {
-        CandidaturaCompletaEstado novoSt = new CandidaturaCompletaEstado(cand);
-        if(valida()) {
-            cand.setEstado(novoSt);
+        CandidaturaCompletaEstado novoSt = new CandidaturaCompletaEstado(super.getCandidatura());
+        if (valida()) {
+            super.getCandidatura().setEstado(novoSt);
             return true;
         } else {
             return false;
         }
     }
 
-    @Override
-    public boolean setConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean setConflitosAlterados() {
-        return false;
-    }
-
-    @Override
-    public boolean setAtribuida() {
-        return false;
-    }
-
-    @Override
-    public boolean setAvaliada() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstatisticaAvaliacoesCriadas() {
-        return false;
-    }
-
-    @Override
-    public boolean setDecidida() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstatiscticaKeywordsCriada() {
-        return false;
-    }
-    
     private boolean valida() {
-        return cand.getEstado().setCriada();
+        return super.getCandidatura().getEstado().setCriada();
     }
 
-    @Override
-    public boolean setConfirmarStandEstado() {
-        return false;
-    }
 }
