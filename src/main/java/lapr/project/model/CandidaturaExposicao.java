@@ -42,6 +42,7 @@ public class CandidaturaExposicao implements Candidatura {
         listaAvaliacoes = new ListaAvaliacoes();
         listaKeywords = new ListaKeywords();
         listaDemonstracoes = new ListaDemonstracoes();
+        estado = new CandidaturaInicialEstado(this);
     }
 
     /**
@@ -67,6 +68,7 @@ public class CandidaturaExposicao implements Candidatura {
         listaAvaliacoes = new ListaAvaliacoes();
         listaKeywords = new ListaKeywords();
         listaDemonstracoes = new ListaDemonstracoes();
+        estado = new CandidaturaInicialEstado(this);
     }
 
     public CandidaturaExposicao(CandidaturaExposicao c) {
@@ -81,6 +83,7 @@ public class CandidaturaExposicao implements Candidatura {
         listaDemonstracoes = new ListaDemonstracoes();
         listaProdutos = new ListaProdutos(c.getListaProdutos());
         listaKeywords = new ListaKeywords(c.getListaKeywords());
+        estado = c.getEstado();
 
     }
 

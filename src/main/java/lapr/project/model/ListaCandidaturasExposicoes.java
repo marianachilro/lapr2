@@ -113,7 +113,7 @@ public class ListaCandidaturasExposicoes {
      * @return boolean
      */
     public boolean registaCandidatura(CandidaturaExposicao c) {
-        if (validaCandidatura(c)) {
+        if (!validaCandidatura(c)) {
             addCandidatura(c);
             return true;
         } else {
