@@ -11,12 +11,7 @@ package lapr.project.model;
  *
  * @author marianachilro
  */
-public class DemonstracaoCandidaturasAvaliadasEstado implements DemonstracaoEstado {
-
-    /**
-     * A demonstração.
-     */
-    private final Demonstracao demonstracao;
+public class DemonstracaoCandidaturasAvaliadasEstado extends DemoImpEstado {
 
     /**
      * Contrutor do Estado de Candidaturas Avaliadas da Demonstração.
@@ -24,106 +19,7 @@ public class DemonstracaoCandidaturasAvaliadasEstado implements DemonstracaoEsta
      * @param demonstracao a demonstração que vai transitar de estado
      */
     public DemonstracaoCandidaturasAvaliadasEstado(Demonstracao demonstracao) {
-        this.demonstracao = demonstracao;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Criada".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCriada() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Confirmada".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setConfirmada() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Confirmada".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setNaoConfirmada() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Abertas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasAbertas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Fechadas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasFechadas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Conflitos Detetados".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setConflitosDetetados() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Conflitos Atualizados".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setConflitosAtualizados() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Atribuídas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasAtribuidas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração está no Estado "Candidaturas
-     * Avaliadas".
-     *
-     * @return true, porque está neste estado
-     */
-    @Override
-    public boolean setCandidaturasAvaliadas() {
-        return true;
+        super(demonstracao);
     }
 
     /**
@@ -136,7 +32,7 @@ public class DemonstracaoCandidaturasAvaliadasEstado implements DemonstracaoEsta
     @Override
     public boolean setCandidaturasDecididas() {
         if (valida()) {
-            this.demonstracao.setEstado(new DemonstracaoCandidaturasDecididasEstado(this.demonstracao));
+            super.getDemo().setEstado(new DemonstracaoCandidaturasDecididasEstado(super.getDemo()));
             return true;
         }
         return false;
@@ -150,7 +46,7 @@ public class DemonstracaoCandidaturasAvaliadasEstado implements DemonstracaoEsta
      */
     public boolean valida() {
         boolean retorno = true;
-        for (CandidaturaDemonstracao c : this.demonstracao.getListaCandidaturas().getListCandidaturas()) {
+        for (CandidaturaDemonstracao c : super.getDemo().getListaCandidaturas().getListCandidaturas()) {
             if (c.getDecisao() == null) {
                 retorno = false;
             }
