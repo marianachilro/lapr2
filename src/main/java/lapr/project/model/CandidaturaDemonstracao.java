@@ -131,4 +131,9 @@ public class CandidaturaDemonstracao implements Candidatura {
          return true;
      }
 
+//    @Override
+//    public boolean setRemovida() {
+//        return estado.setRemovida();
+//    }
+
 }

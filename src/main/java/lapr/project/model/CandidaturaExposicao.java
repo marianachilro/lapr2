@@ -302,4 +302,9 @@ public class CandidaturaExposicao implements Candidatura {
          return true;
      }
 
+//    @Override
+//    public boolean setRemovida() {
+//        return estado.setRemovida();
+//    }
+
 }

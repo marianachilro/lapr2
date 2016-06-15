@@ -91,5 +91,15 @@ public class ListaCandidaturasDemonstracoes {
         }
     }
     
+    public List<CandidaturaDemonstracao> getListaCandidaturasRep(String email) {
+        List<CandidaturaDemonstracao> le = new ArrayList<>();
+        for (CandidaturaDemonstracao c : listaCandidaturas) {
+            if (c.getEmailRep().equals(email)) {
+                le.add(c);
+            }
+        }
+        return le;
+    }
+    
     
 }
