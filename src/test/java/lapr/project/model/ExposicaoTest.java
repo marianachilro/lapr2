@@ -214,20 +214,6 @@ public class ExposicaoTest {
         Data result = instance.getDataIniSubCan();
         assertEquals(expResult, result);
     }
-    
-    /**
-     * Test of getDataFimAvCandidatura method, of class Exposicao.
-     */
-    @Test
-    public void testGetDataIniDetConflitosAndSetDataIniDetConflitos(){
-         System.out.println("testeDataIniDetConflitos");
-        Exposicao instance = new Exposicao();
-        Data data = new Data(2016, 06, 8);
-        instance.setDataIniDetConflitos(data);
-        Data expResult = data;
-        Data result = instance.getDataIniDetConflitos();
-        assertEquals(expResult, result);
-    }
 
     /**
      * Test of addOrganizador method, of class Exposicao.

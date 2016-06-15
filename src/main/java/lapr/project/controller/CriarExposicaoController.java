@@ -43,7 +43,6 @@ public class CriarExposicaoController {
         this.m_exposicao.setDataFim(oDtFim);
         this.m_exposicao.setDataIniSubCan(oDtIniSubCand);
         this.m_exposicao.setDataFimSubCand(oDtFimSubCand);
-        this.m_exposicao.setDataIniDetConflitos(oDtIniDetConflitos);
         this.m_exposicao.setDataFimAtcConf(oDtFimActConf);
         this.m_exposicao.setDataFimAvCandidatura(oDtFimAvCand);
         
