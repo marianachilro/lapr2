@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import lapr.project.utils.Data;
 import org.junit.Test;
@@ -388,20 +389,20 @@ public class ExposicaoTest {
         assertEquals(expResult, result);
     }
 
-//    /**
-//     * Test of getDecisiveis method, of class Exposicao.
-//     */
-//    @Test
-//    public void testGetDecisiveis() {
-//        System.out.println("TesteDecisiveis");
-//        Exposicao instance = new Exposicao();
-//        ListaCandidaturasExposicoes lCandExpo = new ListaCandidaturasExposicoes();
-//        List<Candidatura> listaCand = new ArrayList<>();
-//        listaCand.add((Candidatura)lCandExpo.getListCandidaturas());
-//        List<Candidatura> expResult = listaCand;
-//        List<Candidatura> result = instance.getDecisiveis();
-//        assertEquals(expResult, result);
-//    }
+    /**
+     * Test of getDecisiveis method, of class Exposicao.
+     */
+    @Test
+    public void testGetDecisiveis() {
+        System.out.println("TesteDecisiveis");
+        Exposicao instance = new Exposicao();
+        ListaCandidaturasExposicoes lCandExpo = new ListaCandidaturasExposicoes();
+        List<Candidatura> listaCand = new ArrayList<>();
+        listaCand.addAll(lCandExpo.getListCandidaturas());
+        List<Candidatura> expResult = listaCand;
+        List<Candidatura> result = instance.getDecisiveis();
+        assertEquals(expResult, result);
+    }
 
     /**
      * Test of getListaAtribuicoes method, of class Exposicao.

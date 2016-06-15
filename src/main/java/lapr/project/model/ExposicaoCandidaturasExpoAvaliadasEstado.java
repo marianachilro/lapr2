@@ -6,138 +6,53 @@
 package lapr.project.model;
 
 /**
- *
+ * Representa um dos Estados possíveis da Exposicao (Estado de "Candidaturas Avaliadas Expo").
  * @author catarinarib
  */
-class ExposicaoCandidaturasExpoAvaliadasEstado implements ExposicaoEstado {
+class ExposicaoCandidaturasExpoAvaliadasEstado extends ExpoImpEstado {
 
-    
-    Exposicao m_e;
-    
-    public ExposicaoCandidaturasExpoAvaliadasEstado(Exposicao m_e) {
-        this.m_e=m_e;
+    /**
+     * Contrutor do Estado de "Candidaturas Avaliadas Expo" da Exposição.
+     *
+     * @param exposicao a exposição que vai transitar de estado
+     */
+    public ExposicaoCandidaturasExpoAvaliadasEstado(Exposicao exposicao) {
+        super(exposicao);
     }
     
-
-    @Override
-    public boolean setCriada() {
-        return false;
-    }
-
-    @Override
-    public boolean setFaeSemDemo() {
-        return false;
-    }
-
-    @Override
-    public boolean setDemoSemFae() {
-     return false;
-    }
-
-    @Override
-    public boolean setCompleta() {
-       return false;
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasAbertas() {
-       return false;
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasFechadas() {
-       return false;
-    }
-
-    @Override
-    public boolean setExposicaoConflitosDetetados() {
-       return false;
-    }
-
-    @Override
-    public boolean setExposicaoConflitosAtualizados() {
-        return false;
-    }
-
-    @Override
-    public boolean setExposicaoCandidaturasAtribuidas() {
-     return false;
-    }
-
+    /**
+     * Método que indica que a Exposição está no Estado "Candidaturas Avaliadas Expo".
+     *
+     * @return true, porque está neste estado
+     */
     @Override
     public boolean setExposicaoCandidaturasAvaliadas() {
-        return false;
+        return true;
     }
 
+    /**
+     * Método que muda o estado da Exposição para o Estado "Candidaturas Decididas Expo".
+     *
+     * @return false, se não puder mudar para este estado e true, se conseguir
+     * mudar
+     */
     @Override
     public boolean setExposicaoCandidaturasDecididas() {
        if(valida()){
-            m_e.setEstado(new ExposicaoDemonstracoesConfirmadasEstado(m_e));
+            super.getExposicao().setEstado(new ExposicaoCandidaturasExpoDecididasEstado(super.getExposicao()));
             return true;
-       }else{
-           return false;
-       }
-    }
-
-    public boolean valida(){
-        if(!m_e.getListaCandidaturas().getListCandidaturas().isEmpty()){
-            for(Candidatura c : m_e.getListaCandidaturas().getListCandidaturas()){
-                if(c.getDecisao()==null){
-                    return false;
-                }
-            }
         }
-        return true;
-    }
-    
-    @Override
-    public boolean setConfirmacaoRealizacaoDemos() {
-        return false;
-                }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasAbertas() {
-       return false;
-    }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasFechadas() {
-         return false;
-    }
-
-    @Override
-    public boolean setDemonstracaoConflitosDetetados() {
-       return false;
-    }
-
-    @Override
-    public boolean setDemonstracaoConflitosAtualizados() {
         return false;
     }
 
-    @Override
-    public boolean setDemonstracaoCandidaturasAtribuidas() {
-        return false;
-    }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasAvaliadas() {
-        return false;
-    }
-
-    @Override
-    public boolean setDemonstracaoCandidaturasDecididas() {
-         return false;
-    }
-
-    @Override
-    public boolean setStandsAtribuidos() {
-        return false;
-    }
-
-    @Override
-    public boolean setStandsConfirmados() {
-        return false;
+    /**
+     * Verifica se a Exposição pode mudar para o Estado "Candidaturas Decididas Expo".
+     *
+     * @return false, se não puder mudar para esse estado e true, se for
+     * possível mudar
+     */
+    public boolean valida(){
+        return super.getExposicao().getEstado().setExposicaoCandidaturasAvaliadas();
     }
     
 }

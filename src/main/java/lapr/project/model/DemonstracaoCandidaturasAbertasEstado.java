@@ -14,12 +14,7 @@ import lapr.project.utils.Data;
  *
  * @author marianachilro
  */
-public class DemonstracaoCandidaturasAbertasEstado implements DemonstracaoEstado {
-
-    /**
-     * A demonstração.
-     */
-    private final Demonstracao demonstracao;
+public class DemonstracaoCandidaturasAbertasEstado extends DemoImpEstado {
 
     /**
      * Contrutor do Estado de Candidaturas Abertas da Demonstração.
@@ -27,48 +22,10 @@ public class DemonstracaoCandidaturasAbertasEstado implements DemonstracaoEstado
      * @param demonstracao a demonstração que vai transitar de estado
      */
     public DemonstracaoCandidaturasAbertasEstado(Demonstracao demonstracao) {
-        this.demonstracao = demonstracao;
+        super(demonstracao);
     }
 
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Criada".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCriada() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Confirmada".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setConfirmada() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado "Não
-     * Confirmada".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setNaoConfirmada() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração está no Estado "Candidaturas
-     * Abertas".
-     *
-     * @return true, porque está neste estado
-     */
+    
     @Override
     public boolean setCandidaturasAbertas() {
         return true;
@@ -84,66 +41,11 @@ public class DemonstracaoCandidaturasAbertasEstado implements DemonstracaoEstado
     @Override
     public boolean setCandidaturasFechadas() {
         if (valida()) {
-            this.demonstracao.setEstado(new DemonstracaoCandidaturasFechadasEstado(this.demonstracao));
+            super.getDemo().setEstado(new DemonstracaoCandidaturasFechadasEstado(super.getDemo()));
             return true;
         }
         return false;
 
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Conflitos Detetados".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setConflitosDetetados() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Conflitos Atualizados".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setConflitosAtualizados() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Atribuídas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasAtribuidas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Avaliadas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasAvaliadas() {
-        return false;
-    }
-
-    /**
-     * Método que indica que a Demonstração não pode mudar para o Estado
-     * "Candidaturas Decididas".
-     *
-     * @return false, porque não pode mudar para este estado
-     */
-    @Override
-    public boolean setCandidaturasDecididas() {
-        return false;
     }
 
     /**
@@ -158,7 +60,7 @@ public class DemonstracaoCandidaturasAbertasEstado implements DemonstracaoEstado
         int mesHoje = GregorianCalendar.MONTH;
         int anoHoje = GregorianCalendar.YEAR;
         Data dataHoje = new Data(anoHoje, mesHoje, diaHoje);
-        return dataHoje.isMaior(this.demonstracao.getDataFimSubmissaoCandidaturas());
+        return dataHoje.isMaior(super.getDemo().getDataFimSubmissaoCandidaturas());
     }
 
 }

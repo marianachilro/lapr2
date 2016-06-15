@@ -37,11 +37,12 @@ public class CandidaturaExposicao implements Candidatura {
      * Construtor de uma candidatura com todos os atributos por omissão.
      */
     public CandidaturaExposicao() {
-        decisao="sem decisao";
+        decisao = "sem decisao";
         listaProdutos = new ListaProdutos();
         listaAvaliacoes = new ListaAvaliacoes();
         listaKeywords = new ListaKeywords();
         listaDemonstracoes = new ListaDemonstracoes();
+        estado = new CandidaturaInicialEstado(this);
     }
 
     /**
@@ -57,16 +58,17 @@ public class CandidaturaExposicao implements Candidatura {
      */
     public CandidaturaExposicao(String emailRep, String nomeEmpresa, String morada, int telemovel, double area, int convites) {
         this.emailRep = emailRep;
-        this.nomeEmpresa = nomeEmpresa;
-        this.morada = morada;
-        this.telemovel = telemovel;
+        setNomeEmpresa(nomeEmpresa);
+        setMorada(morada);
+        setTelemovel(telemovel);
         this.area = area;
         this.convites = convites;
-        decisao="sem decisao";
+        decisao = "sem decisao";
         listaProdutos = new ListaProdutos();
         listaAvaliacoes = new ListaAvaliacoes();
         listaKeywords = new ListaKeywords();
         listaDemonstracoes = new ListaDemonstracoes();
+        estado = new CandidaturaInicialEstado(this);
     }
 
     public CandidaturaExposicao(CandidaturaExposicao c) {
@@ -76,11 +78,12 @@ public class CandidaturaExposicao implements Candidatura {
         this.telemovel = c.getTelemovel();
         this.area = c.getArea();
         this.convites = c.getConvites();
-        decisao="sem decisao";
+        decisao = "sem decisao";
         listaAvaliacoes = new ListaAvaliacoes();
         listaDemonstracoes = new ListaDemonstracoes();
         listaProdutos = new ListaProdutos(c.getListaProdutos());
         listaKeywords = new ListaKeywords(c.getListaKeywords());
+        estado = c.getEstado();
 
     }
 
@@ -102,79 +105,156 @@ public class CandidaturaExposicao implements Candidatura {
         return listaProdutos;
     }
 
+    /**
+     * Devolve o mail do representante da exposicao
+     * @return 
+     */
     @Override
     public String getEmailRep() {
         return emailRep;
     }
 
+    /**
+     * Devolve lista de avaliações feitas pelos faes
+     * @return 
+     */
     @Override
     public ListaAvaliacoes getListaAvaliacoes() {
         return listaAvaliacoes;
     }
 
+    /**
+     * Devolve o nome da empresa do representante
+     * @return nome da empresa
+     */
     public String getnomeEmpresa() {
         return nomeEmpresa;
     }
 
+    /**
+     * Devolve a morada do representante
+     * @return morada
+     */
     public String getMorada() {
         return morada;
     }
 
+    /**
+     * Devolve o numero de telemovel do representante
+     * @return telemovel
+     */
     public int getTelemovel() {
         return telemovel;
     }
 
+    /**
+     * Devolve a area 
+     * @return area
+     */
     public double getArea() {
         return area;
     }
 
+    /**
+     * Devolve o numero de convites
+     * @return numero de convites
+     */
     public int getConvites() {
         return convites;
     }
 
+    /**
+     * Devolve a decisao do organizador
+     * @return decisao
+     */
     @Override
     public String getDecisao() {
         return decisao;
     }
 
+    /**
+     * Devolve estado
+     * @return estado
+     */
     @Override
     public CandidaturaEstado getEstado() {
         return estado;
     }
 
+    /**
+     * Devolve a lista de keywords da candidatura
+     * @return 
+     */
     public ListaKeywords getListaKeywords() {
         return listaKeywords;
     }
 
+    /**
+     * Devolve a lista de demonstracoes 
+     * @return lista demonstracoes
+     */
     public ListaDemonstracoes getListaDemonstracoes() {
         return listaDemonstracoes;
     }
 
+    /**
+     * Modifica o email do rep da exposicao
+     * @param email 
+     */
     @Override
     public void setEmailRep(String email) {
         this.emailRep = email;
     }
 
-    public void setNomeEmpresa(String nomeEmpresa) {
+    /**
+     * Modifica o nome da empresa da candidatura
+     * @param nomeEmpresa nome da empresa
+     */
+    public final void setNomeEmpresa(String nomeEmpresa) {
+        if (nomeEmpresa == null || nomeEmpresa.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome da empresa é inválido!");
+        }
         this.nomeEmpresa = nomeEmpresa;
     }
 
-    public void setMorada(String morada) {
+    /**
+     * Modifica a morada da candidatura
+     * @param morada morada da candidatura
+     */
+    public final void setMorada(String morada) {
+        if (morada == null || morada.trim().isEmpty()) {
+            throw new IllegalArgumentException("Morada é inválida!");
+        }
         this.morada = morada;
     }
 
-    public void setTelemovel(int telemovel) {
+    /**
+     * Modifica o telemovel da candidatura
+     * @param telemovel telemovel
+     */
+    public final void setTelemovel(int telemovel) {
+        if (telemovel < 100000000 || telemovel > 999999999) {
+            throw new IllegalArgumentException("Telemovel é inválido! Introduza 9 Digitos!");
+        }
         this.telemovel = telemovel;
     }
 
+    /**
+     * Modifica a area da candidatura
+     * @param area 
+     */
     public void setArea(double area) {
         this.area = area;
     }
 
+    /**
+     * Modifica o numero de convites da candidatura
+     * @param convites numero de convites
+     */
     public void setConvites(int convites) {
         this.convites = convites;
     }
-    
+
     /**
      * Modifica o stand atribuído à candidatura.
      *
@@ -279,28 +359,65 @@ public class CandidaturaExposicao implements Candidatura {
         }
         return Objects.equals(this.listaDemonstracoes, other.listaDemonstracoes);
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return "";
     }
-    
+
     @Override
-     public boolean validaAvaliacao(Avaliacao ac){
-         //falta validação
-         return true;
-     }
-     
-     @Override
-     public boolean verificarEstadoAtribuida(){
-         //falta verificacoes
-         return true;
-     }
-     
-     @Override
-     public boolean verificarEstadoAvaliada(){
-         //falta verificacoes
-         return true;
-     }
+    public boolean validaAvaliacao(Avaliacao ac) {
+        //falta validação
+        return true;
+    }
+
+    @Override
+    public boolean verificarEstadoAtribuida() {
+        //falta verificacoes
+        return true;
+    }
+
+    @Override
+    public boolean verificarEstadoAvaliada() {
+        //falta verificacoes
+        return true;
+    }
+
+    public String toStringEstatisticaAvaliacoes() {
+
+        return String.format("%nResposta sobre o Tema da Exposição (média): %.2f%n"
+                + "Resposta sobre a Adequação da Candidatura à Exposição (média): %.2f"
+                + "Resposta sobre a Adequação das Candidaturas às Demonstrações (média): %.2f"
+                + "Resposta sobre a Adequação do número de Convites (média): %.2f"
+                + "Resposta sobre Recomendação Global (média): %.2f", estatisticaAvaliacoes(1), estatisticaAvaliacoes(2), estatisticaAvaliacoes(3), estatisticaAvaliacoes(4), estatisticaAvaliacoes(5));
+    }
+
+    public float estatisticaAvaliacoes(int i) {
+        int valores = 0;
+        int nAvaliacoes = 0;
+        for (Avaliacao a : this.getListaAvaliacoes().getListaAvaliacao()) {
+            if (a != null) {
+                if (i == 1) {
+                    valores = valores + a.getRespostaTemaExpo();
+                } else if (i == 2) {
+                    valores = valores + a.getRespostaAdequacaoCandExposicao();
+                } else if (i == 3) {
+                    valores = valores + a.getRespostaAdequacaoCandDemonstracao();
+                } else if (i == 4) {
+                    valores = valores + a.getRespostaAdequacaoNumConvites();
+                } else if (i == 5) {
+                    valores = valores + a.getRespostaRecomendacaoGlobal();
+                }
+                nAvaliacoes++;
+            }
+        }
+        float media = 0;
+        if (nAvaliacoes != 0) {
+            media = valores / nAvaliacoes;
+        }
+        return media;
+
+    }
 
 //    @Override
 //    public boolean setRemovida() {

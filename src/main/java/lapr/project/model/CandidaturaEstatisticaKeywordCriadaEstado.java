@@ -9,57 +9,10 @@ package lapr.project.model;
  *
  * @author Rita
  */
-public class CandidaturaEstatisticaKeywordCriadaEstado implements CandidaturaEstado {
-
-    private final Candidatura cand;
+public class CandidaturaEstatisticaKeywordCriadaEstado extends CandImpEstado {
 
     public CandidaturaEstatisticaKeywordCriadaEstado(Candidatura cand) {
-        this.cand = cand;
-    }
-
-    @Override
-    public boolean setCriada() {
-        return false;
-    }
-
-    @Override
-    public boolean setAlterada() {
-        return false;
-    }
-
-    @Override
-    public boolean setCompleta() {
-        return false;
-    }
-
-    @Override
-    public boolean setConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean setConflitosAlterados() {
-        return false;
-    }
-
-    @Override
-    public boolean setAtribuida() {
-        return false;
-    }
-
-    @Override
-    public boolean setAvaliada() {
-        return false;
-    }
-
-    @Override
-    public boolean setEstatisticaAvaliacoesCriadas() {
-        return false;
-    }
-
-    @Override
-    public boolean setDecidida() {
-        return false;
+        super(cand);
     }
 
     @Override
@@ -69,15 +22,16 @@ public class CandidaturaEstatisticaKeywordCriadaEstado implements CandidaturaEst
 
     @Override
     public boolean setConfirmarStandEstado() {
-        if(valida()){
-            CandidaturaEstado novoSt = new  ConfirmarStandEstado(cand);
-            cand.setEstado(novoSt);
+        if (valida()) {
+            CandidaturaEstado novoSt = new ConfirmarStandEstado(super.getCandidatura());
+            super.getCandidatura().setEstado(novoSt);
             return true;
         }
         return false;
     }
-     private boolean valida() {
-        return cand.getEstado().setEstatiscticaKeywordsCriada();
+
+    private boolean valida() {
+        return super.getCandidatura().getEstado().setEstatiscticaKeywordsCriada();
     }
 
 }

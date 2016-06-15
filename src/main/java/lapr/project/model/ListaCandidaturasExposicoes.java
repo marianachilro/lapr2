@@ -29,7 +29,7 @@ public class ListaCandidaturasExposicoes {
     }
     /**
      * retorna a lista de candidaturas removidas.
-     * @return 
+     * @return
      */
     public List<Candidatura> getListaCandRemovidas(){
         List<Candidatura> lr = new ArrayList<>();
@@ -44,14 +44,14 @@ public class ListaCandidaturasExposicoes {
     }
     /**
      * Adiciona uma candidatura à lista de candidaturas removidas.
-     * @param c 
+     * @param c
      */
   
     /**
      * remove uma candidatura da lista de candidaturas.
-     * @param c 
+     * @param c
      */
-    public void removeCandidatura(CandidaturaExposicao c){
+    public void removeCandidatura(CandidaturaExposicao c) {
         listaCandidaturas.remove(c);
     }
 
@@ -113,7 +113,7 @@ public class ListaCandidaturasExposicoes {
      * @return boolean
      */
     public boolean registaCandidatura(CandidaturaExposicao c) {
-        if (validaCandidatura(c)) {
+        if (!validaCandidatura(c)) {
             addCandidatura(c);
             return true;
         } else {
@@ -131,30 +131,48 @@ public class ListaCandidaturasExposicoes {
         return le;
     }
     /**
-     * Método que retorna a lista de candidaturas do representante qeu já tem stand atribuido.
+     * Método que retorna a lista de candidaturas do representante qeu já tem
+     * stand atribuido.
+     *
      * @param email
-     * @return 
+     * @return
      */
-    public List<CandidaturaExposicao> getListacandidaturaRepresentanteComStand(String email){
+    public List<CandidaturaExposicao> getListacandidaturaRepresentanteComStand(String email) {
         List<CandidaturaExposicao> aux = getListaCandidaturasRep(email);
         List<CandidaturaExposicao> candRep = new ArrayList<>();
-        for(CandidaturaExposicao cand : aux){
-            if(cand.getStand()!=null){
+        for (CandidaturaExposicao cand : aux) {
+            if (cand.getStand() != null) {
                 candRep.add(cand);
             }
         }
         return candRep;
     }
-    public List<CandidaturaExposicao> getListaCandRepEstadoCriadoOuAlterado(String email){
+
+    public List<CandidaturaExposicao> getListaCandRepEstadoCriadoOuAlterado(String email) {
         List<CandidaturaExposicao> aux = getListaCandidaturasRep(email);
         List<CandidaturaExposicao> candRep = new ArrayList<>();
-        for(CandidaturaExposicao cand : aux){
+        for (CandidaturaExposicao cand : aux) {
             CandidaturaEstado st = cand.getEstado();
-            if(st.setAlterada() || st.setCriada()){
+            if (st.setAlterada() || st.setCriada()) {
                 candRep.add(cand);
             }
         }
         return candRep;
     }
-    
+
+    public List<CandidaturaExposicao> getListaCandidaturasAvaliadas() {
+        List<CandidaturaExposicao> lista = new ArrayList<>();
+        if (!this.listaCandidaturas.isEmpty()) {
+            for (CandidaturaExposicao c : this.listaCandidaturas) {
+                //!!!MUDAR MÉTODO QUE COMPARA OS ESTADOS!!!
+                if (c.getEstado().setAvaliada()) {
+                    lista.add(c);
+                }
+            }
+            return lista;
+        }
+        return null;
+        
+    }
+
 }

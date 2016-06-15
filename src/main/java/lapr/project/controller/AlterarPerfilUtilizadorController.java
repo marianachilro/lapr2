@@ -44,9 +44,9 @@ public class AlterarPerfilUtilizadorController {
         return this.utilizador.toString();
     }
     
-    public boolean validaDados( String nome, String username, String email, String password){
-        return this.utilizador.validaDados(nome, username, email, password);
-    }
+//    public boolean validaDados( String nome, String username, String email, String password){
+//        return this.utilizador.validaDados(nome, username, email, password);
+//    }
     
     public boolean setDados(String nome, String username, String email, String password){
         this.clone.setNome(nome);

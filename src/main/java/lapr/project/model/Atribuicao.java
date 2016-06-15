@@ -39,6 +39,13 @@ public class Atribuicao {
     public FAE getFAE() {
         return fae;
     }
+    /**
+     * Método que modifica o FAE atribuido.
+     * @param fae
+     */
+    public void setFAE(FAE fae){
+        this.fae=fae;
+    }
 
     /**
      * Método que retorna a candidatura atribuida.
@@ -47,6 +54,13 @@ public class Atribuicao {
      */
     public Candidatura getCandidatura() {
         return c;
+    }
+    /**
+     * Método que modifica a candidatura atribuida.
+     * @param c 
+     */
+    public void setCandidatura(Candidatura c){
+        this.c=c;
     }
     
     
