@@ -374,8 +374,8 @@ public class Avaliacao {
     @Override
     public boolean equals(Object a) {
 
-        if (a == null) {
-            return false;
+        if (this==a) {
+            return true;
         }
 
         if (this.getClass() != a.getClass()) {
