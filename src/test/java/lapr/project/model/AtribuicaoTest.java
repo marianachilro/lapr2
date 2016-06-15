@@ -45,7 +45,7 @@ public class AtribuicaoTest {
         CandidaturaExposicao c = new CandidaturaExposicao();
         FAE fae = new FAE();
         Atribuicao instance = new Atribuicao(fae, c);
-        CandidaturaExposicao c2 = new CandidaturaExposicao("123", "asd", "asd", 1, 20, 30);
+        CandidaturaExposicao c2 = new CandidaturaExposicao("123", "asd", "asd", 123123123, 20, 30);
         CandidaturaExposicao expResult = c2;
         instance.setCandidatura(c2);
         Candidatura result = instance.getCandidatura();
