@@ -681,7 +681,7 @@ public class Exposicao implements Avaliavel, Decisivel {
     }
 
     public boolean valida() {
-        return !(this.titulo == null || this.descricao == null || this.listaOrg.getListaOrganizadores().isEmpty()
+        return (this.titulo == null || this.descricao == null || this.listaOrg.getListaOrganizadores().isEmpty()
                 || this.dataInicio == null || this.dataFim == null || this.dataFimSubCand == null
                 || this.dataFimAtcConf == null || this.dataFimAvCandidatura == null
                 || this.dataIniSubCan==null);
