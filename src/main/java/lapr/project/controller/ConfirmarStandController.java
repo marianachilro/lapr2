@@ -45,8 +45,13 @@ public class ConfirmarStandController {
         return c.getStand();
     }
 
-    public void setEstado() {
+    public void setEstado(boolean b) {
         CandidaturaEstado st = c.getEstado();
+    
+        if(b){
         st.setConfirmarStand();
+        }else{
+            st.setNaoConfirmarStand();
+        }
     }
 }
