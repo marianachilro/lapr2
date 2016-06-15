@@ -38,8 +38,10 @@ public class ExposicaoCandidaturasExpoDecididasEstado extends ExpoImpEstado{
      */
     @Override
     public boolean setConfirmacaoRealizacaoDemos() {
-        if(valida())
-            super.getExposicao().setEstado(new ExposicaoCandidaturasDemosAbertasEstado(super.getExposicao()));
+        if(valida()){
+            super.getExposicao().setEstado(new ExposicaoDemonstracoesConfirmadasEstado(super.getExposicao()));
+            return true;
+        }
         return false;
     }
     
