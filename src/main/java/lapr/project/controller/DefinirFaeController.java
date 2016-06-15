@@ -68,7 +68,13 @@ public class DefinirFaeController {
         return as;
     }
 
-//    public boolean setDefinidos() {
-//       
-//    }
+    public boolean setFaeDefinidos() {
+       if(as.setCriada()) {
+           return as.setFaeSemDemo();
+       } else if(as.setDemoSemFae()) {
+           return as.setCompleta();
+       } else {
+           return false;
+       }
+    }
 }

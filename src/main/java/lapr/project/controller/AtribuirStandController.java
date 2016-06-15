@@ -9,6 +9,7 @@ import java.util.List;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
+import lapr.project.model.ExposicaoEstado;
 import lapr.project.model.ListaCandidaturasExposicoes;
 import lapr.project.model.RegistoExposicoes;
 import lapr.project.model.RegistoStands;
@@ -31,6 +32,7 @@ public class AtribuirStandController {
     private ListaCandidaturasExposicoes rc;
     private List<CandidaturaExposicao> lc;
     private List<Stand> ls;
+    private ExposicaoEstado as;
 
     public AtribuirStandController(CentroExposicoes ce) {
         this.ce = ce;
@@ -68,6 +70,15 @@ public class AtribuirStandController {
 
     public void setStand() {
         c.setStand(s);    
+    }
+    
+    public boolean transitaEstado() {
+        if(ls.isEmpty()) {
+            as = e.getEstado();
+            return as.setStandsAtribuidos();
+        } else {
+            return false;
+        }
     }
 
 }
