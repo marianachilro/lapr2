@@ -79,6 +79,7 @@ public class MenuUI extends javax.swing.JFrame {
         jMenu5.setText("jMenu5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("MENU");
         setBackground(new java.awt.Color(153, 153, 255));
         setLocationByPlatform(true);
         setPreferredSize(new java.awt.Dimension(900, 500));
