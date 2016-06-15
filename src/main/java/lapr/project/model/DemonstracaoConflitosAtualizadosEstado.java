@@ -61,10 +61,7 @@ public class DemonstracaoConflitosAtualizadosEstado extends DemoImpEstado {
      * possível mudar
      */
     public boolean valida() {
-        if (!super.getDemo().getListaAtribuicoes().getLista().isEmpty()) {
-            return true;
-        }
-        return false;
+        return super.getDemo().getEstado().setConflitosAtualizados();
     }
 
 }

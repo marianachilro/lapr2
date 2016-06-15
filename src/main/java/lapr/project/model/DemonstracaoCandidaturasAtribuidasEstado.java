@@ -60,8 +60,7 @@ public class DemonstracaoCandidaturasAtribuidasEstado extends DemoImpEstado {
      * possível mudar
      */
     public boolean valida() {
-        //introduzir validações
-        return true;
+        return super.getDemo().getEstado().setCandidaturasAtribuidas();
     }
 
 }
