@@ -77,12 +77,19 @@ public class CriarDemonstracao {
         lr.registaRecurso(r);
     }
     
-    public void registaDemonstracao() {
+    public void registaDemo() {
         rd.registaDemonstracao(demo);
     }
     
     public boolean transitaEstado() {
-        return st.setDemoSemFae();
+        st = expo.getEstado();
+        if(st.setCriada()) {
+            return st.setDemoSemFae();
+        } else if (st.setFaeSemDemo()) {
+            return st.setCompleta();
+        } else {
+            return false;
+        }
     }
     
     private boolean checkEstado() {
