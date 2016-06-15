@@ -21,6 +21,11 @@ public class DemonstracaoCandidaturasAvaliadasEstado extends DemoImpEstado {
     public DemonstracaoCandidaturasAvaliadasEstado(Demonstracao demonstracao) {
         super(demonstracao);
     }
+    
+    @Override
+    public boolean setCandidaturasAvaliadas(){
+        return true;
+    }
 
     /**
      * Método que muda o estado da Demonstração para o Estado "Candidaturas
