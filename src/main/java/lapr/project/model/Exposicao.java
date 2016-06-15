@@ -48,10 +48,6 @@ public class Exposicao implements Avaliavel, Decisivel {
     private Data dataFimSubCand;
 
     /**
-     * Data de inicio de deteção de conflitos.
-     */
-    private Data dataIniDetConflitos;
-    /**
      * Data final de atualização de conflitos.
      */
     private Data dataFimAtcConf;
@@ -146,7 +142,6 @@ public class Exposicao implements Avaliavel, Decisivel {
         this.dataFim = null;
         this.dataIniSubCan = null;
         this.dataFimSubCand = null;
-        this.dataIniDetConflitos = null;
         this.dataFimAtcConf = null;
         this.dataFimAvCandidatura = null;
         this.local = LOCAL_OMISSAO;
@@ -171,11 +166,10 @@ public class Exposicao implements Avaliavel, Decisivel {
      * @param dataIniSubCand data de iniicio de submissao de candidaturas
      * @param dataFimSubCand Data fim de submissao de candidaturas
      * @param dataFimAtcConf Data fim de atualização de conflitos
-     * @param dataIniDetConflitos data de inicio de detecao de conlitos
      * @param dataFimAvCandidatura Data fim de avaliar candidaturas
      */
     public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, String local, Data dataIniSubCand, Data dataFimSubCand,
-            Data dataFimAtcConf, Data dataIniDetConflitos, Data dataFimAvCandidatura) {
+            Data dataFimAtcConf, Data dataFimAvCandidatura) {
 
         setTitulo(titulo);
         setDescricao(descricao);
@@ -184,7 +178,6 @@ public class Exposicao implements Avaliavel, Decisivel {
         setLocal(local);
         setDataIniSubCan(dataIniSubCand);
         setDataFimSubCand(dataFimSubCand);
-        setDataIniDetConflitos(dataIniDetConflitos);
         setDataFimAtcConf(dataFimAtcConf);
         setDataFimAvCandidatura(dataFimAvCandidatura);
         listaOrg = new ListaOrganizadores();
@@ -691,7 +684,7 @@ public class Exposicao implements Avaliavel, Decisivel {
         return !(this.titulo == null || this.descricao == null || this.listaOrg.getListaOrganizadores().isEmpty()
                 || this.dataInicio == null || this.dataFim == null || this.dataFimSubCand == null
                 || this.dataFimAtcConf == null || this.dataFimAvCandidatura == null
-                || this.dataIniSubCan==null || this.dataIniDetConflitos==null);
+                || this.dataIniSubCan==null);
     }
 
     /**
@@ -826,25 +819,5 @@ public class Exposicao implements Avaliavel, Decisivel {
         this.dataIniSubCan = dataIniSubCan;
     }
 
-    /**
-     * Devolve a data de inicio de detecao de conflitos
-     *
-     * @return data de inicio de detecao de conflitos
-     */
-    public Data getDataIniDetConflitos() {
-        return dataIniDetConflitos;
-    }
-
-    /**
-     * Modifica a data de inicio de detecao de conflitos
-     *
-     * @param dataIniDetConflitos data de inicio de detecao de conflitos
-     */
-    public void setDataIniDetConflitos(Data dataIniDetConflitos) {
-        if (dataIniDetConflitos == null) {
-            throw new IllegalArgumentException("Data inválida!");
-        }
-        this.dataIniDetConflitos = dataIniDetConflitos;
-    }
 
 }

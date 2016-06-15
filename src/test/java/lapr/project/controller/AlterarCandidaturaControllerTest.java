@@ -22,19 +22,17 @@ import static org.junit.Assert.*;
  */
 public class AlterarCandidaturaControllerTest {
 
- 
-   
-
     /**
-     * Testa se o métdo getListaCandidaturaRep apenas vai buscar as candidaturas do representante que estejam no estado criada ou alterada.
+     * Testa se o métdo getListaCandidaturaRep apenas vai buscar as candidaturas
+     * do representante que estejam no estado criada ou alterada.
      */
     @Test
     public void testGetListaCandidaturasRep() {
-CentroExposicoes ce = new CentroExposicoes();
+        CentroExposicoes ce = new CentroExposicoes();
         Exposicao e = new Exposicao();
         CandidaturaExposicao c = new CandidaturaExposicao();
         c.setEmailRep("123");
-        c.setEstado(new CandidaturaAlteradaEstado(c));        
+        c.setEstado(new CandidaturaAlteradaEstado(c));
         CandidaturaExposicao c1 = new CandidaturaExposicao();
         c1.setEmailRep("123");
         c1.setEstado(new CandidaturaCriadaEstado(c1));
@@ -49,12 +47,12 @@ CentroExposicoes ce = new CentroExposicoes();
         e.getListaCandidaturas().addCandidatura(c2);
         e.getListaCandidaturas().addCandidatura(c3);
         ce.getRegistoExposicoes().addExposicao(e);
-        AlterarCandidaturaController instance = new AlterarCandidaturaController(ce,"123");
+        AlterarCandidaturaController instance = new AlterarCandidaturaController(ce, "123");
         List<CandidaturaExposicao> expResult = new ArrayList<>();
         expResult.add(c);
         expResult.add(c1);
         List<CandidaturaExposicao> result = instance.getListaCandidaturasRep();
-        assertEquals(expResult, result);        
+        assertEquals(expResult, result);
     }
 
     /**
@@ -63,12 +61,12 @@ CentroExposicoes ce = new CentroExposicoes();
     @Test
     public void testClonarCandidatura() {
         CentroExposicoes ce = new CentroExposicoes();
-      
+
         CandidaturaExposicao c = new CandidaturaExposicao("123", "aaa", "aaad", 20, 10, 30);
         AlterarCandidaturaController instance = new AlterarCandidaturaController(ce, "123");
         CandidaturaExposicao expResult = c;
         CandidaturaExposicao result = instance.clonarCandidatura(c);
         assertEquals(expResult, result);
-    
+
     }
 }
