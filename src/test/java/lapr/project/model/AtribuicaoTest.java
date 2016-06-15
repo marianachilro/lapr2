@@ -51,21 +51,4 @@ public class AtribuicaoTest {
         Candidatura result = instance.getCandidatura();
         assertEquals(expResult, result);
     }
-    
-    /**
-     * Testa se o método set e get candidatura funciona com uma CandidaturaDemonstracao.
-     */
-    @Test
-    public void testGetAndSetCandidatura1() {
-        System.out.println("getCandidatura");
-       
-        CandidaturaExposicao c = new CandidaturaExposicao();
-        FAE fae = new FAE();
-        Atribuicao instance = new Atribuicao(fae, c);
-        CandidaturaDemonstracao c2 = new CandidaturaDemonstracao("123");
-        CandidaturaDemonstracao expResult = c2;
-        instance.setCandidatura(c2);
-        Candidatura result = instance.getCandidatura();
-        assertEquals(expResult, result);
-    }
 }

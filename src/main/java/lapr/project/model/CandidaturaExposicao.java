@@ -21,6 +21,38 @@ public class CandidaturaExposicao implements Candidatura, Removivel {
     private int convites;
     private String decisao;
     private CandidaturaEstado estado;
+    
+    /**
+     * Valor do Email do representate da Exposição por omissão.
+     */
+    private static final String EMAILREP_OMISSAO = "rep@centro.pt";
+    
+    /**
+     * Valor do nome da empresa por omissão.
+     */
+    private static final String NOME_EMPRESA_OMISSAO = "";
+    
+    /**
+     * Valor do morada por omissão.
+     */
+    private static final String MORADA_OMISSAO = "";
+    
+    /**
+     * Valor do numero de telemovel por omissão.
+     */
+    private static final int  TELEMOVEL_OMISSAO = 999999999;
+    
+    /**
+     * Valor da area por omissão.
+     */
+    private static final double AREA_OMISSAO = 0;
+    
+    /**
+     * Valor do numero de convites por omissão.
+     */
+    private static final int CONVITES_OMISSAO = 0;
+    
+    
     /**
      * Stand atribuído à Candidatura
      */
@@ -37,6 +69,13 @@ public class CandidaturaExposicao implements Candidatura, Removivel {
      * Construtor de uma candidatura com todos os atributos por omissão.
      */
     public CandidaturaExposicao() {
+        
+        this.emailRep=EMAILREP_OMISSAO;
+        this.nomeEmpresa=NOME_EMPRESA_OMISSAO;
+        this.morada=MORADA_OMISSAO;
+        this.telemovel=TELEMOVEL_OMISSAO;
+        this.area=AREA_OMISSAO;
+        this.convites=CONVITES_OMISSAO;
         decisao = "sem decisao";
         listaProdutos = new ListaProdutos();
         listaAvaliacoes = new ListaAvaliacoes();
