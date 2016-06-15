@@ -40,7 +40,7 @@ public class CandImpEstadoTest {
         CandidaturaExposicao c = new CandidaturaExposicao();
         CandImpEstado instance = new CandImpEstado(c);
         boolean expResult = false;
-        boolean result = instance.setCriada();
+        boolean result = instance.setEmSubmissao();
         assertEquals(expResult, result);
 
     }
@@ -106,7 +106,7 @@ public class CandImpEstadoTest {
         CandidaturaExposicao c = new CandidaturaExposicao();
         CandImpEstado instance = new CandImpEstado(c);
         boolean expResult = false;
-        boolean result = instance.setAtribuida();
+        boolean result = instance.setEmAvaliacao();
         assertEquals(expResult, result);
     }
 
@@ -126,41 +126,41 @@ public class CandImpEstadoTest {
     /**
      * Test of setEstatisticaAvaliacoesCriadas method, of class CandImpEstado.
      */
-    @Test
-    public void testSetEstatisticaAvaliacoesCriadas() {
-        System.out.println("setEstatisticaAvaliacoesCriadas");
-        CandidaturaExposicao c = new CandidaturaExposicao();
-        CandImpEstado instance = new CandImpEstado(c);
-        boolean expResult = false;
-        boolean result = instance.setEstatisticaAvaliacoesCriadas();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of setDecidida method, of class CandImpEstado.
-     */
-    @Test
-    public void testSetDecidida() {
-        System.out.println("setDecidida");
-        CandidaturaExposicao c = new CandidaturaExposicao();
-        CandImpEstado instance = new CandImpEstado(c);
-        boolean expResult = false;
-        boolean result = instance.setDecidida();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of setEstatiscticaKeywordsCriada method, of class CandImpEstado.
-     */
-    @Test
-    public void testSetEstatiscticaKeywordsCriada() {
-        System.out.println("setEstatiscticaKeywordsCriada");
-        CandidaturaExposicao c = new CandidaturaExposicao();
-        CandImpEstado instance = new CandImpEstado(c);
-        boolean expResult = false;
-        boolean result = instance.setEstatiscticaKeywordsCriada();
-        assertEquals(expResult, result);
-    }
+//    @Test
+//    public void testSetEstatisticaAvaliacoesCriadas() {
+//        System.out.println("setEstatisticaAvaliacoesCriadas");
+//        CandidaturaExposicao c = new CandidaturaExposicao();
+//        CandImpEstado instance = new CandImpEstado(c);
+//        boolean expResult = false;
+//        boolean result = instance.setEstatisticaAvaliacoesCriadas();
+//        assertEquals(expResult, result);
+//    }
+//
+//    /**
+//     * Test of setDecidida method, of class CandImpEstado.
+//     */
+//    @Test
+//    public void testSetDecidida() {
+//        System.out.println("setDecidida");
+//        CandidaturaExposicao c = new CandidaturaExposicao();
+//        CandImpEstado instance = new CandImpEstado(c);
+//        boolean expResult = false;
+//        boolean result = instance.setDecidida();
+//        assertEquals(expResult, result);
+//    }
+//
+//    /**
+//     * Test of setEstatiscticaKeywordsCriada method, of class CandImpEstado.
+//     */
+//    @Test
+//    public void testSetEstatiscticaKeywordsCriada() {
+//        System.out.println("setEstatiscticaKeywordsCriada");
+//        CandidaturaExposicao c = new CandidaturaExposicao();
+//        CandImpEstado instance = new CandImpEstado(c);
+//        boolean expResult = false;
+//        boolean result = instance.setEstatiscticaKeywordsCriada();
+//        assertEquals(expResult, result);
+//    }
 
     /**
      * Test of setConfirmarStandEstado method, of class CandImpEstado.
@@ -171,7 +171,7 @@ public class CandImpEstadoTest {
         CandidaturaExposicao c = new CandidaturaExposicao();
         CandImpEstado instance = new CandImpEstado(c);
         boolean expResult = false;
-        boolean result = instance.setConfirmarStandEstado();
+        boolean result = instance.setConfirmarStand();
         assertEquals(expResult, result);
     }
 
