@@ -153,7 +153,7 @@ public class ListaCandidaturasExposicoes {
         List<CandidaturaExposicao> candRep = new ArrayList<>();
         for (CandidaturaExposicao cand : aux) {
             CandidaturaEstado st = cand.getEstado();
-            if (st.setAlterada() || st.setCriada()) {
+            if (st.setAlterada() || st.setEmSubmissao()) {
                 candRep.add(cand);
             }
         }

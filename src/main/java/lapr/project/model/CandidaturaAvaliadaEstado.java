@@ -19,11 +19,22 @@ public class CandidaturaAvaliadaEstado extends CandImpEstado {
     public boolean setAvaliada() {
         return true;
     }
-
+    
     @Override
-    public boolean setEstatisticaAvaliacoesCriadas() {
-        EstatisticaAvaliacoesCriadaEstado novoSt = new EstatisticaAvaliacoesCriadaEstado(super.getCandidatura());
-        if (valida()) {
+    public boolean setAceite() {
+        CandidaturaAceiteEstado novoSt = new CandidaturaAceiteEstado(super.getCandidatura());
+        if(valida()) {
+            super.getCandidatura().setEstado(novoSt);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    @Override
+    public boolean setRejeitada() {
+        CandidaturaRejeitadaEstado novoSt = new CandidaturaRejeitadaEstado(super.getCandidatura());
+        if(valida()) {
             super.getCandidatura().setEstado(novoSt);
             return true;
         } else {

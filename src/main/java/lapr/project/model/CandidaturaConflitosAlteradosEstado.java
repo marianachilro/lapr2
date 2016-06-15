@@ -21,8 +21,8 @@ public class CandidaturaConflitosAlteradosEstado extends CandImpEstado {
     }
 
     @Override
-    public boolean setAtribuida() {
-        CandidaturaAtribuidaEstado novoSt = new CandidaturaAtribuidaEstado(super.getCandidatura());
+    public boolean setEmAvaliacao() {
+        CandidaturaEmAvaliacaoEstado novoSt = new CandidaturaEmAvaliacaoEstado(super.getCandidatura());
         if (valida()) {
             super.getCandidatura().setEstado(novoSt);
             return true;

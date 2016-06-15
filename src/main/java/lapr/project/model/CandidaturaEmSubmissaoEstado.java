@@ -9,15 +9,26 @@ package lapr.project.model;
  *
  * @author Rita
  */
-public class CandidaturaAlteradaEstado extends CandImpEstado {
+public class CandidaturaEmSubmissaoEstado extends CandImpEstado {
 
-    public CandidaturaAlteradaEstado(Candidatura cand) {
+    public CandidaturaEmSubmissaoEstado(Candidatura cand) {
         super(cand);
     }
 
     @Override
-    public boolean setAlterada() {
+    public boolean setEmSubmissao() {
         return true;
+    }
+
+    @Override
+    public boolean setAlterada() {
+        CandidaturaAlteradaEstado novoSt = new CandidaturaAlteradaEstado(super.getCandidatura());
+        if (valida()) {
+            super.getCandidatura().setEstado(novoSt);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -43,7 +54,7 @@ public class CandidaturaAlteradaEstado extends CandImpEstado {
     }
 
     private boolean valida() {
-        return super.getCandidatura().getEstado().setConflitosAlterados();
+        return super.getCandidatura().getEstado().setEmSubmissao();
     }
 
 }

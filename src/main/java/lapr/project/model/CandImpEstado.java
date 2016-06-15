@@ -21,7 +21,7 @@ public class CandImpEstado implements CandidaturaEstado {
     }
 
     @Override
-    public boolean setCriada() {
+    public boolean setEmSubmissao() {
         return false;
     }
 
@@ -46,7 +46,7 @@ public class CandImpEstado implements CandidaturaEstado {
     }
 
     @Override
-    public boolean setAtribuida() {
+    public boolean setEmAvaliacao() {
         return false;
     }
 
@@ -56,23 +56,34 @@ public class CandImpEstado implements CandidaturaEstado {
     }
 
     @Override
-    public boolean setEstatisticaAvaliacoesCriadas() {
+    public boolean setNaoAvaliada() {
         return false;
     }
 
     @Override
-    public boolean setDecidida() {
+    public boolean setAceite() {
         return false;
     }
 
     @Override
-    public boolean setEstatiscticaKeywordsCriada() {
+    public boolean setRejeitada() {
         return false;
     }
 
     @Override
-    public boolean setConfirmarStandEstado() {
+    public boolean setConfirmarStand() {
         return false;
     }
+
+    @Override
+    public boolean setNaoConfirmarStand() {
+        return false;
+    }
+
+    @Override
+    public boolean setRemovida() {
+        return false;
+    }
+
 
 }

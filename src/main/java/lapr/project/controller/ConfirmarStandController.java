@@ -47,6 +47,6 @@ public class ConfirmarStandController {
 
     public void setEstado() {
         CandidaturaEstado st = c.getEstado();
-        st.setConfirmarStandEstado();
+        st.setConfirmarStand();
     }
 }

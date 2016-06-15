@@ -53,7 +53,7 @@ public class RemoverCandidaturaController {
     public List<Removivel> getListaRemoviveis() {
         List<Removivel> lRemove = new ArrayList<>();
         rce = e.getListaCandidaturas();
-        lc = (List<Removivel>) (CandidaturaExposicao) rce.getListCandidaturas();
+        lc = (List<Removivel>) (CandidaturaExposicao) rce.getListaCandidaturasRep(email);
         for(Removivel r : lc) {
             lRemove.add(r);
         }

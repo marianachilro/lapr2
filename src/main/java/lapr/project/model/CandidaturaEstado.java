@@ -11,7 +11,7 @@ package lapr.project.model;
  */
 public interface CandidaturaEstado {
 
-    public boolean setCriada();
+    public boolean setEmSubmissao();
 
     public boolean setAlterada();
 
@@ -21,15 +21,19 @@ public interface CandidaturaEstado {
 
     public boolean setConflitosAlterados();
 
-    public boolean setAtribuida();
+    public boolean setEmAvaliacao();
 
     public boolean setAvaliada();
+    
+    public boolean setNaoAvaliada();
 
-    public boolean setEstatisticaAvaliacoesCriadas();
+    public boolean setAceite();
+    
+    public boolean setRejeitada();
 
-    public boolean setDecidida();
-
-    public boolean setEstatiscticaKeywordsCriada();
-
-    public boolean setConfirmarStandEstado();
+    public boolean setConfirmarStand();
+    
+    public boolean setNaoConfirmarStand();
+    
+    public boolean setRemovida();
 }

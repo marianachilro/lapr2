@@ -79,6 +79,6 @@ public class RegistarCandidaturaDemonstracaoController {
 
     public boolean transitaEstado() {
         CandidaturaEstado st = cd.getEstado();
-        return st.setCriada();
+        return st.setEmSubmissao();
     }
 }

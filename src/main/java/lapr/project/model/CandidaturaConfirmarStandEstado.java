@@ -9,11 +9,14 @@ package lapr.project.model;
  *
  * @author miniondevil
  */
-public class ConfirmarStandEstado extends CandImpEstado {
-public ConfirmarStandEstado(Candidatura cand){
-super(cand);}
+public class CandidaturaConfirmarStandEstado extends CandImpEstado {
+
+    public CandidaturaConfirmarStandEstado(Candidatura cand) {
+        super(cand);
+    }
+    
     @Override
-    public boolean setConfirmarStandEstado() {
+    public boolean setConfirmarStand() {
         return true;
     }
 

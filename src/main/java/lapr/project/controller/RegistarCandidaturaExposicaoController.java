@@ -125,7 +125,7 @@ public class RegistarCandidaturaExposicaoController {
 
     public void transitaEstado() {
         as = c.getEstado();
-        as.setCriada();
+        as.setEmSubmissao();
     }
 
 }
