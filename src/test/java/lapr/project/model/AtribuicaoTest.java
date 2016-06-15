@@ -14,8 +14,7 @@ import static org.junit.Assert.*;
  */
 public class AtribuicaoTest {
     
-    public AtribuicaoTest() {
-    }
+   
 
     /**
      * Test of getFAE method, of class Atribuicao.
