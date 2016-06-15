@@ -5,7 +5,6 @@
  */
 package lapr.project.model;
 
-import lapr.project.utils.Data;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -13,37 +12,35 @@ import static org.junit.Assert.*;
  *
  * @author marianachilro
  */
-public class ExposicaoInicialEstadoTest {
+public class DemonstracaoInicialEstadoTest {
     
-    public ExposicaoInicialEstadoTest() {
+    public DemonstracaoInicialEstadoTest() {
     }
 
     /**
-     * Test of setCriada method, of class ExposicaoInicialEstado.
+     * Test of setCriada method, of class DemonstracaoInicialEstado.
      */
     @Test
     public void testSetCriada() {
         System.out.println("setCriada");
-        Exposicao expo = new Exposicao();
-        ExposicaoInicialEstado instance = new ExposicaoInicialEstado(expo);
+        Demonstracao demo = new Demonstracao();
+        DemonstracaoInicialEstado instance = new DemonstracaoInicialEstado(demo);
         boolean expResult = true;
         boolean result = instance.setCriada();
         assertEquals(expResult, result);
-        
     }
 
     /**
-     * Test of valida method, of class ExposicaoInicialEstado.
+     * Test of valida method, of class DemonstracaoInicialEstado.
      */
     @Test
     public void testValida() {
         System.out.println("valida");
-        Exposicao expo = new Exposicao();
-        ExposicaoInicialEstado instance = new ExposicaoInicialEstado(expo);
+        Demonstracao demo = new Demonstracao();
+        DemonstracaoInicialEstado instance = new DemonstracaoInicialEstado(demo);
         boolean expResult = true;
         boolean result = instance.valida();
         assertEquals(expResult, result);
-        
     }
     
 }

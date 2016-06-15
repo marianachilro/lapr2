@@ -45,13 +45,7 @@ public class DemonstracaoCandidaturasAvaliadasEstado extends DemoImpEstado {
      * pelo menos uma, não tiver sido decidida
      */
     public boolean valida() {
-        boolean retorno = true;
-        for (CandidaturaDemonstracao c : super.getDemo().getListaCandidaturas().getListCandidaturas()) {
-            if (c.getDecisao() == null) {
-                retorno = false;
-            }
-        }
-        return retorno;
+        return super.getDemo().getEstado().setCandidaturasAvaliadas();
     }
 
 }

@@ -8,8 +8,11 @@ package lapr.project.controller;
 import java.util.List;
 import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
+import lapr.project.model.ListaCandidaturasDemonstracoes;
 import lapr.project.model.ListaCandidaturasExposicoes;
+import lapr.project.model.ListaDemonstracoes;
 import lapr.project.model.RegistoExposicoes;
 import lapr.project.model.RegistoUtilizadores;
 
@@ -32,7 +35,13 @@ public class ListarCandRemovidasController {
     public List<Candidatura>getListaCandRemovidas(Exposicao e){
        ListaCandidaturasExposicoes lc = e.getListaCandidaturas();
        List<Candidatura> rc = lc.getListaCandRemovidas();
-       rc.addAll(e.getListaDemonstracoes().getListaCandRemovidas());
+       ListaDemonstracoes ld = e.getListaDemonstracoes();
+       List<Demonstracao> lista = ld.getListaDemonstracao();
+       for(Demonstracao d : lista){
+           ListaCandidaturasDemonstracoes lcd = d.getListaCandidaturas();
+           rc.addAll(lcd.getListaCandRemovidas());
+           
+       }
        return rc;
     }
     

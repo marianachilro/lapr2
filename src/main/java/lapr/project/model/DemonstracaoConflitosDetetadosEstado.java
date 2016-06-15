@@ -16,16 +16,15 @@ import lapr.project.utils.Data;
  */
 public class DemonstracaoConflitosDetetadosEstado extends DemoImpEstado {
 
-
     /**
      * Contrutor do Estado de "Conflitos Detetados" da Demonstração.
      *
      * @param demonstracao a demonstração que vai transitar de estado
      */
     public DemonstracaoConflitosDetetadosEstado(Demonstracao demonstracao) {
-super(demonstracao);    }
+        super(demonstracao);
+    }
 
-    
     /**
      * Método que indica que a Demonstração está no Estado "Conflitos
      * Detetados".
@@ -53,7 +52,6 @@ super(demonstracao);    }
         return false;
     }
 
-
     /**
      * Verifica se a Demonstração pode mudar para o Estado "Candidaturas
      * Atualizados".
@@ -62,12 +60,7 @@ super(demonstracao);    }
      * possível mudar
      */
     public boolean valida() {
-        int diaHoje = GregorianCalendar.DAY_OF_MONTH;
-        int mesHoje = GregorianCalendar.MONTH;
-        int anoHoje = GregorianCalendar.YEAR;
-        Data dataHoje = new Data(anoHoje, mesHoje, diaHoje);
-        
-        return (dataHoje.isMaior(super.getDemo().getDataFimAtualizacaoConflitos()));
+        return super.getDemo().getEstado().setConflitosDetetados();
     }
 
 }

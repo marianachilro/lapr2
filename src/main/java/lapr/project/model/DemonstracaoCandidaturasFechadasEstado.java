@@ -60,7 +60,6 @@ super(demonstracao);    }
      * possível mudar
      */
     public boolean valida() {
-        //introduzia validações
-        return true;
+        return super.getDemo().getEstado().setCandidaturasFechadas();
     }
 }

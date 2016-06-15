@@ -56,11 +56,7 @@ public class DemonstracaoCandidaturasAbertasEstado extends DemoImpEstado {
      * possível mudar
      */
     public boolean valida() {
-        int diaHoje = GregorianCalendar.DAY_OF_MONTH;
-        int mesHoje = GregorianCalendar.MONTH;
-        int anoHoje = GregorianCalendar.YEAR;
-        Data dataHoje = new Data(anoHoje, mesHoje, diaHoje);
-        return dataHoje.isMaior(super.getDemo().getDataFimSubmissaoCandidaturas());
+        return super.getDemo().getEstado().setCandidaturasAbertas();
     }
 
 }

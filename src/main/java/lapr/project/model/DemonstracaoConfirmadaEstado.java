@@ -58,14 +58,7 @@ public class DemonstracaoConfirmadaEstado extends DemoImpEstado {
      * possível mudar
      */
     public boolean valida() {
-        int diaHoje = GregorianCalendar.DAY_OF_MONTH;
-        int mesHoje = GregorianCalendar.MONTH;
-        int anoHoje = GregorianCalendar.YEAR;
-        Data dataHoje = new Data(anoHoje, mesHoje, diaHoje);
-        if (dataHoje.isMaior(super.getDemo().getDataInicioSubmissaoCandidaturas())) {
-            return true;
-        }
-        return false;
+        return super.getDemo().getEstado().setConfirmada();
     }
 
 }
