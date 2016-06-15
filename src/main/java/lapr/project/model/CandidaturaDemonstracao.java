@@ -15,6 +15,7 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel {
 
     private String emailRep;
     private String decisao;
+    private Demonstracao demonstracao;
     private CandidaturaEstado estado;
     public final ListaAvaliacoes listaAvaliacoes;
 
@@ -22,8 +23,9 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel {
      * Construtor de uma candidatura com todos os atributos por omissão.
      */
     public CandidaturaDemonstracao() {
-        decisao="sem decisao";
-        listaAvaliacoes = new ListaAvaliacoes();
+        this.demonstracao = null;
+        this.decisao = "sem decisao";
+        this.listaAvaliacoes = new ListaAvaliacoes();
     }
 
     /**
@@ -32,11 +34,13 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel {
      *
      *
      * @param emailRep email de representante
+     * @param demonstracao demonstracao da candidatura
      */
-    public CandidaturaDemonstracao(String emailRep) {
+    public CandidaturaDemonstracao(String emailRep, Demonstracao demonstracao) {
         this.emailRep = emailRep;
-        listaAvaliacoes = new ListaAvaliacoes();
-        decisao="sem decisao";
+        this.demonstracao = demonstracao;
+        this.listaAvaliacoes = new ListaAvaliacoes();
+        this.decisao = "sem decisao";
     }
 
     @Override
@@ -64,6 +68,14 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel {
         return decisao;
     }
 
+    public Demonstracao getDemonstracao() {
+        return demonstracao;
+    }
+
+    public void setDemonstracao(Demonstracao demonstracao) {
+        this.demonstracao = demonstracao;
+    }
+
     @Override
     public CandidaturaEstado getEstado() {
         return estado;
@@ -86,50 +98,41 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel {
 
     @Override
     public boolean equals(Object obj) {
+
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
+        if (!(obj instanceof CandidaturaDemonstracao)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+
         final CandidaturaDemonstracao other = (CandidaturaDemonstracao) obj;
-        if (!Objects.equals(this.emailRep, other.emailRep)) {
-            return false;
-        }
-        if (!Objects.equals(this.decisao, other.decisao)) {
-            return false;
-        }
-        if (!Objects.equals(this.estado, other.estado)) {
-            return false;
-        }
-        return Objects.equals(this.listaAvaliacoes, other.listaAvaliacoes);
+
+        return this.listaAvaliacoes.getListaAvaliacao().equals(other.getListaAvaliacoes().getListaAvaliacao()) && this.decisao.equalsIgnoreCase(other.getDecisao());
     }
-    
+
     @Override
-    public String toString(){
-        return "";
+    public String toString() {
+        return this.demonstracao + "";
     }
-    
+
     @Override
-     public boolean validaAvaliacao(Avaliacao ac){
-         //falta validação
-         return true;
-     }
-     
+    public boolean validaAvaliacao(Avaliacao ac) {
+        //falta validação
+        return true;
+    }
+
     @Override
-     public boolean verificarEstadoAtribuida(){
-         //falta verificacoes
-         return true;
-     }
-     
+    public boolean verificarEstadoAtribuida() {
+        //falta verificacoes
+        return true;
+    }
+
     @Override
-     public boolean verificarEstadoAvaliada(){
-         //falta verificacoes
-         return true;
-     }
+    public boolean verificarEstadoAvaliada() {
+        //falta verificacoes
+        return true;
+    }
 
     @Override
     public boolean setRemovida() {

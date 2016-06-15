@@ -40,6 +40,7 @@ public class ExposicaoCompletaEstado extends ExpoImpEstado{
     public boolean setExposicaoCandidaturasAbertas() {
         if(valida()){
             super.getExposicao().setEstado(new ExposicaoCandidaturasExpoAbertasEstado(super.getExposicao()));
+            return true;
         }
         return false;
     }
