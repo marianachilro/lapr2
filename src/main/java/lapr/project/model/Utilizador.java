@@ -6,7 +6,6 @@
 package lapr.project.model;
 
 import java.util.Objects;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -213,7 +212,7 @@ public class Utilizador {
             c = letra.charAt(0);
 
             if (Character.isWhitespace(c)) {
-                throw new IllegalArgumentException("Sem Espaços!");
+                throw new IllegalArgumentException("Password sem Espaços!");
 
             } else if (Character.isLowerCase(c)) {
                 contLower++;
@@ -234,13 +233,13 @@ public class Utilizador {
 
         }
         if (contUpper == 0) {
-            throw new IllegalArgumentException("Tem de ter pelo menos uma letra maiuscula!");
+            throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos uma letra maiuscula!");
         } else if (contLower == 0) {
-            throw new IllegalArgumentException("Tem de ter pelo menos uma letra manuscula!");
+            throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos uma letra manuscula!");
         } else if (contNum == 0) {
-            throw new IllegalArgumentException("Tem de ter pelo menos um numero!");
+            throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos um numero!");
         } else if (contPuctuation == 0) {
-            throw new IllegalArgumentException("Tem de ter pelo menos um destes carateres:\n ',', '.',';',':','-'");
+            throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos um destes carateres:\n  ,  .  ;  :  -  ");
         }
 
         this.password = password;

@@ -5,10 +5,6 @@
  */
 package lapr.project.model;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -141,9 +137,9 @@ public class CandidaturaExposicaoTest {
     public void testGetDecisao() {
         System.out.println("getDecisao");
         CandidaturaExposicao instance = new CandidaturaExposicao();
-        String expResult = "dec";
+        boolean expResult = false;
         instance.setDecisao(expResult);
-        String result = instance.getDecisao();
+        boolean result = instance.getDecisao();
         assertEquals(expResult, result);
     }
 

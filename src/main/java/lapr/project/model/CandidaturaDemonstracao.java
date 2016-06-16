@@ -14,7 +14,7 @@ import java.util.Objects;
 public class CandidaturaDemonstracao implements Candidatura, Removivel {
 
     private String emailRep;
-    private String decisao;
+    private boolean decisao;
     private Demonstracao demonstracao;
     private CandidaturaEstado estado;
     public final ListaAvaliacoes listaAvaliacoes;
@@ -24,7 +24,7 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel {
      */
     public CandidaturaDemonstracao() {
         this.demonstracao = null;
-        this.decisao = "sem decisao";
+        this.decisao = false;
         this.listaAvaliacoes = new ListaAvaliacoes();
     }
 
@@ -40,7 +40,7 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel {
         this.emailRep = emailRep;
         this.demonstracao = demonstracao;
         this.listaAvaliacoes = new ListaAvaliacoes();
-        this.decisao = "sem decisao";
+        this.decisao = false;
     }
 
     @Override
@@ -59,12 +59,12 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel {
     }
 
     @Override
-    public void setDecisao(String decisao) {
+    public void setDecisao(boolean decisao) {
         this.decisao = decisao;
     }
 
     @Override
-    public String getDecisao() {
+    public boolean getDecisao() {
         return decisao;
     }
 
@@ -108,7 +108,7 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel {
 
         final CandidaturaDemonstracao other = (CandidaturaDemonstracao) obj;
 
-        return this.listaAvaliacoes.getListaAvaliacao().equals(other.getListaAvaliacoes().getListaAvaliacao()) && this.decisao.equalsIgnoreCase(other.getDecisao());
+        return this.listaAvaliacoes.getListaAvaliacao().equals(other.getListaAvaliacoes().getListaAvaliacao()) && this.decisao==other.getDecisao();
     }
 
     @Override

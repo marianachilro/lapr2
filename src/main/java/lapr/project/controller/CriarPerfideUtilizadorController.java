@@ -13,37 +13,27 @@ import lapr.project.model.Utilizador;
  *
  * @author catarinarib
  */
-public class CriaPerfideUtilizadorController {
+public class CriarPerfideUtilizadorController {
 
     private CentroExposicoes ce;
     private Utilizador u;
     private RegistoUtilizadores registoUtilizadores;
 
-    public void CriaPerfideUtilizadorController(CentroExposicoes ce) {
+    public CriarPerfideUtilizadorController(CentroExposicoes ce) {
         this.ce = ce;
     }
 
     public RegistoUtilizadores getRegistoUtilizadores() {
-        return ce.getRegistoUtilizadores();
+        return this.registoUtilizadores=ce.getRegistoUtilizadores();
     }
 
     public void novoUtilizador() {
         this.u = this.ce.getRegistoUtilizadores().novoUtilizador();
     }
 
-    public void setDados(String nome, String username, String email, String password,String keyword) {
+    public void setDados(String nome, String username, String email, String password, String keyword) {
 
         this.u.setNome(nome);
-
-        for (Utilizador u1 : registoUtilizadores.getListaUtilizadores()) {
-
-            if (u1.getUsername().equals(username)) {
-                throw new IllegalArgumentException("Username já existe!");
-            } else if (u1.getEmail().equals(email)) {
-                throw new IllegalArgumentException("Email já existe!");
-            }
-        }
-
         this.u.setUsername(username);
         this.u.setEmail(email);
         this.u.setPassword(password);

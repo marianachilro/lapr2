@@ -52,10 +52,10 @@ public class CandidaturaDemonstracaoTest {
     public void testGetDecisaoAndSetDecisao() {
         System.out.println("testeDecisao");
         CandidaturaDemonstracao instance = new CandidaturaDemonstracao();
-        String decisao = "";
+        boolean decisao = false;
         instance.setDecisao(decisao);
-        String expResult = "";
-        String result = instance.getDecisao();
+        boolean expResult = false;
+        boolean result = instance.getDecisao();
         assertEquals(expResult, result);
     }
     
@@ -127,7 +127,7 @@ public class CandidaturaDemonstracaoTest {
 
         Object a = new CandidaturaDemonstracao();
         CandidaturaDemonstracao instance = new CandidaturaDemonstracao();
-        instance.setDecisao("d");
+        instance.setDecisao(true);
         instance.setEmailRep("sddfd@centro.pt");
         boolean expResult = false;
         boolean result = instance.equals(a);

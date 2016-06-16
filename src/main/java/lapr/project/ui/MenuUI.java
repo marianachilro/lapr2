@@ -13,6 +13,7 @@ import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
+import lapr.project.model.CentroExposicoes;
 
 /**
  *
@@ -20,10 +21,12 @@ import javax.swing.event.MenuListener;
  */
 public class MenuUI extends JFrame {
 
+    private CentroExposicoes ce;
     /**
      * Creates new form MenuUI
      */
-    public MenuUI() {
+    public MenuUI(CentroExposicoes ce) {
+        this.ce=ce;
         initComponents();
         setVisible(true);
     }

@@ -51,7 +51,7 @@ public class DecidirCandidaturaController {
         return this.candidatura.getListaAvaliacoes().getListaAvaliacao();
     }
     
-    public void setDecisao(String decisao){
+    public void setDecisao(boolean decisao){
         this.candidatura.setDecisao(decisao);
     }
     

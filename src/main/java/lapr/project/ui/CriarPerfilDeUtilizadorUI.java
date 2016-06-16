@@ -5,18 +5,51 @@
  */
 package lapr.project.ui;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import lapr.project.controller.CriarPerfideUtilizadorController;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.RegistoUtilizadores;
+import lapr.project.model.Utilizador;
+
 /**
  *
  * @author catarinarib
  */
 public class CriarPerfilDeUtilizadorUI extends javax.swing.JFrame {
 
+    private LoginUI login;
+    private CentroExposicoes ce;
+
     /**
      * Creates new form CriarPerfilDeUtilizadorUI
+     *
+     * @param ce
      */
-    public CriarPerfilDeUtilizadorUI() {
+    public CriarPerfilDeUtilizadorUI(final CentroExposicoes ce) {
+
+        this.ce = ce;
         initComponents();
-         setVisible(true);
+        setVisible(true);
+        
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int result = JOptionPane.showConfirmDialog(
+                        CriarPerfilDeUtilizadorUI.this, "Tens a certeza");
+                if (result == JOptionPane.OK_OPTION) {
+
+                    CriarPerfilDeUtilizadorUI.this.setDefaultCloseOperation(
+                            JDialog.DISPOSE_ON_CLOSE);
+                    CriarPerfilDeUtilizadorUI.this.setVisible(false);
+                    CriarPerfilDeUtilizadorUI.this.dispose();
+                    JFrame LoginUI = new LoginUI(ce);
+                }
+            }
+        });
     }
 
     /**
@@ -91,7 +124,7 @@ public class CriarPerfilDeUtilizadorUI extends javax.swing.JFrame {
 
         jLabel2.setText("Ex: email@centro.pt");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(360, 370, 100, 20);
+        jLabel2.setBounds(360, 370, 120, 20);
 
         label4.setBackground(new java.awt.Color(153, 153, 255));
         label4.setText("Email:");
@@ -129,7 +162,7 @@ public class CriarPerfilDeUtilizadorUI extends javax.swing.JFrame {
 
         jLabel5.setText("Inf: 4 a 7 carateres");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(300, 474, 100, 20);
+        jLabel5.setBounds(300, 474, 110, 20);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Com-Category-Coloring-Pages-Sub-Category-Web-Page-Background-Color-web-page-background-color- (1).jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -167,10 +200,53 @@ public class CriarPerfilDeUtilizadorUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        dispose();
+        try {
+            CriarPerfideUtilizadorController controller = new CriarPerfideUtilizadorController(ce);
 
-        MenuUI j = new MenuUI();
+            String nome = textField1.getText();
+            String username = textField2.getText();
+            String email = textField4.getText();
+            String password = textField3.getText();
+            String keyword = textField5.getText();
+
+            RegistoUtilizadores ru = controller.getRegistoUtilizadores();
+            controller.novoUtilizador();
+            
+            if (!ru.getListaUtilizadores().isEmpty()) {
+            for (Utilizador u1 : ru.getListaUtilizadores()) {
+
+                if (u1.getUsername().equals(username)) {
+                    throw new IllegalArgumentException("Username já existe!");
+                } else if (u1.getEmail().equals(email)) {
+                    throw new IllegalArgumentException("Email já existe!");
+                }
+            }
+        }
+            controller.setDados(nome, username, email, password, keyword);
+            
+            
+            if (controller.RegistaUtilizador()) {
+                dispose();
+
+                MenuUI j = new MenuUI(ce);
+            }
+
+         } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(
+                            login,
+                            "Tem que introduzir números válidos.",
+                            "Aviso",
+                            JOptionPane.WARNING_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(
+                    login,
+                    ex.getMessage(),
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+
+        }
+
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
 //    /**

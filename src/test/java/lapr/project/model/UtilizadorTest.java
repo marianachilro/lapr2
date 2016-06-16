@@ -7,6 +7,7 @@
 package lapr.project.model;
 
 import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 /**
  *
@@ -14,6 +15,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class UtilizadorTest {
 
+     @Test
     public void testGetNomeAndSetNome() {
         Utilizador instance = new Utilizador();
         String nome = "testenome";
@@ -23,6 +25,7 @@ public class UtilizadorTest {
         assertEquals(expResult, result);
     }
 
+     @Test
     public void testGetUsernameAndSetUsername() {
         Utilizador instance = new Utilizador();
         String username = "testeusername";
@@ -32,30 +35,43 @@ public class UtilizadorTest {
         assertEquals(expResult, result);
     }
 
+     @Test
     public void testGetEmailAndSetEmail() {
         Utilizador instance = new Utilizador();
-        String email = "testeemail";
+        String email = "as@centro.pt";
         instance.setEmail(email);
         String expResult = email;
         String result = instance.getEmail();
         assertEquals(expResult, result);
     }
 
+     @Test
     public void testGetPasswordAndSetPassword() {
         Utilizador instance = new Utilizador();
-        String password = "testepassword";
+        String password = "aA0;";
         instance.setPassword(password);
         String expResult = password;
         String result = instance.getPassword();
         assertEquals(expResult, result);
     }
+    
+     @Test
+    public void testGetKeywordAndSetKeyword(){
+        Utilizador instance = new Utilizador();
+        String keyword = "aaaa";
+        instance.setKeyword(keyword);
+        String expResult = keyword;
+        String result = instance.getKeyword();
+        assertEquals(expResult, result);
+    }
 
+     @Test
     public void testSetPerfilAlterado() {
         Utilizador instance = new Utilizador();
         String nome = "testenome";
         String username = "testeusername";
-        String email = "testeemail";
-        String password = "testepassword";
+        String email = "s@centro.pt";
+        String password = "aA2;";
         String keyword = "teste";
         Utilizador clone = new Utilizador(nome, username, email, password,keyword);
 

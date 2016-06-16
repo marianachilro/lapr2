@@ -8,6 +8,7 @@ package lapr.project.ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import lapr.project.model.CentroExposicoes;
 
 /**
  *
@@ -15,10 +16,15 @@ import javax.swing.JOptionPane;
  */
 public class LoginUI extends javax.swing.JFrame {
 
+    private CentroExposicoes ce;
+    
     /**
      * Creates new form LoginUI
+     * @param ce centro exposicoes
      */
-    public LoginUI() {
+    public LoginUI(CentroExposicoes ce) {
+        
+        this.ce=ce;
         initComponents();
         setVisible(true);
     }
@@ -118,13 +124,13 @@ public class LoginUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
 
-        MenuUI j = new MenuUI();
+        MenuUI j = new MenuUI(ce);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         dispose();
-        CriarPerfilDeUtilizadorUI c= new CriarPerfilDeUtilizadorUI();
+        CriarPerfilDeUtilizadorUI c= new CriarPerfilDeUtilizadorUI(ce);
     }//GEN-LAST:event_jButton2ActionPerformed
 // /**
 //     * @param args the command line arguments

@@ -1,6 +1,7 @@
 package lapr.project.ui;
 
 import lapr.project.model.CalculatorExample;
+import lapr.project.model.CentroExposicoes;
 
 /**
  * @author Nuno Bettencourt <nmb@isep.ipp.pt> on 24/05/16.
@@ -22,7 +23,8 @@ class Main {
 //		CalculatorExample calculatorExample = new CalculatorExample();
 //		System.out.println(calculatorExample.sum(3, 5));
 
-         LoginUI login = new LoginUI();
+         CentroExposicoes ce = new CentroExposicoes();
+         LoginUI login = new LoginUI(ce);
 
 	}
 
