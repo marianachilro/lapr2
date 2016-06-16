@@ -59,8 +59,8 @@ public class ListaAvaliacoes {
      *
      * @param novaAvaliacao avaliacao
      */
-    public void addAvaliacao(Avaliacao novaAvaliacao) {
-        la.add(novaAvaliacao);
+    public boolean addAvaliacao(Avaliacao novaAvaliacao) {
+        return la.add(novaAvaliacao);
     }
 
      /**

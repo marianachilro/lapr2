@@ -64,7 +64,11 @@ public class ListaProdutos {
      * @return boolean
      */
     public boolean validaProduto(Produto p) {
-        return listaProdutos.contains(p);
+        if(!listaProdutos.isEmpty()) {
+            return listaProdutos.contains(p);
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -87,7 +91,7 @@ public class ListaProdutos {
      * @return boolean
      */
     public boolean registaProduto(Produto p) {
-        if (validaProduto(p)) {
+        if (!validaProduto(p)) {
             addProduto(p);
             return true;
         } else {

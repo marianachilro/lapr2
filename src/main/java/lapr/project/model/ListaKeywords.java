@@ -25,7 +25,8 @@ public class ListaKeywords {
     public ListaKeywords() {
         this.listaKeywords = new ArrayList<>();
     }
-    public ListaKeywords(ListaKeywords lista){
+
+    public ListaKeywords(ListaKeywords lista) {
         this.listaKeywords = new ArrayList<>(lista.getListaKeywords());
     }
 
@@ -64,7 +65,11 @@ public class ListaKeywords {
      * @return boolean
      */
     public boolean validaKeyword(Keyword k) {
-        return listaKeywords.contains(k);
+        if (!listaKeywords.isEmpty()) {
+            return listaKeywords.contains(k);
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -87,11 +92,19 @@ public class ListaKeywords {
      * @return boolean
      */
     public boolean registaKeyword(Keyword k) {
-        if (validaKeyword(k) && listaKeywords.size() < 6) {
+        if (!(validaKeyword(k)) && tamanho() < 6) {
             addKeyword(k);
             return true;
         } else {
             return false;
         }
+    }
+
+    /**
+     * Devolve o número de keywords na lista
+     * @return Número de keywords da lista
+     */
+    public int tamanho() {
+        return listaKeywords.size();
     }
 }
