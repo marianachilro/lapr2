@@ -31,6 +31,11 @@ public class Utilizador {
      * Password de Utilizador.
      */
     private String password;
+    
+    /**
+     * Keyword do utilizador
+     */
+    private String keyword;
 
     /**
      * Nome de Utilizador por omissão.
@@ -66,12 +71,14 @@ public class Utilizador {
      * @param username Username
      * @param email E-mail
      * @param password Password
+     * @param keyword keyword
      */
-    public Utilizador(String nome, String username, String email, String password) {
+    public Utilizador(String nome, String username, String email, String password,String keyword) {
         setNome(nome);
         setUsername(username);
         setEmail(email);
         setPassword(password);
+        setKeyword(keyword);
     }
 
     /**
@@ -85,6 +92,7 @@ public class Utilizador {
         this.username = utilizador.getUsername();
         this.email = utilizador.getEmail();
         this.password = utilizador.getPassword();
+        this.keyword=utilizador.getKeyword();
     }
 
     /**
@@ -123,6 +131,26 @@ public class Utilizador {
         return password;
     }
 
+    /**
+     * Devolve a keyword do utilizador
+     * @return keyword
+     */
+    public String getKeyword() {
+        return keyword;
+    }
+
+    /**
+     * Modifica a keyword 
+     * @param keyword 
+     */
+    public final void setKeyword(String keyword) {
+        if(keyword.length()<4 || keyword.length()>7){
+            throw new IllegalArgumentException("Keyword é inválida! 4 a 7 carateres");
+        }
+        this.keyword = keyword;
+    }
+
+    
     /**
      * Modifica o Nome de Utilizador
      *

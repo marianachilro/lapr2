@@ -26,10 +26,6 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="280" pref="280" max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" pref="100" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
               <EmptySpace min="100" pref="100" max="-2" attributes="0"/>
               <Component id="jTextField1" min="-2" pref="190" max="-2" attributes="0"/>
           </Group>
@@ -41,6 +37,10 @@
               <EmptySpace min="100" pref="100" max="-2" attributes="0"/>
               <Component id="jTextField2" min="-2" pref="190" max="-2" attributes="0"/>
           </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="280" pref="280" max="-2" attributes="0"/>
+              <Component id="jButton2" min="-2" pref="100" max="-2" attributes="0"/>
+          </Group>
           <Component id="jLabel1" min="-2" pref="400" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
@@ -49,9 +49,7 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="30" max="-2" attributes="0"/>
-                      <EmptySpace min="260" pref="260" max="-2" attributes="0"/>
+                      <EmptySpace min="300" pref="300" max="-2" attributes="0"/>
                       <Component id="jTextField1" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace min="120" pref="120" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="40" max="-2" attributes="0"/>
@@ -60,11 +58,12 @@
                       <EmptySpace min="390" pref="390" max="-2" attributes="0"/>
                       <Component id="jTextField2" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" pref="30" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jLabel1" alignment="0" min="-2" pref="520" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <Component id="jLabel1" min="-2" pref="520" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -102,6 +101,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="REGISTAR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>

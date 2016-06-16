@@ -56,7 +56,8 @@ public class UtilizadorTest {
         String username = "testeusername";
         String email = "testeemail";
         String password = "testepassword";
-        Utilizador clone = new Utilizador(nome, username, email, password);
+        String keyword = "teste";
+        Utilizador clone = new Utilizador(nome, username, email, password,keyword);
 
         instance.setPerfilAlterado(clone);
         Utilizador expResult = clone;

@@ -31,7 +31,7 @@ public class CriaPerfideUtilizadorController {
         this.u = this.ce.getRegistoUtilizadores().novoUtilizador();
     }
 
-    public void setDados(String nome, String username, String email, String password) {
+    public void setDados(String nome, String username, String email, String password,String keyword) {
 
         this.u.setNome(nome);
 
@@ -47,6 +47,7 @@ public class CriaPerfideUtilizadorController {
         this.u.setUsername(username);
         this.u.setEmail(email);
         this.u.setPassword(password);
+        this.u.setKeyword(keyword);
 
     }
 

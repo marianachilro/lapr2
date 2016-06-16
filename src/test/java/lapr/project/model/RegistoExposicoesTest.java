@@ -55,7 +55,7 @@ public class RegistoExposicoesTest {
         
         String username = "joaovaz";
         RegistoUtilizadores ru = new RegistoUtilizadores();
-        Utilizador u = new Utilizador("joao", username, "123", "ajao212");
+        Utilizador u = new Utilizador("joao", username, "123", "ajao212","keyword");
         ru.addUtilizador(u);
         RegistoExposicoes instance = new RegistoExposicoes();
         Exposicao e = new Exposicao();
