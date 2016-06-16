@@ -5,13 +5,15 @@
  */
 package lapr.project.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.LerFicheiroXML;
 import lapr.project.model.RegistoExposicoes;
-import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -25,7 +27,7 @@ public class CarregarExposicoesController {
         this.ce=ce;
         le = new ArrayList<>();
     }
-    public void lerExpo(Node ficheiro){
+    public void lerExpo(File ficheiro) throws IOException, SAXException{
         re = ce.getRegistoExposicoes();
         Exposicao e = re.newExposicao();
         e = LerFicheiroXML.lerExposicao(ficheiro);
