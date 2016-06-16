@@ -84,7 +84,11 @@ public class RegistoStands {
      * @return boolean
      */
     public boolean validaStand(Stand s) {
-        return listaStands.contains(s);
+        if(!listaStands.isEmpty()) {
+            return listaStands.contains(s);
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -107,7 +111,7 @@ public class RegistoStands {
      * @return boolean
      */
     public boolean registaStand(Stand s) {
-        if (validaStand(s)) {
+        if (!validaStand(s)) {
             addStand(s);
             return true;
         } else {

@@ -44,4 +44,25 @@ public class RegistoLocais {
         this.listaLocais = listaLocais;
     }
 
+    public boolean addLocal(Local l) {
+        return listaLocais.add(l);
+    }
+
+    public boolean validaLocal(Local l) {
+        if (!listaLocais.isEmpty()) {
+            return listaLocais.contains(l);
+        } else {
+            return false;
+        }
+    }
+
+    public boolean registaLocal(Local l) {
+        if (!validaLocal(l)) {
+            addLocal(l);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

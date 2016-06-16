@@ -18,7 +18,7 @@ public class RegistoUtilizadores {
      * List de Utilizadores.
      */
     private List<Utilizador> listaUtilizadores;
-    private final List<Utilizador> listaUtilizadoresNaoConfirmados;
+    private List<Utilizador> listaUtilizadoresNaoConfirmados;
 
     /**
      * Construtor de um Registo de Utilizadores.
@@ -44,6 +44,10 @@ public class RegistoUtilizadores {
      */
     public List<Utilizador> getUtilizadoresNaoConfirmados() {
         return listaUtilizadoresNaoConfirmados;
+    }
+    
+    public void setUtilizadoresNaoConfirmados(List<Utilizador> listaUtilizadoresNaoConfirmados) {
+        this.listaUtilizadoresNaoConfirmados = listaUtilizadoresNaoConfirmados;
     }
 
     /**
@@ -79,7 +83,7 @@ public class RegistoUtilizadores {
      * @return boolean
      */
     public boolean validaUtilizador(Utilizador u) {
-        if(tamanhoUtilizadoresConfirmados()>0) {
+        if(!listaUtilizadores.isEmpty()) {
             return listaUtilizadores.contains(u);
         } else {
             return false;
@@ -125,7 +129,7 @@ public class RegistoUtilizadores {
         return listaUtilizadoresNaoConfirmados.remove(u);
     }
 
-    public boolean confirmaUtilizador(Utilizador u) {
+    public boolean confirmaNaoUtilizador(Utilizador u) {
         if (!validaUtilizadorNaoConfirmado(u)) {
             addUtilizadorNaoConfirmado(u);
             return true;
@@ -134,6 +138,15 @@ public class RegistoUtilizadores {
         }
     }
 
+    public boolean confirmaUtilizador(Utilizador u) {
+        if (!validaUtilizador(u)) {
+            addUtilizador(u);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     /**
      * Validação que devolve um boolean. True se o Utilizador já existir na List
      * de Utilizadores não confirmados. False se ainda não existir.
@@ -142,7 +155,7 @@ public class RegistoUtilizadores {
      * @return boolean
      */
     public boolean validaUtilizadorNaoConfirmado(Utilizador u) {
-        if (tamanhoUtilizadoresNaoConfirmado()> 0) {
+        if (!listaUtilizadoresNaoConfirmados.isEmpty()) {
             return listaUtilizadoresNaoConfirmados.contains(u);
         } else {
             return false;
@@ -159,24 +172,6 @@ public class RegistoUtilizadores {
      */
     public boolean addUtilizadorNaoConfirmado(Utilizador u) {
         return listaUtilizadoresNaoConfirmados.add(u);
-    }
-
-    /**
-     * Devolve o número de elementos da list de utilizadores não confirmados.
-     *
-     * @return número de elementos
-     */
-    public int tamanhoUtilizadoresNaoConfirmado() {
-        return listaUtilizadoresNaoConfirmados.size();
-    }
-    
-    /**
-     * Devolve o número de elementos da list de utilizadores não confirmados.
-     * 
-     * @return número de elementos. 
-     */
-    public int tamanhoUtilizadoresConfirmados() {
-        return listaUtilizadores.size();
     }
 
     /**
