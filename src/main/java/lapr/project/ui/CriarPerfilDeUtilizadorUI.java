@@ -5,17 +5,51 @@
  */
 package lapr.project.ui;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import lapr.project.controller.CriarPerfideUtilizadorController;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.RegistoUtilizadores;
+import lapr.project.model.Utilizador;
+
 /**
  *
  * @author catarinarib
  */
 public class CriarPerfilDeUtilizadorUI extends javax.swing.JFrame {
 
+    private LoginUI login;
+    private CentroExposicoes ce;
+
     /**
      * Creates new form CriarPerfilDeUtilizadorUI
+     *
+     * @param ce
      */
-    public CriarPerfilDeUtilizadorUI() {
+    public CriarPerfilDeUtilizadorUI(final CentroExposicoes ce) {
+
+        this.ce = ce;
         initComponents();
+        setVisible(true);
+        
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int result = JOptionPane.showConfirmDialog(
+                        CriarPerfilDeUtilizadorUI.this, "Tens a certeza");
+                if (result == JOptionPane.OK_OPTION) {
+
+                    CriarPerfilDeUtilizadorUI.this.setDefaultCloseOperation(
+                            JDialog.DISPOSE_ON_CLOSE);
+                    CriarPerfilDeUtilizadorUI.this.setVisible(false);
+                    CriarPerfilDeUtilizadorUI.this.dispose();
+                    JFrame LoginUI = new LoginUI(ce);
+                }
+            }
+        });
     }
 
     /**
@@ -27,57 +61,246 @@ public class CriarPerfilDeUtilizadorUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        label1 = new java.awt.Label();
+        textField1 = new java.awt.TextField();
+        label2 = new java.awt.Label();
+        textField2 = new java.awt.TextField();
+        label3 = new java.awt.Label();
+        textField3 = new java.awt.TextField();
+        jLabel2 = new javax.swing.JLabel();
+        label4 = new java.awt.Label();
+        textField4 = new java.awt.TextField();
+        jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        label5 = new java.awt.Label();
+        textField5 = new java.awt.TextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(null);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/profile-group-icon_34379.png"))); // NOI18N
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(170, 30, 180, 170);
+
+        label1.setBackground(new java.awt.Color(153, 153, 255));
+        label1.setText("Keyword:");
+        jPanel1.add(label1);
+        label1.setBounds(140, 470, 50, 30);
+        jPanel1.add(textField1);
+        textField1.setBounds(130, 240, 220, 30);
+
+        label2.setBackground(new java.awt.Color(153, 153, 255));
+        label2.setText("Nome:");
+        jPanel1.add(label2);
+        label2.setBounds(80, 240, 40, 30);
+
+        textField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textField2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(textField2);
+        textField2.setBounds(130, 300, 220, 30);
+
+        label3.setBackground(new java.awt.Color(153, 153, 255));
+        label3.setText("Username:");
+        jPanel1.add(label3);
+        label3.setBounds(50, 300, 70, 30);
+
+        textField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textField3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(textField3);
+        textField3.setBounds(130, 420, 220, 30);
+
+        jLabel2.setText("Ex: email@centro.pt");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(360, 370, 120, 20);
+
+        label4.setBackground(new java.awt.Color(153, 153, 255));
+        label4.setText("Email:");
+        jPanel1.add(label4);
+        label4.setBounds(80, 360, 40, 30);
+
+        textField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textField4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(textField4);
+        textField4.setBounds(130, 360, 220, 30);
+
+        jLabel4.setText("Ex: aA1;b");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(360, 424, 100, 20);
+
+        jButton1.setBackground(new java.awt.Color(153, 153, 255));
+        jButton1.setText("Registar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(180, 520, 120, 40);
+
+        label5.setBackground(new java.awt.Color(153, 153, 255));
+        label5.setText("Password:");
+        jPanel1.add(label5);
+        label5.setBounds(60, 420, 63, 30);
+        jPanel1.add(textField5);
+        textField5.setBounds(200, 470, 90, 30);
+
+        jLabel5.setText("Inf: 4 a 7 carateres");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(300, 474, 110, 20);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Com-Category-Coloring-Pages-Sub-Category-Web-Page-Background-Color-web-page-background-color- (1).jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(-10, 0, 490, 580);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 465, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 519, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void textField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textField2ActionPerformed
+
+    private void textField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textField3ActionPerformed
+
+    private void textField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textField4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+            CriarPerfideUtilizadorController controller = new CriarPerfideUtilizadorController(ce);
+
+            String nome = textField1.getText();
+            String username = textField2.getText();
+            String email = textField4.getText();
+            String password = textField3.getText();
+            String keyword = textField5.getText();
+
+            RegistoUtilizadores ru = controller.getRegistoUtilizadores();
+            controller.novoUtilizador();
+            
+            if (!ru.getListaUtilizadores().isEmpty()) {
+            for (Utilizador u1 : ru.getListaUtilizadores()) {
+
+                if (u1.getUsername().equals(username)) {
+                    throw new IllegalArgumentException("Username já existe!");
+                } else if (u1.getEmail().equals(email)) {
+                    throw new IllegalArgumentException("Email já existe!");
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CriarPerfilDeUtilizadorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CriarPerfilDeUtilizadorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CriarPerfilDeUtilizadorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CriarPerfilDeUtilizadorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+            controller.setDados(nome, username, email, password, keyword);
+            
+            
+            if (controller.RegistaUtilizador()) {
+                dispose();
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CriarPerfilDeUtilizadorUI().setVisible(true);
+                MenuUI j = new MenuUI(ce);
             }
-        });
-    }
+
+         } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(
+                            login,
+                            "Tem que introduzir números válidos.",
+                            "Aviso",
+                            JOptionPane.WARNING_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(
+                    login,
+                    ex.getMessage(),
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+
+        }
+
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(CriarPerfilDeUtilizadorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(CriarPerfilDeUtilizadorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(CriarPerfilDeUtilizadorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(CriarPerfilDeUtilizadorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new CriarPerfilDeUtilizadorUI().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private java.awt.Label label1;
+    private java.awt.Label label2;
+    private java.awt.Label label3;
+    private java.awt.Label label4;
+    private java.awt.Label label5;
+    private java.awt.TextField textField1;
+    private java.awt.TextField textField2;
+    private java.awt.TextField textField3;
+    private java.awt.TextField textField4;
+    private java.awt.TextField textField5;
     // End of variables declaration//GEN-END:variables
 }

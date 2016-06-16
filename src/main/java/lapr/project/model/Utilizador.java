@@ -6,7 +6,6 @@
 package lapr.project.model;
 
 import java.util.Objects;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -31,6 +30,11 @@ public class Utilizador {
      * Password de Utilizador.
      */
     private String password;
+    
+    /**
+     * Keyword do utilizador
+     */
+    private String keyword;
 
     /**
      * Nome de Utilizador por omissão.
@@ -66,12 +70,14 @@ public class Utilizador {
      * @param username Username
      * @param email E-mail
      * @param password Password
+     * @param keyword keyword
      */
-    public Utilizador(String nome, String username, String email, String password) {
+    public Utilizador(String nome, String username, String email, String password,String keyword) {
         setNome(nome);
         setUsername(username);
         setEmail(email);
         setPassword(password);
+        setKeyword(keyword);
     }
 
     /**
@@ -85,6 +91,7 @@ public class Utilizador {
         this.username = utilizador.getUsername();
         this.email = utilizador.getEmail();
         this.password = utilizador.getPassword();
+        this.keyword=utilizador.getKeyword();
     }
 
     /**
@@ -123,6 +130,26 @@ public class Utilizador {
         return password;
     }
 
+    /**
+     * Devolve a keyword do utilizador
+     * @return keyword
+     */
+    public String getKeyword() {
+        return keyword;
+    }
+
+    /**
+     * Modifica a keyword 
+     * @param keyword 
+     */
+    public final void setKeyword(String keyword) {
+        if(keyword.length()<4 || keyword.length()>7){
+            throw new IllegalArgumentException("Keyword é inválida! 4 a 7 carateres");
+        }
+        this.keyword = keyword;
+    }
+
+    
     /**
      * Modifica o Nome de Utilizador
      *
@@ -185,7 +212,7 @@ public class Utilizador {
             c = letra.charAt(0);
 
             if (Character.isWhitespace(c)) {
-                throw new IllegalArgumentException("Sem Espaços!");
+                throw new IllegalArgumentException("Password sem Espaços!");
 
             } else if (Character.isLowerCase(c)) {
                 contLower++;
@@ -206,13 +233,13 @@ public class Utilizador {
 
         }
         if (contUpper == 0) {
-            throw new IllegalArgumentException("Tem de ter pelo menos uma letra maiuscula!");
+            throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos uma letra maiuscula!");
         } else if (contLower == 0) {
-            throw new IllegalArgumentException("Tem de ter pelo menos uma letra manuscula!");
+            throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos uma letra manuscula!");
         } else if (contNum == 0) {
-            throw new IllegalArgumentException("Tem de ter pelo menos um numero!");
+            throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos um numero!");
         } else if (contPuctuation == 0) {
-            throw new IllegalArgumentException("Tem de ter pelo menos um destes carateres:\n ',', '.',';',':','-'");
+            throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos um destes carateres:\n  ,  .  ;  :  -  ");
         }
 
         this.password = password;

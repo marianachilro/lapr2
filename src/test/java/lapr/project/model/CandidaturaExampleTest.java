@@ -19,41 +19,41 @@ import static org.junit.Assert.assertNotEquals;
  * @author Nuno Bettencourt [nmb@isep.ipp.pt] on 29/05/16.
  */
 public class CandidaturaExampleTest {
-	@Test
-	public void ensureAddKeywordIsWorking() throws Exception {
-		List<KeywordExample> expectedKeywordExampleList = new ArrayList<>();
-		expectedKeywordExampleList.add(new KeywordExample("Doors"));
+//	@Test
+//	public void ensureAddKeywordIsWorking() throws Exception {
+//		List<KeywordExample> expectedKeywordExampleList = new ArrayList<>();
+//		expectedKeywordExampleList.add(new KeywordExample("Doors"));
+//
+//		CandidaturaExample candidatura = new CandidaturaExample("MyCandidatura", new ArrayList<>());
+//		candidatura.addKeyword(new KeywordExample("Doors"));
+//
+//		List<KeywordExample> resultList = candidatura.getKeywordList();
+//
+//		assertArrayEquals(expectedKeywordExampleList.toArray(), resultList.toArray());
+//
+//	}
 
-		CandidaturaExample candidatura = new CandidaturaExample("MyCandidatura", new ArrayList<>());
-		candidatura.addKeyword(new KeywordExample("Doors"));
-
-		List<KeywordExample> resultList = candidatura.getKeywordList();
-
-		assertArrayEquals(expectedKeywordExampleList.toArray(), resultList.toArray());
-
-	}
-
-	@Test
-	public void ensureXMLElementExportToStringIsValid() throws Exception {
-		String expected = "<candidatura>\n" +
-				"<description>MyCandidatura</description>\n" +
-				"<keywords>\n" +
-				"<keyword>\n" +
-				"<value>Doors</value>\n" +
-				"</keyword>\n" +
-				"<keyword>\n" +
-				"<value>Windows</value>\n" +
-				"</keyword>\n" +
-				"</keywords>\n" +
-				"</candidatura>\n";
-
-		List<KeywordExample> keywordList = new ArrayList<>();
-		keywordList.add(new KeywordExample("Doors"));
-		keywordList.add(new KeywordExample("Windows"));
-		CandidaturaExample candidaturaExample = new CandidaturaExample("MyCandidatura", keywordList);
-		String result = candidaturaExample.exportContentToString();
-		assertEquals(expected, result);
-	}
+//	@Test
+//	public void ensureXMLElementExportToStringIsValid() throws Exception {
+//		String expected = "<candidatura>\n" +
+//				"<description>MyCandidatura</description>\n" +
+//				"<keywords>\n" +
+//				"<keyword>\n" +
+//				"<value>Doors</value>\n" +
+//				"</keyword>\n" +
+//				"<keyword>\n" +
+//				"<value>Windows</value>\n" +
+//				"</keyword>\n" +
+//				"</keywords>\n" +
+//				"</candidatura>\n";
+//
+//		List<KeywordExample> keywordList = new ArrayList<>();
+//		keywordList.add(new KeywordExample("Doors"));
+//		keywordList.add(new KeywordExample("Windows"));
+//		CandidaturaExample candidaturaExample = new CandidaturaExample("MyCandidatura", keywordList);
+//		String result = candidaturaExample.exportContentToString();
+//		assertEquals(expected, result);
+//	}
 
 	@Test
 	public void ensureImportFromXMLElementNodeIsValid() throws Exception {

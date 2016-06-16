@@ -19,7 +19,7 @@ public class CandidaturaExposicao implements Candidatura, Removivel {
     private int telemovel;
     private double area;
     private int convites;
-    private String decisao;
+    private boolean decisao;
     private CandidaturaEstado estado;
     
     /**
@@ -76,7 +76,7 @@ public class CandidaturaExposicao implements Candidatura, Removivel {
         this.telemovel=TELEMOVEL_OMISSAO;
         this.area=AREA_OMISSAO;
         this.convites=CONVITES_OMISSAO;
-        decisao = "sem decisao";
+        decisao = false;
         listaProdutos = new ListaProdutos();
         listaAvaliacoes = new ListaAvaliacoes();
         listaKeywords = new ListaKeywords();
@@ -102,7 +102,7 @@ public class CandidaturaExposicao implements Candidatura, Removivel {
         setTelemovel(telemovel);
         this.area = area;
         this.convites = convites;
-        decisao = "sem decisao";
+        decisao = false;
         listaProdutos = new ListaProdutos();
         listaAvaliacoes = new ListaAvaliacoes();
         listaKeywords = new ListaKeywords();
@@ -117,7 +117,7 @@ public class CandidaturaExposicao implements Candidatura, Removivel {
         this.telemovel = c.getTelemovel();
         this.area = c.getArea();
         this.convites = c.getConvites();
-        decisao = "sem decisao";
+        decisao = false;
         listaAvaliacoes = new ListaAvaliacoes();
         listaDemonstracoes = new ListaDemonstracoes();
         listaProdutos = new ListaProdutos(c.getListaProdutos());
@@ -207,7 +207,7 @@ public class CandidaturaExposicao implements Candidatura, Removivel {
      * @return decisao
      */
     @Override
-    public String getDecisao() {
+    public boolean getDecisao() {
         return decisao;
     }
 
@@ -325,7 +325,7 @@ public class CandidaturaExposicao implements Candidatura, Removivel {
     }
 
     @Override
-    public void setDecisao(String decisao) {
+    public void setDecisao(boolean decisao) {
         this.decisao = decisao;
     }
 

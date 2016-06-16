@@ -25,7 +25,7 @@ public class AtribuicaoTest {
         CandidaturaExposicao c = new CandidaturaExposicao();
         FAE fae = new FAE();
         Atribuicao instance = new Atribuicao(fae, c);
-        Utilizador u = new Utilizador("joao", "Joao_vaz", "123@outlookp.pt", "Jj;012345");
+        Utilizador u = new Utilizador("joao", "Joao_vaz", "123@outlookp.pt", "Jj;012345","keyword");
         FAE fae2 = new FAE(u);
         FAE expResult = fae2;
         instance.setFAE(fae2);

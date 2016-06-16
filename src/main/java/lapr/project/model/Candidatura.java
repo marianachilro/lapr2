@@ -22,9 +22,9 @@ public interface Candidatura {
     
     public ListaAvaliacoes getListaAvaliacoes();
     
-    public void setDecisao(String decisao);
+    public void setDecisao(boolean decisao);
     
-    public String getDecisao();
+    public boolean getDecisao();
     
     public CandidaturaEstado getEstado();
     

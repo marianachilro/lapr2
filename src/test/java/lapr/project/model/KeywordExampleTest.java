@@ -46,15 +46,15 @@ public class KeywordExampleTest {
 		assertEquals(expected, result);
 	}
 
-	@Test
-	public void ensureXMLElementExportToStringIsValid() throws Exception {
-		String expected = "<keyword>\n" +
-				"<value>Doors</value>\n" +
-				"</keyword>\n";
-		KeywordExample keyword = new KeywordExample("Doors");
-		String result = keyword.exportContentToString();
-		assertEquals(expected, result);
-	}
+//	@Test
+//	public void ensureXMLElementExportToStringIsValid() throws Exception {
+//		String expected = "<keyword>\n" +
+//				"<value>Doors</value>\n" +
+//				"</keyword>\n";
+//		KeywordExample keyword = new KeywordExample("Doors");
+//		String result = keyword.exportContentToString();
+//		assertEquals(expected, result);
+//	}
 
 	@Test
 	public void ensureXMLElementExportToNodeIsValid() throws Exception {

@@ -696,10 +696,10 @@ public class Exposicao implements Avaliavel, Decisivel {
         List<CandidaturaExposicao> lcAceites = new ArrayList<>();
 
         List<CandidaturaExposicao> lc = listaCandidaturas.getListCandidaturas();
-        String decisao = "Aceite";
+        boolean decisao = true;
         if (!lc.isEmpty()) {
             for (CandidaturaExposicao c : lc) {
-                if (c.getDecisao().equals(decisao.trim())) {
+                if (c.getDecisao()==decisao) {
                     lcAceites.add(c);
                 }
             }
@@ -717,10 +717,10 @@ public class Exposicao implements Avaliavel, Decisivel {
         List<CandidaturaExposicao> lcNaoAceites = new ArrayList<>();
 
         List<CandidaturaExposicao> lc = listaCandidaturas.getListCandidaturas();
-        String decisao = "Não Aceite";
+        boolean decisao = false;
         if (!lc.isEmpty()) {
             for (CandidaturaExposicao c : lc) {
-                if (c.getDecisao().equals(decisao.trim())) {
+                if (c.getDecisao()==decisao) {
                     lcNaoAceites.add(c);
                 }
             }

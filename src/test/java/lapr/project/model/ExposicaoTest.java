@@ -241,7 +241,7 @@ public class ExposicaoTest {
     @Test
     public void testAddOrganizador() {
         System.out.println("TesteAddOrganizador");
-        Utilizador u = new Utilizador("nome", "username", "email", "password");
+        Utilizador u = new Utilizador("nome", "username", "email", "password","keyword");
         Exposicao instance = new Exposicao();
         Boolean expResult = true;
         Boolean result = false;
@@ -260,7 +260,7 @@ public class ExposicaoTest {
     @Test
     public void testGetFAE() {
         System.out.println("testeFAE");
-        Utilizador u = new Utilizador("nome", "username", "email", "password");    
+        Utilizador u = new Utilizador("nome", "username", "email", "password","keyword");    
         Exposicao instance = new Exposicao();
         FAE expResult = null;
         FAE result = instance.getFAE(u);
@@ -287,7 +287,7 @@ public class ExposicaoTest {
     @Test
     public void testGetListaAtribuicoesFAE() {
         System.out.println("TesteListaAtribuicoesFAE");
-        Utilizador u = new Utilizador("nome", "username", "email", "password");
+        Utilizador u = new Utilizador("nome", "username", "email", "password","Keyword");
         FAE fae = new FAE(u);
         Exposicao instance = new Exposicao();
         ListaAtribuicoes la = new ListaAtribuicoes();
@@ -386,7 +386,7 @@ public class ExposicaoTest {
     @Test
     public void testGetAvaliaveis() {
         System.out.println("TesteAvaliaveis");
-        Utilizador u = new Utilizador("nome", "username", "email", "password");
+        Utilizador u = new Utilizador("nome", "username", "email", "password","Keyword");
         FAE fae = new FAE(u);
         Exposicao instance = new Exposicao();
         ListaAtribuicoes la = new ListaAtribuicoes();
