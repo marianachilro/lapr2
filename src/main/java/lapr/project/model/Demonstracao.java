@@ -48,12 +48,12 @@ public class Demonstracao  implements Comparable <Demonstracao>{
     /**
      * Lista de Candidaturas da demonstracao.
      */
-    private final ListaCandidaturasDemonstracoes listaCandidaturas;
+    private ListaCandidaturasDemonstracoes listaCandidaturas;
     
     /**
      * Lista de atribuicoes da exposicao.
      */
-    private final ListaAtribuicoes listaAtribuicoes;
+    private ListaAtribuicoes listaAtribuicoes;
 
     /**
      * Valor do código de Demonstração por omissão.
@@ -236,9 +236,9 @@ public class Demonstracao  implements Comparable <Demonstracao>{
      * @param fae
      * @return lista de atribuicoes
      */
-    public List<Candidatura> getListaAtribuicoesFAE(FAE fae) {
-        return listaAtribuicoes.getListaCandidaturasFAE(fae);
-    }
+//    public List<Candidatura> getListaAtribuicoesFAE(FAE fae) {
+//        return listaAtribuicoes.getListaCandidaturasFAE(fae);
+//    }
     
     public boolean valida(){
         if(codigo == null || descricao == null){
@@ -281,6 +281,18 @@ public class Demonstracao  implements Comparable <Demonstracao>{
         final Demonstracao other = (Demonstracao) obj;
         
         return this.codigo.equals(other.codigo);
+    }
+
+    public void setListaConflitos(ListaConflitos listaConflitos) {
+        this.listaConflitos = listaConflitos;
+    }
+
+    public void setListaCandidaturas(ListaCandidaturasDemonstracoes listaCandidaturas) {
+        this.listaCandidaturas = listaCandidaturas;
+    }
+
+    public void setListaAtribuicoes(ListaAtribuicoes listaAtribuicoes) {
+        this.listaAtribuicoes = listaAtribuicoes;
     }
     
     

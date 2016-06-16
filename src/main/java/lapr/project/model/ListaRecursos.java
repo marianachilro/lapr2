@@ -13,41 +13,38 @@ import java.util.List;
  * @author Rita
  */
 public class ListaRecursos {
-     private final List<Recurso> listaRecursos;
-     
-     public ListaRecursos() {
-         this.listaRecursos = new ArrayList<>();
-     }
-     
-     public List<Recurso> getListaRecursos() {
-         return listaRecursos;
-     }
-     
-     public Recurso novoRecurso() {
-         return new Recurso();
-     }
-     
-     public int tamanho() {
-         return listaRecursos.size();
-     }
-     
-     public boolean validaRecurso(Recurso r) {
-         if(tamanho()>0) {
-             return listaRecursos.contains(r);
-         } else {
-             return false;
-         }
-     }
-     
-     public boolean addRecurso(Recurso r) {
-         return listaRecursos.add(r);
-     }
-     
-     public boolean registaRecurso(Recurso r) {
-         if(validaRecurso(r)) {
-             return addRecurso(r);
-         } else {
-             return false;
-         }
-     }
+
+    private final List<Recurso> listaRecursos;
+
+    public ListaRecursos() {
+        this.listaRecursos = new ArrayList<>();
+    }
+
+    public List<Recurso> getListaRecursos() {
+        return listaRecursos;
+    }
+
+    public Recurso novoRecurso() {
+        return new Recurso();
+    }
+
+    public boolean validaRecurso(Recurso r) {
+        if (!listaRecursos.isEmpty()) {
+            return listaRecursos.contains(r);
+        } else {
+            return false;
+        }
+    }
+
+    public boolean addRecurso(Recurso r) {
+        return listaRecursos.add(r);
+    }
+
+    public boolean registaRecurso(Recurso r) {
+        if (!validaRecurso(r)) {
+            return addRecurso(r);
+        } else {
+            return false;
+        }
+    }
 }

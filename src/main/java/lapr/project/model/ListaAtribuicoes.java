@@ -53,9 +53,12 @@ public class ListaAtribuicoes {
      *
      * @return
      */
-    public boolean validateAtribuicoes() {
-        //inserir validacoes.
-        return true;
+    public boolean validateAtribuicoes(Atribuicao a) {
+        if(tamanho()>0) {
+            return la.contains(a);
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -104,5 +107,9 @@ public class ListaAtribuicoes {
             }
         }
         return false;
+    }
+    
+    public int tamanho() {
+        return la.size();
     }
 }

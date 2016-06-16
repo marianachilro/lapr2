@@ -42,10 +42,6 @@ public class ListaCandidaturasExposicoes {
        
        return lr;
     }
-    /**
-     * Adiciona uma candidatura à lista de candidaturas removidas.
-     * @param c
-     */
   
     /**
      * remove uma candidatura da lista de candidaturas.
@@ -90,7 +86,11 @@ public class ListaCandidaturasExposicoes {
      * @return boolean
      */
     public boolean validaCandidatura(CandidaturaExposicao c) {
-        return listaCandidaturas.contains(c);
+        if(!listaCandidaturas.isEmpty()) {
+            return listaCandidaturas.contains(c);
+        } else {
+            return false;
+        }
     }
 
     /**

@@ -64,7 +64,7 @@ public class ListaDemonstracoes {
      * @return boolean
      */
     public boolean validaDemonstracao(Demonstracao d) {
-        if (tamanho() < 0) {
+        if (!listaDemonstracao.isEmpty()) {
             return listaDemonstracao.contains(d);
         } else {
             return false;
@@ -186,9 +186,5 @@ public class ListaDemonstracoes {
 
     public void ordenarPorNumeroInteressados() {
         Collections.sort(listaDemonstracao);
-    }
-
-    public int tamanho() {
-        return listaDemonstracao.size();
     }
 }

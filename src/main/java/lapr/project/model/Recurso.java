@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.util.Objects;
+
 /**
  * Representa um Recurso, através do seu nome.
  * @author marianachilro
@@ -53,5 +55,32 @@ public class Recurso {
     public boolean valida(){
         return true;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 90 * hash + Objects.hashCode(this.nome);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Recurso other = (Recurso) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
 }

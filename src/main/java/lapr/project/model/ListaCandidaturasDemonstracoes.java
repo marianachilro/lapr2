@@ -60,7 +60,11 @@ public class ListaCandidaturasDemonstracoes {
      * @return boolean
      */
     public boolean validaCandidatura(CandidaturaDemonstracao c) {
-        return listaCandidaturas.contains(c);
+        if(!listaCandidaturas.isEmpty()) {
+            return listaCandidaturas.contains(c);
+        } else {
+            return false;
+        }
     }
 
     /**

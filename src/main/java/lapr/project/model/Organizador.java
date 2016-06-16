@@ -92,32 +92,39 @@ public class Organizador {
         return m_oUtilizador;
     }
 
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.m_oUtilizador);
+        return hash;
+    }
+
     /**
      * Permite comparar um objecto/organizador por parametro por outro
      * organizador.
      *
-     * @param o organizador
+     * @param obj organizador
      * @return boolean
      */
     @Override
-    public boolean equals(Object o) {
-
-        if (o == null) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-
-        if (this.getClass() != o.getClass()) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        Utilizador u1 = (Utilizador) o;
-        
-        return this.m_oUtilizador.getUsername().equals(u1.getUsername());
+        final Organizador other = (Organizador) obj;
+        if (!Objects.equals(this.m_oUtilizador, other.m_oUtilizador)) {
+            return false;
+        }
+        return true;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.m_oUtilizador);
-        return hash;
-    }
+    
+    
 }

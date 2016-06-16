@@ -10,11 +10,31 @@ package lapr.project.model;
  * @author catarinarib
  */
 public class Local {
-    
+
+    private String nome;
+    private static final String NOME_OMISSAO = "";
+
+    public Local() {
+        this.nome = NOME_OMISSAO;
+    }
+
     /**
      * Construtor Local
      */
-    public Local(){
-        
+    public Local(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Local: %s", nome);
     }
 }

@@ -55,7 +55,7 @@ public class ListaOrganizadores {
     public boolean hasOrganizador(Utilizador u) {
         boolean b = false;
         for (Organizador o : getListaOrganizadores()) {
-            if (o.equals(u)) {
+            if (o.getUtilizador().equals(u)) {
                 b = true;
             }
         }
@@ -70,10 +70,10 @@ public class ListaOrganizadores {
      * @return
      */
     public boolean validaOrganizador(Organizador o) {
-        if(listaOrganizadores.contains(o)){
-            throw new IllegalArgumentException("Este organizador já foi selecionado!");
+        if(!listaOrganizadores.isEmpty()){
+            return listaOrganizadores.contains(o);
         } else {
-            return true;
+            return false;
         }
     }
 
@@ -97,7 +97,7 @@ public class ListaOrganizadores {
      * @return boolean
      */
     public boolean registaOrganizador(Organizador org) {
-        if (validaOrganizador(org)) {
+        if (!validaOrganizador(org)) {
             add(org);
             return true;
         } else {

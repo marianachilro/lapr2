@@ -74,7 +74,7 @@ public class ListaFAEs {
      * @return boolean
      */
     public boolean registaFae(FAE fae) {
-        if (validaFae(fae)) {
+        if (!validaFae(fae)) {
             addFae(fae);
             return true;
         } else {
@@ -90,7 +90,7 @@ public class ListaFAEs {
      * @return boolean
      */
     public boolean validaFae(FAE fae) {
-        if (tamanho() > 0) {
+        if (!listaFAEs.isEmpty()) {
             return listaFAEs.contains(fae);
         } else {
             return true;
@@ -106,15 +106,6 @@ public class ListaFAEs {
      */
     public boolean addFae(FAE fae) {
         return listaFAEs.add(fae);
-    }
-
-    /**
-     * Devolve o número de FAEs que a List contém
-     *
-     * @return número de FAEs existentes
-     */
-    public int tamanho() {
-        return listaFAEs.size();
     }
 
 }

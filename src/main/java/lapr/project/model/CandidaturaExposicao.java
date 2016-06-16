@@ -331,20 +331,8 @@ public class CandidaturaExposicao implements Candidatura, Removivel {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + Objects.hashCode(this.emailRep);
-        hash = 37 * hash + Objects.hashCode(this.nomeEmpresa);
-        hash = 37 * hash + Objects.hashCode(this.morada);
-        hash = 37 * hash + this.telemovel;
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.area) ^ (Double.doubleToLongBits(this.area) >>> 32));
-        hash = 37 * hash + this.convites;
-        hash = 37 * hash + Objects.hashCode(this.decisao);
-        hash = 37 * hash + Objects.hashCode(this.estado);
-        hash = 37 * hash + Objects.hashCode(this.stand);
-        hash = 37 * hash + Objects.hashCode(this.listaProdutos);
-        hash = 37 * hash + Objects.hashCode(this.listaAvaliacoes);
-        hash = 37 * hash + Objects.hashCode(this.listaKeywords);
-        hash = 37 * hash + Objects.hashCode(this.listaDemonstracoes);
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.emailRep);
         return hash;
     }
 
@@ -360,44 +348,13 @@ public class CandidaturaExposicao implements Candidatura, Removivel {
             return false;
         }
         final CandidaturaExposicao other = (CandidaturaExposicao) obj;
-        if (this.telemovel != other.telemovel) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.area) != Double.doubleToLongBits(other.area)) {
-            return false;
-        }
-        if (this.convites != other.convites) {
-            return false;
-        }
         if (!Objects.equals(this.emailRep, other.emailRep)) {
             return false;
         }
-        if (!Objects.equals(this.nomeEmpresa, other.nomeEmpresa)) {
-            return false;
-        }
-        if (!Objects.equals(this.morada, other.morada)) {
-            return false;
-        }
-        if (!Objects.equals(this.decisao, other.decisao)) {
-            return false;
-        }
-        if (!Objects.equals(this.estado, other.estado)) {
-            return false;
-        }
-        if (!Objects.equals(this.stand, other.stand)) {
-            return false;
-        }
-        if (!Objects.equals(this.listaProdutos, other.listaProdutos)) {
-            return false;
-        }
-        if (!Objects.equals(this.listaAvaliacoes, other.listaAvaliacoes)) {
-            return false;
-        }
-        if (!Objects.equals(this.listaKeywords, other.listaKeywords)) {
-            return false;
-        }
-        return Objects.equals(this.listaDemonstracoes, other.listaDemonstracoes);
+        return true;
     }
+
+   
 
     @Override
     public String toString() {
