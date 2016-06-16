@@ -32,7 +32,7 @@ public class ListarCandRemovidasController {
     public List<Candidatura>getListaCandRemovidas(Exposicao e){
        ListaCandidaturasExposicoes lc = e.getListaCandidaturas();
        List<Candidatura> rc = lc.getListaCandRemovidas();
-       rc.addAll(e.getListaDemonstracoes().getListaCandRemovidas());
+//       rc.addAll(e.getListaDemonstracoes().getListaCandRemovidas());
        return rc;
     }
     

@@ -64,7 +64,11 @@ public class ListaDemonstracoes {
      * @return boolean
      */
     public boolean validaDemonstracao(Demonstracao d) {
-        return listaDemonstracao.contains(d);
+        if (tamanho() < 0) {
+            return listaDemonstracao.contains(d);
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -87,7 +91,7 @@ public class ListaDemonstracoes {
      * @return boolean
      */
     public boolean registaDemonstracao(Demonstracao d) {
-        if (validaDemonstracao(d)) {
+        if (!validaDemonstracao(d)) {
             addDemonstracao(d);
             return true;
         } else {
@@ -96,22 +100,9 @@ public class ListaDemonstracoes {
     }
 
     /**
-     * Devolve as demonstracoes
+     * Devolve uma lista com a Demonstrações que se vão realizar (cuja
+     * realização já foi confirmada).
      *
-     * @return demonstracoes
-     */
-    public List<Demonstracao> getDemonstracao() {
-        List<Demonstracao> ld = new ArrayList<>();
-        if (!listaDemonstracao.isEmpty()) {
-            for (Demonstracao d : listaDemonstracao) {
-                ld.add(d);
-            }
-        }
-        return ld;
-    }
-
-    /**
-     * Devolve uma lista com a Demonstrações que se vão realizar (cuja realização já foi confirmada).
      * @return lista de demonstracoes confirmadas
      */
     public List<Demonstracao> getListaDemonstracoesDisponiveis() {
@@ -124,15 +115,17 @@ public class ListaDemonstracoes {
         }
         return ld;
     }
-    
+
     /**
-     * Devolve uma lista com as Demonstrações cuja realização ainda não foi confirmada.
+     * Devolve uma lista com as Demonstrações cuja realização ainda não foi
+     * confirmada.
+     *
      * @return lista de demonstracoes não confirmadas
      */
-    public List <Demonstracao> getListaDemonstracoesNaoConfirmadas(){
-        List <Demonstracao> ld = new ArrayList<>();
-        for(Demonstracao d : listaDemonstracao){
-            if(d.getRealizacao() == false){
+    public List<Demonstracao> getListaDemonstracoesNaoConfirmadas() {
+        List<Demonstracao> ld = new ArrayList<>();
+        for (Demonstracao d : listaDemonstracao) {
+            if (d.getRealizacao() == false) {
                 ld.add(d);
             }
         }
@@ -172,7 +165,7 @@ public class ListaDemonstracoes {
      * as Demonstrações da lista.
      *
      * @param data a data final do período de atualização de conflitos
-     */ 
+     */
     public void setDataFimAtualizacaoConflitosDemos(Data data) {
         if (data != null) {
             for (Demonstracao d : this.listaDemonstracao) {
@@ -190,25 +183,12 @@ public class ListaDemonstracoes {
         }
         return b;
     }
-    
-    public void ordenarPorNumeroInteressados(){
+
+    public void ordenarPorNumeroInteressados() {
         Collections.sort(listaDemonstracao);
     }
-    /**
-     * Retorna a lista de candidaturas removidas de todas as demonstrações.
-     * @return 
-     */
-     public List<Candidatura> getListaCandRemovidas(){
-        List<Candidatura> lr = new ArrayList<>();
-        listaDemonstracao.stream().forEach((Demonstracao d) -> {
-            d.getListaCandidaturas().getListCandidaturas().stream().map((c) -> {
-                CandidaturaEstado st = c.getEstado();
-                return c;
-            }).forEach((c) -> {
-                //   if(st.setRemovida()){
-                lr.add(c);
-            });
-        });
-       return lr;
-}
+
+    public int tamanho() {
+        return listaDemonstracao.size();
+    }
 }

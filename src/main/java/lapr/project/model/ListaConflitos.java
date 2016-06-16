@@ -74,4 +74,8 @@ public class ListaConflitos {
         this.lc = lc;
     }
     
+    public boolean addConflito(Conflito c) {
+        return lc.add(c);
+    }
+    
 }

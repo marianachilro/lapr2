@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author marianachilro
@@ -94,6 +96,42 @@ public class Conflito {
     public void setTipo(TipoConflito tipo){
         this.tipo=tipo;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.fae);
+        hash = 53 * hash + Objects.hashCode(this.c);
+        hash = 53 * hash + Objects.hashCode(this.tipo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Conflito other = (Conflito) obj;
+        if (!Objects.equals(this.fae, other.fae)) {
+            return false;
+        }
+        if (!Objects.equals(this.c, other.c)) {
+            return false;
+        }
+        if (!Objects.equals(this.tipo, other.tipo)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+    
     
     
 }
