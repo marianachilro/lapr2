@@ -14,57 +14,38 @@ import static org.junit.Assert.*;
  */
 public class AtribuicaoTest {
     
-    public AtribuicaoTest() {
-    }
+   
 
-//    /**
-//     * Test of getFAE method, of class Atribuicao.
-//     */
-//    @Test
-//    public void testGetAndSetFAE() {
-//        System.out.println("getAndSetFAE");
-//        CandidaturaExposicao c = new CandidaturaExposicao();
-//        FAE fae = new FAE();
-//        Atribuicao instance = new Atribuicao(fae, c);
-//        Utilizador u = new Utilizador("joao", "Joao_vaz", "123@outlookp.pt", "Jj;012345");
-//        FAE fae2 = new FAE(u);
-//        FAE expResult = fae2;
-//        instance.setFAE(fae2);
-//        FAE result = instance.getFAE();
-//        assertEquals(expResult, result);
-//        
-//    }
-
-//    /**
-//     * Testa se o método set e get candidatura funciona com uma CandidaturaExposicao.
-//     */
-//    @Test
-//    public void testGetAndSetCandidatura() {
-//        System.out.println("getCandidatura");
-//       
-//        CandidaturaExposicao c = new CandidaturaExposicao();
-//        FAE fae = new FAE();
-//        Atribuicao instance = new Atribuicao(fae, c);
-//        CandidaturaExposicao c2 = new CandidaturaExposicao("123@centro.pt","nome empres", "morada", 919999999, 1, 30);
-//        CandidaturaExposicao expResult = c2;
-//        instance.setCandidatura(c2);
-//        Candidatura result = instance.getCandidatura();
-//        assertEquals(expResult, result);
-//    }
-    
     /**
-     * Testa se o método set e get candidatura funciona com uma CandidaturaDemonstracao.
+     * Test of getFAE method, of class Atribuicao.
      */
     @Test
-    public void testGetAndSetCandidatura1() {
-        System.out.println("getCandidatura");
-       
-        CandidaturaDemonstracao c = new CandidaturaDemonstracao();
+    public void testGetAndSetFAE() {
+        System.out.println("getAndSetFAE");
+        CandidaturaExposicao c = new CandidaturaExposicao();
         FAE fae = new FAE();
         Atribuicao instance = new Atribuicao(fae, c);
-        Demonstracao demo = new Demonstracao();
-        CandidaturaDemonstracao c2 = new CandidaturaDemonstracao("sfdf@centro.pt",demo);
-        CandidaturaDemonstracao expResult = c2;
+        Utilizador u = new Utilizador("joao", "Joao_vaz", "123@outlookp.pt", "Jj;012345");
+        FAE fae2 = new FAE(u);
+        FAE expResult = fae2;
+        instance.setFAE(fae2);
+        FAE result = instance.getFAE();
+        assertEquals(expResult, result);
+        
+    }
+
+    /**
+     * Testa se o método set e get candidatura funciona com uma CandidaturaExposicao.
+     */
+    @Test
+    public void testGetAndSetCandidatura() {
+        System.out.println("getCandidatura");
+       
+        CandidaturaExposicao c = new CandidaturaExposicao();
+        FAE fae = new FAE();
+        Atribuicao instance = new Atribuicao(fae, c);
+        CandidaturaExposicao c2 = new CandidaturaExposicao("123", "asd", "asd", 123123123, 20, 30);
+        CandidaturaExposicao expResult = c2;
         instance.setCandidatura(c2);
         Candidatura result = instance.getCandidatura();
         assertEquals(expResult, result);

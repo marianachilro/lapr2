@@ -71,6 +71,7 @@ public class Demonstracao  implements Comparable <Demonstracao>{
         this.codigo = CODIGO_OMISSAO;
         this.descricao = DESCRICAO_OMISSAO;
         this.realizacao = false;
+        this.estado=new DemonstracaoInicialEstado(this);
         listaCandidaturas = new ListaCandidaturasDemonstracoes();
         listaAtribuicoes = new ListaAtribuicoes();
         listaConflitos = new ListaConflitos();
@@ -87,6 +88,7 @@ public class Demonstracao  implements Comparable <Demonstracao>{
         this.codigo = codigo;
         this.descricao = descricao;
         this.realizacao = false;
+        this.estado=new DemonstracaoInicialEstado(this);
         listaCandidaturas = new ListaCandidaturasDemonstracoes();
         listaAtribuicoes = new ListaAtribuicoes();
         listaConflitos = new ListaConflitos();

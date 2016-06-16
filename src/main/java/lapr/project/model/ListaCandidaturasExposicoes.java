@@ -132,7 +132,7 @@ public class ListaCandidaturasExposicoes {
     }
     /**
      * Método que retorna a lista de candidaturas do representante qeu já tem
-     * stand atribuido.
+     * stand atribuido e que ainda não tenha sido confirmado o interesse no stand.
      *
      * @param email
      * @return
@@ -141,8 +141,11 @@ public class ListaCandidaturasExposicoes {
         List<CandidaturaExposicao> aux = getListaCandidaturasRep(email);
         List<CandidaturaExposicao> candRep = new ArrayList<>();
         for (CandidaturaExposicao cand : aux) {
-            if (cand.getStand() != null) {
+            if (cand.getStand() != null ) {
+                CandidaturaEstado st = cand.getEstado();
+                if(st.setAceite() && !st.setAvaliada()){
                 candRep.add(cand);
+                }
             }
         }
         return candRep;

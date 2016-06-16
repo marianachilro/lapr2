@@ -100,6 +100,20 @@ public class ListaCandidaturasDemonstracoes {
         }
         return le;
     }
+    /**
+     * Método que retorna as candidaturas da demonstração removidas pelo representante.
+     * @return 
+     */
+    public List<Candidatura> getListaCandRemovidas(){
+        List<Candidatura> rc = new ArrayList<>();
+        for(Candidatura c : listaCandidaturas){
+            CandidaturaEstado st = c.getEstado();
+            if(st.setRemovida()){
+                rc.add(c);
+            }
+        }
+        return rc;
+    }
     
     
 }
