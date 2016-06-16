@@ -812,7 +812,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param dataIniSubCan data de inicio de submissao de candidaturas
      */
-    public void setDataIniSubCan(Data dataIniSubCan) {
+    public final void setDataIniSubCan(Data dataIniSubCan) {
         if (dataIniSubCan == null) {
             throw new IllegalArgumentException("Data inválida!");
         }
