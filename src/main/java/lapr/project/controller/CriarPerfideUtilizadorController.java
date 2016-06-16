@@ -43,7 +43,7 @@ public class CriarPerfideUtilizadorController {
 
     public boolean RegistaUtilizador() {
 
-        return this.registoUtilizadores.confirmaUtilizador(u);
+        return this.registoUtilizadores.confirmaNaoUtilizador(u);
 
     }
 
