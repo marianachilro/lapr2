@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.io.File;
+import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,6 +15,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -211,8 +214,10 @@ public class LerFicheiroXML {
  * Método para ler uma exposição.
  * @param ficheiro
  * @return 
+     * @throws java.io.IOException 
+     * @throws org.xml.sax.SAXException 
  */
-    public static Exposicao lerExposicao(Node ficheiro) {
+    public static Exposicao lerExposicao(File ficheiro) throws IOException, SAXException {
         Exposicao exposicao = new Exposicao();
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -221,8 +226,8 @@ public class LerFicheiroXML {
             DocumentBuilder builder = factory.newDocumentBuilder();
 
             //Obtain a new document
-            Document document = builder.newDocument();
-            document.appendChild(document.importNode(ficheiro, true));
+            Document document = builder.parse(ficheiro);
+           
 
             NodeList elementsExposicao = document.getElementsByTagName(ROOT_ELEMENT_NAME_EXPOSICAO);
 
