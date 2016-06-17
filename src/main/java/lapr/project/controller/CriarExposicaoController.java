@@ -9,6 +9,7 @@ import lapr.project.utils.Data;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.ListaOrganizadores;
+import lapr.project.model.Local;
 import lapr.project.model.Organizador;
 import lapr.project.model.RegistoExposicoes;
 import lapr.project.model.RegistoLocais;
@@ -23,9 +24,6 @@ public class CriarExposicaoController {
 
     private Exposicao m_exposicao;
     private final CentroExposicoes m_oCE;
-    private Utilizador m_oUtilizador;
-    private Organizador _oOrg;
-    private RegistoExposicoes RegistoExposicoes;
     private RegistoUtilizadores RegistoUtilizadores;
 
     public CriarExposicaoController(CentroExposicoes ce) {
@@ -33,14 +31,15 @@ public class CriarExposicaoController {
     }
 
     public void newExposicao() {
-        this.m_exposicao = RegistoExposicoes.newExposicao();
+        this.m_exposicao = m_oCE.getRegistoExposicoes().newExposicao();
     }
 
-    public void setDadosExposicao(String sTitulo, String sDescritivo, Data oDtInicio, Data oDtFim,Data oDtIniSubCand, Data oDtFimSubCand, Data oDtFimActConf, Data oDtFimAvCand, Data oDtIniDetConflitos) {
+    public void setDadosExposicao(String sTitulo, String sDescritivo, Data oDtInicio, Data oDtFim,Local local,Data oDtIniSubCand, Data oDtFimSubCand, Data oDtFimActConf, Data oDtFimAvCand) {
         this.m_exposicao.setTitulo(sTitulo);
         this.m_exposicao.setDescricao(sDescritivo);
         this.m_exposicao.setDataInicio(oDtInicio);
         this.m_exposicao.setDataFim(oDtFim);
+        this.m_exposicao.setLocal(local);
         this.m_exposicao.setDataIniSubCan(oDtIniSubCand);
         this.m_exposicao.setDataFimSubCand(oDtFimSubCand);
         this.m_exposicao.setDataFimAtcConf(oDtFimActConf);
@@ -53,28 +52,25 @@ public class CriarExposicaoController {
         return this.m_oCE.getRegistoLocais();
     }
 
-    public void setLocal(String local) {
+    public void setLocal(Local local) {
         this.m_exposicao.setLocal(local);
     }
 
     public RegistoUtilizadores getRegistoUtilizadores() {
-        return this.m_oCE.getRegistoUtilizadores();
+        return this.RegistoUtilizadores=this.m_oCE.getRegistoUtilizadores();
     }
 
     public ListaOrganizadores getListaOrganizadores() {
         return this.m_exposicao.getListaOrganizadores();
     }
 
-    public void addOrganizador(Utilizador u) {
-        this.m_exposicao.addOrganizador(u);
+    public boolean addOrganizador(Utilizador u) {
+        return this.m_exposicao.addOrganizador(u);
     }
 
-    public boolean validaExposicao() {
-        return this.RegistoExposicoes.valida(m_exposicao);
-    }
 
     public boolean registaExposicao() {
-        return this.RegistoExposicoes.registaExposicao(m_exposicao);
+        return m_oCE.getRegistoExposicoes().registaExposicao(m_exposicao);
     }
 
 }

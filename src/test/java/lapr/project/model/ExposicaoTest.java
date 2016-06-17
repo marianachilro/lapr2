@@ -100,9 +100,10 @@ public class ExposicaoTest {
     public void testGetLocalAndSetLocal() {
         System.out.println("TesteLocal");
         Exposicao instance = new Exposicao();
-        instance.setLocal("local");
-        String expResult = "local";
-        String result = instance.getLocal();
+        Local local=new Local("Porto");
+        instance.setLocal(local);
+        Local expResult = local;
+        Local result = instance.getLocal();
         assertEquals(expResult, result);
     }
 
@@ -481,19 +482,6 @@ public class ExposicaoTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getLocal method, of class Exposicao.
-     */
-    @Test
-    public void testGetLocal() {
-        System.out.println("getLocal");
-        Exposicao instance = new Exposicao();
-        String expResult = "";
-        String result = instance.getLocal();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getDataInicioSubmissaoCandidaturasDemos method, of class Exposicao.
@@ -760,19 +748,6 @@ public class ExposicaoTest {
         Data dataFim = null;
         Exposicao instance = new Exposicao();
         instance.setDataFim(dataFim);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setLocal method, of class Exposicao.
-     */
-    @Test
-    public void testSetLocal() {
-        System.out.println("setLocal");
-        String local = "";
-        Exposicao instance = new Exposicao();
-        instance.setLocal(local);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
