@@ -7,16 +7,20 @@ package lapr.project.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author catarinarib
  */
+@XmlRootElement
 public class ListaFAEs {
 
     /**
      * Lista de FAEs da exposição
      */
+    @XmlElement(name="fae")
     private List<FAE> listaFAEs;
 
     /**

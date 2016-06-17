@@ -7,17 +7,22 @@ package lapr.project.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Rita
  */
+@XmlRootElement(name="CentroExposicoes")
 public class RegistoUtilizadores {
 
     /**
      * List de Utilizadores.
      */
+    @XmlElement(name="registoUtilizadoresConfirmados")
     private List<Utilizador> listaUtilizadores;
+    @XmlElement(name="registoUtilizadoresNaoConfirmados")
     private List<Utilizador> listaUtilizadoresNaoConfirmados;
 
     /**

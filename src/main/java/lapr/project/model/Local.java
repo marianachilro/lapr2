@@ -5,13 +5,22 @@
  */
 package lapr.project.model;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author catarinarib
  */
+@XmlRootElement
 public class Local {
 
+    /**
+     * nome do local.
+     */
+    @XmlElement
     private String nome;
+
     private static final String NOME_OMISSAO = "";
 
     public Local() {
@@ -20,6 +29,7 @@ public class Local {
 
     /**
      * Construtor Local
+     * @param nome
      */
     public Local(String nome) {
         this.nome = nome;

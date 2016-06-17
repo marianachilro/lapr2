@@ -5,42 +5,53 @@
  */
 package lapr.project.model;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author miniondevil
  */
+@XmlRootElement
 public class CentroExposicoes {
 
     /**
      * Registo com todos os tipos de conflitos.
      */
+    @XmlElement(name="registoConflitos")
     private RegistoTipoConflitos rc;
     /**
      * Registo com todas as exposições.
      */
+    @XmlElement(name="registoExposicoes")
     private RegistoExposicoes re;
     /**
      * Registo com todos os utilizadores.
      */
+    @XmlElement(name="registoUtilizadores")
     private RegistoUtilizadores ru;
     /**
      * Registo com todos os stands.
      */
+    @XmlElement(name="stands")
     private RegistoStands rs;
 
     /**
      * Registo de locais do centro
      */
+    @XmlElement(name="locais")
     private RegistoLocais rl;
 
     /**
      * Registo de recursos do centro
      */
+    @XmlElement(name="recursos")
     private RegistoRecursos rr;
 
     /**
      * Registo ocm todos os mecanismos.
      */
+    @XmlElement(name="mecanismos")
     private RegistoMecanismos rm;
 
     /**

@@ -5,15 +5,20 @@
  */
 package lapr.project.model;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author Rita
  */
+@XmlRootElement
 public class Keyword {
 
     /**
      * Palavra referente à Keyword.
      */
+    @XmlElement
     private String palavra;
     /**
      * Palavra referente à Keyword por omissão.

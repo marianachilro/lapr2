@@ -7,16 +7,20 @@ package lapr.project.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author miniondevil
  */
+@XmlRootElement
 public class ListaConflitos {
     
     /**
      * lista com os conflitos de uma dada exposição ou demonstração.
      */
+    @XmlElement(name="conflito")
     List<Conflito> lc;
 
     /**

@@ -7,33 +7,41 @@ package lapr.project.model;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Rita
  */
+@XmlRootElement
 public class Utilizador {
 
     /**
      * Nome de Utilizador.
      */
+    @XmlElement
     private String nome;
     /**
      * Username de Utilizador.
      */
+    @XmlElement
     private String username;
     /**
      * E-mail de Utilizador.
      */
+    @XmlElement
     private String email;
     /**
      * Password de Utilizador.
      */
+    @XmlElement
     private String password;
     
     /**
      * Keyword do utilizador
      */
+    @XmlElement
     private String keyword;
 
     /**

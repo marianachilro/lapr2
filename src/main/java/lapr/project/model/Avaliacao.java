@@ -6,46 +6,56 @@
 package lapr.project.model;
 
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author catarinarib
  */
+@XmlRootElement
 public class Avaliacao {
 
     /**
      * A decisão da avaliação.
      */
+    @XmlElement
     private String decisao;
 
     /**
      * Texto justificativo da avaliação.
      */
+    @XmlElement(name="justificação")
     private String txt;
 
     /**
      * Resposta ao inquerito sobre o tema da exposição.
      */
+    @XmlElement(name="temaExpo")
     private int respostaTemaExpo;
 
     /**
      * Resposta ao inquerito sobre a adquação da candidatura à exposição.
      */
+    @XmlElement(name="adequaçãoExposição")
     private int respostaAdequacaoCandExposicao;
 
     /**
      * Resposta ao inquerito sobre a adquação da candidaturas às demonstrações
      */
+    @XmlElement(name="adequaçãoCandidaturaDemonstração")
     private int respostaAdequacaoCandDemonstracao;
 
     /**
      * Resposta ao inquerito sobre a adquação do numero de convites.
      */
+    @XmlElement(name="adequaçãoNumeroConvites")
     private int respostaAdequacaoNumConvites;
 
     /**
      * Resposta ao inquerito recomendação global.
      */
+    @XmlElement(name="recomendaçãoGlobal")
     private int respostaRecomendacaoGlobal;
 
     /**

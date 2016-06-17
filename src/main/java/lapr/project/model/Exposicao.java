@@ -8,107 +8,131 @@ package lapr.project.model;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.utils.Data;
 
 /**
  *
  * @author Rita
  */
+@XmlRootElement
 public class Exposicao implements Avaliavel, Decisivel {
 
     /**
      * Título da Exposição
      */
+    @XmlElement
     private String titulo;
     /**
      * Descrição da Exposição.
      */
+    @XmlElement
     private String descricao;
     /**
      * Data de inicio da Exposição.
      */
+    @XmlElement
     private Data dataInicio;
     /**
      * Data de fim da Exposição.
      */
+    @XmlElement
     private Data dataFim;
     /**
      * Local da Exposição.
      */
+    @XmlElement
     private String local;
 
     /**
      * Data de inicio de submissao de candidaturas;
      */
+    @XmlElement(name = "subInicio")
     private Data dataIniSubCan;
 
     /**
      * Data final de submissao de candidaturas;
      */
+    @XmlElement(name = "subFim")
     private Data dataFimSubCand;
 
     /**
      * Data final de atualização de conflitos.
      */
+    @XmlElement(name = "dataLimiteConflitos")
     private Data dataFimAtcConf;
 
     /**
      * Data final de avaliação de candidaturas.
      */
+    @XmlElement(name = "dataFimAvaliacaoCandidatura")
     private Data dataFimAvCandidatura;
 
     /**
      * Data de início do período de submissão de candidaturas às Demonstraçoes.
      */
+    @XmlElement(name = "dataInicioSubCandDemos")
     private Data dataInicioSubCandDemos;
     /**
      * Data de fim do período de submissão de candidaturas às Demonstraçoes.
      */
+    @XmlElement(name = "dataFimSubCandDemos")
     private Data dataFimSubCandDemos;
     /**
      * Data fim do período de atualização de confitos nas Demonstrações da
      * Exposição.
      */
+    @XmlElement(name = "dataLimiteAtualizacaoConflitosDemos")
     private Data dataFimAtualizacaoConflitosDemos;
     /**
      * Estado da exposição.
      */
+    @XmlElement(name = "estado")
     private ExposicaoEstado st;
 
     /**
      * Contador de candidaturas aceites
      */
+    @XmlElement(name = "candidaturasAceites")
     private static int contCandAceites = 0;
 
     /**
      * Contador de candidaturas rejeitadas
      */
+    @XmlElement(name = "candidaturasRejeitadas")
     private static int contCandRejeitadas = 0;
     /**
      * Lista de Organizadores da Exposição
      */
+    @XmlElement(name = "registoOrganizadores")
     private ListaOrganizadores listaOrg;
     /**
      * Lista de Candidaturas da Exposição.
      */
+    @XmlElement(name = "registoCandidaturas")
     private ListaCandidaturasExposicoes listaCandidaturas;
     /**
      * Lista de Demonstrações da Exposição.
      */
+    @XmlElement(name = "registoDemonstracoes")
     private ListaDemonstracoes listaDemonstracoes;
     /**
      * Lista de conflitos da exposição.
      */
+    @XmlElement(name = "registoConflitos")
     private ListaConflitos listaConflitos;
 
     /**
      * Lista de FAEs da exposicao.
      */
+    @XmlElement(name = "registoFAEs")
     private ListaFAEs listaFAEs;
 
     /**
      * Lista de atribuicoes da exposicao.
      */
+    @XmlElement(name = "registoAtribuicoes")
     private ListaAtribuicoes listaAtribuicoes;
 
     /**
@@ -684,7 +708,7 @@ public class Exposicao implements Avaliavel, Decisivel {
         return (this.titulo == null || this.descricao == null || this.listaOrg.getListaOrganizadores().isEmpty()
                 || this.dataInicio == null || this.dataFim == null || this.dataFimSubCand == null
                 || this.dataFimAtcConf == null || this.dataFimAvCandidatura == null
-                || this.dataIniSubCan==null);
+                || this.dataIniSubCan == null);
     }
 
     /**
@@ -699,7 +723,7 @@ public class Exposicao implements Avaliavel, Decisivel {
         boolean decisao = true;
         if (!lc.isEmpty()) {
             for (CandidaturaExposicao c : lc) {
-                if (c.getDecisao()==decisao) {
+                if (c.getDecisao() == decisao) {
                     lcAceites.add(c);
                 }
             }
@@ -720,7 +744,7 @@ public class Exposicao implements Avaliavel, Decisivel {
         boolean decisao = false;
         if (!lc.isEmpty()) {
             for (CandidaturaExposicao c : lc) {
-                if (c.getDecisao()==decisao) {
+                if (c.getDecisao() == decisao) {
                     lcNaoAceites.add(c);
                 }
             }
@@ -818,6 +842,5 @@ public class Exposicao implements Avaliavel, Decisivel {
         }
         this.dataIniSubCan = dataIniSubCan;
     }
-
 
 }

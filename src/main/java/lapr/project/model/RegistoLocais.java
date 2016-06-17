@@ -7,16 +7,20 @@ package lapr.project.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author catarinarib
  */
+@XmlRootElement
 public class RegistoLocais {
 
     /**
      * Lista de locais.
      */
+    @XmlElement(name="locais")
     private List<Local> listaLocais;
 
     /**

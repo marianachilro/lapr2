@@ -6,15 +6,19 @@
 package lapr.project.model;
 
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Representa um Recurso, através do seu nome.
  * @author marianachilro
  */
+@XmlRootElement
 public class Recurso {
     /**
      * O nome do Recurso.
      */
+    @XmlElement
     private String nome;
     /**
      * O nome por omissão do Recurso.

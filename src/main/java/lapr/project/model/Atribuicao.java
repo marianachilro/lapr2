@@ -5,19 +5,25 @@
  */
 package lapr.project.model;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author catarinarib
  */
+@XmlRootElement
 public class Atribuicao {
     
    /**
      * FAE ao qual vai ser atribuido a candidatura.
      */
+    @XmlElement
     FAE fae;
     /**
      * Candidatura que vai ser atribuida ao FAE.
      */
+    @XmlElement(name="candidatura")
     Candidatura c;
 
     /**

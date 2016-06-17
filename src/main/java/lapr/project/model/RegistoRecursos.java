@@ -7,16 +7,20 @@ package lapr.project.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Representa um Registo de Recursos, através da sua lista de Recursos.
  * @author marianachilro
  */
+@XmlRootElement
 public class RegistoRecursos {
     
     /**
      * A lista de Recursos.
      */
+    @XmlElement(name="recursos")
     private List <Recurso> listaRecursos;
     
     /**

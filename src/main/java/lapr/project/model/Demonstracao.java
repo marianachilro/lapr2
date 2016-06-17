@@ -5,35 +5,42 @@
  */
 package lapr.project.model;
 
-import java.util.List;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.utils.Data;
 
 /**
  *
  * @author Rita
  */
+@XmlRootElement
 public class Demonstracao  implements Comparable <Demonstracao>{
 
     /**
      * Código único de Demonstração.
      */
+    @XmlElement
     private String codigo;
     /**
      * Descrição de Demonstração.
      */
+    @XmlElement
     private String descricao;
     /**
      * A confirmação de que a Demonstração se vai realizar.
      */
+    @XmlElement
     private boolean realizacao;
     /**
      * O estado da Demonstração.
      */
+    @XmlElement
     private DemonstracaoEstado estado;
     /**
      * Número de Representantes interessados em participar na Demonstração.
      */
+    @XmlElement
     private int numeroInteressados;
     
     private Data dataInicioSubmissaoCandidaturas;
@@ -41,9 +48,9 @@ public class Demonstracao  implements Comparable <Demonstracao>{
     private Data dataFimSubmissaoCandidaturas;
     
     private Data dataFimAtualizacaoConflitos;
-    
+    @XmlElement(name="registoConflitos")
     private ListaConflitos listaConflitos;
-    
+    @XmlElement(name="registoConflitos")
     private ListaRecursos listaRecursos;
     /**
      * Lista de Candidaturas da demonstracao.

@@ -8,24 +8,30 @@ package lapr.project.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author miniondevil
  */
+@XmlRootElement
 public class TipoConflito {
 
     /**
      * nome do tipo de conflito.
      */
+    @XmlElement
     private String nome;
     /**
      * dados sobre o tipo de conflito.
      */
+    @XmlElement
     private String dados;
     /**
      * Lista de Mecanismos que consegue detetar o Tipo de Conflito.
      */
+    @XmlElement(name="mecanismosConfitos")
     private final List <MecanismoDetecaoConflito> listaMecanismos;
 
     public TipoConflito(){

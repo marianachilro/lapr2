@@ -30,7 +30,7 @@ public class CarregarExposicoesController {
     public void lerExpo(File ficheiro) throws IOException, SAXException{
         re = ce.getRegistoExposicoes();
         Exposicao e = re.newExposicao();
-        e = LerFicheiroXML.lerExposicao(ficheiro);
+     //   e = LerFicheiroXML.lerExposicao(ficheiro);
         le.add(e);
     }
     public boolean addDados(){

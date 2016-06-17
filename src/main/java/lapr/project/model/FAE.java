@@ -6,16 +6,20 @@
 package lapr.project.model;
 
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author catarinarib
  */
+@XmlRootElement
 public class FAE {
 
     /**
      * Utilizador
      */
+    @XmlElement(name="utilizador")
     private Utilizador m_oUFae;
 
     /**

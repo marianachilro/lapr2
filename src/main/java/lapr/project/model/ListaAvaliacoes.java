@@ -7,15 +7,19 @@ package lapr.project.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author catarinarib
  */
+@XmlRootElement
 public class ListaAvaliacoes {
      /**
      * lista com as Avaliações.
      */
+    @XmlElement(name="avaliacao")
     private final List<Avaliacao> la;
 
     /**

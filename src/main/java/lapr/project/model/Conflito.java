@@ -6,22 +6,27 @@
 package lapr.project.model;
 
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author marianachilro
  */
+@XmlRootElement
 public class Conflito {
     
      /**
      * FAE do Conflito.
      */
+    @XmlElement
     FAE fae;
     /**
      * Candidatura do Conflito.
      */
+    @XmlElement(name="candidatura")
     Candidatura c;
-    
+    @XmlElement(name="tipoConflito")
     TipoConflito tipo;
 
     /**

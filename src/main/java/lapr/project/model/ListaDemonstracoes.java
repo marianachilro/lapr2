@@ -8,17 +8,21 @@ package lapr.project.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.utils.Data;
 
 /**
  *
  * @author Rita
  */
+@XmlRootElement
 public class ListaDemonstracoes {
 
     /**
      * List com Demonstrações.
      */
+    @XmlElement(name="Demonstracao")
     private List<Demonstracao> listaDemonstracao;
 
     /**

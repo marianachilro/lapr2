@@ -6,16 +6,20 @@
 package lapr.project.model;
 
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Rita
  */
+@XmlRootElement
 public class Produto {
 
     /**
      * Nome de Produto.
      */
+    @XmlElement
     private String nome;
     /**
      * Nome de Produto por omissão.
