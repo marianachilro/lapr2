@@ -24,7 +24,8 @@ public class ExposicaoCriadaEstadoTest {
     @Test
     public void testSetCriada() {
         System.out.println("setCriada");
-        Exposicao expo = new Exposicao("titulo", "descricao", new Data(2016, 8, 17), new Data(2016, 12, 18), "local", new Data(2016, 8, 20), new Data(2016, 8, 30),
+        Local local = new Local("Porto");
+        Exposicao expo = new Exposicao("titulo", "descricao", new Data(2016, 8, 17), new Data(2016, 12, 18), local, new Data(2016, 8, 20), new Data(2016, 8, 30),
             new Data(2016, 9, 3), new Data(2016, 9, 15));
         ExposicaoCriadaEstado instance = new ExposicaoCriadaEstado(expo);
         boolean expResult = true;

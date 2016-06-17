@@ -35,7 +35,7 @@ public class Exposicao implements Avaliavel, Decisivel {
     /**
      * Local da Exposição.
      */
-    private String local;
+    private Local local;
 
     /**
      * Data de inicio de submissao de candidaturas;
@@ -130,7 +130,7 @@ public class Exposicao implements Avaliavel, Decisivel {
     /**
      * Valor do Local da Exposição por omissão.
      */
-    private static final String LOCAL_OMISSAO = "";
+    private static final Local LOCAL_OMISSAO = null;
 
     /**
      * Construtor de uma Exposição com todos os atributos por omissão.
@@ -168,7 +168,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      * @param dataFimAtcConf Data fim de atualização de conflitos
      * @param dataFimAvCandidatura Data fim de avaliar candidaturas
      */
-    public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, String local, Data dataIniSubCand, Data dataFimSubCand,
+    public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim, Local local, Data dataIniSubCand, Data dataFimSubCand,
             Data dataFimAtcConf, Data dataFimAvCandidatura) {
 
         setTitulo(titulo);
@@ -230,7 +230,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @return Local
      */
-    public String getLocal() {
+    public Local getLocal() {
         return local;
     }
 
@@ -416,7 +416,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     public final void setDataInicio(Data dataInicio) {
         if (dataInicio == null) {
-            throw new IllegalArgumentException("Data inválida!");
+            throw new IllegalArgumentException("Data inicio inválida!");
         }
         this.dataInicio = dataInicio;
     }
@@ -428,7 +428,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     public final void setDataFim(Data dataFim) {
         if (dataFim == null) {
-            throw new IllegalArgumentException("Data inválida!");
+            throw new IllegalArgumentException("Data fim inválida!");
         }
         this.dataFim = dataFim;
     }
@@ -438,8 +438,8 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param local Local
      */
-    public final void setLocal(String local) {
-        if (local == null || local.trim().isEmpty()) {
+    public final void setLocal(Local local) {
+        if (local == null || local.getNome().isEmpty()) {
             throw new IllegalArgumentException("Local inválido!");
         }
         this.local = local;
@@ -461,7 +461,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     public final void setDataFimSubCand(Data dataFimSubCand) {
         if (dataFimSubCand == null) {
-            throw new IllegalArgumentException("Data inválida!");
+            throw new IllegalArgumentException("Data fim de submissão de candidaturas inválida!");
         }
         this.dataFimSubCand = dataFimSubCand;
     }
@@ -482,7 +482,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     public final void setDataFimAtcConf(Data dataFimAtcConf) {
         if (dataFimAtcConf == null) {
-            throw new IllegalArgumentException("Data inválida!");
+            throw new IllegalArgumentException("Data fim de actualizaçao de conflitos inválida!");
         }
         this.dataFimAtcConf = dataFimAtcConf;
     }
@@ -503,7 +503,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     public final void setDataFimAvCandidatura(Data dataFimAvCandidatura) {
         if (dataFimAvCandidatura == null) {
-            throw new IllegalArgumentException("Data inválida!");
+            throw new IllegalArgumentException("Data fim de avaliar candidaturas inválida!");
         }
         this.dataFimAvCandidatura = dataFimAvCandidatura;
     }
@@ -512,24 +512,18 @@ public class Exposicao implements Avaliavel, Decisivel {
      * Adiciona organizador à lista de organizadores da exposição.
      *
      * @param u utilizador/organizador
+     * @return boolean
      */
-    public void addOrganizador(Utilizador u) {
+    public boolean addOrganizador(Utilizador u) {
         Organizador org = new Organizador();
         org.setUtilizador(u);
-        if (listaOrg.validaOrganizador(org)) {
-            addOrganizador(org);
+        if (!listaOrg.validaOrganizador(org)) {
+            listaOrg.add(org);
+            return true;
         }
+        return false;
     }
 
-    /**
-     * Adiciona organizador à lista de organizadores da exposição.
-     *
-     * @param o organizador
-     * @return lista de organizadores
-     */
-    private boolean addOrganizador(Organizador o) {
-        return this.listaOrg.add(o);
-    }
 
     /**
      * Devolve fae da exposição
@@ -814,7 +808,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     public final void setDataIniSubCan(Data dataIniSubCan) {
         if (dataIniSubCan == null) {
-            throw new IllegalArgumentException("Data inválida!");
+            throw new IllegalArgumentException("Data de inicio de submissão de candidaturas inválida!");
         }
         this.dataIniSubCan = dataIniSubCan;
     }

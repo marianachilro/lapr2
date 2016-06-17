@@ -22,7 +22,7 @@ import lapr.project.model.Utilizador;
 public class CriarPerfilDeUtilizadorUI extends javax.swing.JFrame {
 
     private LoginUI login;
-    private CentroExposicoes ce;
+    private final CentroExposicoes ce;
 
     /**
      * Creates new form CriarPerfilDeUtilizadorUI
@@ -39,7 +39,7 @@ public class CriarPerfilDeUtilizadorUI extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 int result = JOptionPane.showConfirmDialog(
-                        CriarPerfilDeUtilizadorUI.this, "Tens a certeza");
+                        CriarPerfilDeUtilizadorUI.this, "Tens a certeza?");
                 if (result == JOptionPane.OK_OPTION) {
 
                     CriarPerfilDeUtilizadorUI.this.setDefaultCloseOperation(

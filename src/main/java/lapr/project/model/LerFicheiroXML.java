@@ -236,7 +236,7 @@ public class LerFicheiroXML {
             //Get atributos da exposicao.
             exposicao.setTitulo(atributos.getElementsByTagName(TITULO_ELEMENT_NAME).item(0).getNodeValue());
             exposicao.setDescricao(atributos.getElementsByTagName(DESCRICAO_EXPO_ELEMENT_NAME).item(0).getNodeValue());
-            exposicao.setLocal(atributos.getElementsByTagName(LOCAL_ELEMENT_NAME).item(0).getNodeValue());
+//            exposicao.setLocal(atributos.getElementsByTagName(LOCAL_ELEMENT_NAME).item(0).getNodeValue());
             String aux = atributos.getElementsByTagName(DATA_INICIO_ELEMENT_NAME).item(0).getNodeValue();
             String[] aux1 = aux.split("/");
             exposicao.setDataInicio(new Data(Integer.parseInt(aux1[2]), Integer.parseInt(aux1[1]), Integer.parseInt(aux1[0])));
