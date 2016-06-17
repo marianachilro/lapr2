@@ -5,6 +5,10 @@
  */
 package lapr.project.utils;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 /**
  *
  * @author catarinarib
@@ -102,12 +106,7 @@ public class Data {
      * @param segundos segundos
      */
     public Data(int ano, int mes, int dia, int hora, int minutos, int segundos) {
-        this.ano = ano;
-        this.mes = mes;
-        this.dia = dia;
-        this.hora = hora;
-        this.minuto = minutos;
-        this.segundos = segundos;
+       setData( ano, mes,  dia, hora,  minutos, segundos);
     }
 
     /**
@@ -200,12 +199,45 @@ public class Data {
      * @param minutos os minutos
      * @param segundos os segundos
      */
-    public void setData(int ano, int mes, int dia, int hora, int minutos, int segundos) {
+    public final void setData(int ano, int mes, int dia, int hora, int minutos, int segundos) {
+
+        Calendar c = Calendar.getInstance(); 
+        c.setTime(new Date()); 
+        int diaAtual = c.get(Calendar.DAY_OF_MONTH); 
+        int mesAtual = c.get(Calendar.MONTH)+1; 
+        int anoAtual = c.get(Calendar.YEAR);
+        int horaAtual = c.get(Calendar.HOUR_OF_DAY);
+        int minutosAtual= c.get(Calendar.MINUTE);
+        int segundosAtual=c.get(Calendar.SECOND);
+        
+        if (ano < anoAtual) {
+            throw new IllegalArgumentException("Ano inválido!");
+        }
         this.ano = ano;
+        
+        if ( mes <1 || mes>12 || ano==anoAtual && mes<mesAtual) {
+            throw new IllegalArgumentException("Mês inválido!");
+        }      
         this.mes = mes;
+        
+        if (dia<1 || dia>31||ano==anoAtual && mes==mesAtual && dia<diaAtual) {
+            throw new IllegalArgumentException("Dia inválido!");
+        }
         this.dia = dia;
+        
+        if(hora<1|| hora>24||ano==anoAtual && mes==mesAtual && dia==diaAtual && hora<horaAtual){
+             throw new IllegalArgumentException("Hora inválida!");
+        }
         this.hora = hora;
+        if(minutos<0|| minutos>59||ano==anoAtual && mes==mesAtual && dia==diaAtual && hora==horaAtual && minutos<minutosAtual){
+             throw new IllegalArgumentException("Minutos inválidos!");
+        }
+        
         this.minuto = minutos;
+        
+        if(segundos<0||segundos>59||ano==anoAtual && mes==mesAtual && dia==diaAtual && hora==horaAtual && minutos==minutosAtual && segundos<segundosAtual){
+             throw new IllegalArgumentException("Segundos inválidos!");
+        }
         this.segundos = segundos;
     }
 
@@ -227,7 +259,7 @@ public class Data {
      * @return caraterísticas da data
      */
     public String toAnoMesDiaString() {
-        return String.format("%04d/%02d/%02d %2d:%2d:$2d", ano, mes, dia,hora,minuto,segundos);
+        return String.format("%04d/%02d/%02d %2d:%2d:$2d", ano, mes, dia, hora, minuto, segundos);
     }
 
     /**

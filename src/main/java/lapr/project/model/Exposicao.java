@@ -416,7 +416,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     public final void setDataInicio(Data dataInicio) {
         if (dataInicio == null) {
-            throw new IllegalArgumentException("Data inválida!");
+            throw new IllegalArgumentException("Data inicio inválida!");
         }
         this.dataInicio = dataInicio;
     }
@@ -428,7 +428,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     public final void setDataFim(Data dataFim) {
         if (dataFim == null) {
-            throw new IllegalArgumentException("Data inválida!");
+            throw new IllegalArgumentException("Data fim inválida!");
         }
         this.dataFim = dataFim;
     }
@@ -461,7 +461,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     public final void setDataFimSubCand(Data dataFimSubCand) {
         if (dataFimSubCand == null) {
-            throw new IllegalArgumentException("Data inválida!");
+            throw new IllegalArgumentException("Data fim de submissão de candidaturas inválida!");
         }
         this.dataFimSubCand = dataFimSubCand;
     }
@@ -482,7 +482,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     public final void setDataFimAtcConf(Data dataFimAtcConf) {
         if (dataFimAtcConf == null) {
-            throw new IllegalArgumentException("Data inválida!");
+            throw new IllegalArgumentException("Data fim de actualizaçao de conflitos inválida!");
         }
         this.dataFimAtcConf = dataFimAtcConf;
     }
@@ -503,7 +503,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     public final void setDataFimAvCandidatura(Data dataFimAvCandidatura) {
         if (dataFimAvCandidatura == null) {
-            throw new IllegalArgumentException("Data inválida!");
+            throw new IllegalArgumentException("Data fim de avaliar candidaturas inválida!");
         }
         this.dataFimAvCandidatura = dataFimAvCandidatura;
     }
@@ -814,7 +814,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      */
     public final void setDataIniSubCan(Data dataIniSubCan) {
         if (dataIniSubCan == null) {
-            throw new IllegalArgumentException("Data inválida!");
+            throw new IllegalArgumentException("Data de inicio de submissão de candidaturas inválida!");
         }
         this.dataIniSubCan = dataIniSubCan;
     }
