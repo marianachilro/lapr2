@@ -178,13 +178,15 @@ public class RegistoExposicoes {
      * @return lista de exposições do fae
      */
     public List<Exposicao> getListaExposicoesDoFAE(Utilizador u) {
-        List<Exposicao> l_ExpDoFAE = new ArrayList();
+        List<Exposicao> l_ExpDoFAE = new ArrayList<>();
 
+        if(!listaExposicoes.isEmpty()){
         for (Exposicao m : listaExposicoes) {
             if (m.getFAE(u) != null) {
                 l_ExpDoFAE.add(m);
             }
 
+        }
         }
         return l_ExpDoFAE;
     }
