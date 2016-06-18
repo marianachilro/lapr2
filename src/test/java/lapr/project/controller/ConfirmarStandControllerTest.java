@@ -7,6 +7,7 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.CandidaturaAceiteEstado;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
@@ -31,6 +32,7 @@ public class ConfirmarStandControllerTest {
         CandidaturaExposicao c = new CandidaturaExposicao();
         c.setEmailRep("123");
         c.setStand(new Stand());
+        c.setEstado(new CandidaturaAceiteEstado(c));
         CandidaturaExposicao c1 = new CandidaturaExposicao();
         c1.setEmailRep("123");
         CandidaturaExposicao c2 = new CandidaturaExposicao();

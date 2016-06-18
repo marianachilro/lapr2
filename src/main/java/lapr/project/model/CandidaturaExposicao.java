@@ -82,6 +82,7 @@ public class CandidaturaExposicao implements Candidatura, Removivel {
         listaKeywords = new ListaKeywords();
         listaDemonstracoes = new ListaDemonstracoes();
         estado = new CandidaturaInicialEstado(this);
+        stand=null;
     }
 
     /**
@@ -108,6 +109,7 @@ public class CandidaturaExposicao implements Candidatura, Removivel {
         listaKeywords = new ListaKeywords();
         listaDemonstracoes = new ListaDemonstracoes();
         estado = new CandidaturaInicialEstado(this);
+        stand = null;
     }
 
     public CandidaturaExposicao(CandidaturaExposicao c) {
@@ -123,6 +125,7 @@ public class CandidaturaExposicao implements Candidatura, Removivel {
         listaProdutos = new ListaProdutos(c.getListaProdutos());
         listaKeywords = new ListaKeywords(c.getListaKeywords());
         estado = c.getEstado();
+        stand = null;
 
     }
 

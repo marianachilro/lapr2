@@ -34,9 +34,13 @@ public class DefinirFaeController {
         this.ce = ce;
     }
 
+    public RegistoUtilizadores getRegistoUtilizadores() {
+        ru = ce.getRegistoUtilizadores();
+        return ru;
+    }
+    
     public List<Exposicao> getExposicoesOrganizador(String username) {
         re = ce.getRegistoExposicoes();
-        ru = ce.getRegistoUtilizadores();
         return re.getListaExposicoesOrganizador(username, ru);
     }
 
@@ -55,8 +59,8 @@ public class DefinirFaeController {
         return fae;
     }
 
-    public void registaFae() {
-        lFae.registaFae(fae);
+    public boolean registaFae() {
+        return lFae.registaFae(fae);
     }
 
     public String apresentaLista() {

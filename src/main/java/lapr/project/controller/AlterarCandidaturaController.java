@@ -47,9 +47,9 @@ public class AlterarCandidaturaController {
     public List<CandidaturaExposicao> getListaCandidaturasRep() {
         List<CandidaturaExposicao> lista = new ArrayList<>();
         this.re = ce.getRegistoExposicoes();
-        this.lc=e.getListaCandidaturas();
+        
         for (Exposicao expo : re.getListaExposicoes()) {
-            
+        this.lc=e.getListaCandidaturas();    
             lista.addAll(lc.getListaCandRepEstadoCriadoOuAlterado(email));
         }
         return lista;
