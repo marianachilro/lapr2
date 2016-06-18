@@ -1,6 +1,10 @@
 package lapr.project.ui;
 
+import java.io.File;
 import java.util.Date;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import lapr.project.model.CalculatorExample;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Local;
@@ -21,10 +25,8 @@ class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) {       
 
-//		CalculatorExample calculatorExample = new CalculatorExample();
-//		System.out.println(calculatorExample.sum(3, 5));
        
         CentroExposicoes ce = new CentroExposicoes();
         Utilizador u = new Utilizador("joao","jo","asd@centro.pt","aA;2","ddddd");

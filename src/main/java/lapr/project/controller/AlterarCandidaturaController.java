@@ -44,15 +44,16 @@ public class AlterarCandidaturaController {
         this.email = email;
     }
 
-    public List<CandidaturaExposicao> getListaCandidaturasRep() {
-        List<CandidaturaExposicao> lista = new ArrayList<>();
+    public List<Exposicao> getListaExposicoes(){
         this.re = ce.getRegistoExposicoes();
+      
         
-        for (Exposicao expo : re.getListaExposicoes()) {
-        this.lc=e.getListaCandidaturas();    
-            lista.addAll(lc.getListaCandRepEstadoCriadoOuAlterado(email));
-        }
-        return lista;
+        return re.getListaExposicoes();
+    }
+    public List<CandidaturaExposicao>getListaCandidaturaRep(Exposicao e){
+        this.e=e;
+        lc=e.getListaCandidaturas();
+        return lc.getListacandidaturaRepresentanteComStand(email);
     }
 
     public CandidaturaExposicao clonarCandidatura(CandidaturaExposicao c) {
