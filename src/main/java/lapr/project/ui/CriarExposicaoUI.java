@@ -5,17 +5,58 @@
  */
 package lapr.project.ui;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Pattern;
+import javax.swing.DefaultListSelectionModel;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import lapr.project.controller.CriarExposicaoController;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.ListaOrganizadores;
+import lapr.project.model.Local;
+import lapr.project.model.RegistoLocais;
+import lapr.project.model.RegistoUtilizadores;
+import lapr.project.model.Utilizador;
+import lapr.project.utils.Data;
+
 /**
  *
  * @author catarinarib
  */
 public class CriarExposicaoUI extends javax.swing.JFrame {
 
+    private final CentroExposicoes ce;
+    private MenuUI menu;
+
     /**
      * Creates new form CriarExposicaoUI
+     * @param ce
      */
-    public CriarExposicaoUI() {
+    public CriarExposicaoUI(final CentroExposicoes ce) {
+        this.ce = ce;
         initComponents();
+         setVisible(true);
+         
+          addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int result = JOptionPane.showConfirmDialog(
+                        CriarExposicaoUI.this, "Tens a certeza?");
+                if (result == JOptionPane.OK_OPTION) {
+
+                    CriarExposicaoUI.this.setDefaultCloseOperation(
+                            JDialog.DISPOSE_ON_CLOSE);
+                    CriarExposicaoUI.this.setVisible(false);
+                    CriarExposicaoUI.this.dispose();
+                    JFrame MenuUI = new MenuUI(ce);
+                }
+            }
+        });
     }
 
     /**
@@ -27,143 +68,321 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        label1 = new java.awt.Label();
-        textField1 = new java.awt.TextField();
-        label2 = new java.awt.Label();
-        textArea1 = new java.awt.TextArea();
-        label3 = new java.awt.Label();
-        textField2 = new java.awt.TextField();
-        jLabel2 = new javax.swing.JLabel();
-        label4 = new java.awt.Label();
-        textField3 = new java.awt.TextField();
+        jPanel1 = new javax.swing.JPanel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        label8 = new java.awt.Label();
+        label7 = new java.awt.Label();
+        textField8 = new java.awt.TextField();
+        jLabel8 = new javax.swing.JLabel();
+        textField7 = new java.awt.TextField();
+        jLabel7 = new javax.swing.JLabel();
+        textField5 = new java.awt.TextField();
+        jLabel5 = new javax.swing.JLabel();
+        textField4 = new java.awt.TextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        label6 = new java.awt.Label();
         label5 = new java.awt.Label();
         jSeparator1 = new javax.swing.JSeparator();
-        textField4 = new java.awt.TextField();
-        label6 = new java.awt.Label();
-        jLabel5 = new javax.swing.JLabel();
-        textField5 = new java.awt.TextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        textField6 = new java.awt.TextField();
-        jLabel7 = new javax.swing.JLabel();
-        textField7 = new java.awt.TextField();
-        textField8 = new java.awt.TextField();
+        textField3 = new java.awt.TextField();
+        label4 = new java.awt.Label();
+        jLabel4 = new javax.swing.JLabel();
+        textField2 = new java.awt.TextField();
+        label3 = new java.awt.Label();
+        jLabel2 = new javax.swing.JLabel();
+        textArea1 = new java.awt.TextArea();
+        label2 = new java.awt.Label();
+        textField1 = new java.awt.TextField();
+        label1 = new java.awt.Label();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setLocationByPlatform(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label1.setText("Título:");
-        getContentPane().add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 50, -1));
-        getContentPane().add(textField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 160, -1));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(null);
 
-        label2.setText("Descrição:");
-        getContentPane().add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 60, -1));
-        getContentPane().add(textArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 200, 60));
+        String [] locais = new String[100];
+        int i=0;
+        if(!ce.getRegistoLocais().getListaLocais().isEmpty()){
+            for(Local l : ce.getRegistoLocais().getListaLocais()){
+                locais[i]=l.getNome();
+                i++;
+            }
+        }
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(locais));
+        jPanel1.add(jComboBox2);
+        jComboBox2.setBounds(110, 250, 150, 20);
 
-        label3.setText("Data Inicio:");
-        getContentPane().add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 70, -1));
-        getContentPane().add(textField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 150, -1));
+        jButton1.setBackground(new java.awt.Color(204, 204, 255));
+        jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(220, 570, 90, 30);
 
-        jLabel2.setText("Ex: aaaa/mm/dd-hh:mm:ss");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 160, 20));
+        jButton2.setBackground(new java.awt.Color(204, 204, 255));
+        jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2);
+        jButton2.setBounds(330, 570, 90, 30);
 
-        label4.setText("Data Fim:");
-        getContentPane().add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 70, -1));
-        getContentPane().add(textField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 150, -1));
+        label8.setText("Local:");
+        jPanel1.add(label8);
+        label8.setBounds(30, 250, 60, 20);
+
+        label7.setText("Organizadores:");
+        jPanel1.add(label7);
+        label7.setBounds(30, 280, 90, 20);
+        jPanel1.add(textField8);
+        textField8.setBounds(220, 510, 160, 20);
+
+        jLabel8.setText(".Fim de Avaliação de Candidaturas:");
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(10, 510, 200, 20);
+        jPanel1.add(textField7);
+        textField7.setBounds(220, 480, 160, 20);
+
+        jLabel7.setText(".Fim de Atualização de Conflitos:");
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(10, 480, 200, 20);
+        jPanel1.add(textField5);
+        textField5.setBounds(220, 450, 160, 20);
+
+        jLabel5.setText(".Fim Submissão de Candidaturas:");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(10, 450, 210, 20);
+        jPanel1.add(textField4);
+        textField4.setBounds(220, 420, 160, 20);
 
         jLabel3.setText(". Inicio Submissão de Candidaturas:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 210, 20));
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(10, 420, 210, 20);
 
-        jLabel4.setText("Ex: aaaa/mm/dd-hh:mm:ss");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 150, -1));
+        label6.setText("Ex: aaaa/mm/dd-hh:mm:ss");
+        jPanel1.add(label6);
+        label6.setBounds(220, 390, 160, 20);
 
         label5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label5.setText("Datas:");
-        getContentPane().add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 50, 20));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 419, 10));
-        getContentPane().add(textField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 160, -1));
+        jPanel1.add(label5);
+        label5.setBounds(10, 390, 50, 20);
+        jPanel1.add(jSeparator1);
+        jSeparator1.setBounds(0, 370, 440, 10);
+        jPanel1.add(textField3);
+        textField3.setBounds(110, 220, 150, 20);
 
-        label6.setText("Ex: aaaa/mm/dd-hh:mm:ss");
-        getContentPane().add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 160, -1));
+        label4.setText("Data Fim:");
+        jPanel1.add(label4);
+        label4.setBounds(30, 220, 70, 20);
 
-        jLabel5.setText(".Fim Submissão de Candidaturas:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 210, 20));
-        getContentPane().add(textField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 160, -1));
+        jLabel4.setText("Ex: aaaa/mm/dd-hh:mm:ss");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(270, 230, 150, 14);
+        jPanel1.add(textField2);
+        textField2.setBounds(110, 190, 150, 20);
 
-        jLabel6.setText(".Inicio da Deteção de Conflitos:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 200, 20));
+        label3.setText("Data Inicio:");
+        jPanel1.add(label3);
+        label3.setBounds(30, 190, 70, 20);
 
-        jLabel8.setText(".Fim de Avaliação de Candidaturas:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 200, 20));
-        getContentPane().add(textField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 160, -1));
+        jLabel2.setText("Ex: aaaa/mm/dd-hh:mm:ss");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(270, 190, 160, 20);
+        jPanel1.add(textArea1);
+        textArea1.setBounds(120, 120, 200, 50);
 
-        jLabel7.setText(".Fim de Atualização de Conflitos:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 200, 20));
-        getContentPane().add(textField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, 160, -1));
-        getContentPane().add(textField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 500, 160, -1));
+        label2.setText("Descrição:");
+        jPanel1.add(label2);
+        label2.setBounds(50, 120, 60, 20);
+        jPanel1.add(textField1);
+        textField1.setBounds(140, 90, 160, 20);
+
+        label1.setText("Título:");
+        jPanel1.add(label1);
+        label1.setBounds(70, 90, 50, 20);
+
+        final String[] utilizadores = new String [100];
+        int cont=0;
+        if(!ce.getRegistoUtilizadores().getListaUtilizadores().isEmpty()){
+            for(Utilizador u : ce.getRegistoUtilizadores().getListaUtilizadores()){
+                utilizadores[cont]=u.getUsername();
+                cont++;
+            }
+        }
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+
+            public int getSize() { return utilizadores.length; }
+            public String getElementAt(int i) { return utilizadores[i]; }
+        });
+        jList1.setSelectionModel(new DefaultListSelectionModel() {
+            @Override
+            public void setSelectionInterval(int index0, int index1) {
+                if(super.isSelectedIndex(index0)) {
+                    super.removeSelectionInterval(index0, index1);
+                }
+                else {
+                    super.addSelectionInterval(index0, index1);
+                }
+            }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(30, 300, 240, 60);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/criarExposicao2.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 560));
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(0, 0, 440, 580);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(null);
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 570));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 620));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        MenuUI j = new MenuUI(ce);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try{
+            CriarExposicaoController controller = new CriarExposicaoController(ce);
+            controller.newExposicao();
+            
+            RegistoUtilizadores ru = controller.getRegistoUtilizadores();
+            
+            String titulo = textField1.getText();
+            String descricao = textArea1.getText();
+            Data dataIni = getData(textField2.getText());
+            Data dataFim= getData(textField3.getText());
+            String local1= jComboBox2.getSelectedItem().toString();
+            Local local = null;
+            
+            if(!controller.getRegistoLocais().getListaLocais().isEmpty()){
+            for(Local c : controller.getRegistoLocais().getListaLocais()){
+                if(c.getNome().equalsIgnoreCase(local1)){
+                    local=c;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CriarExposicaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CriarExposicaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CriarExposicaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CriarExposicaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CriarExposicaoUI().setVisible(true);
             }
-        });
-    }
+            controller.setLocal(local);
+            
+            ListaOrganizadores lista = controller.getListaOrganizadores();
+            
+            List<String> organizadores = jList1.getSelectedValuesList();
+            if(organizadores.size()<2){
+                 throw new IllegalArgumentException("Tem de escolher pelo menos dois organizadores!");
+            }
+            boolean b = false;
+            for(String s : organizadores){
+                for(Utilizador u : ru.getListaUtilizadores()){
+                    if(u.getUsername().equalsIgnoreCase(s)){
+                        b=controller.addOrganizador(u);
+                    }
+                }            
+            }
+            
+            
+            Data dataInicioSubCand=getData(textField4.getText());
+            Data dataFimSubCand=getData(textField5.getText());
+            Data dataAtcConflitos = getData(textField7.getText());
+            Data dataAv = getData(textField8.getText());
+            
+            controller.setDadosExposicao(titulo, descricao, dataIni,dataFim,local,dataInicioSubCand,dataFimSubCand,dataAtcConflitos,dataAv);
+            
+             if (controller.registaExposicao()) {
+                 
+                JOptionPane.showMessageDialog(menu, "Exposição registada!");
+                dispose();
+
+                MenuUI j = new MenuUI(ce);
+            }
+            
+            
+        } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(
+                            menu,
+                            "Tem que introduzir números válidos.",
+                            "Aviso",
+                            JOptionPane.WARNING_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(
+                    menu,
+                    ex.getMessage(),
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(CriarExposicaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(CriarExposicaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(CriarExposicaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(CriarExposicaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new CriarExposicaoUI().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private java.awt.Label label1;
     private java.awt.Label label2;
@@ -171,14 +390,44 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
     private java.awt.Label label4;
     private java.awt.Label label5;
     private java.awt.Label label6;
+    private java.awt.Label label7;
+    private java.awt.Label label8;
     private java.awt.TextArea textArea1;
     private java.awt.TextField textField1;
     private java.awt.TextField textField2;
     private java.awt.TextField textField3;
     private java.awt.TextField textField4;
     private java.awt.TextField textField5;
-    private java.awt.TextField textField6;
     private java.awt.TextField textField7;
     private java.awt.TextField textField8;
     // End of variables declaration//GEN-END:variables
+
+    public Data getData(String data ){
+        
+        if (data == null || data.trim().isEmpty() || !Pattern.matches("(\\d{4})/(\\d{2})/(\\d{2})-(\\d{2}):(\\d{2}):(\\d{2})", data)) {
+    throw new IllegalArgumentException("Data inválida! \nano/mes/dia-horas:minutos:segundos");
+}
+       
+        ArrayList all= new ArrayList(Arrays.asList(data.split("-")));
+        String ano_mes_dia=all.get(0)+"";
+        String hora_minutos_segundos=all.get(1)+"";
+        
+        ArrayList dat = new ArrayList(Arrays.asList(ano_mes_dia.split("/")));
+        ArrayList horas = new ArrayList(Arrays.asList(hora_minutos_segundos.split(":")));
+        
+       int ano= Integer.parseInt(dat.get(0).toString());
+       int mes=Integer.parseInt(dat.get(1).toString());
+       int dia=Integer.parseInt(dat.get(2).toString());
+       int hora=Integer.parseInt(horas.get(0).toString());
+       int minuto=Integer.parseInt(horas.get(1).toString());
+       int segundos=Integer.parseInt(horas.get(2).toString());
+        
+        
+        Data data2 = new Data(ano,mes,dia,hora,minuto,segundos);
+        
+        return data2;
+    }
+
+    
+
 }

@@ -143,6 +143,11 @@ public class MenuUI extends JFrame {
         jMenu7.setText("Exposição");
 
         jMenuItem23.setText("Criar Exposição");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem23);
 
         jMenuBar1.add(jMenu7);
@@ -291,6 +296,12 @@ public class MenuUI extends JFrame {
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem24ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        CriarExposicaoUI c = new CriarExposicaoUI(ce);
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
 
 //    /**
 //     * @param args the command line arguments
