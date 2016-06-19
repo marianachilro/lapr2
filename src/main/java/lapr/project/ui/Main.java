@@ -1,14 +1,16 @@
 package lapr.project.ui;
 
 import java.io.File;
-import java.util.Date;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import lapr.project.model.CalculatorExample;
+import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
 import lapr.project.model.Local;
 import lapr.project.model.Utilizador;
+import lapr.project.utils.Data;
 
 /**
  * @author Nuno Bettencourt <nmb@isep.ipp.pt> on 24/05/16.
@@ -35,6 +37,7 @@ class Main {
         ce.getRegistoUtilizadores().addUtilizador(u1);
         Local l = new Local("Porto");
         ce.getRegistoLocais().addLocal(l);
+        
         LoginUI login = new LoginUI(ce);
 
     }

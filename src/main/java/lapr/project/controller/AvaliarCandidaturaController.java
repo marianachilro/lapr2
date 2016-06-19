@@ -43,8 +43,8 @@ public class AvaliarCandidaturaController {
         this.m_exposicao = e;
     }
 
-    public List<Candidatura> getInformacaoDasCandidaturasPorAvaliar(FAE fae) {
-        return this.m_exposicao.getListaAtribuicoesFAE(fae);
+    public List<Candidatura> getAvaliaveis(FAE fae) {
+             return this.m_exposicao.getAvaliaveis(fae);
     }
 
     public void selectCandidatura(Candidatura c) {
@@ -52,9 +52,7 @@ public class AvaliarCandidaturaController {
         c.toString();
     }
 
-    public List<Candidatura> getAvaliaveis(FAE fae) {
-             return this.interfaceAvaliavel.getAvaliaveis(fae);
-    }
+    
 
     public void setAvaliacao(String fae, String candidatura, String decisao, String txt, int respostaTemaExpo, int respostaAdequacaoCand,
            int respostaAdequacaoCandDemo, int respostaAdequacaoNumConvites, int respostaRecomendacaoGlobal) {

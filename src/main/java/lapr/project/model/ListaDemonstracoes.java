@@ -190,4 +190,16 @@ public class ListaDemonstracoes {
     public void ordenarPorNumeroInteressados() {
         Collections.sort(listaDemonstracao);
     }
+    
+    @Override
+    public String toString(){
+        String lista="";
+        
+        if(!listaDemonstracao.isEmpty()){
+            for(Demonstracao d: listaDemonstracao){
+                lista=d+"\n";
+            }
+        }
+        return lista;
+    }
 }

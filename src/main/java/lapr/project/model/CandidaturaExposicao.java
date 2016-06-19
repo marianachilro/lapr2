@@ -361,7 +361,7 @@ public class CandidaturaExposicao implements Candidatura, Removivel {
 
     @Override
     public String toString() {
-        return "";
+        return this.emailRep;
     }
 
     @Override

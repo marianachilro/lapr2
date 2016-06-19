@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.util.Objects;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -67,6 +68,33 @@ public class Atribuicao {
      */
     public void setCandidatura(Candidatura c){
         this.c=c;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.fae);
+       
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Atribuicao other = (Atribuicao) obj;
+        if (!Objects.equals(this.fae, other.fae)) {
+            return false;
+        }
+       
+        return true;
     }
     
     

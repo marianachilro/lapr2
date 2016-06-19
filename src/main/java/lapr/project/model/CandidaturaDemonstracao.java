@@ -113,7 +113,7 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel {
 
     @Override
     public String toString() {
-        return this.demonstracao + "";
+        return this.emailRep+ "";
     }
 
     @Override
