@@ -21,8 +21,9 @@ import lapr.project.model.RegistoUtilizadores;
  *
  * @author Rita
  */
-public class CriarDemonstracao {
+public class CriarDemonstracaoController {
     
+    private String email;
     private final CentroExposicoes ce;
     private Exposicao expo;
     private Demonstracao demo;
@@ -35,11 +36,12 @@ public class CriarDemonstracao {
     private ListaRecursos lr;
     
     
-    public CriarDemonstracao(CentroExposicoes ce) {
+    public CriarDemonstracaoController(CentroExposicoes ce, String email) {
         this.ce = ce;
+        this.email = email;
     }
     
-    public List<Exposicao> mostrarExpo(String email) {
+    public List<Exposicao> mostrarExpo() {
         re = ce.getRegistoExposicoes();
         ru = ce.getRegistoUtilizadores();
         return re.getListaExposicoesOrganizador(email, ru);
@@ -72,13 +74,13 @@ public class CriarDemonstracao {
         this.r = r;
     }
     
-    public void registaRecurso() {
+    public boolean registaRecurso() {
         lr = demo.getListaRecursos();
-        lr.registaRecurso(r);
+        return lr.registaRecurso(r);
     }
     
-    public void registaDemo() {
-        rd.registaDemonstracao(demo);
+    public boolean registaDemo() {
+        return rd.registaDemonstracao(demo);
     }
     
     public boolean transitaEstado() {
