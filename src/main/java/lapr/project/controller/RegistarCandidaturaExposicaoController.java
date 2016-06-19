@@ -85,8 +85,8 @@ public class RegistarCandidaturaExposicaoController {
         p.setNome(produto);
     }
 
-    public void registaProduto() {
-        lp.registaProduto(p);
+    public boolean registaProduto() {
+        return lp.registaProduto(p);
     }
 
     public void getListaKeywords() {

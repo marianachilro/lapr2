@@ -319,4 +319,9 @@ public class Utilizador {
         hash = 83 * hash + Objects.hashCode(this.email);
         return hash;
     }
+    
+    @Override
+    public String toString() {
+        return String.format("Nome: %s %n Username: %s %n E-mail: %s %n", nome, username, email);
+    }
 }

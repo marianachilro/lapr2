@@ -22,6 +22,7 @@ import lapr.project.model.Utilizador;
 public class DefinirFaeController {
 
     private final CentroExposicoes ce;
+    private String username;
     private Exposicao e;
     private FAE fae;
     private Utilizador u;
@@ -30,8 +31,9 @@ public class DefinirFaeController {
     private ListaFAEs lFae;
     private ExposicaoEstado as;
 
-    public DefinirFaeController(CentroExposicoes ce) {
+    public DefinirFaeController(CentroExposicoes ce, String username) {
         this.ce = ce;
+        this.username = username;
     }
 
     public RegistoUtilizadores getRegistoUtilizadores() {
@@ -39,7 +41,7 @@ public class DefinirFaeController {
         return ru;
     }
     
-    public List<Exposicao> getExposicoesOrganizador(String username) {
+    public List<Exposicao> getExposicoesOrganizador() {
         re = ce.getRegistoExposicoes();
         return re.getListaExposicoesOrganizador(username, ru);
     }
@@ -53,9 +55,12 @@ public class DefinirFaeController {
     }
 
     public FAE novoFae(String username) {
-        u = ru.getUtilizador(username);
-        fae = lFae.novoFae();
-        fae.setUtilizador(u);
+        fae = null;
+        if(ru.hasUtilizador(username)) {
+            u = ru.getUtilizador(username);
+            fae = lFae.novoFae();
+            fae.setUtilizador(u);
+        }
         return fae;
     }
 
