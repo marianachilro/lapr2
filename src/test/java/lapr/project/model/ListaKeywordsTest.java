@@ -54,9 +54,10 @@ public class ListaKeywordsTest {
     @Test
     public void testNovaKeyword() {
         System.out.println("novaKeyword");
+        String keyword="asd";
         ListaKeywords instance = new ListaKeywords();
-        Keyword expResult = new Keyword();
-        Keyword result = instance.novaKeyword();
+        Keyword expResult = new Keyword(keyword);
+        Keyword result = instance.novaKeyword(keyword);
         assertEquals(expResult, result);
     }
 

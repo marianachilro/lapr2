@@ -49,7 +49,7 @@ public class ListaKeywords {
      * @param listaKeywords List de Keywords
      */
     public void setListaKeywords(List<Keyword> listaKeywords) {
-        this.listaKeywords = listaKeywords;
+        this.listaKeywords = new ArrayList<>(listaKeywords);
     }
 
     /**
@@ -57,8 +57,8 @@ public class ListaKeywords {
      *
      * @return Keyword
      */
-    public Keyword novaKeyword() {
-        return new Keyword();
+    public Keyword novaKeyword(String keyword) {
+        return new Keyword(keyword);
     }
 
     /**

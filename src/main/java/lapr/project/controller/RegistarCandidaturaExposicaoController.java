@@ -93,8 +93,8 @@ public class RegistarCandidaturaExposicaoController {
         lk = c.getListaKeywords();
     }
 
-    public Keyword novaKeyword() {
-        k = lk.novaKeyword();
+    public Keyword novaKeyword(String keyword) {
+        k = lk.novaKeyword(keyword);
         return k;
     }
 

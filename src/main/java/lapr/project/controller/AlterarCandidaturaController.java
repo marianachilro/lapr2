@@ -50,10 +50,10 @@ public class AlterarCandidaturaController {
         
         return re.getListaExposicoes();
     }
-    public List<CandidaturaExposicao>getListaCandidaturaRep(Exposicao e){
+    public List<CandidaturaExposicao>getListaCandidaturasRep(Exposicao e){
         this.e=e;
         lc=e.getListaCandidaturas();
-        return lc.getListacandidaturaRepresentanteComStand(email);
+        return lc.getListaCandRepEstadoCriadoOuAlterado(email);
     }
 
     public CandidaturaExposicao clonarCandidatura(CandidaturaExposicao c) {
@@ -90,7 +90,7 @@ public class AlterarCandidaturaController {
     }
 
     public Keyword novaKeyWord(String keyWord) {
-        k = cc.getListaKeywords().novaKeyword();
+        k = cc.getListaKeywords().novaKeyword(keyWord);
         return k;
     }
 
