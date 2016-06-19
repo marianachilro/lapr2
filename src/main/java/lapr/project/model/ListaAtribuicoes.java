@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class ListaAtribuicoes {
-    
+
     /**
      * lista com as atribuições de uma dada exposição.
      */
@@ -58,7 +58,7 @@ public class ListaAtribuicoes {
      * @return
      */
     public boolean validateAtribuicoes(Atribuicao a) {
-        if(tamanho()>0) {
+        if (tamanho() > 0) {
             return la.contains(a);
         } else {
             return false;
@@ -82,37 +82,41 @@ public class ListaAtribuicoes {
     public void setLista(List<Atribuicao> la) {
         this.la = la;
     }
-    
+
     /**
      * Devolve a lista de candidaturas do fae
+     *
      * @param fae fae
      * @return lista de candidaturas
      */
-    public List <Candidatura> getListaCandidaturasFAE(FAE fae){
+    public List<Candidatura> getListaCandidaturasFAE(FAE fae) {
         List<Candidatura> lc = new ArrayList<>();
-        
-        for(Atribuicao a : la){
-            if(a.getFAE().equals(fae)){
-                lc.add(a.getCandidatura());
+
+        if (!la.isEmpty()) {
+            for (Atribuicao a : la) {
+                if (a.getFAE().equals(fae)) {
+                    lc.add(a.getCandidatura());
+                }
             }
         }
         return lc;
     }
-    
+
     /**
      * Verificar se existe fae na lista de atribuicoes
-     * @param fae fae 
+     *
+     * @param fae fae
      * @return boolean
      */
-    public boolean verificarSeContemFAE(FAE fae){
-        for(Atribuicao a: la){
-            if(a.getFAE().equals(fae)){
+    public boolean verificarSeContemFAE(FAE fae) {
+        for (Atribuicao a : la) {
+            if (a.getFAE().equals(fae)) {
                 return true;
             }
         }
         return false;
     }
-    
+
     public int tamanho() {
         return la.size();
     }

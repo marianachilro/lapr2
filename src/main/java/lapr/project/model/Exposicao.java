@@ -8,6 +8,7 @@ package lapr.project.model;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.utils.Data;
@@ -302,10 +303,10 @@ public class Exposicao implements Avaliavel, Decisivel {
      * Devolve a data de fim do período de avaliação de candidaturas às
      * Demonstrações da Exposição.
      *
-     * @param data
+     *
      * @return data fim submissao candidaturas às demonstrações
      */
-    public Data getDataFimAtualizacaoConflitosDemos(Data data) {
+    public Data getDataFimAtualizacaoConflitosDemos() {
         return this.dataFimAtualizacaoConflitosDemos;
     }
 
@@ -548,7 +549,6 @@ public class Exposicao implements Avaliavel, Decisivel {
         return false;
     }
 
-
     /**
      * Devolve fae da exposição
      *
@@ -556,12 +556,13 @@ public class Exposicao implements Avaliavel, Decisivel {
      * @return fae da exposicao
      */
     public FAE getFAE(Utilizador u) {
-        for (FAE fae : listaFAEs.getListaFAEs()) {
-            if (fae.getUtilizador().equals(u)) {
-                return fae;
+        if (!listaFAEs.getListaFAEs().isEmpty()) {
+            for (FAE fae : listaFAEs.getListaFAEs()) {
+                if (fae.getUtilizador().equals(u)) {
+                    return fae;
+                }
             }
         }
-
         return null;
     }
 
@@ -645,7 +646,13 @@ public class Exposicao implements Avaliavel, Decisivel {
         return st.setExposicaoCandidaturasDecididas();
     }
 
+    /**
+     * Modifica a lista de atribuicoes por outra nova lista de atribuicoes
+     *
+     * @param lA
+     */
     public void setAtribuicoes(List<Atribuicao> lA) {
+        listaAtribuicoes.getLista().removeAll(listaAtribuicoes.getLista());
         listaAtribuicoes.getLista().addAll(lA);
     }
 
@@ -788,31 +795,33 @@ public class Exposicao implements Avaliavel, Decisivel {
         NumberFormat nf = NumberFormat.getInstance();
         nf.setMinimumFractionDigits(2);
 
-        for (Keyword k : lk) {
-            estatisticaKeywords.add(k + "");
-            int contNumRepAceites = 0;
-            int contNumRepNaoAceites = 0;
-            for (CandidaturaExposicao c : lcAceites) {
-                if (c.getListaKeywords().getListaKeywords().contains(k)) {
-                    contNumRepAceites++;
+        if (!lcAceites.isEmpty() && !lcNaoAceites.isEmpty() && !lk.isEmpty()) {
+            for (Keyword k : lk) {
 
+                estatisticaKeywords.add(k + "");
+
+                int contNumRepAceites = 0;
+                int contNumRepNaoAceites = 0;
+                for (CandidaturaExposicao c : lcAceites) {
+                    if (c.getListaKeywords().getListaKeywords().contains(k)) {
+                        contNumRepAceites++;
+
+                    }
                 }
-            }
-            double probabilidadeCandAceite = contNumRepAceites / contCandAceites;
+                double probabilidadeCandAceite = contNumRepAceites / contCandAceites;
+                estatisticaKeywords.add(String.valueOf(nf.format(probabilidadeCandAceite)));
 
-            estatisticaKeywords.add(String.valueOf(nf.format(probabilidadeCandAceite)));
-
-            for (CandidaturaExposicao c : lcNaoAceites) {
-                if (c.getListaKeywords().getListaKeywords().contains(k)) {
-                    contNumRepNaoAceites++;
+                for (CandidaturaExposicao c : lcNaoAceites) {
+                    if (c.getListaKeywords().getListaKeywords().contains(k)) {
+                        contNumRepNaoAceites++;
+                    }
                 }
+
+                double probabilidadeCandNaoAceites = contNumRepNaoAceites / contCandRejeitadas;
+                estatisticaKeywords.add(String.valueOf(nf.format(probabilidadeCandNaoAceites)));
+
             }
-
-            double probabilidadeCandNaoAceites = contNumRepNaoAceites / contCandRejeitadas;
-            estatisticaKeywords.add(String.valueOf(nf.format(probabilidadeCandNaoAceites)));
-
         }
-
         return estatisticaKeywords;
     }
 
@@ -837,4 +846,65 @@ public class Exposicao implements Avaliavel, Decisivel {
         this.dataIniSubCan = dataIniSubCan;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.titulo);
+        hash = 53 * hash + Objects.hashCode(this.descricao);
+        hash = 53 * hash + Objects.hashCode(this.dataInicio);
+        hash = 53 * hash + Objects.hashCode(this.dataFim);
+        hash = 53 * hash + Objects.hashCode(this.local);
+        hash = 53 * hash + Objects.hashCode(this.dataIniSubCan);
+        hash = 53 * hash + Objects.hashCode(this.dataFimSubCand);
+        hash = 53 * hash + Objects.hashCode(this.dataFimAtcConf);
+        hash = 53 * hash + Objects.hashCode(this.dataFimAvCandidatura);
+        hash = 53 * hash + Objects.hashCode(this.dataInicioSubCandDemos);
+        hash = 53 * hash + Objects.hashCode(this.dataFimSubCandDemos);
+        hash = 53 * hash + Objects.hashCode(this.dataFimAtualizacaoConflitosDemos);
+        hash = 53 * hash + Objects.hashCode(this.listaOrg);
+        hash = 53 * hash + Objects.hashCode(this.listaCandidaturas);
+        hash = 53 * hash + Objects.hashCode(this.listaDemonstracoes);
+        hash = 53 * hash + Objects.hashCode(this.listaConflitos);
+        hash = 53 * hash + Objects.hashCode(this.listaFAEs);
+        hash = 53 * hash + Objects.hashCode(this.listaAtribuicoes);
+        return hash;
+    }
+
+   
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        
+        final Exposicao other = (Exposicao) obj;
+        
+        if (!Objects.equals(this.titulo, other.titulo)) {
+            return false;
+        }
+        if (!Objects.equals(this.descricao, other.descricao)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataInicio, other.dataInicio)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataFim, other.dataFim)) {
+            return false;
+        }
+        if (!Objects.equals(this.local, other.local)) {
+            return false;
+        }
+  
+        return true;
+    }
+
+    
+    
 }

@@ -8,12 +8,9 @@ package lapr.project.model;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.utils.Data;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.BeforeClass;
+
 
 /**
  *
@@ -84,7 +81,7 @@ public class ExposicaoTest {
     public void testGetLocalAndSetLocal() {
         System.out.println("TesteLocal");
         Exposicao instance = new Exposicao();
-        Local local=new Local("Porto");
+        Local local = new Local("Porto");
         instance.setLocal(local);
         Local expResult = local;
         Local result = instance.getLocal();
@@ -205,13 +202,13 @@ public class ExposicaoTest {
         Data result = instance.getDataFimAvCandidatura();
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of getDataFimAvCandidatura method, of class Exposicao.
      */
     @Test
-    public void testGetDataIniSubCandAndSetDataIniSubCan(){
-         System.out.println("testeDataIniSubCandidatura");
+    public void testGetDataIniSubCandAndSetDataIniSubCan() {
+        System.out.println("testeDataIniSubCandidatura");
         Exposicao instance = new Exposicao();
         Data data = new Data(2016, 06, 8);
         instance.setDataIniSubCan(data);
@@ -220,462 +217,284 @@ public class ExposicaoTest {
         assertEquals(expResult, result);
     }
 
-//    /**
-//     * Test of addOrganizador method, of class Exposicao.
-//     */
-//    @Test
-//    public void testAddOrganizador() {
-//        System.out.println("TesteAddOrganizador");
-//        Utilizador u = new Utilizador("nome", "username", "email", "password","keyword");
-//        Exposicao instance = new Exposicao();
-//        Boolean expResult = true;
-//        Boolean result = false;
-//        instance.addOrganizador(u);
-//        List<Organizador> lo = instance.getListaOrganizadores().getListaOrganizadores();
-//        Organizador o = instance.getListaOrganizadores().getListaOrganizadores().get(lo.size() - 1);
-//        if (o.getUtilizador().equals(u)) {
-//            result = true;
-//        }
-//        assertEquals(expResult, result);
-//    }
-//
-//    /**
-//     * Test of getFAE method, of class Exposicao.
-//     */
-//    @Test
-//    public void testGetFAE() {
-//        System.out.println("testeFAE");
-//        Utilizador u = new Utilizador("nome", "username", "email", "password","keyword");    
-//        Exposicao instance = new Exposicao();
-//        FAE expResult = null;
-//        FAE result = instance.getFAE(u);
-//        assertEquals(expResult, result);
-//    }
-    // ja 
+    /**
+     * Test of addOrganizador method, of class Exposicao.
+     */
+    @Test
+    public void testAddOrganizador() {
+        System.out.println("TesteAddOrganizador");
+        Utilizador u = new Utilizador("nome", "username", "email@centro.pt", "aA;4", "keywor");
+        Exposicao instance = new Exposicao();
+        Boolean expResult = true;
+        Boolean result = instance.addOrganizador(u);;
 
-//    /**
-//     * Test of VerificarSeEOrganizadorDaExpo method, of class Exposicao.
-//     */
-//    @Test
-//    public void testVerificarSeEOrganizadorDaExpo() {
-//        System.out.println("VerificarSeEOrganizadorDaExpo");
-//        Organizador org = null;
-//        Exposicao instance = new Exposicao();
-//        boolean expResult = false;
-//        boolean result = instance.VerificarSeEOrganizadorDaExpo(org);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//    /**
-//     * Test of getListaAtribuicoesFAE method, of class Exposicao.
-//     */
-//    @Test
-//    public void testGetListaAtribuicoesFAE() {
-//        System.out.println("TesteListaAtribuicoesFAE");
-//        Utilizador u = new Utilizador("nome", "username", "email", "password","Keyword");
-//        FAE fae = new FAE(u);
-//        Exposicao instance = new Exposicao();
-//        ListaAtribuicoes la = new ListaAtribuicoes();
-//        instance.setListaAtribuicoes(la);
-//        boolean expResult = false;
-//        boolean result = la.verificarSeContemFAE(fae);
-//        assertEquals(expResult, result);
-//
-//    }
+        assertEquals(expResult, result);
+    }
 
-//    /**
-//     * Test of getEstado method, of class Exposicao.
-//     */
-//    @Test
-//    public void testGetEstado() {
-//        System.out.println("getEstado");
-//        Exposicao instance = new Exposicao();
-//        ExposicaoEstado expResult = null;
-//        ExposicaoEstado result = instance.getEstado();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    /**
+     * Test of getFAE method, of class Exposicao.
+     */
+    @Test
+    public void testGetFAE() {
+        System.out.println("testeFAE");
+        Utilizador u = new Utilizador("nome", "username", "email@centro.pt", "aA;2", "keywrd");
+        Exposicao instance = new Exposicao();
+        FAE expResult = null;
+        FAE result = instance.getFAE(u);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of VerificarSeEOrganizadorDaExpo method, of class Exposicao.
+     */
+    @Test
+    public void testVerificarSeEOrganizadorDaExpo() {
+        System.out.println("VerificarSeEOrganizadorDaExpo");
+        Utilizador u = new Utilizador("nome", "username", "email@centro.pt", "aA;2", "keywrd");
+        Exposicao instance = new Exposicao();
+        instance.addOrganizador(u);
+        Organizador org = new Organizador(u);
+        boolean expResult = true;
+        boolean result = instance.VerificarSeEOrganizadorDaExpo(org);
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getListaAtribuicoesFAE method, of class Exposicao.
+     */
+    @Test
+    public void testGetListaAtribuicoesFAEAndSetListaAtribuicoesFAE() {
+        System.out.println("TesteListaAtribuicoesFAE");
+        Utilizador u = new Utilizador("nome", "username", "email@centro.pt", "aA;2", "Keword");
+        FAE fae = new FAE(u);
+        Exposicao instance = new Exposicao();
+        ListaAtribuicoes la = new ListaAtribuicoes();
+        instance.setListaAtribuicoes(la);
+        List<Candidatura> expResult = new ArrayList<>();
+        List<Candidatura> result = instance.getListaAtribuicoesFAE(fae);
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getEstado method, of class Exposicao.
+     */
+    @Test
+    public void testGetEstadoAndSetEstado() {
+        System.out.println("testeEstado");
+        ExposicaoEstado novoSt = null;
+        Exposicao instance = new Exposicao();
+        instance.setEstado(novoSt);
+        ExposicaoEstado expResult = novoSt;
+        ExposicaoEstado result = instance.getEstado();
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of setExposicaoCandidaturasAtribuidas method, of class Exposicao.
+     */
+    @Test
+    public void testSetExposicaoCandidaturasAtribuidas() {
+        System.out.println("setExposicaoCandidaturasAtribuidas");
+        Exposicao instance = new Exposicao();
+        boolean expResult = false;
+        boolean result = instance.setExposicaoCandidaturasAtribuidas();
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of setExposicaoCandidaturasAvaliadas method, of class Exposicao.
+     */
+    @Test
+    public void testSetExposicaoCandidaturasAvaliadas() {
+        System.out.println("setExposicaoCandidaturasAvaliadas");
+        Exposicao instance = new Exposicao();
+        boolean expResult = false;
+        boolean result = instance.setExposicaoCandidaturasAvaliadas();
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of setExposicaoCandidaturasDecididas method, of class Exposicao.
+     */
+    @Test
+    public void testSetExposicaoCandidaturasDecididas() {
+        System.out.println("setExposicaoCandidaturasDecididas");
+        Exposicao instance = new Exposicao();
+        boolean expResult = false;
+        boolean result = instance.setExposicaoCandidaturasDecididas();
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getAvaliaveis method, of class Exposicao.
+     */
+    @Test
+    public void testGetAvaliaveis() {
+        System.out.println("TesteAvaliaveis");
+        Utilizador u = new Utilizador("nome", "username", "email@centro.pt", "aA;2", "Keword");
+        FAE fae = new FAE(u);
+        Exposicao instance = new Exposicao();
+        ListaAtribuicoes la = new ListaAtribuicoes();
+        List<Candidatura> expResult = la.getListaCandidaturasFAE(fae);
+        List<Candidatura> result = instance.getAvaliaveis(fae);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getDecisiveis method, of class Exposicao.
+     */
+    @Test
+    public void testGetDecisiveis() {
+        System.out.println("TesteDecisiveis");
+        Exposicao instance = new Exposicao();
+        ListaCandidaturasExposicoes lCandExpo = new ListaCandidaturasExposicoes();
+        List<Candidatura> listaCand = new ArrayList<>();
+        listaCand.addAll(lCandExpo.getListCandidaturas());
+        List<Candidatura> expResult = listaCand;
+        List<Candidatura> result = instance.getDecisiveis();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getDataInicioSubmissaoCandidaturasDemos method, of class
+     * Exposicao.
+     */
+    @Test
+    public void testGetDataInicioSubmissaoCandidaturasDemosAndSetDataInicioSubmissaoCandidaturasDemos() {
+        System.out.println("testeDataInicioSubmissaoCandidaturasDemos");
+        Data data = null;
+        Exposicao instance = new Exposicao();
+        instance.setDataInicioSubmissaoCandidaturasDemos(data);
+        Data expResult = null;
+        Data result = instance.getDataInicioSubmissaoCandidaturasDemos();
+        assertEquals(expResult, result);
+
+    }
 //
-//    /**
-//     * Test of setEstado method, of class Exposicao.
-//     */
-//    @Test
-//    public void testSetEstado() {
-//        System.out.println("setEstado");
-//        ExposicaoEstado novoSt = null;
-//        Exposicao instance = new Exposicao();
-//        instance.setEstado(novoSt);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setExposicaoConfltiosAlterados method, of class Exposicao.
-//     */
-//    @Test
-//    public void testSetExposicaoConfltiosAlterados() {
-//        System.out.println("setExposicaoConfltiosAlterados");
-//        Exposicao instance = new Exposicao();
-//        boolean expResult = false;
-//        boolean result = instance.setExposicaoConfltiosAlterados();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setExposicaoCandidaturasAtribuidas method, of class Exposicao.
-//     */
-//    @Test
-//    public void testSetExposicaoCandidaturasAtribuidas() {
-//        System.out.println("setExposicaoCandidaturasAtribuidas");
-//        Exposicao instance = new Exposicao();
-//        boolean expResult = false;
-//        boolean result = instance.setExposicaoCandidaturasAtribuidas();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setExposicaoCandidaturasAvaliadas method, of class Exposicao.
-//     */
-//    @Test
-//    public void testSetExposicaoCandidaturasAvaliadas() {
-//        System.out.println("setExposicaoCandidaturasAvaliadas");
-//        Exposicao instance = new Exposicao();
-//        boolean expResult = false;
-//        boolean result = instance.setExposicaoCandidaturasAvaliadas();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setExposicaoCandidaturasDecididas method, of class Exposicao.
-//     */
-//    @Test
-//    public void testSetExposicaoCandidaturasDecididas() {
-//        System.out.println("setExposicaoCandidaturasDecididas");
-//        Exposicao instance = new Exposicao();
-//        boolean expResult = false;
-//        boolean result = instance.setExposicaoCandidaturasDecididas();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+
+    /**
+     * Test of getDataFimSubmissaoCandidaturasDemos method, of class Exposicao.
+     */
+    @Test
+    public void testGetDataFimSubmissaoCandidaturasDemosAndSetDataFimSubmissaoCandidaturasDemos() {
+        System.out.println("testeDataFimSubmissaoCandidaturasDemos");
+        Data data = null;
+        Exposicao instance = new Exposicao();
+        instance.setDataFimSubmissaoCandidaturasDemos(data);
+        Data expResult = null;
+        Data result = instance.getDataFimSubmissaoCandidaturasDemos();
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getDataFimAtualizacaoConflitosDemos method, of class Exposicao.
+     */
+    @Test
+    public void testGetDataFimAtualizacaoConflitosDemosAndSetDataFimAtualizacaoConflitosDemos() {
+        System.out.println("testDataFimAtualizacaoConflitosDemos");
+        Data data = null;
+        Exposicao instance = new Exposicao();
+        instance.setDataFimAtualizacaoConflitosDemos(data);
+        Data expResult = null;
+        Data result = instance.getDataFimAtualizacaoConflitosDemos();
+        assertEquals(expResult, result);
+        
+    }
+
+    /**
+     * Test of setExposicaoConflitosAtualizados method, of class Exposicao.
+     */
+    @Test
+    public void testSetExposicaoConflitosAtualizados() {
+        System.out.println("setExposicaoConflitosAtualizados");
+        Exposicao instance = new Exposicao();
+        boolean expResult = false;
+        boolean result = instance.setExposicaoConflitosAtualizados();
+        assertEquals(expResult, result);
+       
+    }
+    /**
+     * Test of setAtribuicoes method, of class Exposicao.
+     */
+    @Test
+    public void testSetAtribuicoes() {
+        System.out.println("setAtribuicoes");
+        List<Atribuicao> lA = new ArrayList<>();
+        Exposicao instance = new Exposicao();
+        instance.setAtribuicoes(lA);
+        
+    }
+    /**
+     * Test of valida method, of class Exposicao.
+     */
+    @Test
+    public void testValida() {
+        System.out.println("valida");
+        Exposicao instance = new Exposicao();
+        boolean expResult = true;
+        boolean result = instance.valida();
+        assertEquals(expResult, result);
+       
+    }
     
+    /**
+     * Test of listacandidaturasAceites method, of class Exposicao.
+     */
+    @Test
+    public void testListacandidaturasAceites() {
+        System.out.println("listacandidaturasAceites");
+        Exposicao instance = new Exposicao();
+        List<CandidaturaExposicao> expResult =new ArrayList<>();
+        List<CandidaturaExposicao> result = instance.listacandidaturasAceites();
+        assertEquals(expResult, result);
+        
+    }
     
+    /**
+     * Test of listacandidaturasNaoAceites method, of class Exposicao.
+     */
+    @Test
+    public void testListacandidaturasNaoAceites() {
+        System.out.println("listacandidaturasNaoAceites");
+        Exposicao instance = new Exposicao();
+        List<CandidaturaExposicao> expResult = new ArrayList<>();
+        List<CandidaturaExposicao> result = instance.listacandidaturasNaoAceites();
+        assertEquals(expResult, result);
+        
+    }
     
-    //Apartir daqui
-//    /**
-//     * Test of getAvaliaveis method, of class Exposicao.
-//     */
-//    @Test
-//    public void testGetAvaliaveis() {
-//        System.out.println("TesteAvaliaveis");
-//        Utilizador u = new Utilizador("nome", "username", "email", "password","Keyword");
-//        FAE fae = new FAE(u);
-//        Exposicao instance = new Exposicao();
-//        ListaAtribuicoes la = new ListaAtribuicoes();
-//        List<Candidatura> expResult = la.getListaCandidaturasFAE(fae);
-//        List<Candidatura> result = instance.getAvaliaveis(fae);
-//        assertEquals(expResult, result);
-//    }
-//
-//    /**
-//     * Test of getDecisiveis method, of class Exposicao.
-//     */
-//    @Test
-//    public void testGetDecisiveis() {
-//        System.out.println("TesteDecisiveis");
-//        Exposicao instance = new Exposicao();
-//        ListaCandidaturasExposicoes lCandExpo = new ListaCandidaturasExposicoes();
-//        List<Candidatura> listaCand = new ArrayList<>();
-//        listaCand.addAll(lCandExpo.getListCandidaturas());
-//        List<Candidatura> expResult = listaCand;
-//        List<Candidatura> result = instance.getDecisiveis();
-//        assertEquals(expResult, result);
-//    }
-//
-//    /**
-//     * Test of getListaAtribuicoes method, of class Exposicao.
-//     */
-//    @Test
-//    public void testGetListaAtribuicoesAndSetListaAtribuicoes() {
-//        System.out.println("TesteListaAtribuicoes");
-//        Exposicao instance = new Exposicao();
-//        ListaAtribuicoes la = new ListaAtribuicoes();
-//        instance.setListaAtribuicoes(la);
-//        ListaAtribuicoes expResult = la;
-//        ListaAtribuicoes result = instance.getListaAtribuicoes();
-//        assertEquals(expResult, result);
-//
-//    }
-//    /**
-//     * Test of getDataInicioSubmissaoCandidaturasDemos method, of class Exposicao.
-//     */
-//    @Test
-//    public void testGetDataInicioSubmissaoCandidaturasDemos() {
-//        System.out.println("getDataInicioSubmissaoCandidaturasDemos");
-//        Exposicao instance = new Exposicao();
-//        Data expResult = null;
-//        Data result = instance.getDataInicioSubmissaoCandidaturasDemos();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of getDataFimSubmissaoCandidaturasDemos method, of class Exposicao.
-//     */
-//    @Test
-//    public void testGetDataFimSubmissaoCandidaturasDemos() {
-//        System.out.println("getDataFimSubmissaoCandidaturasDemos");
-//        Exposicao instance = new Exposicao();
-//        Data expResult = null;
-//        Data result = instance.getDataFimSubmissaoCandidaturasDemos();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setDataInicioSubmissaoCandidaturasDemos method, of class Exposicao.
-//     */
-//    @Test
-//    public void testSetDataInicioSubmissaoCandidaturasDemos() {
-//        System.out.println("setDataInicioSubmissaoCandidaturasDemos");
-//        Data data = null;
-//        Exposicao instance = new Exposicao();
-//        instance.setDataInicioSubmissaoCandidaturasDemos(data);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setDataFimSubmissaoCandidaturasDemos method, of class Exposicao.
-//     */
-//    @Test
-//    public void testSetDataFimSubmissaoCandidaturasDemos() {
-//        System.out.println("setDataFimSubmissaoCandidaturasDemos");
-//        Data data = null;
-//        Exposicao instance = new Exposicao();
-//        instance.setDataFimSubmissaoCandidaturasDemos(data);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of getDataFimAtualizacaoConflitosDemos method, of class Exposicao.
-//     */
-//    @Test
-//    public void testGetDataFimAtualizacaoConflitosDemos() {
-//        System.out.println("getDataFimAtualizacaoConflitosDemos");
-//        Data data = null;
-//        Exposicao instance = new Exposicao();
-//        Data expResult = null;
-//        Data result = instance.getDataFimAtualizacaoConflitosDemos(data);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setDataFimAtualizacaoConflitosDemos method, of class Exposicao.
-//     */
-//    @Test
-//    public void testSetDataFimAtualizacaoConflitosDemos() {
-//        System.out.println("setDataFimAtualizacaoConflitosDemos");
-//        Data data = null;
-//        Exposicao instance = new Exposicao();
-//        instance.setDataFimAtualizacaoConflitosDemos(data);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of VerificarSeEOrganizadorDaExpo method, of class Exposicao.
-//     */
-//    @Test
-//    public void testVerificarSeEOrganizadorDaExpo() {
-//        System.out.println("VerificarSeEOrganizadorDaExpo");
-//        Organizador org = null;
-//        Exposicao instance = new Exposicao();
-//        boolean expResult = false;
-//        boolean result = instance.VerificarSeEOrganizadorDaExpo(org);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of getEstado method, of class Exposicao.
-//     */
-//    @Test
-//    public void testGetEstado() {
-//        System.out.println("getEstado");
-//        Exposicao instance = new Exposicao();
-//        ExposicaoEstado expResult = null;
-//        ExposicaoEstado result = instance.getEstado();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setEstado method, of class Exposicao.
-//     */
-//    @Test
-//    public void testSetEstado() {
-//        System.out.println("setEstado");
-//        ExposicaoEstado novoSt = null;
-//        Exposicao instance = new Exposicao();
-//        instance.setEstado(novoSt);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setExposicaoConflitosAtualizados method, of class Exposicao.
-//     */
-//    @Test
-//    public void testSetExposicaoConflitosAtualizados() {
-//        System.out.println("setExposicaoConflitosAtualizados");
-//        Exposicao instance = new Exposicao();
-//        boolean expResult = false;
-//        boolean result = instance.setExposicaoConflitosAtualizados();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setExposicaoCandidaturasAtribuidas method, of class Exposicao.
-//     */
-//    @Test
-//    public void testSetExposicaoCandidaturasAtribuidas() {
-//        System.out.println("setExposicaoCandidaturasAtribuidas");
-//        Exposicao instance = new Exposicao();
-//        boolean expResult = false;
-//        boolean result = instance.setExposicaoCandidaturasAtribuidas();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setExposicaoCandidaturasAvaliadas method, of class Exposicao.
-//     */
-//    @Test
-//    public void testSetExposicaoCandidaturasAvaliadas() {
-//        System.out.println("setExposicaoCandidaturasAvaliadas");
-//        Exposicao instance = new Exposicao();
-//        boolean expResult = false;
-//        boolean result = instance.setExposicaoCandidaturasAvaliadas();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setExposicaoCandidaturasDecididas method, of class Exposicao.
-//     */
-//    @Test
-//    public void testSetExposicaoCandidaturasDecididas() {
-//        System.out.println("setExposicaoCandidaturasDecididas");
-//        Exposicao instance = new Exposicao();
-//        boolean expResult = false;
-//        boolean result = instance.setExposicaoCandidaturasDecididas();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setAtribuicoes method, of class Exposicao.
-//     */
-//    @Test
-//    public void testSetAtribuicoes() {
-//        System.out.println("setAtribuicoes");
-//        List<Atribuicao> lA = null;
-//        Exposicao instance = new Exposicao();
-//        instance.setAtribuicoes(lA);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of valida method, of class Exposicao.
-//     */
-//    @Test
-//    public void testValida() {
-//        System.out.println("valida");
-//        Exposicao instance = new Exposicao();
-//        boolean expResult = false;
-//        boolean result = instance.valida();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of listacandidaturasAceites method, of class Exposicao.
-//     */
-//    @Test
-//    public void testListacandidaturasAceites() {
-//        System.out.println("listacandidaturasAceites");
-//        Exposicao instance = new Exposicao();
-//        List<CandidaturaExposicao> expResult = null;
-//        List<CandidaturaExposicao> result = instance.listacandidaturasAceites();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of listacandidaturasNaoAceites method, of class Exposicao.
-//     */
-//    @Test
-//    public void testListacandidaturasNaoAceites() {
-//        System.out.println("listacandidaturasNaoAceites");
-//        Exposicao instance = new Exposicao();
-//        List<CandidaturaExposicao> expResult = null;
-//        List<CandidaturaExposicao> result = instance.listacandidaturasNaoAceites();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of getlistaTodasKeywords method, of class Exposicao.
-//     */
-//    @Test
-//    public void testGetlistaTodasKeywords() {
-//        System.out.println("getlistaTodasKeywords");
-//        Exposicao instance = new Exposicao();
-//        List<Keyword> expResult = null;
-//        List<Keyword> result = instance.getlistaTodasKeywords();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of estatisticaCandidaturas method, of class Exposicao.
-//     */
-//    @Test
-//    public void testEstatisticaCandidaturas() {
-//        System.out.println("estatisticaCandidaturas");
-//        Exposicao instance = new Exposicao();
-//        List<String> expResult = null;
-//        List<String> result = instance.estatisticaCandidaturas();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
+
+    /**
+     * Test of getlistaTodasKeywords method, of class Exposicao.
+     */
+    @Test
+    public void testGetlistaTodasKeywords() {
+        System.out.println("getlistaTodasKeywords");
+        Exposicao instance = new Exposicao();
+        List<Keyword> expResult = new ArrayList<>();
+        List<Keyword> result = instance.getlistaTodasKeywords();
+        assertEquals(expResult, result);
+       
+    }
+
+    /**
+     * Test of estatisticaCandidaturas method, of class Exposicao.
+     */
+    @Test
+    public void testEstatisticaCandidaturas() {
+        System.out.println("estatisticaCandidaturas");
+        Exposicao instance = new Exposicao();
+        List<String> expResult = new ArrayList<>();
+        List<String> result = instance.estatisticaCandidaturas();
+        assertEquals(expResult, result);
+       
+    }
 
 }
