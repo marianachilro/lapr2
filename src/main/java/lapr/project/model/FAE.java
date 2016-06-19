@@ -19,14 +19,14 @@ public class FAE {
     /**
      * Utilizador
      */
-    @XmlElement(name="utilizador")
+    @XmlElement(name = "utilizador")
     private Utilizador m_oUFae;
 
     /**
      * Construtor sem parametros.
      */
     public FAE() {
-
+        m_oUFae = new Utilizador();
     }
 
     /**
