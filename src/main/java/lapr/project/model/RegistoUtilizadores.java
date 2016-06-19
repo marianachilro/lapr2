@@ -186,5 +186,24 @@ public class RegistoUtilizadores {
      public Utilizador novoUtilizador() {
         return new Utilizador();
     }
+     
+    public boolean hasUtilizador(String username) {
+        boolean b = false; 
+        for(Utilizador u : listaUtilizadores) {
+            if(u.getUsername().equals(username)) {
+                b = true;
+            }
+        }
+        return b;
+    }
+     
+    @Override
+    public String toString() {
+        String st ="";
+        for (Utilizador u : listaUtilizadores) {
+            st = u.toString() + "\n";
+        }
+        return st;
+    }
     
 }
