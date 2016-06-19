@@ -22,15 +22,12 @@ public class RegistoUtilizadores {
      */
     @XmlElement(name="registoUtilizadoresConfirmados")
     private List<Utilizador> listaUtilizadores;
-    @XmlElement(name="registoUtilizadoresNaoConfirmados")
-    private List<Utilizador> listaUtilizadoresNaoConfirmados;
 
     /**
      * Construtor de um Registo de Utilizadores.
      */
     public RegistoUtilizadores() {
         this.listaUtilizadores = new ArrayList<>();
-        this.listaUtilizadoresNaoConfirmados = new ArrayList<>();
     }
 
     /**
@@ -40,19 +37,6 @@ public class RegistoUtilizadores {
      */
     public List<Utilizador> getListaUtilizadores() {
         return listaUtilizadores;
-    }
-
-    /**
-     * Devolve a List de Utilizadores não confirmados
-     *
-     * @return List de Utilizadores não confirmados.
-     */
-    public List<Utilizador> getUtilizadoresNaoConfirmados() {
-        return listaUtilizadoresNaoConfirmados;
-    }
-    
-    public void setUtilizadoresNaoConfirmados(List<Utilizador> listaUtilizadoresNaoConfirmados) {
-        this.listaUtilizadoresNaoConfirmados = listaUtilizadoresNaoConfirmados;
     }
 
     /**
@@ -106,43 +90,6 @@ public class RegistoUtilizadores {
         return listaUtilizadores.add(u);
     }
 
-    /**
-     * Adiciona um Utilizador à List, apenas se esta ainda não existir na mesma.
-     * Devolve um boolean, true se a operação tiver sucesso, false se não tiver
-     * sucesso.
-     *
-     * @param u Utilizador
-     * @return boolean
-     */
-    public boolean registaUtilizador(Utilizador u) {
-        if (!validaUtilizador(u)) {
-            addUtilizador(u);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Remove um Utilizador à List de Utilizadores não confirmados e devolve um
-     * boolean se a operação tiver sucesso.
-     *
-     * @param u Utilizador
-     * @return boolean
-     */
-    public boolean removeUtilizadorNaoConfirmado(Utilizador u) {
-        return listaUtilizadoresNaoConfirmados.remove(u);
-    }
-
-    public boolean confirmaNaoUtilizador(Utilizador u) {
-        if (!validaUtilizadorNaoConfirmado(u)) {
-            addUtilizadorNaoConfirmado(u);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public boolean confirmaUtilizador(Utilizador u) {
         if (!validaUtilizador(u)) {
             addUtilizador(u);
@@ -150,33 +97,6 @@ public class RegistoUtilizadores {
         } else {
             return false;
         }
-    }
-    
-    /**
-     * Validação que devolve um boolean. True se o Utilizador já existir na List
-     * de Utilizadores não confirmados. False se ainda não existir.
-     *
-     * @param u Utilizador
-     * @return boolean
-     */
-    public boolean validaUtilizadorNaoConfirmado(Utilizador u) {
-        if (!listaUtilizadoresNaoConfirmados.isEmpty()) {
-            return listaUtilizadoresNaoConfirmados.contains(u);
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Adiciona um Utilizador ao list de utilizadores não confirmados e devolve
-     * um boolean. True se esta for adicionado com sucesso. False se esta não
-     * for adicionada com sucesso.
-     *
-     * @param u Utilizador
-     * @return boolean
-     */
-    public boolean addUtilizadorNaoConfirmado(Utilizador u) {
-        return listaUtilizadoresNaoConfirmados.add(u);
     }
 
     /**
@@ -204,6 +124,10 @@ public class RegistoUtilizadores {
             st = u.toString() + "\n";
         }
         return st;
+    }
+    
+    public boolean removerUtilizador(Utilizador u) {
+        return listaUtilizadores.remove(u);
     }
     
 }

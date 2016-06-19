@@ -11,6 +11,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -23,14 +24,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import lapr.project.controller.RegistarCandidaturaExposicaoController;
-import lapr.project.model.Candidatura;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
-import lapr.project.model.ListaCandidaturasExposicoes;
-import lapr.project.model.ListaDemonstracoes;
-import lapr.project.model.ListaProdutos;
+import lapr.project.model.Keyword;
 import lapr.project.model.Produto;
 
 /**
@@ -47,10 +45,9 @@ public class RegistarCandExpoUI extends JDialog {
     private RegistarCandidaturaExposicaoController controller;
     private Exposicao expo;
     private CandidaturaExposicao cand;
-    private ListaCandidaturasExposicoes lCand;
-    private ListaProdutos lProd;
-    private ListaDemonstracoes lDemonsExpo, lDemonsCand;
     private Produto prod;
+    private Keyword k;
+    private List<Demonstracao> lDemonsExpo;
     private Demonstracao demo;
     private JComboBox cb;
     private JLabel lblNomeEmpresa, lblMorada, lblTelemovel,
@@ -102,6 +99,11 @@ public class RegistarCandExpoUI extends JDialog {
         this.mLista = new ModeloListaExpos(controller.getListaExposicoes());
         jLista.setModel(mLista);
         jLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        lDemonsExpo = controller.getListaDemonstracoesExposicao();
+        controller.getListCandidaturas();
+        controller.getListaProdutos();
+        controller.getListaKeywords();
+        controller.getListaDemonstracoesCandidatura();
         criarComponentes();
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         pack();
@@ -173,7 +175,7 @@ public class RegistarCandExpoUI extends JDialog {
         p.add(txtKeyword);
         p.add(btSecNovaKeyword);
         lblDemonstracoes = new JLabel("Demonstração:");
-        cb = new JComboBox();
+        cb = new JComboBox(lDemonsExpo.toArray());
         btSecAdicionarDemo = criarBotaoAddDemo();
         p.add(lblDemonstracoes);
         p.add(cb);
@@ -197,7 +199,6 @@ public class RegistarCandExpoUI extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boolean b = false;
-                controller.getListaProdutos();
                 prod = controller.novoProduto();
                 try {
                     controller.setNome(txtProdutos.getText().trim());
@@ -209,12 +210,11 @@ public class RegistarCandExpoUI extends JDialog {
                 if (b == false && controller.registaProduto()) {
                     JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Produto adicionado com sucesso.",
                             "Novo Produto", JOptionPane.INFORMATION_MESSAGE);
-                    b = false;
                 } else {
                     JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Produto não foi adicionado com sucesso.",
                             "Adicionar Produto", JOptionPane.ERROR_MESSAGE);
-                    b = false;
                 }
+                b = false;
                 txtProdutos.setText("");
             }
         });
@@ -226,7 +226,16 @@ public class RegistarCandExpoUI extends JDialog {
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                k = controller.novaKeyword(txtKeyword.getText());
+                if (controller.registaKeyword()) {
+                    JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Keyword adicionada com sucesso.",
+                            "Nova Keyword", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(RegistarCandExpoUI.this, 
+                            "Keyword não foi adicionada com sucesso. Verifique se a keyword introduza já existe, ou se o limite das mesmas foi atingido",
+                            "Adicionar Produto", JOptionPane.ERROR_MESSAGE);
+                }
+                txtKeyword.setText("");
             }
         });
         return b;
@@ -239,7 +248,10 @@ public class RegistarCandExpoUI extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 demo = (Demonstracao) cb.getSelectedItem();
-                if (true) {
+                if(demo != null) {
+                    controller.selectDemonstracao(demo);
+                }
+                if (controller.registaDemonstracao()) {
                     JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Demonstração adicionada com sucesso.",
                             "Adicionar Demonstração", JOptionPane.INFORMATION_MESSAGE);
                 } else {
@@ -261,19 +273,18 @@ public class RegistarCandExpoUI extends JDialog {
                 expo = (Exposicao) jLista.getSelectedValue();
                 if(expo != null) {
                     controller.selectExposicao(expo);
-                    controller.getListCandidaturas();
                     cand = controller.novaCandidatura();
                     controller.setDados(emailRep, txtNomeEmpresa.getText(), txtMorada.getText(), Integer.parseInt(txtTelemovel.getText()), Float.parseFloat(txtArea.getText()), Integer.parseInt(txtConvites.getText()));
-                    
-                }
-                if (false) {
-                    b = false;
-                    JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Candidatura criada com sucesso.", "Nova Candidatura", JOptionPane.INFORMATION_MESSAGE);
-                    dispose();
-                } else {
-                    b = false;
-                    JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Candidatura não foi criada.", "Nova Candidatura", JOptionPane.ERROR_MESSAGE);
-                    dispose();
+                    if (controller.registaCandidatura()) {
+                        b = false;
+                        controller.transitaEstado();
+                        JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Candidatura criada com sucesso.", "Nova Candidatura", JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                    } else {
+                        b = false;
+                        JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Candidatura não foi criada.", "Nova Candidatura", JOptionPane.ERROR_MESSAGE);
+                        dispose();
+                    }
                 }
             }
         });

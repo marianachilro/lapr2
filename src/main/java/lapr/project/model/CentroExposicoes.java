@@ -18,40 +18,45 @@ public class CentroExposicoes {
     /**
      * Registo com todos os tipos de conflitos.
      */
-    @XmlElement(name="registoConflitos")
+    @XmlElement(name = "registoConflitos")
     private RegistoTipoConflitos rc;
     /**
      * Registo com todas as exposições.
      */
-    @XmlElement(name="registoExposicoes")
+    @XmlElement(name = "registoExposicoes")
     private RegistoExposicoes re;
     /**
-     * Registo com todos os utilizadores.
+     * Registo com todos os utilizadores confirmados.
      */
-    @XmlElement(name="registoUtilizadores")
+    @XmlElement(name = "registoUtilizadores")
     private RegistoUtilizadores ru;
+
+    /**
+     * Registo com todos os utilizadores não confirmados.
+     */
+    private RegistoUtilizadores ruNaoConf;
     /**
      * Registo com todos os stands.
      */
-    @XmlElement(name="stands")
+    @XmlElement(name = "stands")
     private RegistoStands rs;
 
     /**
      * Registo de locais do centro
      */
-    @XmlElement(name="locais")
+    @XmlElement(name = "locais")
     private RegistoLocais rl;
 
     /**
      * Registo de recursos do centro
      */
-    @XmlElement(name="recursos")
+    @XmlElement(name = "recursos")
     private RegistoRecursos rr;
 
     /**
      * Registo ocm todos os mecanismos.
      */
-    @XmlElement(name="mecanismos")
+    @XmlElement(name = "mecanismos")
     private RegistoMecanismos rm;
 
     /**
@@ -61,6 +66,7 @@ public class CentroExposicoes {
         this.rc = new RegistoTipoConflitos();
         this.re = new RegistoExposicoes();
         this.ru = new RegistoUtilizadores();
+        this.ruNaoConf = new RegistoUtilizadores();
         this.rs = new RegistoStands();
         this.rl = new RegistoLocais();
         this.rr = new RegistoRecursos();
@@ -187,5 +193,23 @@ public class CentroExposicoes {
      */
     public void setRegistoTipoConflitos(RegistoTipoConflitos rc) {
         this.rc = rc;
+    }
+
+    /**
+     * Devolve o registo de todos os utilizadores não confirmados.
+     *
+     * @return registo de utilizadores não confirmados
+     */
+    public RegistoUtilizadores getRegistoUtilizadoresNaoConfirmados() {
+        return ruNaoConf;
+    }
+
+    /**
+     * Modifica o registo de utilizadores não confirmados
+     *
+     * @param ruNaoConf novo registo de utilizadores não confirmados
+     */
+    public void setRegistoUtilizadoresNaoConfirmados(RegistoUtilizadores ruNaoConf) {
+        this.ruNaoConf = ruNaoConf;
     }
 }

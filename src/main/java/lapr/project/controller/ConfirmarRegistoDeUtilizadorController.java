@@ -19,6 +19,7 @@ public class ConfirmarRegistoDeUtilizadorController {
     private final CentroExposicoes ce;
     private Utilizador u;
     private RegistoUtilizadores ru;
+    private RegistoUtilizadores ruNc;
 
     public ConfirmarRegistoDeUtilizadorController(CentroExposicoes ce) {
         this.ce = ce;
@@ -29,7 +30,8 @@ public class ConfirmarRegistoDeUtilizadorController {
     }
 
     public List<Utilizador> getUtilizadoresNaoConfirmados() {
-        return ru.getUtilizadoresNaoConfirmados();
+        ruNc = ce.getRegistoUtilizadoresNaoConfirmados();
+        return ruNc.getListaUtilizadores();
     }
 
     public void selectUtilizador(Utilizador u) {
@@ -37,11 +39,11 @@ public class ConfirmarRegistoDeUtilizadorController {
     }
     
     public boolean removeUtilizador() {
-        return ru.removeUtilizadorNaoConfirmado(u);
+        return ruNc.removerUtilizador(u);
     }
     
-    public void confirmaUtilizador() {
-        ru.confirmaUtilizador(u);
+    public boolean confirmaUtilizador() {
+        return ru.confirmaUtilizador(u);
     }
 
 }

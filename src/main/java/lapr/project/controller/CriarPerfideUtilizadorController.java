@@ -24,11 +24,11 @@ public class CriarPerfideUtilizadorController {
     }
 
     public RegistoUtilizadores getRegistoUtilizadores() {
-        return this.registoUtilizadores=ce.getRegistoUtilizadores();
+        return this.registoUtilizadores=ce.getRegistoUtilizadoresNaoConfirmados();
     }
 
     public void novoUtilizador() {
-        this.u = this.ce.getRegistoUtilizadores().novoUtilizador();
+        this.u = this.ce.getRegistoUtilizadoresNaoConfirmados().novoUtilizador();
     }
 
     public void setDados(String nome, String username, String email, String password, String keyword) {
@@ -42,9 +42,7 @@ public class CriarPerfideUtilizadorController {
     }
 
     public boolean RegistaUtilizador() {
-
-        return this.registoUtilizadores.confirmaNaoUtilizador(u);
-
+        return this.registoUtilizadores.confirmaUtilizador(u);
     }
 
 }

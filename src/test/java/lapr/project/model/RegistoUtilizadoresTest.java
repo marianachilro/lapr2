@@ -34,19 +34,6 @@ public class RegistoUtilizadoresTest {
     }
 
     /**
-     * Test of getUtilizadoresNaoConfirmados method, of class RegistoUtilizadores.
-     */
-    @Test
-    public void testGetUtilizadoresNaoConfirmados() {
-        System.out.println("getUtilizadoresNaoConfirmados");
-        RegistoUtilizadores instance = new RegistoUtilizadores();
-        List<Utilizador> expResult = new ArrayList<>();
-        instance.setUtilizadoresNaoConfirmados(expResult);
-        List<Utilizador> result = instance.getUtilizadoresNaoConfirmados();
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of getUtilizador method, of class RegistoUtilizadores.
      */
     @Test
@@ -88,33 +75,6 @@ public class RegistoUtilizadoresTest {
     }
 
     /**
-     * Test of registaUtilizador method, of class RegistoUtilizadores.
-     */
-    @Test
-    public void testRegistaUtilizador() {
-        System.out.println("registaUtilizador");
-        Utilizador u = new Utilizador();
-        RegistoUtilizadores instance = new RegistoUtilizadores();
-        boolean expResult = true;
-        boolean result = instance.registaUtilizador(u);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of removeUtilizadorNaoConfirmado method, of class RegistoUtilizadores.
-     */
-    @Test
-    public void testRemoveUtilizadorNaoConfirmado() {
-        System.out.println("removeUtilizadorNaoConfirmado");
-        Utilizador u = new Utilizador();
-        RegistoUtilizadores instance = new RegistoUtilizadores();
-        boolean expResult = true;
-        instance.addUtilizadorNaoConfirmado(u);
-        boolean result = instance.removeUtilizadorNaoConfirmado(u);
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of confirmaUtilizador method, of class RegistoUtilizadores.
      */
     @Test
@@ -123,34 +83,7 @@ public class RegistoUtilizadoresTest {
         Utilizador u = new Utilizador();
         RegistoUtilizadores instance = new RegistoUtilizadores();
         boolean expResult = true;
-        boolean result = instance.confirmaNaoUtilizador(u);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of validaUtilizadorNaoConfirmado method, of class RegistoUtilizadores.
-     */
-    @Test
-    public void testValidaUtilizadorNaoConfirmado() {
-        System.out.println("validaUtilizadorNaoConfirmado");
-        Utilizador u = new Utilizador();
-        RegistoUtilizadores instance = new RegistoUtilizadores();
-        boolean expResult = true;
-        instance.addUtilizadorNaoConfirmado(u);
-        boolean result = instance.validaUtilizadorNaoConfirmado(u);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of addUtilizadorNaoConfirmado method, of class RegistoUtilizadores.
-     */
-    @Test
-    public void testAddUtilizadorNaoConfirmado() {
-        System.out.println("addUtilizadorNaoConfirmado");
-        Utilizador u = new Utilizador();
-        RegistoUtilizadores instance = new RegistoUtilizadores();
-        boolean expResult = true;
-        boolean result = instance.addUtilizadorNaoConfirmado(u);
+        boolean result = instance.confirmaUtilizador(u);
         assertEquals(expResult, result);
     }
     

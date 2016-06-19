@@ -98,8 +98,8 @@ public class RegistarCandidaturaExposicaoController {
         return k;
     }
 
-    public void registaKeyword() {
-        lk.registaKeyword(k);
+    public boolean registaKeyword() {
+        return lk.registaKeyword(k);
     }
 
     public List<Demonstracao> getListaDemonstracoesExposicao() {
@@ -115,12 +115,12 @@ public class RegistarCandidaturaExposicaoController {
         this.d = d;
     }
 
-    public void registaDemonstracao() {
-        ldc.registaDemonstracao(d);
+    public boolean registaDemonstracao() {
+        return ldc.registaDemonstracao(d);
     }
 
-    public void registaCandidatura() {
-        rc.registaCandidatura(c);
+    public boolean registaCandidatura() {
+        return rc.registaCandidatura(c);
     }
 
     public void transitaEstado() {
