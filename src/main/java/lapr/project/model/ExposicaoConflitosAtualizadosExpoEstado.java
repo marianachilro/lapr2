@@ -67,8 +67,10 @@ public class ExposicaoConflitosAtualizadosExpoEstado extends ExpoImpEstado imple
         List<Atribuivel> lAtribuiveis = new ArrayList<>();
         List<CandidaturaExposicao> lc = super.getExposicao().getListaCandidaturas().getListCandidaturas();
         for (CandidaturaExposicao c : lc) {
-            if (c.getEstado().setConflitosAlterados()) {
+            if (!c.getEstado().setConflitosDetetados()) {
+                if(c.getEstado().setConflitosAlterados()){
                 lAtribuiveis.add(c);
+            }
             }
         }
         return lAtribuiveis;

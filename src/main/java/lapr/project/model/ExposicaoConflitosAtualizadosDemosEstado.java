@@ -68,9 +68,11 @@ public class ExposicaoConflitosAtualizadosDemosEstado extends ExpoImpEstado impl
         List<Demonstracao> ld = super.getExposicao().getListaDemonstracoes().getListaDemonstracao();
         for (Demonstracao d : ld) {
             for (CandidaturaDemonstracao c : d.getListaCandidaturas().getListCandidaturas()) {
-                if (c.getEstado().setConflitosAlterados()) {
-                    lAtribuiveis.add(c);
-                }
+              if (!c.getEstado().setConflitosDetetados()) {
+                if(c.getEstado().setConflitosAlterados()){
+                lAtribuiveis.add(c);
+            }
+            }
             }
         }
         return lAtribuiveis;

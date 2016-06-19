@@ -61,6 +61,7 @@ public class Mecanismo_NFAE implements MecanismoAtribuicao, Serializable {
                 }
 
             }
+            ((Candidatura)lAtribuiveis.get(contC)).getEstado().setAvaliada();
             contC++;
         }
 
