@@ -18,6 +18,7 @@ import lapr.project.model.RegistoExposicoes;
 import lapr.project.model.RegistoMecanismos;
 import lapr.project.model.RegistoUtilizadores;
 import lapr.project.model.ExposicaoEstado;
+import lapr.project.model.PodeAtribuir;
 
 /**
  *
@@ -70,7 +71,7 @@ public class AtribuirCandidaturaController {
     }
 
     public List<Atribuicao> getListaAtribuicoes() {
-        lA = mecanismo.atribui(listaf, rconf, st);
+        lA = mecanismo.atribui(listaf, rconf,(PodeAtribuir)st, listaAtribuicoes);
         return lA;
     }
 
