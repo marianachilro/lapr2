@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author catarinarib
  */
-public class CandidaturaDemonstracao implements Candidatura, Removivel {
+public class CandidaturaDemonstracao implements Candidatura, Removivel, Atribuivel {
 
     private String emailRep;
     private boolean decisao;

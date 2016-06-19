@@ -11,6 +11,7 @@ import java.util.List;
  *
  * @author miniondevil
  */
-public interface MecanismoAtribuicao {
-  public List<Atribuicao> atribui(List<FAE> listaf, ListaConflitos rconf, PodeAtribuir st,ListaAtribuicoes listaAtribuicoes);  
+public interface PodeAtribuir {
+    public List<Atribuivel> getListaAtribuiveis();
+    
 }

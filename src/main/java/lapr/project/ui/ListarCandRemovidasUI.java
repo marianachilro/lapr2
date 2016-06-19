@@ -26,7 +26,7 @@ public class ListarCandRemovidasUI extends JDialog {
     
     private JComboBox cb;
 
-    private JTable t1;
+   
     private final ListarCandRemovidasController controller;
     
     public ListarCandRemovidasUI(MenuUI pai, CentroExposicoes ce, String username) {
