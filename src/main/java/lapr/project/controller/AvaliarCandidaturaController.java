@@ -73,7 +73,7 @@ public class AvaliarCandidaturaController {
     }
     
      public void setAvaliacao(String fae, String candidatura, String decisao, String txt){
-         this.m_avaliacao = listaAvaliacoes.novaAvaliacao();
+         this.m_avaliacao = listaAvaliacoes.novaAvaliacaoDemo();
 
         this.m_avaliacao.setFae(fae);
         this.m_avaliacao.setCandidatura(candidatura);

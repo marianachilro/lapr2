@@ -16,10 +16,11 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class ListaAvaliacoes {
-     /**
+
+    /**
      * lista com as Avaliações.
      */
-    @XmlElement(name="avaliacao")
+    @XmlElement(name = "avaliacao")
     private final List<Avaliacao> la;
 
     /**
@@ -67,12 +68,16 @@ public class ListaAvaliacoes {
         return la.add(novaAvaliacao);
     }
 
-     /**
+    /**
      * Devolve uma nova Avaliacao.
      *
      * @return avaliacao
      */
     public Avaliacao novaAvaliacao() {
         return new Avaliacao();
+    }
+
+    public Avaliacao novaAvaliacaoDemo() {
+        return new Avaliacao("Demo");
     }
 }

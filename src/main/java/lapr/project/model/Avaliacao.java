@@ -173,6 +173,8 @@ public class Avaliacao {
 
     }
 
+   
+
     /**
      * Devolve a decisao da avaliacao.
      *
@@ -405,5 +407,10 @@ public class Avaliacao {
         return hash;
     }
     
-    
+    public Avaliacao(String demo) {
+        this.fae = "";
+        this.candidatura = "";
+        this.decisao = DECISAO_OMISSAO;
+        this.txt = TXT_OMISSAO;
+     }
 }

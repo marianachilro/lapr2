@@ -43,6 +43,8 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel, Atribuiv
         this.decisao = false;
     }
 
+    
+    
     @Override
     public String getEmailRep() {
         return emailRep;

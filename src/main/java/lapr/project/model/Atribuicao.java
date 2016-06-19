@@ -70,31 +70,23 @@ public class Atribuicao {
         this.c=c;
     }
 
+    /**
+     *
+     * @param o
+     * @return
+     */
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.fae);
-       
-        return hash;
+    public boolean equals(Object o ){
+        Atribuicao a = (Atribuicao)o;
+       return this.c.equals(a.getCandidatura())&&this.fae.equals(a.getFAE());
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Atribuicao other = (Atribuicao) obj;
-        if (!Objects.equals(this.fae, other.fae)) {
-            return false;
-        }
-       
-        return true;
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.fae);
+        hash = 67 * hash + Objects.hashCode(this.c);
+        return hash;
     }
     
     

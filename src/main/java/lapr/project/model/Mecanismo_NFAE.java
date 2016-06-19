@@ -55,7 +55,7 @@ public class Mecanismo_NFAE implements MecanismoAtribuicao, Serializable {
                         contConflitos++;
                     }
                 }
-                if (listaAtribuicoes.validateAtribuicoes(a) && contConflitos==0) {
+                if (!listaAtribuicoes.validateAtribuicoes(a) && contConflitos==0) {
                     contF++;
                     listaAtribuicao.add(a);
                 }

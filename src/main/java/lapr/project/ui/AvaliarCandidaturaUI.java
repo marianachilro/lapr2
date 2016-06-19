@@ -14,8 +14,10 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import lapr.project.controller.AvaliarCandidaturaController;
 import lapr.project.model.Candidatura;
+import lapr.project.model.CandidaturaDemonstracao;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
 import lapr.project.model.Local;
@@ -33,7 +35,10 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
     private Exposicao exposicao;
     private FAE fae;
     private CandidaturaExposicao candExp;
+    private CandidaturaDemonstracao candDemo;
     private final AvaliarCandidaturaController controller;
+    private String tpCand;
+    private QuestionarioFAECand questionario;
 
     /**
      * Creates new form AvaliarCandidaturaUI
@@ -41,9 +46,10 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
      * @param ce
      * @param fae
      */
-    public AvaliarCandidaturaUI(final CentroExposicoes ce, FAE fae) {
+    public AvaliarCandidaturaUI(final CentroExposicoes ce, FAE fae, String tpCand) {
         this.fae = fae;
         this.ce = ce;
+        this.tpCand = tpCand;
         this.controller = new AvaliarCandidaturaController(ce, fae);
         initComponents();
         setVisible(true);
@@ -94,6 +100,12 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jComboBox3 = new javax.swing.JComboBox<>();
         label4 = new java.awt.Label();
+        jSeparator5 = new javax.swing.JSeparator();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,6 +169,11 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(153, 153, 255));
         jButton3.setText("Continuar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         label3.setBackground(new java.awt.Color(153, 153, 255));
         label3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -167,50 +184,101 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
         label4.setBackground(new java.awt.Color(153, 153, 255));
         label4.setText("Justificação:");
 
+        jButton4.setBackground(new java.awt.Color(153, 255, 204));
+        jButton4.setText("Questionário");
+        jButton4.setEnabled(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setBackground(new java.awt.Color(153, 153, 255));
+        jButton5.setText("Cancelar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setBackground(new java.awt.Color(153, 153, 255));
+        jButton6.setText("Guardar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane3.setViewportView(jTextArea2);
+        jTextArea2.setEditable(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator5)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(190, 190, 190)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(161, 161, 161)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(47, 47, 47))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,10 +317,20 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(10, 10, 10)
-                .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jButton3.setEnabled(false);
@@ -262,15 +340,11 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -279,25 +353,214 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-        jButton2.setEnabled(true);
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
+        if (this.tpCand.equalsIgnoreCase("exposicao")) {
+            jButton2.setEnabled(true);
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
 
-                String expo = jComboBox1.getSelectedItem() + "";
-                jComboBox1.setEnabled(false);
+                    String expo = jComboBox1.getSelectedItem() + "";
+                    jComboBox1.setEnabled(false);
 
-                if (!expo.isEmpty()) {
-                    for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
+                    if (!expo.isEmpty()) {
+                        for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
 
-                        if (e.getTitulo().equalsIgnoreCase(expo)) {
-                            exposicao = e;
+                            if (e.getTitulo().equalsIgnoreCase(expo)) {
+                                exposicao = e;
+                            }
+
                         }
 
                     }
 
+                    controller.selecionaExposicao(exposicao);
+
+                    final String[] candidaturas = new String[100];
+                    int cont = 0;
+//                if (!controller.getAvaliaveis(fae).isEmpty()) {
+//                    for (Candidatura c : controller.getAvaliaveis(fae)) {
+//                        candidaturas[cont] = c.toString();
+//                        cont++;
+//                    }
+//                }
+
+                    if (!exposicao.getListaCandidaturas().getListCandidaturas().isEmpty()) {
+                        for (Candidatura c : exposicao.getListaCandidaturas().getListCandidaturas()) {
+                            candidaturas[cont] = c.toString();
+                            cont++;
+                        }
+                    }
+
+                    jList2.setModel(new javax.swing.AbstractListModel<String>() {
+
+                        public int getSize() {
+                            return candidaturas.length;
+                        }
+
+                        public String getElementAt(int i) {
+                            return candidaturas[i];
+                        }
+                    });
+
+                    jList2.setEnabled(true);
+
                 }
-                controller.selecionaExposicao(exposicao);
+            }
+            );
+            jButton1.setEnabled(false);
+        } else {
+            jComboBox1.setEnabled(false);
+            jButton1.setEnabled(false);
+            jComboBox2.setEnabled(true);
+            jButton3.setEnabled(true);
+
+            String expo = jComboBox1.getSelectedItem() + "";
+            jComboBox1.setEnabled(false);
+
+            if (!expo.isEmpty()) {
+                for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
+
+                    if (e.getTitulo().equalsIgnoreCase(expo)) {
+                        exposicao = e;
+                    }
+
+                }
+
+            }
+            controller.selecionaExposicao(exposicao);
+
+            String[] demonstracoes = new String[100];
+            int i = 0;
+//            if (!exposicao.getListaDemonstracoes().getListaDemonstracoesDisponiveis().isEmpty()) {
+//                for (Demonstracao d : exposicao.getListaDemonstracoes().getListaDemonstracoesDisponiveis()) {
+//                    demonstracoes[i] = d.getCodigo();
+//                    i++;
+//                }
+//
+//            }
+
+            if (!exposicao.getListaDemonstracoes().getListaDemonstracao().isEmpty()) {
+                for (Demonstracao d : exposicao.getListaDemonstracoes().getListaDemonstracao()) {
+                    demonstracoes[i] = d.getCodigo();
+                    i++;
+                }
+
+            }
+
+            jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(demonstracoes));
+
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        jList2.setEnabled(false);
+        jButton2.setEnabled(false);
+
+//        if (!controller.getAvaliaveis(fae).isEmpty()) {
+//            for (Candidatura c : controller.getAvaliaveis(fae)) {
+//                if(c.getEmailRep().equalsIgnoreCase(jList2.getSelectedValue())){
+//                    controller.selectCandidatura(c);
+//                      if(tpCand.equalsIgnoreCase("exposicao")){
+//                           this.candExp = (CandidaturaExposicao) c;
+//                      }else{
+//                          this.candDemo=(CandidaturaDemonstracao) c;
+//                      }
+////                }
+//            }
+//        }
+        if (!exposicao.getListaCandidaturas().getListCandidaturas().isEmpty()) {
+            for (Candidatura c : exposicao.getListaCandidaturas().getListCandidaturas()) {
+                if (c.getEmailRep().equalsIgnoreCase(jList2.getSelectedValue())) {
+                    controller.selectCandidatura(c);
+                    this.candExp = (CandidaturaExposicao) c;
+                }
+            }
+        }
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+
+                if (tpCand.equalsIgnoreCase("exposicao")) {
+                    jTextArea1.setText("Nome Empresa: " + candExp.getnomeEmpresa() + "\nMorada: " + candExp.getMorada()
+                            + "\nTelemovel: " + candExp.getTelemovel() + "\nArea: " + candExp.getArea() + "\nNºConvites: " + candExp.getConvites()
+                            + "\nLista de Demonstrações:\n" + candExp.getListaDemonstracoes().toString());
+
+                    jTextArea1.setEditable(false);
+                    jComboBox3.setEnabled(true);
+                    jTextArea2.setEditable(true);
+                    jButton4.setEnabled(true);
+
+                } else {
+                    jTextArea1.setText("Demonstracao: " + candDemo.getDemonstracao());
+
+                    jTextArea1.setEditable(false);
+                    jComboBox3.setEnabled(true);
+                    jTextArea2.setEditable(true);
+
+                }
+            }
+        }
+        );
+        jButton2.setEnabled(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        MenuUI m = new MenuUI(ce);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+
+        try {
+
+            if (tpCand.equalsIgnoreCase("exposicao")) {
+                String fae = this.fae.getID();
+                String candE = this.candExp.getEmailRep();
+                String decisao = jComboBox3.getSelectedItem() + "";
+                String txt = jTextArea2.getText();
+
+                if (txt == null || txt.trim().isEmpty()) {
+                    throw new IllegalArgumentException("Justificação vazia!");
+                }
+                
+                int temaExpo = questionario.temaExpo();
+                int adqCandExpo = questionario.adqCandExpo();
+                int adqCandDemo = questionario.adqCandDemo();
+                int adqNumCov = questionario.adqNumConv();
+                int recGlobal=questionario.recGlobal();
+                
+                
+
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(
+                    menu,
+                    "Tem que introduzir números válidos.",
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(
+                    menu,
+                    ex.getMessage(),
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+
+                jComboBox2.setEnabled(false);
 
                 final String[] candidaturas = new String[100];
                 int cont = 0;
@@ -332,45 +595,17 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
         }
         );
         jButton1.setEnabled(false);
+        jButton2.setEnabled(true);
 
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-         jList2.setEnabled(false);
-         jButton2.setEnabled(false);
-        
-//        if (!controller.getAvaliaveis(fae).isEmpty()) {
-//            for (Candidatura c : controller.getAvaliaveis(fae)) {
-//                if(c.getEmailRep().equalsIgnoreCase(jList2.getSelectedValue())){
-//                    controller.selectCandidatura(c);
-//                }
-//            }
-//        }
-     
-        if (!exposicao.getListaCandidaturas().getListCandidaturas().isEmpty()) {
-            for (Candidatura c : exposicao.getListaCandidaturas().getListCandidaturas()) {
-                if(c.getEmailRep().equalsIgnoreCase(jList2.getSelectedValue())){
-                    controller.selectCandidatura(c);
-                    this.candExp =(CandidaturaExposicao) c;
-                }
-            }
-        }
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                
-                jTextArea1.setText("Nome Empresa: "+ candExp.getnomeEmpresa()+"\nMorada: "+candExp.getMorada()+
-                        "\nTelemovel: "+candExp.getTelemovel()+"\nArea: "+candExp.getArea()+"\nNºConvites: "+candExp.getConvites()
-                + "\nLista de Demonstrações:\n"+candExp.getListaDemonstracoes().toString());
-           
-                jTextArea1.setEditable(false);
-            }
-        }
-        );
-        jButton2.setEnabled(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        this.questionario = new QuestionarioFAECand();
+
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -409,7 +644,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                 ce.getRegistoUtilizadores().addUtilizador(u1);
                 Local l = new Local("Porto");
                 ce.getRegistoLocais().addLocal(l);
-                Data dat = new Data(2016, 06, 19, 22, 22, 22);
+                Data dat = new Data(2016, 07, 22, 22, 22, 22);
                 Exposicao e = new Exposicao("Titulo", "Descricao", dat, dat, l, dat, dat,
                         dat, dat);
                 ce.getRegistoExposicoes().getListaExposicoes().add(e);
@@ -420,7 +655,9 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                 FAE fae = new FAE(u);
                 e.getListaFAES().addFae(fae);
                 e.getListaAtribuicoes().newAtribuicao(ec, fae);
-                new AvaliarCandidaturaUI(ce, fae).setVisible(true);
+                Demonstracao demo = new Demonstracao("111", "sdf");
+                e.getListaDemonstracoes().addDemonstracao(demo);
+                new AvaliarCandidaturaUI(ce, fae, "exposicao").setVisible(true);
             }
         });
     }
@@ -429,6 +666,9 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -438,11 +678,14 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
