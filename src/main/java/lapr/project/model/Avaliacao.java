@@ -374,7 +374,7 @@ public class Avaliacao {
      */
     @Override
     public String toString() {
-        return String.format("%s;%s;%s;%s;%n", this.fae, this.candidatura, this.decisao, this.txt);
+        return String.format("FAE: %s; Decisao: %s ; Justificação: %s ;%n", this.fae, this.decisao, this.txt);
     }
 
     /**

@@ -7,6 +7,7 @@ package lapr.project.ui;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -42,6 +43,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
      *
      * @param ce
      * @param fae
+     * @param tpCand
      */
     public AvaliarCandidaturaUI(final CentroExposicoes ce, final FAE fae, String tpCand) {
         this.fae = fae;
@@ -333,10 +335,10 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                     }
 
                     controller.selecionaExposicao(exposicao);
-                    if (exposicao.getListaCandidaturas().getListCandidaturas().isEmpty()) {
+                    if (controller.getAvaliaveis(fae).isEmpty()) {
                         try {
 
-                            throw new IllegalArgumentException("A exposição não tem candidaturas!");
+                            throw new IllegalArgumentException("Não existe candidaturas para avaliar!");
 
                         } catch (IllegalArgumentException ex) {
                             JOptionPane.showMessageDialog(

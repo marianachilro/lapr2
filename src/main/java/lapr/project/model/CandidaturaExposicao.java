@@ -52,7 +52,10 @@ public class CandidaturaExposicao implements Candidatura, Removivel, Atribuivel 
      */
     private static final int CONVITES_OMISSAO = 0;
     
-    
+    /**
+     * Contador para saber se ja foi decidida a candidatura
+     */
+    private int contador;
     /**
      * Stand atribuído à Candidatura
      */
@@ -83,6 +86,8 @@ public class CandidaturaExposicao implements Candidatura, Removivel, Atribuivel 
         listaDemonstracoes = new ListaDemonstracoes();
         estado = new CandidaturaInicialEstado(this);
         stand=null;
+        this.contador=0;
+        
     }
 
     /**
@@ -110,6 +115,7 @@ public class CandidaturaExposicao implements Candidatura, Removivel, Atribuivel 
         listaDemonstracoes = new ListaDemonstracoes();
         estado = new CandidaturaInicialEstado(this);
         stand = null;
+        this.contador=0;
     }
 
     public CandidaturaExposicao(CandidaturaExposicao c) {
@@ -126,7 +132,8 @@ public class CandidaturaExposicao implements Candidatura, Removivel, Atribuivel 
         listaKeywords = new ListaKeywords(c.getListaKeywords());
         estado = c.getEstado();
         stand = null;
-
+        this.contador=0;
+        
     }
 
     /**
@@ -327,8 +334,27 @@ public class CandidaturaExposicao implements Candidatura, Removivel, Atribuivel 
         this.listaDemonstracoes = listaDemonstracoes;
     }
 
+    /**
+     * Devolve o contador do numero de decisoes
+     * @return 
+     */
+    public int getContador() {
+        return contador;
+    }
+
+    /**
+     * Modifica o contador
+     * @param contador 
+     */
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+
+    
+    
     @Override
     public void setDecisao(boolean decisao) {
+        setContador(1);
         this.decisao = decisao;
     }
 
