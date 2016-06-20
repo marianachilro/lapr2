@@ -48,6 +48,7 @@ public class DefinirRecursosUI extends JDialog{
         super(janelaPai, "Definir Recursos", true);
         this.janelaPai=janelaPai;
         this.ce=ce;
+        this.controller = new DefinirRecursosController(ce);
         
         setModal(true);
         setLayout(new BorderLayout());
