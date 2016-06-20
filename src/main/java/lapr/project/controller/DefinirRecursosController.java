@@ -24,13 +24,11 @@ public class DefinirRecursosController {
     public DefinirRecursosController(CentroExposicoes ce) {
         this.centro = ce;
     }
-
-    public void getRegistoRecursos() {
+    
+    public Recurso newRecurso(){
         this.rc = centro.getRegistoRecursos();
-    }
-
-    public void newRecurso(){
         this.recurso=rc.newRecurso();
+        return this.recurso;
     }
     
     public void setRecurso(String nome){
@@ -41,7 +39,7 @@ public class DefinirRecursosController {
         
         if(recurso.valida())
             return rc.validaRecurso(recurso);
-        return false;
+        return true;
         
     }
     
