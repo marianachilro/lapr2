@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.CriarExposicaoController;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
 import lapr.project.model.ListaOrganizadores;
 import lapr.project.model.Local;
 import lapr.project.model.RegistoUtilizadores;
@@ -35,16 +36,17 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
 
     /**
      * Creates new form CriarExposicaoUI
+     *
      * @param ce
      * @param u
      */
-    public CriarExposicaoUI(final CentroExposicoes ce,Utilizador u) {
+    public CriarExposicaoUI(final CentroExposicoes ce, Utilizador u) {
         this.ce = ce;
-        this.utilizador=u;
+        this.utilizador = u;
         initComponents();
-         setVisible(true);
-         
-          addWindowListener(new WindowAdapter() {
+        setVisible(true);
+
+        addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 int result = JOptionPane.showConfirmDialog(
@@ -55,13 +57,13 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
                             JDialog.DISPOSE_ON_CLOSE);
                     CriarExposicaoUI.this.setVisible(false);
                     CriarExposicaoUI.this.dispose();
-                    JFrame MenuUI = new MenuUI(ce,utilizador);
-                }else if(result == JOptionPane.CANCEL_OPTION){
+                    JFrame MenuUI = new MenuUI(ce, utilizador);
+                } else if (result == JOptionPane.CANCEL_OPTION) {
                     CriarExposicaoUI.this.setDefaultCloseOperation(
-                                JDialog.DO_NOTHING_ON_CLOSE);
-                }else if(result == JOptionPane.NO_OPTION){
+                            JDialog.DO_NOTHING_ON_CLOSE);
+                } else if (result == JOptionPane.NO_OPTION) {
                     CriarExposicaoUI.this.setDefaultCloseOperation(
-                                JDialog.DO_NOTHING_ON_CLOSE);
+                            JDialog.DO_NOTHING_ON_CLOSE);
                 }
             }
         });
@@ -272,73 +274,100 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         dispose();
-        MenuUI j = new MenuUI(ce,this.utilizador);
+        MenuUI j = new MenuUI(ce, this.utilizador);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             CriarExposicaoController controller = new CriarExposicaoController(ce);
             controller.newExposicao();
-            
+
             RegistoUtilizadores ru = controller.getRegistoUtilizadores();
-            
+
             String titulo = textField1.getText();
             String descricao = textArea1.getText();
             Data dataIni = getData(textField2.getText());
-            Data dataFim= getData(textField3.getText());
-            String local1= jComboBox2.getSelectedItem().toString();
+            Data dataFim = getData(textField3.getText());
+            String local1 = jComboBox2.getSelectedItem().toString();
             Local local = null;
-            
-            if(!controller.getRegistoLocais().getListaLocais().isEmpty()){
-            for(Local c : controller.getRegistoLocais().getListaLocais()){
-                if(c.getNome().equalsIgnoreCase(local1)){
-                    local=c;
+
+            for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
+                if (e.getDataInicio().getAno() == dataIni.getAno() && e.getDataInicio().getMes() == dataIni.getMes() && e.getDataInicio().getDia() == dataIni.getDia()) {
+                    if (dataIni.getHora() < e.getDataInicio().getHora() && dataFim.getHora() > e.getDataInicio().getHora()
+                            || dataIni.getHora() == e.getDataInicio().getHora() && dataFim.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() < e.getDataInicio().getMinuto() && dataFim.getMinuto() > e.getDataInicio().getMinuto()
+                            || dataIni.getHora() == e.getDataInicio().getHora() && dataFim.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() == e.getDataInicio().getMinuto() && dataFim.getMinuto() == e.getDataInicio().getMinuto() && dataIni.getSegundos() < e.getDataInicio().getSegundos() && dataFim.getSegundos() > e.getDataInicio().getSegundos()) {
+
+                        throw new IllegalArgumentException("Já existe uma exposição neste local à mesma hora!");
+
+                    } else if (dataIni.getHora() > e.getDataInicio().getHora() && dataFim.getHora() > e.getDataFim().getHora() && dataIni.getHora() < e.getDataFim().getHora()
+                            || dataIni.getHora() == e.getDataFim().getHora() && dataIni.getMinuto() < e.getDataFim().getMinuto() && dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() > e.getDataInicio().getMinuto() && dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() > e.getDataFim().getMinuto()
+                            || dataIni.getHora() == e.getDataFim().getHora() && dataIni.getMinuto()==e.getDataFim().getMinuto() && dataIni.getSegundos()<e.getDataFim().getSegundos() && dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() == e.getDataInicio().getMinuto() && dataIni.getSegundos() > e.getDataInicio().getSegundos() && dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() == e.getDataFim().getMinuto() && dataFim.getSegundos() > e.getDataFim().getSegundos()) {
+
+                        throw new IllegalArgumentException("Já existe uma exposição neste local à mesma hora!");
+
+                    } else if (dataIni.getHora() > e.getDataInicio().getHora() && dataFim.getHora() < e.getDataFim().getHora()
+                            || dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() > e.getDataInicio().getMinuto() && dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() < e.getDataFim().getMinuto()
+                            || dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() == e.getDataInicio().getMinuto() && dataIni.getSegundos() > e.getDataInicio().getSegundos() && dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() == e.getDataFim().getMinuto() && dataFim.getSegundos() < e.getDataFim().getSegundos()) {
+
+                        throw new IllegalArgumentException("Já existe uma exposição neste local à mesma hora!");
+                    
+                    }else if(dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() ==e.getDataInicio().getMinuto() && dataIni.getSegundos()==e.getDataInicio().getSegundos()
+                            || dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() ==e.getDataInicio().getMinuto() && dataIni.getSegundos()==e.getDataInicio().getSegundos() && dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() ==e.getDataFim().getMinuto() && dataFim.getSegundos()==e.getDataFim().getSegundos() 
+                            || dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() ==e.getDataFim().getMinuto() && dataFim.getSegundos()==e.getDataFim().getSegundos()){
+                        throw new IllegalArgumentException("Já existe uma exposição neste local à mesma hora!");
+                    }
+
                 }
             }
+
+            if (!controller.getRegistoLocais().getListaLocais().isEmpty()) {
+                for (Local c : controller.getRegistoLocais().getListaLocais()) {
+                    if (c.getNome().equalsIgnoreCase(local1)) {
+                        local = c;
+                    }
+                }
             }
             controller.setLocal(local);
-            
+
             ListaOrganizadores lista = controller.getListaOrganizadores();
-            
+
             List<String> organizadores = jList1.getSelectedValuesList();
-            if(organizadores.size()<2){
-                 throw new IllegalArgumentException("Tem de escolher pelo menos dois organizadores!");
+            if (organizadores.size() < 2) {
+                throw new IllegalArgumentException("Tem de escolher pelo menos dois organizadores!");
             }
             boolean b = false;
-            for(String s : organizadores){
-                for(Utilizador u : ru.getListaUtilizadores()){
-                    if(u.getUsername().equalsIgnoreCase(s)){
-                        b=controller.addOrganizador(u);
+            for (String s : organizadores) {
+                for (Utilizador u : ru.getListaUtilizadores()) {
+                    if (u.getUsername().equalsIgnoreCase(s)) {
+                        b = controller.addOrganizador(u);
                     }
-                }            
+                }
             }
-            
-            
-            Data dataInicioSubCand=getData(textField4.getText());
-            Data dataFimSubCand=getData(textField5.getText());
+
+            Data dataInicioSubCand = getData(textField4.getText());
+            Data dataFimSubCand = getData(textField5.getText());
             Data dataAtcConflitos = getData(textField7.getText());
             Data dataAv = getData(textField8.getText());
-            
-            validarDatas(dataIni,dataFim,dataInicioSubCand,dataFimSubCand,dataAtcConflitos,dataAv);
-            
-            controller.setDadosExposicao(titulo, descricao, dataIni,dataFim,local,dataInicioSubCand,dataFimSubCand,dataAtcConflitos,dataAv);
-            
-             if (controller.registaExposicao()) {
-                 
+
+            validarDatas(dataIni, dataFim, dataInicioSubCand, dataFimSubCand, dataAtcConflitos, dataAv);
+
+            controller.setDadosExposicao(titulo, descricao, dataIni, dataFim, local, dataInicioSubCand, dataFimSubCand, dataAtcConflitos, dataAv);
+
+            if (controller.registaExposicao()) {
+
                 JOptionPane.showMessageDialog(menu, "Exposição registada!");
                 dispose();
 
-                MenuUI j = new MenuUI(ce,this.utilizador);
+                MenuUI j = new MenuUI(ce, this.utilizador);
             }
-            
-            
+
         } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(
-                            menu,
-                            "Tem que introduzir números válidos.",
-                            "Aviso",
-                            JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    menu,
+                    "Tem que introduzir números válidos.",
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
         } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(
                     menu,
@@ -347,9 +376,8 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
 
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 //    /**
@@ -420,87 +448,80 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
     private java.awt.TextField textField8;
     // End of variables declaration//GEN-END:variables
 
-    public Data getData(String data ){
-        
+    public Data getData(String data) {
+
         if (data == null || data.trim().isEmpty() || !Pattern.matches("(\\d{4})/(\\d{2})/(\\d{2})-(\\d{2}):(\\d{2}):(\\d{2})", data)) {
-    throw new IllegalArgumentException("Data inválida! \nano/mes/dia-horas:minutos:segundos");
-}
-       
-        ArrayList all= new ArrayList(Arrays.asList(data.split("-")));
-        String ano_mes_dia=all.get(0)+"";
-        String hora_minutos_segundos=all.get(1)+"";
-        
+            throw new IllegalArgumentException("Data inválida! \nano/mes/dia-horas:minutos:segundos");
+        }
+
+        ArrayList all = new ArrayList(Arrays.asList(data.split("-")));
+        String ano_mes_dia = all.get(0) + "";
+        String hora_minutos_segundos = all.get(1) + "";
+
         ArrayList dat = new ArrayList(Arrays.asList(ano_mes_dia.split("/")));
         ArrayList horas = new ArrayList(Arrays.asList(hora_minutos_segundos.split(":")));
-        
-       int ano= Integer.parseInt(dat.get(0).toString());
-       int mes=Integer.parseInt(dat.get(1).toString());
-       int dia=Integer.parseInt(dat.get(2).toString());
-       int hora=Integer.parseInt(horas.get(0).toString());
-       int minuto=Integer.parseInt(horas.get(1).toString());
-       int segundos=Integer.parseInt(horas.get(2).toString());
-        
-        
-        Data data2 = new Data(ano,mes,dia,hora,minuto,segundos);
-        
+
+        int ano = Integer.parseInt(dat.get(0).toString());
+        int mes = Integer.parseInt(dat.get(1).toString());
+        int dia = Integer.parseInt(dat.get(2).toString());
+        int hora = Integer.parseInt(horas.get(0).toString());
+        int minuto = Integer.parseInt(horas.get(1).toString());
+        int segundos = Integer.parseInt(horas.get(2).toString());
+
+        Data data2 = new Data(ano, mes, dia, hora, minuto, segundos);
+
         return data2;
     }
 
     private void validarDatas(Data dataIni, Data dataFim, Data dataInicioSubCand, Data dataFimSubCand, Data dataAtcConflitos, Data dataAv) {
-       
-    if(dataIni.getAno()>dataFim.getAno()||dataIni.getAno()==dataFim.getAno() && dataIni.getMes()>dataFim.getMes() ||
-           dataIni.getAno()==dataFim.getAno() && dataIni.getMes()==dataFim.getMes() && dataIni.getDia()>dataFim.getDia()
-            || dataIni.getAno()==dataFim.getAno() && dataIni.getMes()==dataFim.getMes() && dataIni.getDia()==dataFim.getDia() && dataIni.getHora()>dataFim.getHora()
-            || dataIni.getAno()==dataFim.getAno() && dataIni.getMes()==dataFim.getMes() && dataIni.getDia()==dataFim.getDia() && dataIni.getHora()==dataFim.getHora() && dataIni.getMinuto()>dataFim.getMinuto()
-            || dataIni.getAno()==dataFim.getAno() && dataIni.getMes()==dataFim.getMes() && dataIni.getDia()==dataFim.getDia() && dataIni.getHora()==dataFim.getHora() && dataIni.getMinuto()==dataFim.getMinuto() && dataIni.getSegundos()>dataFim.getSegundos()
-            || dataIni.getAno()==dataFim.getAno() && dataIni.getMes()==dataFim.getMes() && dataIni.getDia()==dataFim.getDia() && dataIni.getHora()==dataFim.getHora() && dataIni.getMinuto()==dataFim.getMinuto() && dataIni.getSegundos()==dataFim.getSegundos() ){
-        
-         throw new IllegalArgumentException("Data Fim inválida!\n Data Fim é menor que a data Inicio ou igual!");
-        
-        
-    }else if(dataInicioSubCand.getAno()>dataFimSubCand.getAno()||dataInicioSubCand.getAno()==dataFimSubCand.getAno() && dataInicioSubCand.getMes()>dataFimSubCand.getMes() ||
-           dataInicioSubCand.getAno()==dataFimSubCand.getAno() && dataInicioSubCand.getMes()==dataFimSubCand.getMes() && dataInicioSubCand.getDia()>dataFimSubCand.getDia()
-            || dataInicioSubCand.getAno()==dataFimSubCand.getAno() && dataInicioSubCand.getMes()==dataFimSubCand.getMes() && dataInicioSubCand.getDia()==dataFimSubCand.getDia() && dataInicioSubCand.getHora()>dataFimSubCand.getHora()
-            || dataInicioSubCand.getAno()==dataFimSubCand.getAno() && dataInicioSubCand.getMes()==dataFimSubCand.getMes() && dataInicioSubCand.getDia()==dataFimSubCand.getDia() && dataInicioSubCand.getHora()==dataFimSubCand.getHora() && dataInicioSubCand.getMinuto()>dataFimSubCand.getMinuto()
-            || dataInicioSubCand.getAno()==dataFimSubCand.getAno() && dataInicioSubCand.getMes()==dataFimSubCand.getMes() && dataInicioSubCand.getDia()==dataFimSubCand.getDia() && dataInicioSubCand.getHora()==dataFimSubCand.getHora() && dataInicioSubCand.getMinuto()==dataFimSubCand.getMinuto() && dataInicioSubCand.getSegundos()>dataFimSubCand.getSegundos()
-            || dataInicioSubCand.getAno()==dataFimSubCand.getAno() && dataInicioSubCand.getMes()==dataFimSubCand.getMes() && dataInicioSubCand.getDia()==dataFimSubCand.getDia() && dataInicioSubCand.getHora()==dataFimSubCand.getHora() && dataInicioSubCand.getMinuto()==dataFimSubCand.getMinuto() && dataInicioSubCand.getSegundos()==dataFimSubCand.getSegundos()){
-        
-        throw new IllegalArgumentException("Data Fim Submissão de candidaturas inválida!\n Data Fim Submissão de candidaturas é menor que a data Inicio de submissão de candidaturas ou igual!");
-    
-    }else if(dataFimSubCand.getAno()>dataAtcConflitos.getAno()||dataFimSubCand.getAno()==dataAtcConflitos.getAno() && dataFimSubCand.getMes()>dataAtcConflitos.getMes() ||
-           dataFimSubCand.getAno()==dataAtcConflitos.getAno() && dataFimSubCand.getMes()==dataAtcConflitos.getMes() && dataFimSubCand.getDia()>dataAtcConflitos.getDia()
-            || dataFimSubCand.getAno()==dataAtcConflitos.getAno() && dataFimSubCand.getMes()==dataAtcConflitos.getMes() && dataFimSubCand.getDia()==dataAtcConflitos.getDia() && dataFimSubCand.getHora()>dataAtcConflitos.getHora()
-            || dataFimSubCand.getAno()==dataAtcConflitos.getAno() && dataFimSubCand.getMes()==dataAtcConflitos.getMes() && dataFimSubCand.getDia()==dataAtcConflitos.getDia() && dataFimSubCand.getHora()==dataAtcConflitos.getHora() && dataFimSubCand.getMinuto()>dataAtcConflitos.getMinuto()
-            || dataFimSubCand.getAno()==dataAtcConflitos.getAno() && dataFimSubCand.getMes()==dataAtcConflitos.getMes() && dataFimSubCand.getDia()==dataAtcConflitos.getDia() && dataFimSubCand.getHora()==dataAtcConflitos.getHora() && dataFimSubCand.getMinuto()==dataAtcConflitos.getMinuto() && dataFimSubCand.getSegundos()>dataAtcConflitos.getSegundos()
-            || dataFimSubCand.getAno()==dataAtcConflitos.getAno() && dataFimSubCand.getMes()==dataAtcConflitos.getMes() && dataFimSubCand.getDia()==dataAtcConflitos.getDia() && dataFimSubCand.getHora()==dataAtcConflitos.getHora() && dataFimSubCand.getMinuto()==dataAtcConflitos.getMinuto() && dataFimSubCand.getSegundos()==dataAtcConflitos.getSegundos()){
-        
-         throw new IllegalArgumentException("Data de atualização de conflitos inválida!\n Data de atualização de conflitos é menor que a data fim de submissão de candidaturas ou igual!");
-        
-    }else if(dataAtcConflitos.getAno()>dataAv.getAno()||dataAtcConflitos.getAno()==dataAv.getAno() && dataAtcConflitos.getMes()>dataAv.getMes() ||
-           dataAtcConflitos.getAno()==dataAv.getAno() && dataAtcConflitos.getMes()==dataAv.getMes() && dataAtcConflitos.getDia()>dataAv.getDia()
-            || dataAtcConflitos.getAno()==dataAv.getAno() && dataAtcConflitos.getMes()==dataAv.getMes() && dataAtcConflitos.getDia()==dataAv.getDia() && dataAtcConflitos.getHora()>dataAv.getHora()
-            || dataAtcConflitos.getAno()==dataAv.getAno() && dataAtcConflitos.getMes()==dataAv.getMes() && dataAtcConflitos.getDia()==dataAv.getDia() && dataAtcConflitos.getHora()==dataAv.getHora() && dataAtcConflitos.getMinuto()>dataAv.getMinuto()
-            || dataAtcConflitos.getAno()==dataAv.getAno() && dataAtcConflitos.getMes()==dataAv.getMes() && dataAtcConflitos.getDia()==dataAv.getDia() && dataAtcConflitos.getHora()==dataAv.getHora() && dataAtcConflitos.getMinuto()==dataAv.getMinuto() && dataAtcConflitos.getSegundos()>dataAv.getSegundos()
-            || dataAtcConflitos.getAno()==dataAv.getAno() && dataAtcConflitos.getMes()==dataAv.getMes() && dataAtcConflitos.getDia()==dataAv.getDia() && dataAtcConflitos.getHora()==dataAv.getHora() && dataAtcConflitos.getMinuto()==dataAv.getMinuto() && dataAtcConflitos.getSegundos()==dataAv.getSegundos()){
-        
-        throw new IllegalArgumentException("Data de avaliação inválida!\n Data de avaliação é menor que a data de atualização de conflitos ou igual!");
-        
-    }else if(dataAv.getAno()>dataIni.getAno()||dataAv.getAno()==dataIni.getAno() && dataAv.getMes()>dataIni.getMes() ||
-           dataAv.getAno()==dataIni.getAno() && dataAv.getMes()==dataIni.getMes() && dataAv.getDia()>dataIni.getDia()
-            || dataAv.getAno()==dataIni.getAno() && dataAv.getMes()==dataIni.getMes() && dataAv.getDia()==dataIni.getDia() && dataAv.getHora()>dataIni.getHora()
-            || dataAv.getAno()==dataIni.getAno() && dataAv.getMes()==dataIni.getMes() && dataAv.getDia()==dataIni.getDia() && dataAv.getHora()==dataIni.getHora() && dataAv.getMinuto()>dataIni.getMinuto()
-            || dataAv.getAno()==dataIni.getAno() && dataAv.getMes()==dataIni.getMes() && dataAv.getDia()==dataIni.getDia() && dataAv.getHora()==dataIni.getHora() && dataAv.getMinuto()==dataIni.getMinuto() && dataAv.getSegundos()>dataIni.getSegundos()
-            || dataAv.getAno()==dataIni.getAno() && dataAv.getMes()==dataIni.getMes() && dataAv.getDia()==dataIni.getDia() && dataAv.getHora()==dataIni.getHora() && dataAv.getMinuto()==dataIni.getMinuto() && dataAv.getSegundos()==dataIni.getSegundos()){
-        
-        throw new IllegalArgumentException("As últimas quatro datas têm de ser anteriores à data de início da exposição!");
-        
-    }
-    
-    
-    
-    
-    }
 
-    
+        if (dataIni.getAno() > dataFim.getAno() || dataIni.getAno() == dataFim.getAno() && dataIni.getMes() > dataFim.getMes()
+                || dataIni.getAno() == dataFim.getAno() && dataIni.getMes() == dataFim.getMes() && dataIni.getDia() > dataFim.getDia()
+                || dataIni.getAno() == dataFim.getAno() && dataIni.getMes() == dataFim.getMes() && dataIni.getDia() == dataFim.getDia() && dataIni.getHora() > dataFim.getHora()
+                || dataIni.getAno() == dataFim.getAno() && dataIni.getMes() == dataFim.getMes() && dataIni.getDia() == dataFim.getDia() && dataIni.getHora() == dataFim.getHora() && dataIni.getMinuto() > dataFim.getMinuto()
+                || dataIni.getAno() == dataFim.getAno() && dataIni.getMes() == dataFim.getMes() && dataIni.getDia() == dataFim.getDia() && dataIni.getHora() == dataFim.getHora() && dataIni.getMinuto() == dataFim.getMinuto() && dataIni.getSegundos() > dataFim.getSegundos()
+                || dataIni.getAno() == dataFim.getAno() && dataIni.getMes() == dataFim.getMes() && dataIni.getDia() == dataFim.getDia() && dataIni.getHora() == dataFim.getHora() && dataIni.getMinuto() == dataFim.getMinuto() && dataIni.getSegundos() == dataFim.getSegundos()) {
+
+            throw new IllegalArgumentException("Data Fim inválida!\n Data Fim é menor que a data Inicio ou igual!");
+
+        } else if (dataInicioSubCand.getAno() > dataFimSubCand.getAno() || dataInicioSubCand.getAno() == dataFimSubCand.getAno() && dataInicioSubCand.getMes() > dataFimSubCand.getMes()
+                || dataInicioSubCand.getAno() == dataFimSubCand.getAno() && dataInicioSubCand.getMes() == dataFimSubCand.getMes() && dataInicioSubCand.getDia() > dataFimSubCand.getDia()
+                || dataInicioSubCand.getAno() == dataFimSubCand.getAno() && dataInicioSubCand.getMes() == dataFimSubCand.getMes() && dataInicioSubCand.getDia() == dataFimSubCand.getDia() && dataInicioSubCand.getHora() > dataFimSubCand.getHora()
+                || dataInicioSubCand.getAno() == dataFimSubCand.getAno() && dataInicioSubCand.getMes() == dataFimSubCand.getMes() && dataInicioSubCand.getDia() == dataFimSubCand.getDia() && dataInicioSubCand.getHora() == dataFimSubCand.getHora() && dataInicioSubCand.getMinuto() > dataFimSubCand.getMinuto()
+                || dataInicioSubCand.getAno() == dataFimSubCand.getAno() && dataInicioSubCand.getMes() == dataFimSubCand.getMes() && dataInicioSubCand.getDia() == dataFimSubCand.getDia() && dataInicioSubCand.getHora() == dataFimSubCand.getHora() && dataInicioSubCand.getMinuto() == dataFimSubCand.getMinuto() && dataInicioSubCand.getSegundos() > dataFimSubCand.getSegundos()
+                || dataInicioSubCand.getAno() == dataFimSubCand.getAno() && dataInicioSubCand.getMes() == dataFimSubCand.getMes() && dataInicioSubCand.getDia() == dataFimSubCand.getDia() && dataInicioSubCand.getHora() == dataFimSubCand.getHora() && dataInicioSubCand.getMinuto() == dataFimSubCand.getMinuto() && dataInicioSubCand.getSegundos() == dataFimSubCand.getSegundos()) {
+
+            throw new IllegalArgumentException("Data Fim Submissão de candidaturas inválida!\n Data Fim Submissão de candidaturas é menor que a data Inicio de submissão de candidaturas ou igual!");
+
+        } else if (dataFimSubCand.getAno() > dataAtcConflitos.getAno() || dataFimSubCand.getAno() == dataAtcConflitos.getAno() && dataFimSubCand.getMes() > dataAtcConflitos.getMes()
+                || dataFimSubCand.getAno() == dataAtcConflitos.getAno() && dataFimSubCand.getMes() == dataAtcConflitos.getMes() && dataFimSubCand.getDia() > dataAtcConflitos.getDia()
+                || dataFimSubCand.getAno() == dataAtcConflitos.getAno() && dataFimSubCand.getMes() == dataAtcConflitos.getMes() && dataFimSubCand.getDia() == dataAtcConflitos.getDia() && dataFimSubCand.getHora() > dataAtcConflitos.getHora()
+                || dataFimSubCand.getAno() == dataAtcConflitos.getAno() && dataFimSubCand.getMes() == dataAtcConflitos.getMes() && dataFimSubCand.getDia() == dataAtcConflitos.getDia() && dataFimSubCand.getHora() == dataAtcConflitos.getHora() && dataFimSubCand.getMinuto() > dataAtcConflitos.getMinuto()
+                || dataFimSubCand.getAno() == dataAtcConflitos.getAno() && dataFimSubCand.getMes() == dataAtcConflitos.getMes() && dataFimSubCand.getDia() == dataAtcConflitos.getDia() && dataFimSubCand.getHora() == dataAtcConflitos.getHora() && dataFimSubCand.getMinuto() == dataAtcConflitos.getMinuto() && dataFimSubCand.getSegundos() > dataAtcConflitos.getSegundos()
+                || dataFimSubCand.getAno() == dataAtcConflitos.getAno() && dataFimSubCand.getMes() == dataAtcConflitos.getMes() && dataFimSubCand.getDia() == dataAtcConflitos.getDia() && dataFimSubCand.getHora() == dataAtcConflitos.getHora() && dataFimSubCand.getMinuto() == dataAtcConflitos.getMinuto() && dataFimSubCand.getSegundos() == dataAtcConflitos.getSegundos()) {
+
+            throw new IllegalArgumentException("Data de atualização de conflitos inválida!\n Data de atualização de conflitos é menor que a data fim de submissão de candidaturas ou igual!");
+
+        } else if (dataAtcConflitos.getAno() > dataAv.getAno() || dataAtcConflitos.getAno() == dataAv.getAno() && dataAtcConflitos.getMes() > dataAv.getMes()
+                || dataAtcConflitos.getAno() == dataAv.getAno() && dataAtcConflitos.getMes() == dataAv.getMes() && dataAtcConflitos.getDia() > dataAv.getDia()
+                || dataAtcConflitos.getAno() == dataAv.getAno() && dataAtcConflitos.getMes() == dataAv.getMes() && dataAtcConflitos.getDia() == dataAv.getDia() && dataAtcConflitos.getHora() > dataAv.getHora()
+                || dataAtcConflitos.getAno() == dataAv.getAno() && dataAtcConflitos.getMes() == dataAv.getMes() && dataAtcConflitos.getDia() == dataAv.getDia() && dataAtcConflitos.getHora() == dataAv.getHora() && dataAtcConflitos.getMinuto() > dataAv.getMinuto()
+                || dataAtcConflitos.getAno() == dataAv.getAno() && dataAtcConflitos.getMes() == dataAv.getMes() && dataAtcConflitos.getDia() == dataAv.getDia() && dataAtcConflitos.getHora() == dataAv.getHora() && dataAtcConflitos.getMinuto() == dataAv.getMinuto() && dataAtcConflitos.getSegundos() > dataAv.getSegundos()
+                || dataAtcConflitos.getAno() == dataAv.getAno() && dataAtcConflitos.getMes() == dataAv.getMes() && dataAtcConflitos.getDia() == dataAv.getDia() && dataAtcConflitos.getHora() == dataAv.getHora() && dataAtcConflitos.getMinuto() == dataAv.getMinuto() && dataAtcConflitos.getSegundos() == dataAv.getSegundos()) {
+
+            throw new IllegalArgumentException("Data de avaliação inválida!\n Data de avaliação é menor que a data de atualização de conflitos ou igual!");
+
+        } else if (dataAv.getAno() > dataIni.getAno() || dataAv.getAno() == dataIni.getAno() && dataAv.getMes() > dataIni.getMes()
+                || dataAv.getAno() == dataIni.getAno() && dataAv.getMes() == dataIni.getMes() && dataAv.getDia() > dataIni.getDia()
+                || dataAv.getAno() == dataIni.getAno() && dataAv.getMes() == dataIni.getMes() && dataAv.getDia() == dataIni.getDia() && dataAv.getHora() > dataIni.getHora()
+                || dataAv.getAno() == dataIni.getAno() && dataAv.getMes() == dataIni.getMes() && dataAv.getDia() == dataIni.getDia() && dataAv.getHora() == dataIni.getHora() && dataAv.getMinuto() > dataIni.getMinuto()
+                || dataAv.getAno() == dataIni.getAno() && dataAv.getMes() == dataIni.getMes() && dataAv.getDia() == dataIni.getDia() && dataAv.getHora() == dataIni.getHora() && dataAv.getMinuto() == dataIni.getMinuto() && dataAv.getSegundos() > dataIni.getSegundos()
+                || dataAv.getAno() == dataIni.getAno() && dataAv.getMes() == dataIni.getMes() && dataAv.getDia() == dataIni.getDia() && dataAv.getHora() == dataIni.getHora() && dataAv.getMinuto() == dataIni.getMinuto() && dataAv.getSegundos() == dataIni.getSegundos()) {
+
+            throw new IllegalArgumentException("As últimas quatro datas têm de ser anteriores à data de início da exposição!");
+
+        }
+
+    }
 
 }

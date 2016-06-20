@@ -37,6 +37,11 @@ class Main {
         ce.getRegistoUtilizadores().addUtilizador(u1);
         Local l = new Local("Porto");
         ce.getRegistoLocais().addLocal(l);
+        Data dati = new Data(2016,06,21,20,20,20);
+        Data datf = new Data(2016,06,21,20,20,23);
+        Exposicao exp = new Exposicao("titulo", "descricao", dati, datf, l, dati, dati,
+            dati, dati);
+        ce.getRegistoExposicoes().getListaExposicoes().add(exp);
         
         LoginUI login = new LoginUI(ce);
 
