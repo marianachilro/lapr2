@@ -23,9 +23,10 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel, Atribuiv
      * Construtor de uma candidatura com todos os atributos por omissão.
      */
     public CandidaturaDemonstracao() {
-        this.demonstracao = null;
+        this.demonstracao = new Demonstracao();
         this.decisao = false;
         this.listaAvaliacoes = new ListaAvaliacoes();
+        this.emailRep = "";
     }
 
     /**
@@ -110,7 +111,7 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel, Atribuiv
 
         final CandidaturaDemonstracao other = (CandidaturaDemonstracao) obj;
 
-        return this.listaAvaliacoes.getListaAvaliacao().equals(other.getListaAvaliacoes().getListaAvaliacao()) && this.decisao==other.getDecisao();
+        return this.listaAvaliacoes.getListaAvaliacao().equals(other.getListaAvaliacoes().getListaAvaliacao()) && this.decisao==other.getDecisao() && this.emailRep.equals(other.getEmailRep()) && this.getDemonstracao().equals(other.getDemonstracao());
     }
 
     @Override

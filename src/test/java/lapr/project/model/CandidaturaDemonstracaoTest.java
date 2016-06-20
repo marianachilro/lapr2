@@ -157,7 +157,7 @@ public class CandidaturaDemonstracaoTest {
     public void testToString() {
         System.out.println("toString");
         CandidaturaDemonstracao instance = new CandidaturaDemonstracao();
-        String expResult = "null";
+        String expResult = "";
         String result = instance.toString();
         assertEquals(expResult, result);
         

@@ -25,7 +25,7 @@ public class CandidaturaExposicao implements Candidatura, Removivel, Atribuivel 
     /**
      * Valor do Email do representate da Exposição por omissão.
      */
-    private static final String EMAILREP_OMISSAO = "rep@centro.pt";
+    private static final String EMAILREP_OMISSAO = "";
     
     /**
      * Valor do nome da empresa por omissão.
