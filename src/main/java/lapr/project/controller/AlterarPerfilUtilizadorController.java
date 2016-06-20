@@ -45,14 +45,6 @@ public class AlterarPerfilUtilizadorController {
         this.ru.removerUtilizador(u);
     }
     
-    public String apresentaUtilizador(){
-        return this.utilizador.toString();
-    }
-    
-//    public boolean validaDados( String nome, String username, String email, String password){
-//        return this.utilizador.validaDados(nome, username, email, password);
-//    }
-    
     public boolean setDados(String nome, String username, String email, String keyword){
         this.clone.setNome(nome);
         this.clone.setUsername(username);
@@ -64,9 +56,7 @@ public class AlterarPerfilUtilizadorController {
     public void setNovaPassword(String novaPassword){
         this.clone.setPassword(novaPassword);
     }
-    public String apresentaClone(){
-        return this.clone.toString();
-    }
+    
     
     public void registaAlteracoes(){
         this.utilizador.setPerfilAlterado(clone);
