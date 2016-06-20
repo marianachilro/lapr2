@@ -7,8 +7,13 @@ package lapr.project.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
 
 /**
  *
@@ -17,16 +22,38 @@ import lapr.project.model.CentroExposicoes;
 public class LoginUI extends javax.swing.JFrame {
 
     private CentroExposicoes ce;
-    
+
     /**
      * Creates new form LoginUI
+     *
      * @param ce centro exposicoes
      */
     public LoginUI(CentroExposicoes ce) {
-        
-        this.ce=ce;
+
+        this.ce = ce;
         initComponents();
         setVisible(true);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int result = JOptionPane.showConfirmDialog(
+                        LoginUI.this, "Tens a certeza?");
+                if (result == JOptionPane.OK_OPTION) {
+
+                    LoginUI.this.setDefaultCloseOperation(
+                            JDialog.DISPOSE_ON_CLOSE);
+                    LoginUI.this.setVisible(false);
+                    LoginUI.this.dispose();
+
+                } else if (result == JOptionPane.CANCEL_OPTION) {
+                    LoginUI.this.setDefaultCloseOperation(
+                            JDialog.DO_NOTHING_ON_CLOSE);
+                } else if (result == JOptionPane.NO_OPTION) {
+                    LoginUI.this.setDefaultCloseOperation(
+                            JDialog.DO_NOTHING_ON_CLOSE);
+                }
+            }
+        });
     }
 
     /**
@@ -121,14 +148,14 @@ public class LoginUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         dispose();
-
-        MenuUI j = new MenuUI(ce);
+       Utilizador u= null;
+        MenuUI j = new MenuUI(ce,u);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         dispose();
-        CriarPerfilDeUtilizadorUI c= new CriarPerfilDeUtilizadorUI(ce);
+        CriarPerfilDeUtilizadorUI c = new CriarPerfilDeUtilizadorUI(ce);
     }//GEN-LAST:event_jButton2ActionPerformed
 // /**
 //     * @param args the command line arguments

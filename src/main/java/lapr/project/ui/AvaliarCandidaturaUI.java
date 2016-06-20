@@ -9,7 +9,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import lapr.project.controller.AvaliarCandidaturaController;
@@ -17,12 +16,9 @@ import lapr.project.model.Candidatura;
 import lapr.project.model.CandidaturaDemonstracao;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
-import lapr.project.model.Local;
-import lapr.project.model.Utilizador;
-import lapr.project.utils.Data;
+
 
 /**
  *
@@ -39,6 +35,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
     private final AvaliarCandidaturaController controller;
     private String tpCand;
     private QuestionarioFAECand questionario;
+    private int contador = 0;
 
     /**
      * Creates new form AvaliarCandidaturaUI
@@ -46,7 +43,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
      * @param ce
      * @param fae
      */
-    public AvaliarCandidaturaUI(final CentroExposicoes ce, FAE fae, String tpCand) {
+    public AvaliarCandidaturaUI(final CentroExposicoes ce, final FAE fae, String tpCand) {
         this.fae = fae;
         this.ce = ce;
         this.tpCand = tpCand;
@@ -64,7 +61,13 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                             JDialog.DISPOSE_ON_CLOSE);
                     AvaliarCandidaturaUI.this.setVisible(false);
                     AvaliarCandidaturaUI.this.dispose();
-                    JFrame MenuUI = new MenuUI(ce);
+                    JFrame MenuUI = new MenuUI(ce,fae.getUtilizador());
+                } else if (result == JOptionPane.CANCEL_OPTION) {
+                    AvaliarCandidaturaUI.this.setDefaultCloseOperation(
+                            JDialog.DO_NOTHING_ON_CLOSE);
+                } else if (result == JOptionPane.NO_OPTION) {
+                    AvaliarCandidaturaUI.this.setDefaultCloseOperation(
+                            JDialog.DO_NOTHING_ON_CLOSE);
                 }
             }
         });
@@ -92,10 +95,6 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JSeparator();
         label3 = new java.awt.Label();
         jSeparator4 = new javax.swing.JSeparator();
         jComboBox3 = new javax.swing.JComboBox<>();
@@ -134,7 +133,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("Candidatura:");
+        jLabel1.setText("Candidaturas:");
 
         label2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         label2.setName(""); // NOI18N
@@ -160,20 +159,6 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
         jTextArea1.setEditable(false);
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("Demonstração:");
-
-        jComboBox2.setEnabled(false);
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton3.setBackground(new java.awt.Color(153, 153, 255));
-        jButton3.setText("Continuar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
 
         label3.setBackground(new java.awt.Color(153, 153, 255));
         label3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -218,92 +203,68 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator5)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(161, 161, 161)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(47, 47, 47))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(4, 4, 4)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(190, 190, 190)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGap(20, 20, 20)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGap(29, 29, 29)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -317,23 +278,22 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        jButton3.setEnabled(false);
         jComboBox3.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -354,13 +314,12 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         if (this.tpCand.equalsIgnoreCase("exposicao")) {
-            jButton2.setEnabled(true);
+
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
 
                     String expo = jComboBox1.getSelectedItem() + "";
-                    jComboBox1.setEnabled(false);
 
                     if (!expo.isEmpty()) {
                         for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
@@ -374,45 +333,56 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                     }
 
                     controller.selecionaExposicao(exposicao);
+                    if (exposicao.getListaCandidaturas().getListCandidaturas().isEmpty()) {
+                        try {
 
-                    final String[] candidaturas = new String[100];
-                    int cont = 0;
-//                if (!controller.getAvaliaveis(fae).isEmpty()) {
-//                    for (Candidatura c : controller.getAvaliaveis(fae)) {
-//                        candidaturas[cont] = c.toString();
-//                        cont++;
-//                    }
-//                }
+                            throw new IllegalArgumentException("A exposição não tem candidaturas!");
 
-                    if (!exposicao.getListaCandidaturas().getListCandidaturas().isEmpty()) {
-                        for (Candidatura c : exposicao.getListaCandidaturas().getListCandidaturas()) {
-                            candidaturas[cont] = c.toString();
-                            cont++;
+                        } catch (IllegalArgumentException ex) {
+                            JOptionPane.showMessageDialog(
+                                    menu,
+                                    ex.getMessage(),
+                                    "Aviso",
+                                    JOptionPane.WARNING_MESSAGE);
+
                         }
+                    } else {
+
+                        final String[] candidaturas = new String[100];
+                        int cont = 0;
+
+                        if (!controller.getAvaliaveis(fae).isEmpty()) {
+                            for (Candidatura c : controller.getAvaliaveis(fae)) {
+                                candidaturas[cont] = c.toString();
+                                cont++;
+                            }
+                        }
+
+                        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+
+                            public int getSize() {
+                                return candidaturas.length;
+                            }
+
+                            public String getElementAt(int i) {
+                                return candidaturas[i];
+                            }
+                        });
+
+                        jComboBox1.setEnabled(false);
+                        jList2.setEnabled(true);
+                        jButton1.setEnabled(false);
+                        jButton2.setEnabled(true);
                     }
-
-                    jList2.setModel(new javax.swing.AbstractListModel<String>() {
-
-                        public int getSize() {
-                            return candidaturas.length;
-                        }
-
-                        public String getElementAt(int i) {
-                            return candidaturas[i];
-                        }
-                    });
-
-                    jList2.setEnabled(true);
 
                 }
             }
             );
-            jButton1.setEnabled(false);
+
         } else {
+
             jComboBox1.setEnabled(false);
             jButton1.setEnabled(false);
-            jComboBox2.setEnabled(true);
-            jButton3.setEnabled(true);
 
             String expo = jComboBox1.getSelectedItem() + "";
             jComboBox1.setEnabled(false);
@@ -428,88 +398,117 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
 
             }
             controller.selecionaExposicao(exposicao);
+            final String[] candidaturas = new String[100];
+            int cont = 0;
 
-            String[] demonstracoes = new String[100];
-            int i = 0;
-//            if (!exposicao.getListaDemonstracoes().getListaDemonstracoesDisponiveis().isEmpty()) {
-//                for (Demonstracao d : exposicao.getListaDemonstracoes().getListaDemonstracoesDisponiveis()) {
-//                    demonstracoes[i] = d.getCodigo();
-//                    i++;
-//                }
-//
-//            }
-
-            if (!exposicao.getListaDemonstracoes().getListaDemonstracao().isEmpty()) {
-                for (Demonstracao d : exposicao.getListaDemonstracoes().getListaDemonstracao()) {
-                    demonstracoes[i] = d.getCodigo();
-                    i++;
+            if (!controller.getAvaliaveis(fae).isEmpty()) {
+                for (Candidatura c : controller.getAvaliaveis(fae)) {
+                    candidaturas[cont] = c.toString();
+                    cont++;
                 }
-
             }
 
-            jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(demonstracoes));
+            jList2.setModel(new javax.swing.AbstractListModel<String>() {
+
+                public int getSize() {
+                    return candidaturas.length;
+                }
+
+                public String getElementAt(int i) {
+                    return candidaturas[i];
+                }
+            });
+
+            jList2.setEnabled(true);
+
+            jButton2.setEnabled(true);
 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        jList2.setEnabled(false);
-        jButton2.setEnabled(false);
+        if (!tpCand.equalsIgnoreCase("exposicao")) {
+            if (jList2.getModel().getSize() == 0) {
+                try {
 
-//        if (!controller.getAvaliaveis(fae).isEmpty()) {
-//            for (Candidatura c : controller.getAvaliaveis(fae)) {
-//                if(c.getEmailRep().equalsIgnoreCase(jList2.getSelectedValue())){
-//                    controller.selectCandidatura(c);
-//                      if(tpCand.equalsIgnoreCase("exposicao")){
-//                           this.candExp = (CandidaturaExposicao) c;
-//                      }else{
-//                          this.candDemo=(CandidaturaDemonstracao) c;
-//                      }
-////                }
-//            }
-//        }
-        if (!exposicao.getListaCandidaturas().getListCandidaturas().isEmpty()) {
-            for (Candidatura c : exposicao.getListaCandidaturas().getListCandidaturas()) {
-                if (c.getEmailRep().equalsIgnoreCase(jList2.getSelectedValue())) {
-                    controller.selectCandidatura(c);
-                    this.candExp = (CandidaturaExposicao) c;
-                }
-            }
-        }
+                    throw new IllegalArgumentException("Nao existem candidaturas para demonstrações!");
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-
-                if (tpCand.equalsIgnoreCase("exposicao")) {
-                    jTextArea1.setText("Nome Empresa: " + candExp.getnomeEmpresa() + "\nMorada: " + candExp.getMorada()
-                            + "\nTelemovel: " + candExp.getTelemovel() + "\nArea: " + candExp.getArea() + "\nNºConvites: " + candExp.getConvites()
-                            + "\nLista de Demonstrações:\n" + candExp.getListaDemonstracoes().toString());
-
-                    jTextArea1.setEditable(false);
-                    jComboBox3.setEnabled(true);
-                    jTextArea2.setEditable(true);
-                    jButton4.setEnabled(true);
-
-                } else {
-                    jTextArea1.setText("Demonstracao: " + candDemo.getDemonstracao());
-
-                    jTextArea1.setEditable(false);
-                    jComboBox3.setEnabled(true);
-                    jTextArea2.setEditable(true);
+                } catch (IllegalArgumentException ex) {
+                    JOptionPane.showMessageDialog(
+                            menu,
+                            ex.getMessage(),
+                            "Aviso",
+                            JOptionPane.WARNING_MESSAGE);
 
                 }
+
             }
         }
-        );
-        jButton2.setEnabled(false);
+        if (jList2.getSelectedValue() == null) {
+            try {
+
+                throw new IllegalArgumentException("Selecione uma candidatura!");
+
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(
+                        menu,
+                        ex.getMessage(),
+                        "Aviso",
+                        JOptionPane.WARNING_MESSAGE);
+
+            }
+        } else {
+
+            jList2.setEnabled(false);
+            jButton2.setEnabled(false);
+
+            if (!controller.getAvaliaveis(fae).isEmpty()) {
+                for (Candidatura c : controller.getAvaliaveis(fae)) {
+                    if (c.getEmailRep().equalsIgnoreCase(jList2.getSelectedValue())) {
+                        controller.selectCandidatura(c);
+                        if (tpCand.equalsIgnoreCase("exposicao")) {
+                            this.candExp = (CandidaturaExposicao) c;
+                        } else {
+                            this.candDemo = (CandidaturaDemonstracao) c;
+                        }
+                    }
+                }
+            }
+
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if (tpCand.equalsIgnoreCase("exposicao")) {
+                            jTextArea1.setText("Nome Empresa: " + candExp.getnomeEmpresa() + "\nMorada: " + candExp.getMorada()
+                                    + "\nTelemovel: " + candExp.getTelemovel() + "\nArea: " + candExp.getArea() + "\nNºConvites: " + candExp.getConvites()
+                                    + "\nLista de Demonstrações:\n" + candExp.getListaDemonstracoes().toString());
+
+                            jTextArea1.setEditable(false);
+                            jComboBox3.setEnabled(true);
+                            jTextArea2.setEditable(true);
+                            jButton4.setEnabled(true);
+
+                        } else {
+                            jTextArea1.setText("Demonstracao: " + candDemo.getDemonstracao());
+
+                            jTextArea1.setEditable(false);
+                            jComboBox3.setEnabled(true);
+                            jTextArea2.setEditable(true);
+
+                        }
+                    }
+                }
+                );
+                jButton2.setEnabled(false);
+            }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         dispose();
-        MenuUI m = new MenuUI(ce);
+        MenuUI m = new MenuUI(ce,fae.getUtilizador());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -526,14 +525,51 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                 if (txt == null || txt.trim().isEmpty()) {
                     throw new IllegalArgumentException("Justificação vazia!");
                 }
-                
+
+                if (this.contador == 0) {
+                    jButton4.doClick();
+                }
+
                 int temaExpo = questionario.temaExpo();
                 int adqCandExpo = questionario.adqCandExpo();
                 int adqCandDemo = questionario.adqCandDemo();
                 int adqNumCov = questionario.adqNumConv();
-                int recGlobal=questionario.recGlobal();
-                
-                
+                int recGlobal = questionario.recGlobal();
+
+                controller.setAvaliacao(fae, candE, decisao, txt, temaExpo, adqCandExpo, adqCandDemo, adqNumCov, recGlobal);
+
+                if (controller.registaAvaliacao()) {
+
+                    JOptionPane.showMessageDialog(menu, "Avaliação registada!");
+                    dispose();
+
+                    MenuUI j = new MenuUI(ce,this.fae.getUtilizador());
+                } else {
+                    throw new IllegalArgumentException("Esta avaliação já existe!");
+                }
+
+            } else {
+
+                String fae = this.fae.getID();
+                String candD = this.candDemo.getEmailRep();
+                String decisao = jComboBox3.getSelectedItem() + "";
+                String txt = jTextArea2.getText();
+
+                if (txt == null || txt.trim().isEmpty()) {
+                    throw new IllegalArgumentException("Justificação vazia!");
+                }
+
+                controller.setAvaliacao(fae, candD, decisao, txt);
+
+                if (controller.registaAvaliacao()) {
+
+                    JOptionPane.showMessageDialog(menu, "Avaliação registada!");
+                    dispose();
+
+                    MenuUI j = new MenuUI(ce,this.fae.getUtilizador());
+                } else {
+                    throw new IllegalArgumentException("Esta avaliação já existe!");
+                }
 
             }
 
@@ -553,127 +589,59 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-
-                jComboBox2.setEnabled(false);
-
-                final String[] candidaturas = new String[100];
-                int cont = 0;
-//                if (!controller.getAvaliaveis(fae).isEmpty()) {
-//                    for (Candidatura c : controller.getAvaliaveis(fae)) {
-//                        candidaturas[cont] = c.toString();
-//                        cont++;
-//                    }
-//                }
-
-                if (!exposicao.getListaCandidaturas().getListCandidaturas().isEmpty()) {
-                    for (Candidatura c : exposicao.getListaCandidaturas().getListCandidaturas()) {
-                        candidaturas[cont] = c.toString();
-                        cont++;
-                    }
-                }
-
-                jList2.setModel(new javax.swing.AbstractListModel<String>() {
-
-                    public int getSize() {
-                        return candidaturas.length;
-                    }
-
-                    public String getElementAt(int i) {
-                        return candidaturas[i];
-                    }
-                });
-
-                jList2.setEnabled(true);
-
-            }
-        }
-        );
-        jButton1.setEnabled(false);
-        jButton2.setEnabled(true);
-
-
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
 
         this.questionario = new QuestionarioFAECand();
+        this.contador++;
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AvaliarCandidaturaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AvaliarCandidaturaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AvaliarCandidaturaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AvaliarCandidaturaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CentroExposicoes ce = new CentroExposicoes();
-                Utilizador u = new Utilizador("joao", "jo", "asd@centro.pt", "aA;2", "ddddd");
-                ce.getRegistoUtilizadores().addUtilizador(u);
-                Utilizador u1 = new Utilizador("carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
-                ce.getRegistoUtilizadores().addUtilizador(u1);
-                Local l = new Local("Porto");
-                ce.getRegistoLocais().addLocal(l);
-                Data dat = new Data(2016, 07, 22, 22, 22, 22);
-                Exposicao e = new Exposicao("Titulo", "Descricao", dat, dat, l, dat, dat,
-                        dat, dat);
-                ce.getRegistoExposicoes().getListaExposicoes().add(e);
-                CandidaturaExposicao ec = new CandidaturaExposicao("sd@centro.pt", "nome empresa", "morada", 912222222, 2, 2);
-                CandidaturaExposicao cand = new CandidaturaExposicao("cat@centro.pt", "nome empresa", "morada", 912222222, 2, 2);
-                e.getListaCandidaturas().addCandidatura(ec);
-                e.getListaCandidaturas().addCandidatura(cand);
-                FAE fae = new FAE(u);
-                e.getListaFAES().addFae(fae);
-                e.getListaAtribuicoes().newAtribuicao(ec, fae);
-                Demonstracao demo = new Demonstracao("111", "sdf");
-                e.getListaDemonstracoes().addDemonstracao(demo);
-                new AvaliarCandidaturaUI(ce, fae, "exposicao").setVisible(true);
-            }
-        });
-    }
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(AvaliarCandidaturaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(AvaliarCandidaturaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(AvaliarCandidaturaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(AvaliarCandidaturaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                
+//                new AvaliarCandidaturaUI(ce, fae, "expicao").setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -681,7 +649,6 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextArea jTextArea1;

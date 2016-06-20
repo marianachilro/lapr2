@@ -23,6 +23,7 @@ public class CriarPerfilDeUtilizadorUI extends javax.swing.JFrame {
 
     private LoginUI login;
     private final CentroExposicoes ce;
+    private Utilizador utilizador;
 
     /**
      * Creates new form CriarPerfilDeUtilizadorUI
@@ -31,7 +32,7 @@ public class CriarPerfilDeUtilizadorUI extends javax.swing.JFrame {
      */
     public CriarPerfilDeUtilizadorUI(final CentroExposicoes ce) {
 
-        this.ce = ce;
+        this.ce = ce;     
         initComponents();
         setVisible(true);
         
@@ -47,6 +48,12 @@ public class CriarPerfilDeUtilizadorUI extends javax.swing.JFrame {
                     CriarPerfilDeUtilizadorUI.this.setVisible(false);
                     CriarPerfilDeUtilizadorUI.this.dispose();
                     JFrame LoginUI = new LoginUI(ce);
+                }else if(result == JOptionPane.CANCEL_OPTION){
+                    CriarPerfilDeUtilizadorUI.this.setDefaultCloseOperation(
+                                JDialog.DO_NOTHING_ON_CLOSE);
+                }else if(result == JOptionPane.NO_OPTION){
+                    CriarPerfilDeUtilizadorUI.this.setDefaultCloseOperation(
+                                JDialog.DO_NOTHING_ON_CLOSE);
                 }
             }
         });
@@ -227,8 +234,8 @@ public class CriarPerfilDeUtilizadorUI extends javax.swing.JFrame {
             
             if (controller.RegistaUtilizador()) {
                 dispose();
-
-                MenuUI j = new MenuUI(ce);
+                this.utilizador=ce.getRegistoUtilizadoresNaoConfirmados().getUtilizador(username);
+                MenuUI j = new MenuUI(ce,this.utilizador);
             }
 
          } catch (NumberFormatException ex) {

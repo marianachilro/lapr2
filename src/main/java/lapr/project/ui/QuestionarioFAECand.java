@@ -236,23 +236,23 @@ public class QuestionarioFAECand extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 public int temaExpo(){
-    return (int)jComboBox1.getSelectedItem();
+    return Integer.parseInt(jComboBox1.getSelectedItem().toString());
 }
 
 public int adqCandExpo(){
-     return (int)jComboBox2.getSelectedItem();
+     return Integer.parseInt(jComboBox2.getSelectedItem().toString());
 }
 
 public int adqCandDemo(){
-     return (int)jComboBox3.getSelectedItem();
+     return Integer.parseInt(jComboBox3.getSelectedItem().toString());
 }
 
 public int adqNumConv(){
-     return (int)jComboBox4.getSelectedItem();
+     return Integer.parseInt(jComboBox4.getSelectedItem().toString());
 }
 
 public int recGlobal(){
-     return (int)jComboBox5.getSelectedItem();
+    return Integer.parseInt(jComboBox5.getSelectedItem().toString());
 }
 
 }

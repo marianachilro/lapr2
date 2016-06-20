@@ -25,7 +25,6 @@ public class AvaliarCandidaturaController {
     private Avaliacao m_avaliacao;
     private final CentroExposicoes m_oCE;
     private final FAE m_oFAE;
-    private ListaAvaliacoes listaAvaliacoes;
     private Candidatura candidatura;
     private Avaliavel interfaceAvaliavel;
 
@@ -57,7 +56,7 @@ public class AvaliarCandidaturaController {
     public void setAvaliacao(String fae, String candidatura, String decisao, String txt, int respostaTemaExpo, int respostaAdequacaoCand,
            int respostaAdequacaoCandDemo, int respostaAdequacaoNumConvites, int respostaRecomendacaoGlobal) {
 
-        this.m_avaliacao = listaAvaliacoes.novaAvaliacao();
+        this.m_avaliacao = this.candidatura.getListaAvaliacoes().novaAvaliacao();
 
         this.m_avaliacao.setFae(fae);
         this.m_avaliacao.setCandidatura(candidatura);
@@ -73,7 +72,7 @@ public class AvaliarCandidaturaController {
     }
     
      public void setAvaliacao(String fae, String candidatura, String decisao, String txt){
-         this.m_avaliacao = listaAvaliacoes.novaAvaliacaoDemo();
+         this.m_avaliacao = this.candidatura.getListaAvaliacoes().novaAvaliacaoDemo();
 
         this.m_avaliacao.setFae(fae);
         this.m_avaliacao.setCandidatura(candidatura);
@@ -83,8 +82,8 @@ public class AvaliarCandidaturaController {
     
 
     public boolean registaAvaliacao() {
-        if (this.listaAvaliacoes.validaAvaliacao(m_avaliacao) != true) {
-            this.listaAvaliacoes.addAvaliacao(m_avaliacao);
+        if (this.candidatura.getListaAvaliacoes().validaAvaliacao(m_avaliacao) != true) {
+            this.candidatura.getListaAvaliacoes().addAvaliacao(m_avaliacao);
             return true;
         } else {
             return false;

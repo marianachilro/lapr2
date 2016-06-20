@@ -31,13 +31,16 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
 
     private final CentroExposicoes ce;
     private MenuUI menu;
+    private Utilizador utilizador;
 
     /**
      * Creates new form CriarExposicaoUI
      * @param ce
+     * @param u
      */
-    public CriarExposicaoUI(final CentroExposicoes ce) {
+    public CriarExposicaoUI(final CentroExposicoes ce,Utilizador u) {
         this.ce = ce;
+        this.utilizador=u;
         initComponents();
          setVisible(true);
          
@@ -52,7 +55,13 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
                             JDialog.DISPOSE_ON_CLOSE);
                     CriarExposicaoUI.this.setVisible(false);
                     CriarExposicaoUI.this.dispose();
-                    JFrame MenuUI = new MenuUI(ce);
+                    JFrame MenuUI = new MenuUI(ce,utilizador);
+                }else if(result == JOptionPane.CANCEL_OPTION){
+                    CriarExposicaoUI.this.setDefaultCloseOperation(
+                                JDialog.DO_NOTHING_ON_CLOSE);
+                }else if(result == JOptionPane.NO_OPTION){
+                    CriarExposicaoUI.this.setDefaultCloseOperation(
+                                JDialog.DO_NOTHING_ON_CLOSE);
                 }
             }
         });
@@ -263,7 +272,7 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         dispose();
-        MenuUI j = new MenuUI(ce);
+        MenuUI j = new MenuUI(ce,this.utilizador);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -320,7 +329,7 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(menu, "Exposição registada!");
                 dispose();
 
-                MenuUI j = new MenuUI(ce);
+                MenuUI j = new MenuUI(ce,this.utilizador);
             }
             
             
