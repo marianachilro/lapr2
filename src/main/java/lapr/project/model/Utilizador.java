@@ -320,6 +320,7 @@ public class Utilizador {
         this.nome = clone.getNome();
         this.username = clone.getUsername();
         this.email = clone.getEmail();
+        this.keyword = clone.getKeyword();
         this.password = clone.getPassword();
     }
 

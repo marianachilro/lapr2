@@ -130,7 +130,7 @@ public class ListaDemonstracoes {
     public List<Demonstracao> getListaDemonstracoesNaoConfirmadas() {
         List<Demonstracao> ld = new ArrayList<>();
         for (Demonstracao d : listaDemonstracao) {
-            if (d.getRealizacao() == false) {
+            if (d.getEstado().setCriada()) {
                 ld.add(d);
             }
         }

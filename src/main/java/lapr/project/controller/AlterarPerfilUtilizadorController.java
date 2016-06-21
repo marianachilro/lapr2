@@ -17,51 +17,48 @@ public class AlterarPerfilUtilizadorController {
     
     private final CentroExposicoes centro;
     private RegistoUtilizadores ru;
+    private final String username;
     private Utilizador utilizador;
     private Utilizador clone;
     
-    public AlterarPerfilUtilizadorController(CentroExposicoes centro){
+    public AlterarPerfilUtilizadorController(CentroExposicoes centro, String username){
         this.centro= centro;
+        this.username=username;
     }
     
-    public void getRegistoUtilizadores(){
+    public Utilizador getUtilizador(){
         this.ru = this.centro.getRegistoUtilizadores();
-    }
-    
-    public void getUtilizador(String username){
         this.utilizador=ru.getUtilizador(username);
+        return this.utilizador;
     }
     
     public boolean validaPassword(String pass){
         return this.utilizador.getPassword().equalsIgnoreCase(pass);
     }
     
-    public void criarClone(){
-        clone = new Utilizador(this.utilizador);
+    public Utilizador criarClone(){
+        this.clone = new Utilizador(this.utilizador);
+        return this.clone;
     }
     
-    public String apresentaUtilizador(){
-        return this.utilizador.toString();
+    public void removerUtilizador(Utilizador u){
+        this.ru.removerUtilizador(u);
     }
     
-//    public boolean validaDados( String nome, String username, String email, String password){
-//        return this.utilizador.validaDados(nome, username, email, password);
-//    }
-    
-    public boolean setDados(String nome, String username, String email, String password){
+    public boolean setDados(String nome, String username, String email, String keyword){
         this.clone.setNome(nome);
         this.clone.setUsername(username);
         this.clone.setEmail(email);
-        this.clone.setPassword(password);
+        this.clone.setKeyword(keyword);
         
         return this.ru.validaUtilizador(clone);
     }
-    
-    public String apresentaClone(){
-        return this.clone.toString();
+    public void setNovaPassword(String novaPassword){
+        this.clone.setPassword(novaPassword);
     }
     
-    public void registaAlterações(){
+    
+    public void registaAlteracoes(){
         this.utilizador.setPerfilAlterado(clone);
     }
 }

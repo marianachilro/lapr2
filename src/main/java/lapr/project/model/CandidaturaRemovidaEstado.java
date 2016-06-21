@@ -6,15 +6,25 @@
 package lapr.project.model;
 
 /**
- *
+ * Representa um dos Estados possíveis da Candidatura (Estado de "Removida").
  * @author Rita
  */
 public class CandidaturaRemovidaEstado extends CandImpEstado {
     
+    /**
+     * Contrutor do Estado de "Removida" da Candidatura.
+     *
+     * @param candidatura a candidatura que vai transitar de estado
+     */
     public CandidaturaRemovidaEstado(Candidatura cand) {
         super(cand);
     }
     
+    /**
+     * Método que indica que a Candidatura está no Estado "Removida".
+     *
+     * @return true, porque está neste estado
+     */
     @Override
     public boolean setRemovida() {
         return true;

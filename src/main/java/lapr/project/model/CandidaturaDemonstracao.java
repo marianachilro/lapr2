@@ -165,4 +165,10 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel, Atribuiv
         return estado.setRemovida();
     }
 
+    @Override
+    public boolean valida() {
+        //faltam as validações
+        return true;
+    }
+
 }
