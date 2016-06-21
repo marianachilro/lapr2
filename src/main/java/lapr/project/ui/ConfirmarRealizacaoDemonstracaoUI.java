@@ -35,6 +35,8 @@ import lapr.project.utils.Data;
 public class ConfirmarRealizacaoDemonstracaoUI extends JDialog {
 
     private final ConfirmarRealizacaoDemonstracaoController controller;
+    
+    private JFrame janelaPai;
 
     private final CentroExposicoes centro;
 
@@ -68,6 +70,7 @@ public class ConfirmarRealizacaoDemonstracaoUI extends JDialog {
 
     public ConfirmarRealizacaoDemonstracaoUI(JFrame janelaPai, CentroExposicoes centro, Exposicao exposicao) {
         super(janelaPai, "Confirmar Realização de Demonstração", true);
+        this.janelaPai=janelaPai;
         this.centro = centro;
         this.exposicao = exposicao;
         this.controller = new ConfirmarRealizacaoDemonstracaoController(centro);
