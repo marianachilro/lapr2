@@ -170,6 +170,9 @@
               <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(exposicoes)" type="code"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="String [] exposicoes = new String[100];&#xa;int i=0;&#xa;if(!controller.getListaExposicoesFAE(fae.getUtilizador()).isEmpty()){&#xa;for(Exposicao e : controller.getListaExposicoesFAE(fae.getUtilizador())){&#xa;     exposicoes[i]=e.getTitulo();&#xa;     i++;&#xa;}&#xa;}"/>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

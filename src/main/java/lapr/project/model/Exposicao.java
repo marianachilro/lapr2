@@ -784,6 +784,10 @@ public class Exposicao implements Avaliavel, Decisivel {
                 estatisticaKeywords.add(String.valueOf(nf.format(probabilidadeCandNaoAceites)));
 
             }
+        } else {
+
+            throw new IllegalArgumentException("Não existe informação suficiente para criar o ranking!");
+
         }
         return estatisticaKeywords;
     }

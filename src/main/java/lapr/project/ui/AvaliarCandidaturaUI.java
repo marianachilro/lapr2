@@ -122,6 +122,11 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
             }
         }
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(exposicoes));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         label1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         label1.setText("Exposição:");
@@ -598,6 +603,10 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
         this.contador++;
 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 //    /**
 //     * @param args the command line arguments
