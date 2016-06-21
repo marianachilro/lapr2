@@ -47,6 +47,7 @@ public class CandidaturaGeral implements Candidatura {
         this.emailRep = c.getEmailRep();
         this.decisao = c.getDecisao();
         this.listaAvaliacoes = new ListaAvaliacoes(c.getListaAvaliacoes());
+        estado = new CandidaturaAlteradaEstado(this);
     }
 
     @Override

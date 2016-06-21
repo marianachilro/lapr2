@@ -15,10 +15,12 @@ public class CandImpEstado implements CandidaturaEstado {
     public Candidatura getCandidatura(){
         return cand;
     }
+    
 
     public CandImpEstado(Candidatura cand) {
         this.cand = cand;
     }
+    
 
     @Override
     public boolean setEmSubmissao() {

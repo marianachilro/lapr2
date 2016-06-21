@@ -56,7 +56,7 @@ public class RegistoExposicoes {
      *
      * @param listaExposicoes List de Exposições
      */
-    @XmlElement(name="exposicoes")
+    @XmlElement(name="exposicao")
     public void setListaExposicoes(List<Exposicao> listaExposicoes) {
         this.listaExposicoes = listaExposicoes;
     }
