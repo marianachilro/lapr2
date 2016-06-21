@@ -61,6 +61,16 @@ public class Security {
         
 
     }
+    
+    /**
+     * Construtor Security com o shift e keyword do utilizador recebido por parametro.
+     * @param shift
+     * @param keyword 
+     */
+    public Security(int shift,String keyword){
+        this.keyword=keyword.length();
+        this.shift=shift;
+    }
 
 
     /**

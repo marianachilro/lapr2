@@ -172,7 +172,7 @@ public class LoginUI extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         dispose();
-        CriarPerfilDeUtilizadorUI c = new CriarPerfilDeUtilizadorUI(ce);
+        CriarPerfildeUtilizadorUI c = new CriarPerfildeUtilizadorUI(ce);
     }//GEN-LAST:event_jButton2ActionPerformed
 // /**
 //     * @param args the command line arguments

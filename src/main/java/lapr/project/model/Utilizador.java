@@ -6,7 +6,6 @@
 package lapr.project.model;
 
 import java.util.Objects;
-import java.util.regex.Pattern;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -44,6 +43,11 @@ public class Utilizador {
      */
     @XmlElement
     private int shift;
+    
+    /**
+     * Codificar/descodificar informação do utilizador.
+     */
+    private Security security;
 
     /**
      * Nome de Utilizador por omissão.
@@ -89,6 +93,8 @@ public class Utilizador {
      * @param keyword keyword
      */
     public Utilizador(int shift,String nome, String username, String email, String password,String keyword) {
+        this.security=new Security(shift,keyword);
+        
         this.shift=shift;
         setNome(nome);
         setUsername(username);
@@ -183,7 +189,11 @@ public class Utilizador {
         if(keyword.length()<4 || keyword.length()>7){
             throw new IllegalArgumentException("Keyword é inválida! 4 a 7 carateres");
         }
-        this.keyword = keyword;
+        if(security!=null){
+        this.keyword = security.codificarShift(keyword);
+        }else{
+            this.keyword=keyword;
+        }
     }
 
     
@@ -197,7 +207,11 @@ public class Utilizador {
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome é inválido!");
         }
-        this.nome = nome;
+         if(security!=null){
+        this.nome = security.substitutionAndTranpositionCipher(nome);
+         }else{
+             this.nome=nome;
+         }
     }
 
     /**
@@ -210,7 +224,11 @@ public class Utilizador {
         if (username == null || username.trim().isEmpty()) {
             throw new IllegalArgumentException("Username é inválido!");
         }
-        this.username = username;
+         if(security!=null){
+        this.username = security.substitutionAndTranpositionCipher(username);
+         }else{
+             this.username=username;
+         }
     }
 
     /**
@@ -220,11 +238,15 @@ public class Utilizador {
      */
     @XmlElement
     public final void setEmail(String email) {
-        if (email == null || email.trim().isEmpty() || !(Pattern.matches("(.*)(\\@)(.*)", email))) {
+        if (email == null || email.trim().isEmpty()) {
             throw new IllegalArgumentException("E-mail inválido!");
         }
 
-        this.email = email;
+        if(security!=null){
+        this.email = security.substitutionAndTranpositionCipher(email);
+        }else{
+            this.email=email;
+        }
     }
 
     /**
@@ -238,52 +260,12 @@ public class Utilizador {
         if (password == null || password.trim().isEmpty()) {
             throw new IllegalArgumentException("Password é inválida!");
         }
-
-        char pontuacao[] = {',', ';', '.', ':', '-'};
-
-        int contUpper = 0;
-        int contLower = 0;
-        int contNum = 0;
-        int contPuctuation = 0;
-        char c;
-
-        for (int i = 0; i < password.length(); i++) {
-
-            String letra = convertToASCII(password.charAt(i) + "");
-            c = letra.charAt(0);
-
-            if (Character.isWhitespace(c)) {
-                throw new IllegalArgumentException("Password sem Espaços!");
-
-            } else if (Character.isLowerCase(c)) {
-                contLower++;
-            } else if (Character.isUpperCase(c)) {
-                contUpper++;
-            } else if (Character.isDigit(c)) {
-                contNum++;
-
-            } else if (!Character.isWhitespace(c)) {
-
-                for (char p : pontuacao) {
-                    if (p == c) {
-                        contPuctuation++;
-                    }
-                }
-
-            }
-
+        
+        if(security!=null){
+        this.password = security.codificarShift(password);
+        }else{
+            this.password=password;
         }
-        if (contUpper == 0) {
-            throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos uma letra maiuscula!");
-        } else if (contLower == 0) {
-            throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos uma letra manuscula!");
-        } else if (contNum == 0) {
-            throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos um numero!");
-        } else if (contPuctuation == 0) {
-            throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos um destes carateres:\n  ,  .  ;  :  -  ");
-        }
-
-        this.password = password;
     }
 
     /**
