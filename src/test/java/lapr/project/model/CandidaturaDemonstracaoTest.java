@@ -58,20 +58,20 @@ public class CandidaturaDemonstracaoTest {
         boolean result = instance.getDecisao();
         assertEquals(expResult, result);
     }
-    
-    /**
-     * Test of getDemonstracao method, of class CandidaturaDemonstracao.
-     */
-    @Test
-    public void testGetDemonstracaoAndSetDemonstracao(){
-        System.out.println("testeDemonstracao");
-        CandidaturaDemonstracao instance = new CandidaturaDemonstracao();
-        Demonstracao demo = new Demonstracao();
-        instance.setDemonstracao(demo);
-        Demonstracao expResult = demo;
-        Demonstracao result = instance.getDemonstracao();
-        assertEquals(expResult, result);
-    }
+//    
+//    /**
+//     * Test of getDemonstracao method, of class CandidaturaDemonstracao.
+//     */
+//    @Test
+//    public void testGetDemonstracaoAndSetDemonstracao(){
+//        System.out.println("testeDemonstracao");
+//        CandidaturaDemonstracao instance = new CandidaturaDemonstracao();
+//        Demonstracao demo = new Demonstracao();
+//        instance.setDemonstracao(demo);
+//        Demonstracao expResult = demo;
+//        Demonstracao result = instance.getDemonstracao();
+//        assertEquals(expResult, result);
+//    }
 
 //    /**
 //     * Test of getEstado method, of class CandidaturaDemonstracao.
