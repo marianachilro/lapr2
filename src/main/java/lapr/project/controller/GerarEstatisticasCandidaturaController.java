@@ -5,6 +5,7 @@
  */
 package lapr.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.Candidatura;
 import lapr.project.model.CandidaturaExposicao;
@@ -17,7 +18,7 @@ import lapr.project.model.RegistoUtilizadores;
  *
  * @author marianachilro
  */
-public class GerarEstatisticaCandidaturasController {
+public class GerarEstatisticasCandidaturaController {
     
     private final CentroExposicoes centro;
     
@@ -32,7 +33,7 @@ public class GerarEstatisticaCandidaturasController {
     private String estatistica;
     
     
-    public GerarEstatisticaCandidaturasController(CentroExposicoes centro){
+    public GerarEstatisticasCandidaturaController(CentroExposicoes centro){
         this.centro=centro;
         this.registoExpos=centro.getRegistoExposicoes();
     }
@@ -40,6 +41,16 @@ public class GerarEstatisticaCandidaturasController {
     public List <Exposicao> getExposicoesOrganizadorEstadoCandidaturasAvaliadas(String username, RegistoUtilizadores ru){
         return this.registoExpos.getExposicoesOrganizadorEstadoCandidaturasAvaliadas(username, ru);
         
+    }
+    
+    public List <CandidaturaExposicao> getCandidaturasAvaliadas(Exposicao exposicao){
+        List <CandidaturaExposicao> lista = new ArrayList<>();
+        for(CandidaturaExposicao c : exposicao.getListaCandidaturas().getListCandidaturas()){
+            if(c.getEstado().setAvaliada()){
+                lista.add(c);
+            }
+        }
+        return lista;
     }
     
     public void seleciona(Exposicao expo){

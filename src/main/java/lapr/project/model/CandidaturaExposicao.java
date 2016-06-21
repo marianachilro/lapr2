@@ -422,16 +422,24 @@ public class CandidaturaExposicao implements Candidatura, Removivel, Atribuivel 
         int nAvaliacoes = 0;
         for (Avaliacao a : this.getListaAvaliacoes().getListaAvaliacao()) {
             if (a != null) {
-                if (i == 1) {
-                    valores = valores + a.getRespostaTemaExpo();
-                } else if (i == 2) {
-                    valores = valores + a.getRespostaAdequacaoCandExposicao();
-                } else if (i == 3) {
-                    valores = valores + a.getRespostaAdequacaoCandDemonstracao();
-                } else if (i == 4) {
-                    valores = valores + a.getRespostaAdequacaoNumConvites();
-                } else if (i == 5) {
-                    valores = valores + a.getRespostaRecomendacaoGlobal();
+                switch (i) {
+                    case 1:
+                        valores = valores + a.getRespostaTemaExpo();
+                        break;
+                    case 2:
+                        valores = valores + a.getRespostaAdequacaoCandExposicao();
+                        break;
+                    case 3:
+                        valores = valores + a.getRespostaAdequacaoCandDemonstracao();
+                        break;
+                    case 4:
+                        valores = valores + a.getRespostaAdequacaoNumConvites();
+                        break;
+                    case 5:
+                        valores = valores + a.getRespostaRecomendacaoGlobal();
+                        break;
+                    default:
+                        break;
                 }
                 nAvaliacoes++;
             }
