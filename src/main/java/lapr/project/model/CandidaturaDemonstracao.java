@@ -18,6 +18,10 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel, Atribuiv
     private Demonstracao demonstracao;
     private CandidaturaEstado estado;
     public final ListaAvaliacoes listaAvaliacoes;
+    /**
+     * Contador do numero de decisoes
+     */
+    private int contador;
 
     /**
      * Construtor de uma candidatura com todos os atributos por omissão.
@@ -27,6 +31,7 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel, Atribuiv
         this.decisao = false;
         this.listaAvaliacoes = new ListaAvaliacoes();
         this.emailRep = "";
+        this.contador = 0;
     }
 
     /**
@@ -42,10 +47,9 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel, Atribuiv
         this.demonstracao = demonstracao;
         this.listaAvaliacoes = new ListaAvaliacoes();
         this.decisao = false;
+        this.contador = 0;
     }
 
-    
-    
     @Override
     public String getEmailRep() {
         return emailRep;
@@ -61,8 +65,27 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel, Atribuiv
         return listaAvaliacoes;
     }
 
+    /**
+     * Devolve o contador do numero de decisoes
+     *
+     * @return
+     */
+    public int getContador() {
+        return contador;
+    }
+
+    /**
+     * Modifica o contador do numero de decisoes
+     *
+     * @param contador
+     */
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+
     @Override
     public void setDecisao(boolean decisao) {
+        setContador(1);
         this.decisao = decisao;
     }
 
@@ -111,12 +134,12 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel, Atribuiv
 
         final CandidaturaDemonstracao other = (CandidaturaDemonstracao) obj;
 
-        return this.listaAvaliacoes.getListaAvaliacao().equals(other.getListaAvaliacoes().getListaAvaliacao()) && this.decisao==other.getDecisao() && this.emailRep.equals(other.getEmailRep()) && this.getDemonstracao().equals(other.getDemonstracao());
+        return this.listaAvaliacoes.getListaAvaliacao().equals(other.getListaAvaliacoes().getListaAvaliacao()) && this.decisao == other.getDecisao() && this.emailRep.equals(other.getEmailRep()) && this.getDemonstracao().equals(other.getDemonstracao());
     }
 
     @Override
     public String toString() {
-        return this.emailRep+ "";
+        return this.emailRep + "";
     }
 
     @Override

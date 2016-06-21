@@ -40,7 +40,7 @@ public class DecidirCandidaturaController {
     }
     
     public List<Candidatura> getDecisivel(){
-        return this.interfaceDecisivel.getDecisiveis();
+        return this.exposicao.getDecisiveis();
     }
     
     public void selectCandidatura(Candidatura c){

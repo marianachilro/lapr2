@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
+import lapr.project.model.Organizador;
 import lapr.project.model.Utilizador;
 
 /**
@@ -256,9 +257,19 @@ public class MenuUI extends JFrame {
         jMenu23.setText("Decidir Candidatura");
 
         jMenuItem19.setText("Exposição");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
         jMenu23.add(jMenuItem19);
 
         jMenuItem20.setText("Demonstração");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
         jMenu23.add(jMenuItem20);
 
         jMenu13.add(jMenu23);
@@ -368,7 +379,7 @@ public class MenuUI extends JFrame {
              }
          }
         
-        
+        dispose();
         AvaliarCandidaturaUI av = new  AvaliarCandidaturaUI(ce,fae,"exposicao");
         
     }//GEN-LAST:event_jMenuItem17ActionPerformed
@@ -399,10 +410,81 @@ public class MenuUI extends JFrame {
              }
          }
         
-        
+        dispose();
         AvaliarCandidaturaUI av = new  AvaliarCandidaturaUI(ce,fae,"demonstracao");
         
     }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        // TODO add your handling code here:
+        int cont=0;
+        Organizador organizador =null;
+        for(Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()){
+            for(Organizador o : e.getListaOrganizadores().getListaOrganizadores()){
+                if(o.getUtilizador().equals(utilizador)){
+                   cont++;
+                   organizador=o;
+                   
+                }
+                
+            }
+        }
+        
+        if(cont==0){
+            try {
+
+                    throw new IllegalArgumentException("Não é organizador!");
+
+                } catch (IllegalArgumentException ex) {
+                    JOptionPane.showMessageDialog(
+                            MenuUI.this,
+                            ex.getMessage(),
+                            "Aviso",
+                            JOptionPane.WARNING_MESSAGE);
+
+                }
+        }else{
+            dispose();
+            DecidirCandidaturaUI d = new DecidirCandidaturaUI(ce,organizador,"exposicao");
+        }
+        
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        // TODO add your handling code here:
+        
+        
+        int cont=0;
+        Organizador organizador =null;
+        for(Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()){
+            for(Organizador o : e.getListaOrganizadores().getListaOrganizadores()){
+                if(o.getUtilizador().equals(utilizador)){
+                   cont++;
+                   organizador=o;
+                   
+                }
+                
+            }
+        }
+        
+        if(cont==0){
+            try {
+
+                    throw new IllegalArgumentException("Não é organizador!");
+
+                } catch (IllegalArgumentException ex) {
+                    JOptionPane.showMessageDialog(
+                            MenuUI.this,
+                            ex.getMessage(),
+                            "Aviso",
+                            JOptionPane.WARNING_MESSAGE);
+
+                }
+        }else{
+            dispose();
+            DecidirCandidaturaUI d = new DecidirCandidaturaUI(ce,organizador,"demonstracao");
+        }
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
 
 //    /**
 //     * @param args the command line arguments
