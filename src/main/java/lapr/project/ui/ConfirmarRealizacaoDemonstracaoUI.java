@@ -211,6 +211,7 @@ public class ConfirmarRealizacaoDemonstracaoUI extends JDialog {
         p.add(criarLabel("Código Único: "));
         txtCodigoUnico = criarJTextField(30);
         txtCodigoUnico.requestFocusInWindow();
+        txtCodigoUnico.setEditable(false);
         p.add(txtCodigoUnico);
         return p;
     }
@@ -221,6 +222,7 @@ public class ConfirmarRealizacaoDemonstracaoUI extends JDialog {
         p.add(criarLabel("Descrição: "));
         txtDescricao = criarJTextField(100);
         txtDescricao.requestFocusInWindow();
+        txtDescricao.setEditable(false);
         p.add(txtDescricao);
         return p;
     }
@@ -231,6 +233,7 @@ public class ConfirmarRealizacaoDemonstracaoUI extends JDialog {
         p.add(criarLabel("Percentagem Interessados (%): "));
         txtPercentagemInteressados = criarJTextField(6);
         txtPercentagemInteressados.requestFocusInWindow();
+        txtPercentagemInteressados.setEditable(false);
         p.add(txtPercentagemInteressados);
         return p;
     }
