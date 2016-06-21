@@ -19,13 +19,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import lapr.project.controller.ConfirmarRealizacaoDemonstracaoController;
 import lapr.project.controller.GerarEstatisticasCandidaturaController;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
-import lapr.project.model.ListaCandidaturasExposicoes;
 
 /**
  *
@@ -33,15 +30,15 @@ import lapr.project.model.ListaCandidaturasExposicoes;
  */
 public class GerarEstatisticasCandidaturaUI extends JDialog{
     
-    private GerarEstatisticasCandidaturaController controller;
+    private final GerarEstatisticasCandidaturaController controller;
     
-    private JFrame janelaPai;
+    private final JFrame janelaPai;
     
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
     
     private CandidaturaExposicao candidatura;
     
-    private CentroExposicoes centro;
+    private final CentroExposicoes centro;
     
     private List <CandidaturaExposicao> listaCandidaturas;
     
