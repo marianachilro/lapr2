@@ -40,4 +40,6 @@ public interface Candidatura {
     public boolean verificarEstadoAtribuida();
     
     public boolean verificarEstadoAvaliada();
+
+    public boolean valida();
 }

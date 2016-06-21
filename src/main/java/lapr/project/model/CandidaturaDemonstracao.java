@@ -116,4 +116,10 @@ public class CandidaturaDemonstracao extends CandidaturaGeral implements Removiv
         return super.getEstado().setRemovida();
     }
 
+    @Override
+    public boolean valida() {
+        //faltam as validações
+        return true;
+    }
+
 }

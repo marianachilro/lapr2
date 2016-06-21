@@ -6,15 +6,25 @@
 package lapr.project.model;
 
 /**
- *
+ * Representa um dos Estados possíveis da Candidatura (Estado de "Rejeitada").
  * @author Rita
  */
 public class CandidaturaRejeitadaEstado extends CandImpEstado {
     
+    /**
+     * Contrutor do Estado de "Rejeitada" da Candidatura.
+     *
+     * @param candidatura a candidatura que vai transitar de estado
+     */
     public CandidaturaRejeitadaEstado(Candidatura cand) {
         super(cand);
     }
     
+    /**
+     * Método que indica que a Candidatura está no Estado "Rejeitada".
+     *
+     * @return true, porque está neste estado
+     */
     @Override
     public boolean setRejeitada() {
         return true;

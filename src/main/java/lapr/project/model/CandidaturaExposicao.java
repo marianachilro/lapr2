@@ -392,7 +392,7 @@ public class CandidaturaExposicao extends CandidaturaGeral implements Removivel,
     }
 
     public float estatisticaAvaliacoes(int i) {
-        int valores = 0;
+        float valores = 0;
         int nAvaliacoes = 0;
         for (Avaliacao a : this.getListaAvaliacoes().getListaAvaliacao()) {
             if (a != null) {
@@ -420,7 +420,7 @@ public class CandidaturaExposicao extends CandidaturaGeral implements Removivel,
         }
         float media = 0;
         if (nAvaliacoes != 0) {
-            media = valores / nAvaliacoes;
+            media = (valores/nAvaliacoes);
         }
         return media;
 
@@ -429,6 +429,12 @@ public class CandidaturaExposicao extends CandidaturaGeral implements Removivel,
     @Override
     public boolean setRemovida() {
         return super.getEstado().setRemovida();
+    }
+
+    @Override
+    public boolean valida() {
+        //faltam as validações
+        return true;
     }
 
 }
