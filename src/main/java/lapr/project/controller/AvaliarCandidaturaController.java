@@ -6,6 +6,7 @@
 package lapr.project.controller;
 
 import java.util.List;
+import lapr.project.model.Atribuicao;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.Avaliavel;
 import lapr.project.model.Candidatura;
@@ -53,13 +54,12 @@ public class AvaliarCandidaturaController {
 
     
 
-    public void setAvaliacao(String fae, String candidatura, String decisao, String txt, int respostaTemaExpo, int respostaAdequacaoCand,
+    public void setAvaliacao(Atribuicao atribuicao, String decisao, String txt, int respostaTemaExpo, int respostaAdequacaoCand,
            int respostaAdequacaoCandDemo, int respostaAdequacaoNumConvites, int respostaRecomendacaoGlobal) {
 
         this.m_avaliacao = this.candidatura.getListaAvaliacoes().novaAvaliacao();
 
-        this.m_avaliacao.setFae(fae);
-        this.m_avaliacao.setCandidatura(candidatura);
+        this.m_avaliacao.setAtribuicao(atribuicao);
         this.m_avaliacao.setDecisao(decisao);
         this.m_avaliacao.setTextoJustificativo(txt);
         this.m_avaliacao.setRespostaTemaExpo(respostaTemaExpo);
@@ -71,11 +71,10 @@ public class AvaliarCandidaturaController {
         
     }
     
-     public void setAvaliacao(String fae, String candidatura, String decisao, String txt){
+     public void setAvaliacao(Atribuicao atribuicao, String decisao, String txt){
          this.m_avaliacao = this.candidatura.getListaAvaliacoes().novaAvaliacaoDemo();
 
-        this.m_avaliacao.setFae(fae);
-        this.m_avaliacao.setCandidatura(candidatura);
+        this.m_avaliacao.setAtribuicao(atribuicao);
         this.m_avaliacao.setDecisao(decisao);
         this.m_avaliacao.setTextoJustificativo(txt);
      }

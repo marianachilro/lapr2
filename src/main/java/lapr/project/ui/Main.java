@@ -1,11 +1,9 @@
 package lapr.project.ui;
 
-import java.io.File;
-import javax.xml.bind.JAXBContext;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 import lapr.project.model.Avaliacao;
-import lapr.project.model.CalculatorExample;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
@@ -13,6 +11,7 @@ import lapr.project.model.FAE;
 import lapr.project.model.Local;
 import lapr.project.model.Utilizador;
 import lapr.project.utils.Data;
+import org.xml.sax.SAXException;
 
 /**
  * @author Nuno Bettencourt <nmb@isep.ipp.pt> on 24/05/16.
@@ -29,7 +28,7 @@ class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, IOException, SAXException, JAXBException {
 
         CentroExposicoes ce = new CentroExposicoes();
         Utilizador u = new Utilizador(2,"joao", "jo", "asd@centro.pt", "aA;2", "ddddd");

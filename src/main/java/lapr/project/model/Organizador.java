@@ -19,7 +19,7 @@ public class Organizador {
     /**
      * Utilizador.
      */
-    @XmlElement(name = "utilizador")
+   
     private Utilizador m_oUtilizador;
 
     /**
@@ -40,6 +40,7 @@ public class Organizador {
      *
      * @param u novo organizador
      */
+     @XmlElement(name = "utilizador")
     public void setUtilizador(Utilizador u) {
         this.m_oUtilizador = u;
     }

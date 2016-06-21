@@ -20,7 +20,7 @@ public class RegistoExposicoes {
     /**
      * List de Exposições.
      */
-    @XmlElement(name="exposicoes")
+    
     private List<Exposicao> listaExposicoes;
 
     /**
@@ -28,6 +28,9 @@ public class RegistoExposicoes {
      */
     public RegistoExposicoes() {
         this.listaExposicoes = new ArrayList<>();
+    }
+    public RegistoExposicoes(List<Exposicao> lista){
+        this.listaExposicoes=lista;
     }
 
     /**
@@ -53,6 +56,7 @@ public class RegistoExposicoes {
      *
      * @param listaExposicoes List de Exposições
      */
+    @XmlElement(name="exposicoes")
     public void setListaExposicoes(List<Exposicao> listaExposicoes) {
         this.listaExposicoes = listaExposicoes;
     }

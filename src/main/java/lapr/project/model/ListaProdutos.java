@@ -20,7 +20,7 @@ public class ListaProdutos {
     /**
      * List de Produtos.
      */
-    @XmlElement(name="produtos")
+    
     private List<Produto> listaProdutos;
 
     /**
@@ -47,6 +47,7 @@ public class ListaProdutos {
      *
      * @param listaProdutos List de Produtos
      */
+    @XmlElement(name="produtos")
     public void setListaProdutos(List<Produto> listaProdutos) {
         this.listaProdutos = listaProdutos;
     }

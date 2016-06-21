@@ -18,7 +18,6 @@ public class Keyword {
     /**
      * Palavra referente à Keyword.
      */
-    @XmlElement
     private String palavra;
     /**
      * Palavra referente à Keyword por omissão.
@@ -56,6 +55,7 @@ public class Keyword {
      *
      * @param palavra Palavra
      */
+    @XmlElement
     public void setPalavra(String palavra) {
         this.palavra = palavra;
     }

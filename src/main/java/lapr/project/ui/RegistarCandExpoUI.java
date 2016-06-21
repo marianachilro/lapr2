@@ -11,6 +11,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -95,8 +96,11 @@ public class RegistarCandExpoUI extends JDialog {
         this.emailRep = emailRep;
         this.ce = ce;
         this.controller = new RegistarCandidaturaExposicaoController(emailRep, ce);
+        criarComponentes();
         this.jLista = new JList();
-        this.mLista = new ModeloListaExpos(controller.getListaExposicoes());
+        List<Exposicao> le = new ArrayList<>();
+        le.add(new Exposicao());
+        this.mLista = new ModeloListaExpos(le);
         jLista.setModel(mLista);
         jLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         lDemonsExpo = controller.getListaDemonstracoesExposicao();
@@ -104,7 +108,7 @@ public class RegistarCandExpoUI extends JDialog {
         controller.getListaProdutos();
         controller.getListaKeywords();
         controller.getListaDemonstracoesCandidatura();
-        criarComponentes();
+        
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         pack();
         setResizable(false);

@@ -283,7 +283,7 @@ public class ExposicaoTest {
     @Test
     public void testGetEstadoAndSetEstado() {
         System.out.println("testeEstado");
-        ExposicaoEstado novoSt = null;
+        ExpoImpEstado novoSt = null;
         Exposicao instance = new Exposicao();
         instance.setEstado(novoSt);
         ExposicaoEstado expResult = novoSt;
@@ -292,44 +292,7 @@ public class ExposicaoTest {
 
     }
 
-    /**
-     * Test of setExposicaoCandidaturasAtribuidas method, of class Exposicao.
-     */
-    @Test
-    public void testSetExposicaoCandidaturasAtribuidas() {
-        System.out.println("setExposicaoCandidaturasAtribuidas");
-        Exposicao instance = new Exposicao();
-        boolean expResult = false;
-        boolean result = instance.setExposicaoCandidaturasAtribuidas();
-        assertEquals(expResult, result);
-
-    }
-
-    /**
-     * Test of setExposicaoCandidaturasAvaliadas method, of class Exposicao.
-     */
-    @Test
-    public void testSetExposicaoCandidaturasAvaliadas() {
-        System.out.println("setExposicaoCandidaturasAvaliadas");
-        Exposicao instance = new Exposicao();
-        boolean expResult = false;
-        boolean result = instance.setExposicaoCandidaturasAvaliadas();
-        assertEquals(expResult, result);
-
-    }
-
-    /**
-     * Test of setExposicaoCandidaturasDecididas method, of class Exposicao.
-     */
-    @Test
-    public void testSetExposicaoCandidaturasDecididas() {
-        System.out.println("setExposicaoCandidaturasDecididas");
-        Exposicao instance = new Exposicao();
-        boolean expResult = false;
-        boolean result = instance.setExposicaoCandidaturasDecididas();
-        assertEquals(expResult, result);
-
-    }
+    
 
     /**
      * Test of getAvaliaveis method, of class Exposicao.
@@ -408,18 +371,7 @@ public class ExposicaoTest {
         
     }
 
-    /**
-     * Test of setExposicaoConflitosAtualizados method, of class Exposicao.
-     */
-    @Test
-    public void testSetExposicaoConflitosAtualizados() {
-        System.out.println("setExposicaoConflitosAtualizados");
-        Exposicao instance = new Exposicao();
-        boolean expResult = false;
-        boolean result = instance.setExposicaoConflitosAtualizados();
-        assertEquals(expResult, result);
-       
-    }
+  
     /**
      * Test of setAtribuicoes method, of class Exposicao.
      */

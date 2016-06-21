@@ -20,7 +20,6 @@ public class ListaFAEs {
     /**
      * Lista de FAEs da exposição
      */
-    @XmlElement(name="fae")
     private List<FAE> listaFAEs;
 
     /**
@@ -56,6 +55,7 @@ public class ListaFAEs {
      *
      * @param listaFAEs lista de FAEs
      */
+    @XmlElement(name="fae")
     public void setListaFAEs(List<FAE> listaFAEs) {
         this.listaFAEs = listaFAEs;
     }

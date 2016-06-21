@@ -20,7 +20,6 @@ public class ListaKeywords {
     /**
      * List de Keywords.
      */
-    @XmlElement(name="keywords")
     private List<Keyword> listaKeywords;
 
     /**
@@ -48,6 +47,7 @@ public class ListaKeywords {
      *
      * @param listaKeywords List de Keywords
      */
+    @XmlElement(name = "keywords")
     public void setListaKeywords(List<Keyword> listaKeywords) {
         this.listaKeywords = new ArrayList<>(listaKeywords);
     }
@@ -106,6 +106,7 @@ public class ListaKeywords {
 
     /**
      * Devolve o número de keywords na lista
+     *
      * @return Número de keywords da lista
      */
     public int tamanho() {

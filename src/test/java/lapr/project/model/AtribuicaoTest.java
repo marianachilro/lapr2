@@ -165,7 +165,7 @@ public class AtribuicaoTest {
     public void testEquals8() {
         System.out.println("equals");
         Object o = new Atribuicao(new FAE(), new CandidaturaDemonstracao());
-        Atribuicao instance = new Atribuicao(new FAE(), new CandidaturaDemonstracao("321@teste.com",new Demonstracao("asd1", "asdasd")));
+        Atribuicao instance = new Atribuicao(new FAE(), new CandidaturaDemonstracao("321@teste.com"));
         boolean expResult = false;
         boolean result = instance.equals(o);
         assertEquals(expResult, result);

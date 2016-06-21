@@ -139,20 +139,20 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
                 expo.getListaDemonstracoes().addDemonstracao(d1);
                 d1.getEstado().setCriada();
 
-                Avaliacao a = new Avaliacao("fae1", "email@centro.pt", "aceite", "justificação", 5, 5,
-                        5, 4, 5);
-                Avaliacao a1 = new Avaliacao("fae2", "email1@centro.pt", "aceite", "justificação1", 4, 3,
-                        5, 4, 5);
-
-                Avaliacao a2 = new Avaliacao("fae1", "email2@centro.pt", "aceite", "justificação2", 4, 4,
-                        4, 4, 4);
+//                Avaliacao a = new Avaliacao("fae1", "email@centro.pt", "aceite", "justificação", 5, 5,
+//                        5, 4, 5);
+//                Avaliacao a1 = new Avaliacao("fae2", "email1@centro.pt", "aceite", "justificação1", 4, 3,
+//                        5, 4, 5);
+//
+//                Avaliacao a2 = new Avaliacao("fae1", "email2@centro.pt", "aceite", "justificação2", 4, 4,
+//                        4, 4, 4);
                 c.getEstado().setCompleta();
                 c.getEstado().setConflitosDetetados();
                 c.getEstado().setConflitosAlterados();
                 c.getEstado().setEmAvaliacao();
-                c.getListaAvaliacoes().addAvaliacao(a);
-                c.getListaAvaliacoes().addAvaliacao(a1);
-                c.getListaAvaliacoes().addAvaliacao(a2);
+//                c.getListaAvaliacoes().addAvaliacao(a);
+//                c.getListaAvaliacoes().addAvaliacao(a1);
+//                c.getListaAvaliacoes().addAvaliacao(a2);
                 c.getEstado().setAvaliada();
 
                 new GerarEstatisticasCandidaturaUI(null, ce, expo).setVisible(true);

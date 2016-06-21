@@ -23,117 +23,88 @@ public class Exposicao implements Avaliavel, Decisivel {
     /**
      * Título da Exposição
      */
-    @XmlElement
     private String titulo;
     /**
      * Descrição da Exposição.
      */
-    @XmlElement
     private String descricao;
     /**
      * Data de inicio da Exposição.
      */
-    @XmlElement
     private Data dataInicio;
     /**
      * Data de fim da Exposição.
      */
-    @XmlElement
     private Data dataFim;
     /**
      * Local da Exposição.
      */
-    @XmlElement
     private Local local;
 
     /**
      * Data de inicio de submissao de candidaturas;
      */
-    @XmlElement(name = "subInicio")
     private Data dataIniSubCan;
 
     /**
      * Data final de submissao de candidaturas;
      */
-    @XmlElement(name = "subFim")
     private Data dataFimSubCand;
 
     /**
      * Data final de atualização de conflitos.
      */
-    @XmlElement(name = "dataLimiteConflitos")
     private Data dataFimAtcConf;
 
     /**
      * Data final de avaliação de candidaturas.
      */
-    @XmlElement(name = "dataFimAvaliacaoCandidatura")
     private Data dataFimAvCandidatura;
 
     /**
      * Data de início do período de submissão de candidaturas às Demonstraçoes.
      */
-    @XmlElement(name = "dataInicioSubCandDemos")
     private Data dataInicioSubCandDemos;
     /**
      * Data de fim do período de submissão de candidaturas às Demonstraçoes.
      */
-    @XmlElement(name = "dataFimSubCandDemos")
     private Data dataFimSubCandDemos;
     /**
      * Data fim do período de atualização de confitos nas Demonstrações da
      * Exposição.
      */
-    @XmlElement(name = "dataLimiteAtualizacaoConflitosDemos")
     private Data dataFimAtualizacaoConflitosDemos;
     /**
      * Estado da exposição.
      */
-    @XmlElement(name = "estado")
-    private ExposicaoEstado st;
+    private ExpoImpEstado st;
 
-    /**
-     * Contador de candidaturas aceites
-     */
-    @XmlElement(name = "candidaturasAceites")
-    private static int contCandAceites = 0;
-
-    /**
-     * Contador de candidaturas rejeitadas
-     */
-    @XmlElement(name = "candidaturasRejeitadas")
-    private static int contCandRejeitadas = 0;
     /**
      * Lista de Organizadores da Exposição
      */
-    @XmlElement(name = "registoOrganizadores")
     private ListaOrganizadores listaOrg;
     /**
      * Lista de Candidaturas da Exposição.
      */
-    @XmlElement(name = "registoCandidaturas")
+
     private ListaCandidaturasExposicoes listaCandidaturas;
     /**
      * Lista de Demonstrações da Exposição.
      */
-    @XmlElement(name = "registoDemonstracoes")
     private ListaDemonstracoes listaDemonstracoes;
     /**
      * Lista de conflitos da exposição.
      */
-    @XmlElement(name = "registoConflitos")
     private ListaConflitos listaConflitos;
 
     /**
      * Lista de FAEs da exposicao.
      */
-    @XmlElement(name = "registoFAEs")
     private ListaFAEs listaFAEs;
 
     /**
      * Lista de atribuicoes da exposicao.
      */
-    @XmlElement(name = "registoAtribuicoes")
     private ListaAtribuicoes listaAtribuicoes;
 
     /**
@@ -156,6 +127,17 @@ public class Exposicao implements Avaliavel, Decisivel {
      * Valor do Local da Exposição por omissão.
      */
     private static final Local LOCAL_OMISSAO = null;
+    /**
+     * Contador de candidaturas aceites
+     */
+    @XmlElement(name = "candidaturasAceites")
+    private static int contCandAceites = 0;
+
+    /**
+     * Contador de candidaturas rejeitadas
+     */
+    @XmlElement(name = "candidaturasRejeitadas")
+    private static int contCandRejeitadas = 0;
 
     /**
      * Construtor de uma Exposição com todos os atributos por omissão.
@@ -285,6 +267,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param data a nova data
      */
+    @XmlElement(name = "dataInicioSubCandDemos")
     public void setDataInicioSubmissaoCandidaturasDemos(Data data) {
         this.dataInicioSubCandDemos = data;
     }
@@ -295,6 +278,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param data a nova data
      */
+    @XmlElement(name = "dataFimSubCandDemos")
     public void setDataFimSubmissaoCandidaturasDemos(Data data) {
         this.dataFimSubCandDemos = data;
     }
@@ -316,6 +300,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param data a nova data
      */
+    @XmlElement(name = "dataLimiteAtualizacaoConflitosDemos")
     public void setDataFimAtualizacaoConflitosDemos(Data data) {
         this.dataFimAtualizacaoConflitosDemos = data;
     }
@@ -334,6 +319,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param lc nova lista de candidaturas
      */
+    @XmlElement(name = "registoCandidaturas")
     public void setListaCandidaturas(ListaCandidaturasExposicoes lc) {
         this.listaCandidaturas = lc;
     }
@@ -352,6 +338,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param lc nova lista de conflitos
      */
+    @XmlElement(name = "registoConflitos")
     public void setListaConflitos(ListaConflitos lc) {
         this.listaConflitos = lc;
     }
@@ -370,6 +357,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param lo nova lista de organizadores
      */
+    @XmlElement(name = "registoOrganizadores")
     public void setListaOrganizadores(ListaOrganizadores lo) {
         this.listaOrg = lo;
     }
@@ -388,6 +376,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param ld nova lista de demonstracoes
      */
+    @XmlElement(name = "registoDemonstracoes")
     public void setListaDemonstracoes(ListaDemonstracoes ld) {
         this.listaDemonstracoes = ld;
     }
@@ -397,6 +386,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param titulo Título
      */
+    @XmlElement
     public final void setTitulo(String titulo) {
         if (titulo == null || titulo.trim().isEmpty()) {
             throw new IllegalArgumentException("Título inválido!");
@@ -409,6 +399,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param descricao Descrição
      */
+    @XmlElement
     public final void setDescricao(String descricao) {
         if (descricao == null || descricao.trim().isEmpty()) {
             throw new IllegalArgumentException("Descrição inválida!");
@@ -430,6 +421,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param lfae nova lista de faes
      */
+    @XmlElement(name = "registoFAEs")
     public void setListaFAES(ListaFAEs lfae) {
         this.listaFAEs = lfae;
     }
@@ -439,6 +431,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param dataInicio Data de Inicio
      */
+    @XmlElement
     public final void setDataInicio(Data dataInicio) {
         if (dataInicio == null) {
             throw new IllegalArgumentException("Data inicio inválida!");
@@ -451,6 +444,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param dataFim Data de Fim
      */
+    @XmlElement
     public final void setDataFim(Data dataFim) {
         if (dataFim == null) {
             throw new IllegalArgumentException("Data fim inválida!");
@@ -463,6 +457,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param local Local
      */
+    @XmlElement
     public final void setLocal(Local local) {
         if (local == null || local.getNome().isEmpty()) {
             throw new IllegalArgumentException("Local inválido!");
@@ -484,6 +479,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param dataFimSubCand data fim de submisao de candidaturas
      */
+    @XmlElement(name = "subFim")
     public final void setDataFimSubCand(Data dataFimSubCand) {
         if (dataFimSubCand == null) {
             throw new IllegalArgumentException("Data fim de submissão de candidaturas inválida!");
@@ -505,6 +501,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param dataFimAtcConf data fim de atualização de conflitos
      */
+    @XmlElement(name = "dataLimiteConflitos")
     public final void setDataFimAtcConf(Data dataFimAtcConf) {
         if (dataFimAtcConf == null) {
             throw new IllegalArgumentException("Data fim de actualizaçao de conflitos inválida!");
@@ -526,6 +523,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param dataFimAvCandidatura data fim de avaliar candidaturas
      */
+    @XmlElement(name = "dataFimAvaliacaoCandidatura")
     public final void setDataFimAvCandidatura(Data dataFimAvCandidatura) {
         if (dataFimAvCandidatura == null) {
             throw new IllegalArgumentException("Data fim de avaliar candidaturas inválida!");
@@ -605,45 +603,9 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param novoSt
      */
-    public void setEstado(ExposicaoEstado novoSt) {
+    @XmlElement(name = "estado")
+    public void setEstado(ExpoImpEstado novoSt) {
         st = novoSt;
-    }
-
-    /**
-     * Modifica o estado da exposição
-     *
-     * @return boolean
-     */
-    public boolean setExposicaoConflitosAtualizados() {
-        return st.setExposicaoConflitosAtualizados();
-    }
-
-    /**
-     * Modifica o estado da exposição
-     *
-     * @return boolean
-     */
-    public boolean setExposicaoCandidaturasAtribuidas() {
-        return st.setExposicaoCandidaturasAtribuidas();
-    }
-
-    /**
-     * Modifica o estado da exposição
-     *
-     * @return boolean
-     */
-    public boolean setExposicaoCandidaturasAvaliadas() {
-        return st.setExposicaoCandidaturasAvaliadas();
-
-    }
-
-    /**
-     * Modifica o estado da exposição
-     *
-     * @return boolean
-     */
-    public boolean setExposicaoCandidaturasDecididas() {
-        return st.setExposicaoCandidaturasDecididas();
     }
 
     /**
@@ -701,6 +663,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param la nova lista de atribuicoes
      */
+    @XmlElement(name = "registoFAEs")
     public void setListaAtribuicoes(ListaAtribuicoes la) {
         this.listaAtribuicoes = la;
     }
@@ -839,6 +802,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @param dataIniSubCan data de inicio de submissao de candidaturas
      */
+    @XmlElement(name = "subInicio")
     public final void setDataIniSubCan(Data dataIniSubCan) {
         if (dataIniSubCan == null) {
             throw new IllegalArgumentException("Data de inicio de submissão de candidaturas inválida!");
@@ -870,8 +834,6 @@ public class Exposicao implements Avaliavel, Decisivel {
         return hash;
     }
 
-   
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -883,9 +845,9 @@ public class Exposicao implements Avaliavel, Decisivel {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        
+
         final Exposicao other = (Exposicao) obj;
-        
+
         if (!Objects.equals(this.titulo, other.titulo)) {
             return false;
         }
@@ -901,10 +863,8 @@ public class Exposicao implements Avaliavel, Decisivel {
         if (!Objects.equals(this.local, other.local)) {
             return false;
         }
-  
+
         return true;
     }
 
-    
-    
 }

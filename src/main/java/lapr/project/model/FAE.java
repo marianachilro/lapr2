@@ -19,7 +19,6 @@ public class FAE {
     /**
      * Utilizador
      */
-    @XmlElement(name = "utilizador")
     private Utilizador m_oUFae;
 
     /**
@@ -43,6 +42,7 @@ public class FAE {
      *
      * @param u fae
      */
+    @XmlElement(name = "utilizador")
     public void setUtilizador(Utilizador u) {
         this.m_oUFae = u;
     }
