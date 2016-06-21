@@ -17,7 +17,7 @@ public class AlterarPerfilUtilizadorController {
     
     private final CentroExposicoes centro;
     private RegistoUtilizadores ru;
-    private String username;
+    private final String username;
     private Utilizador utilizador;
     private Utilizador clone;
     
