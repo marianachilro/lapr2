@@ -36,7 +36,7 @@ public class ConfirmarRealizacaoDemonstracaoUI extends JDialog {
 
     private final ConfirmarRealizacaoDemonstracaoController controller;
     
-    private JFrame janelaPai;
+    private final JFrame janelaPai;
 
     private final CentroExposicoes centro;
 
