@@ -52,7 +52,7 @@ public class RegistoExposicoesTest {
 
         String username = "joaovaz";
         RegistoUtilizadores ru = new RegistoUtilizadores();
-        Utilizador u = new Utilizador("joao", username, "123@centro.pt", "aA;2", "keywrd");
+        Utilizador u = new Utilizador(3,"joao", username, "123@centro.pt", "aA;2", "keywrd");
         ru.addUtilizador(u);
         RegistoExposicoes instance = new RegistoExposicoes();
         Exposicao e = new Exposicao();
@@ -113,7 +113,7 @@ public class RegistoExposicoesTest {
     @Test
     public void testGetListaExposicoesDoFAE() {
         
-       Utilizador u = new Utilizador("joao", "username", "123@centro.pt", "aA;2", "keywrd");
+       Utilizador u = new Utilizador(3,"joao", "username", "123@centro.pt", "aA;2", "keywrd");
         RegistoExposicoes instance = new RegistoExposicoes();
         List<Exposicao> expResult = new ArrayList<>();
         List<Exposicao> result = instance.getListaExposicoesDoFAE(u);

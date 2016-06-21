@@ -223,7 +223,7 @@ public class ExposicaoTest {
     @Test
     public void testAddOrganizador() {
         System.out.println("TesteAddOrganizador");
-        Utilizador u = new Utilizador("nome", "username", "email@centro.pt", "aA;4", "keywor");
+        Utilizador u = new Utilizador(3,"nome", "username", "email@centro.pt", "aA;4", "keywor");
         Exposicao instance = new Exposicao();
         Boolean expResult = true;
         Boolean result = instance.addOrganizador(u);;
@@ -237,7 +237,7 @@ public class ExposicaoTest {
     @Test
     public void testGetFAE() {
         System.out.println("testeFAE");
-        Utilizador u = new Utilizador("nome", "username", "email@centro.pt", "aA;2", "keywrd");
+        Utilizador u = new Utilizador(3,"nome", "username", "email@centro.pt", "aA;2", "keywrd");
         Exposicao instance = new Exposicao();
         FAE expResult = null;
         FAE result = instance.getFAE(u);
@@ -250,7 +250,7 @@ public class ExposicaoTest {
     @Test
     public void testVerificarSeEOrganizadorDaExpo() {
         System.out.println("VerificarSeEOrganizadorDaExpo");
-        Utilizador u = new Utilizador("nome", "username", "email@centro.pt", "aA;2", "keywrd");
+        Utilizador u = new Utilizador(3,"nome", "username", "email@centro.pt", "aA;2", "keywrd");
         Exposicao instance = new Exposicao();
         instance.addOrganizador(u);
         Organizador org = new Organizador(u);
@@ -266,7 +266,7 @@ public class ExposicaoTest {
     @Test
     public void testGetListaAtribuicoesFAEAndSetListaAtribuicoesFAE() {
         System.out.println("TesteListaAtribuicoesFAE");
-        Utilizador u = new Utilizador("nome", "username", "email@centro.pt", "aA;2", "Keword");
+        Utilizador u = new Utilizador(3,"nome", "username", "email@centro.pt", "aA;2", "Keword");
         FAE fae = new FAE(u);
         Exposicao instance = new Exposicao();
         ListaAtribuicoes la = new ListaAtribuicoes();
@@ -300,7 +300,7 @@ public class ExposicaoTest {
     @Test
     public void testGetAvaliaveis() {
         System.out.println("TesteAvaliaveis");
-        Utilizador u = new Utilizador("nome", "username", "email@centro.pt", "aA;2", "Keword");
+        Utilizador u = new Utilizador(3,"nome", "username", "email@centro.pt", "aA;2", "Keword");
         FAE fae = new FAE(u);
         Exposicao instance = new Exposicao();
         ListaAtribuicoes la = new ListaAtribuicoes();

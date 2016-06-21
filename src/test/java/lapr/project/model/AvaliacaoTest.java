@@ -147,7 +147,7 @@ public class AvaliacaoTest {
         System.out.println("TesteEquals");
         Object a = new Avaliacao();
         Avaliacao instance = new Avaliacao();
-        instance.setAtribuicao(new Atribuicao(new FAE(new Utilizador("asd", "asd", "123@asd.com", "aA1;", "adada")),new CandidaturaExposicao()));
+        instance.setAtribuicao(new Atribuicao(new FAE(new Utilizador(3,"asd", "asd", "123@asd.com", "aA1;", "adada")),new CandidaturaExposicao()));
         boolean expResult = false;
         boolean result = instance.equals(a);
         assertEquals(expResult, result);
