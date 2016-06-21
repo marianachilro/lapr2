@@ -493,7 +493,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                             jButton4.setEnabled(true);
 
                         } else {
-                            jTextArea1.setText("Demonstracao: " + candDemo.getDemonstracao());
+               //             jTextArea1.setText("Demonstracao: " + candDemo.getDemonstracao());
 
                             jTextArea1.setEditable(false);
                             jComboBox3.setEnabled(true);
@@ -538,7 +538,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                 int adqNumCov = questionario.adqNumConv();
                 int recGlobal = questionario.recGlobal();
 
-                controller.setAvaliacao(fae, candE, decisao, txt, temaExpo, adqCandExpo, adqCandDemo, adqNumCov, recGlobal);
+//                controller.setAvaliacao(fae, candE, decisao, txt, temaExpo, adqCandExpo, adqCandDemo, adqNumCov, recGlobal);
 
                 if (controller.registaAvaliacao()) {
 
@@ -561,7 +561,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                     throw new IllegalArgumentException("Justificação vazia!");
                 }
 
-                controller.setAvaliacao(fae, candD, decisao, txt);
+//                controller.setAvaliacao(fae, candD, decisao, txt);
 
                 if (controller.registaAvaliacao()) {
 

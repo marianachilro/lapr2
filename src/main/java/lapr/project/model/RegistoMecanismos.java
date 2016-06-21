@@ -16,29 +16,36 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class RegistoMecanismos {
+
     /**
      * Lista com os mecanismos de atribuicao.
      */
-@XmlElement(name="mecanismos")
-    private List<MecanismoAtribuicao> lm;
-/**
- * construtor vazio.
- */
+
+    private List<Object> lm;
+
+    /**
+     * construtor vazio.
+     */
     public RegistoMecanismos() {
         lm = new ArrayList<>();
     }
-/**
- * Método que retorna a lista de mecanismos de atribuição.
- * @return 
- */
-    public List<MecanismoAtribuicao> getListaMecanismos() {
+
+    /**
+     * Método que retorna a lista de mecanismos de atribuição.
+     *
+     * @return
+     */
+    public List<Object> getListaMecanismos() {
         return lm;
     }
+
     /**
      * Método que modifica a lista de mecanismos de atribuição.
-     * @param lm 
+     *
+     * @param lm
      */
-    public void setListaMecanismos(List<MecanismoAtribuicao> lm){
-        this.lm=lm;
+    @XmlElement(name = "mecanismo")
+    public void setListaMecanismos(List<Object> lm) {
+        this.lm = lm;
     }
 }

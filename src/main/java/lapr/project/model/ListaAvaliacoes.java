@@ -7,6 +7,8 @@ package lapr.project.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -15,13 +17,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author catarinarib
  */
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ListaAvaliacoes {
 
     /**
      * lista com as Avaliações.
      */
-    @XmlElement(name = "avaliacao")
-    private final List<Avaliacao> la;
+    @XmlElement(name="avaliacao")
+    private List<Avaliacao> la;
 
     /**
      * construtor sem parâmetros.
@@ -29,16 +32,29 @@ public class ListaAvaliacoes {
     public ListaAvaliacoes() {
         la = new ArrayList<>();
     }
-
+    public ListaAvaliacoes(ListaAvaliacoes la){
+        this.la = new ArrayList<>(la.getListaAvaliacao());
+    }
     /**
      * Método que retorna a lista de Avaliações.
      *
      * @return lista de avaliações
-     */
+     */     
     public List<Avaliacao> getListaAvaliacao() {
         return la;
     }
+/**
+ * Método que modifica a lista de avaliações.
+ * @param la 
+ */
+    
+ 
+    public void setListaAvaliacao(List<Avaliacao> la) {
+        this.la = la;
+    }
 
+
+    
     /**
      * Validar avaliação,verificando se a avaliacao recebida por parametro ja
      * existe.

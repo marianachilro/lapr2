@@ -15,17 +15,15 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class Atribuicao {
-    
-   /**
+
+    /**
      * FAE ao qual vai ser atribuido a candidatura.
      */
-    @XmlElement
     FAE fae;
     /**
      * Candidatura que vai ser atribuida ao FAE.
      */
-    @XmlElement(name="candidatura")
-    Candidatura c;
+    CandidaturaGeral c;
 
     /**
      * Construtor que tem como parametros o FAE e a Candidatura.
@@ -33,9 +31,14 @@ public class Atribuicao {
      * @param fae
      * @param c
      */
-    public Atribuicao(FAE fae, Candidatura c) {
+    public Atribuicao(FAE fae, CandidaturaGeral c) {
         this.fae = fae;
         this.c = c;
+    }
+
+    public Atribuicao() {
+        fae = new FAE();
+        c = new CandidaturaExposicao();
     }
 
     /**
@@ -46,12 +49,15 @@ public class Atribuicao {
     public FAE getFAE() {
         return fae;
     }
+
     /**
      * Método que modifica o FAE atribuido.
+     *
      * @param fae
      */
-    public void setFAE(FAE fae){
-        this.fae=fae;
+    @XmlElement
+    public void setFAE(FAE fae) {
+        this.fae = fae;
     }
 
     /**
@@ -62,12 +68,15 @@ public class Atribuicao {
     public Candidatura getCandidatura() {
         return c;
     }
+
     /**
      * Método que modifica a candidatura atribuida.
-     * @param c 
+     *
+     * @param c
      */
-    public void setCandidatura(Candidatura c){
-        this.c=c;
+    @XmlElement(name = "candidatura")
+    public void setCandidatura(CandidaturaGeral c) {
+        this.c = c;
     }
 
     /**
@@ -76,9 +85,9 @@ public class Atribuicao {
      * @return
      */
     @Override
-    public boolean equals(Object o ){
-        Atribuicao a = (Atribuicao)o;
-       return this.c.equals(a.getCandidatura())&&this.fae.equals(a.getFAE());
+    public boolean equals(Object o) {
+        Atribuicao a = (Atribuicao) o;
+        return this.c.equals(a.getCandidatura()) && this.fae.equals(a.getFAE());
     }
 
     @Override
@@ -88,8 +97,5 @@ public class Atribuicao {
         hash = 67 * hash + Objects.hashCode(this.c);
         return hash;
     }
-    
-    
-    
-   
+
 }

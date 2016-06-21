@@ -21,7 +21,7 @@ import org.xml.sax.SAXException;
  */
 public class CarregarExposicoesController {
     private final CentroExposicoes ce;
-    private final List<Exposicao> le;
+    private List<Exposicao> le;
     private RegistoExposicoes re;
     public CarregarExposicoesController(CentroExposicoes ce){
         this.ce=ce;
@@ -29,12 +29,16 @@ public class CarregarExposicoesController {
     }
     public void lerExpo(File ficheiro) throws IOException, SAXException{
         re = ce.getRegistoExposicoes();
-        Exposicao e = re.newExposicao();
-     //   e = LerFicheiroXML.lerExposicao(ficheiro);
-        le.add(e);
+        LerFicheiroXML ler = new LerFicheiroXML(ficheiro);
+         le = ler.lerExposicoes();
+        
     }
     public boolean addDados(){
         
-        return re.validaLista(le);
+        if(re.validaLista(le)){
+            re.getListaExposicoes().addAll(le);
+            return true;
+        }
+        return false;
     }
 }

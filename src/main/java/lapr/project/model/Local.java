@@ -19,7 +19,6 @@ public class Local {
     /**
      * nome do local.
      */
-    @XmlElement
     private String nome;
 
     private static final String NOME_OMISSAO = "";
@@ -30,6 +29,7 @@ public class Local {
 
     /**
      * Construtor Local
+     *
      * @param nome
      */
     public Local(String nome) {
@@ -40,6 +40,7 @@ public class Local {
         return nome;
     }
 
+    @XmlElement
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -73,6 +74,5 @@ public class Local {
         }
         return true;
     }
-    
-    
+
 }

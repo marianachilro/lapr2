@@ -20,28 +20,23 @@ public class Utilizador {
     /**
      * Nome de Utilizador.
      */
-    @XmlElement
-    private String nome;
+       private String nome;
     /**
      * Username de Utilizador.
      */
-    @XmlElement
-    private String username;
+        private String username;
     /**
      * E-mail de Utilizador.
      */
-    @XmlElement
     private String email;
     /**
      * Password de Utilizador.
      */
-    @XmlElement
     private String password;
     
     /**
      * Keyword do utilizador
      */
-    @XmlElement
     private String keyword;
 
     /**
@@ -150,6 +145,7 @@ public class Utilizador {
      * Modifica a keyword 
      * @param keyword 
      */
+    @XmlElement
     public final void setKeyword(String keyword) {
         if(keyword.length()<4 || keyword.length()>7){
             throw new IllegalArgumentException("Keyword é inválida! 4 a 7 carateres");
@@ -163,6 +159,7 @@ public class Utilizador {
      *
      * @param nome Nome
      */
+     @XmlElement
     public final void setNome(String nome) {
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome é inválido!");
@@ -175,6 +172,7 @@ public class Utilizador {
      *
      * @param username Username
      */
+    @XmlElement
     public final void setUsername(String username) {
         if (username == null || username.trim().isEmpty()) {
             throw new IllegalArgumentException("Username é inválido!");
@@ -187,6 +185,7 @@ public class Utilizador {
      *
      * @param email E-mail
      */
+    @XmlElement
     public final void setEmail(String email) {
         if (email == null || email.trim().isEmpty() || !(Pattern.matches("(.*)(\\@)(.*)", email))) {
             throw new IllegalArgumentException("E-mail inválido!");
@@ -200,6 +199,7 @@ public class Utilizador {
      *
      * @param password Password.
      */
+    @XmlElement
     public final void setPassword(String password) {
 
         if (password == null || password.trim().isEmpty()) {

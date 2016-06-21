@@ -14,13 +14,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Rita
  */
-@XmlRootElement(name="CentroExposicoes")
+@XmlRootElement
 public class RegistoUtilizadores {
 
     /**
      * List de Utilizadores.
      */
-    @XmlElement(name="registoUtilizadoresConfirmados")
+   
     private List<Utilizador> listaUtilizadores;
 
     /**
@@ -28,6 +28,9 @@ public class RegistoUtilizadores {
      */
     public RegistoUtilizadores() {
         this.listaUtilizadores = new ArrayList<>();
+    }
+    public RegistoUtilizadores(List<Utilizador> lista){
+        this.listaUtilizadores = lista;
     }
 
     /**
@@ -44,6 +47,7 @@ public class RegistoUtilizadores {
      *
      * @param listaUtilizadores List de Utilizadores
      */
+     @XmlElement(name="utilizador")
     public void setListaUtilizadores(List<Utilizador> listaUtilizadores) {
         this.listaUtilizadores = listaUtilizadores;
     }

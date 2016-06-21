@@ -20,7 +20,7 @@ public class ListaOrganizadores {
     /**
      * List de Organizadores.
      */
-    @XmlElement(name = "organizador")
+    
     private List<Organizador> listaOrganizadores;
     
 
@@ -45,6 +45,7 @@ public class ListaOrganizadores {
      *
      * @param listaOrganizadores List de Organizadores
      */
+    @XmlElement(name = "organizador")
     public void setListaOrganizadores(List<Organizador> listaOrganizadores) {
         this.listaOrganizadores = listaOrganizadores;
     }

@@ -48,7 +48,7 @@ public class Mecanismo_NFAE implements MecanismoAtribuicao, Serializable {
         int contF = 0;
         while (contC < lAtribuiveis.size() && contF < listaf.size()) {
             for (int i = 0; i < nPretendido; i++) {
-                Atribuicao a = listaAtribuicoes.newAtribuicao((Candidatura)lAtribuiveis.get(contC), listaf.get(contF));
+                Atribuicao a = listaAtribuicoes.newAtribuicao((CandidaturaGeral)lAtribuiveis.get(contC), listaf.get(contF));
                 int contConflitos = 0;
                 for(Conflito conf :  lconf){
                     if(conf.getFAE().equals(a.getFAE()) && conf.getCandidatura().equals(a.getCandidatura())){

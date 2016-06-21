@@ -66,6 +66,7 @@ public class CandidaturaGeral implements Candidatura {
     }
 
     @XmlElement(name = "RegistoAvaliacoes")
+    @Override
     public void setListaAvaliacoes(ListaAvaliacoes lista) {
         listaAvaliacoes = lista;
     }
@@ -105,6 +106,11 @@ public class CandidaturaGeral implements Candidatura {
     @Override
     public boolean verificarEstadoAvaliada() {
         return true;
+    }
+
+    @Override
+    public boolean valida() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

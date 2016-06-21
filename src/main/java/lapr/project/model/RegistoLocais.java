@@ -20,7 +20,7 @@ public class RegistoLocais {
     /**
      * Lista de locais.
      */
-    @XmlElement(name="locais")
+    
     private List<Local> listaLocais;
 
     /**
@@ -44,6 +44,7 @@ public class RegistoLocais {
      *
      * @param listaLocais
      */
+    @XmlElement(name="local")
     public void setListaLocais(List<Local> listaLocais) {
         this.listaLocais = listaLocais;
     }

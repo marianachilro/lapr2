@@ -7,6 +7,7 @@ package lapr.project.ui;
 
 import java.io.File;
 import java.io.IOException;
+import javax.swing.JFileChooser;
 import lapr.project.controller.CarregarExposicoesController;
 import lapr.project.model.CentroExposicoes;
 import org.xml.sax.SAXException;
@@ -19,10 +20,13 @@ public class ImportarUI {
     private final CarregarExposicoesController controller;
     public ImportarUI(CentroExposicoes ce) throws IOException, SAXException{      
         controller = new CarregarExposicoesController(ce);
-          MyFileChooser fileChooser = new MyFileChooser();
-          File ficheiro = fileChooser.getSelectedFile();
+           MyFileChooser fileChooser = new MyFileChooser();
+                int resposta = fileChooser.showSaveDialog(null);
+                if (resposta == JFileChooser.APPROVE_OPTION) {
+                    File ficheiro = fileChooser.getSelectedFile();          
           controller.lerExpo(ficheiro);
           controller.addDados();
+                }
     }
     
     }

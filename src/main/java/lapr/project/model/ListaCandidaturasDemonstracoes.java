@@ -19,7 +19,6 @@ public class ListaCandidaturasDemonstracoes {
      /**
      * List com Candidaturas.
      */
-    @XmlElement(name="candidatura")
     private List<CandidaturaDemonstracao> listaCandidaturas;
 
     /**
@@ -43,6 +42,7 @@ public class ListaCandidaturasDemonstracoes {
      *
      * @param listaCandidaturas List de Candidaturas
      */
+    @XmlElement(name="candidatura")
     public void setListCandidaturas(List<CandidaturaDemonstracao> listaCandidaturas) {
         this.listaCandidaturas = listaCandidaturas;
     }

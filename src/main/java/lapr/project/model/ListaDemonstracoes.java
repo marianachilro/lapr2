@@ -22,7 +22,6 @@ public class ListaDemonstracoes {
     /**
      * List com Demonstrações.
      */
-    @XmlElement(name = "Demonstracao")
     private List<Demonstracao> listaDemonstracao;
 
     /**
@@ -46,6 +45,7 @@ public class ListaDemonstracoes {
      *
      * @param listaDemonstracao List de Demonstrações
      */
+    @XmlElement(name = "Demonstracao")
     public void setListaDemonstracao(List<Demonstracao> listaDemonstracao) {
         this.listaDemonstracao = listaDemonstracao;
     }

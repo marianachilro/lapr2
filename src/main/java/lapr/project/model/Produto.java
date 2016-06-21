@@ -19,7 +19,6 @@ public class Produto {
     /**
      * Nome de Produto.
      */
-    @XmlElement
     private String nome;
     /**
      * Nome de Produto por omissão.
@@ -56,6 +55,7 @@ public class Produto {
      *
      * @param nome Nome
      */
+        @XmlElement
     public void setNome(String nome) {
         this.nome = nome;
     }
