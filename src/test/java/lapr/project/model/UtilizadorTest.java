@@ -73,7 +73,7 @@ public class UtilizadorTest {
         String email = "s@centro.pt";
         String password = "aA2;";
         String keyword = "teste";
-        Utilizador clone = new Utilizador(nome, username, email, password,keyword);
+        Utilizador clone = new Utilizador(3,nome, username, email, password,keyword);
 
         instance.setPerfilAlterado(clone);
         Utilizador expResult = clone;

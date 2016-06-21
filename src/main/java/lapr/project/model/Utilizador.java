@@ -43,6 +43,12 @@ public class Utilizador {
      */
     @XmlElement
     private String keyword;
+    
+    /**
+     * Shift do utilizador
+     */
+    @XmlElement
+    private int shift;
 
     /**
      * Nome de Utilizador por omissão.
@@ -60,6 +66,11 @@ public class Utilizador {
      * Password de Utilizador por omissão.
      */
     private static final String PASSWORD_OMISSAO = "";
+    
+    /**
+     * Shift do utilizador por omissao.
+     */
+    private static final int SHIFT_OMISSAO=0;
 
     /**
      * Construtor de um Utilizador com os atributos por omissão.
@@ -69,6 +80,7 @@ public class Utilizador {
         this.username = USERNAME_OMISSAO;
         this.email = EMAIL_OMISSAO;
         this.password = PASSWORD_OMISSAO;
+        this.shift=SHIFT_OMISSAO;
     }
 
     /**
@@ -80,7 +92,8 @@ public class Utilizador {
      * @param password Password
      * @param keyword keyword
      */
-    public Utilizador(String nome, String username, String email, String password,String keyword) {
+    public Utilizador(int shift,String nome, String username, String email, String password,String keyword) {
+        this.shift=shift;
         setNome(nome);
         setUsername(username);
         setEmail(email);
@@ -95,6 +108,7 @@ public class Utilizador {
      *
      */
     public Utilizador(Utilizador utilizador) {
+        this.shift=utilizador.getShift();
         this.nome = utilizador.getNome();
         this.username = utilizador.getUsername();
         this.email = utilizador.getEmail();
@@ -102,6 +116,24 @@ public class Utilizador {
         this.keyword=utilizador.getKeyword();
     }
 
+    /**
+     * Devolve o shift
+     * @return 
+     */
+    public int getShift() {
+        return shift;
+    }
+
+    /**
+     * Modifica o shift
+     * @param shift 
+     */
+    public void setShift(int shift) {
+        this.shift = shift;
+    }
+
+    
+    
     /**
      * Devolve nome de Utilizador
      *
@@ -284,6 +316,7 @@ public class Utilizador {
      * @param clone o Utilizador para o qual queremos alterar
      */
     public void setPerfilAlterado(Utilizador clone) {
+        this.shift=clone.getShift();
         this.nome = clone.getNome();
         this.username = clone.getUsername();
         this.email = clone.getEmail();

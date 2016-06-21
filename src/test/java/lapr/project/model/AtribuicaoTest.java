@@ -25,7 +25,7 @@ public class AtribuicaoTest {
         CandidaturaExposicao c = new CandidaturaExposicao();
         FAE fae = new FAE();
         Atribuicao instance = new Atribuicao(fae, c);
-        Utilizador u = new Utilizador("joao", "Joao_vaz", "123@outlookp.pt", "Jj;012345","keyword");
+        Utilizador u = new Utilizador(3,"joao", "Joao_vaz", "123@outlookp.pt", "Jj;012345","keyword");
         FAE fae2 = new FAE(u);
         FAE expResult = fae2;
         instance.setFAE(fae2);
@@ -86,7 +86,7 @@ public class AtribuicaoTest {
     public void testEquals2() {
         System.out.println("equals");
         Object o = new Atribuicao(new FAE(), new CandidaturaExposicao());
-        Atribuicao instance = new Atribuicao(new FAE(new Utilizador("asd", "dasd", "123@teste.com", "123jJ,", "peeixe")), new CandidaturaExposicao());
+        Atribuicao instance = new Atribuicao(new FAE(new Utilizador(3,"asd", "dasd", "123@teste.com", "123jJ,", "peeixe")), new CandidaturaExposicao());
         boolean expResult = false;
         boolean result = instance.equals(o);
         assertEquals(expResult, result);
@@ -112,7 +112,7 @@ public class AtribuicaoTest {
     public void testEquals4() {
         System.out.println("equals");
         Object o = new Atribuicao(new FAE(), new CandidaturaExposicao());
-        Atribuicao instance = new Atribuicao(new FAE(new Utilizador("asd", "dasd", "123@teste.com", "123jJ,", "peeixe")), new CandidaturaExposicao("321@teste.com", "asd", "asd", 910000000, 20, 30));
+        Atribuicao instance = new Atribuicao(new FAE(new Utilizador(3,"asd", "dasd", "123@teste.com", "123jJ,", "peeixe")), new CandidaturaExposicao("321@teste.com", "asd", "asd", 910000000, 20, 30));
         boolean expResult = false;
         boolean result = instance.equals(o);
         assertEquals(expResult, result);
@@ -152,7 +152,7 @@ public class AtribuicaoTest {
     public void testEquals7() {
         System.out.println("equals");
         Object o = new Atribuicao(new FAE(), new CandidaturaDemonstracao());
-        Atribuicao instance = new Atribuicao(new FAE(new Utilizador("asd", "dasd", "123@teste.com", "123jJ,", "peeixe")), new CandidaturaDemonstracao());
+        Atribuicao instance = new Atribuicao(new FAE(new Utilizador(3,"asd", "dasd", "123@teste.com", "123jJ,", "peeixe")), new CandidaturaDemonstracao());
         boolean expResult = false;
         boolean result = instance.equals(o);
         assertEquals(expResult, result);
@@ -178,7 +178,7 @@ public class AtribuicaoTest {
     public void testEquals9() {
         System.out.println("equals");
         Object o = new Atribuicao(new FAE(), new CandidaturaExposicao());
-        Atribuicao instance = new Atribuicao(new FAE(new Utilizador("asd", "dasd", "123@teste.com", "123jJ,", "peeixe")), new CandidaturaDemonstracao("321@teste.com",new Demonstracao("asd1", "asdasd")));
+        Atribuicao instance = new Atribuicao(new FAE(new Utilizador(3,"asd", "dasd", "123@teste.com", "123jJ,", "peeixe")), new CandidaturaDemonstracao("321@teste.com",new Demonstracao("asd1", "asdasd")));
         boolean expResult = false;
         boolean result = instance.equals(o);
         assertEquals(expResult, result);

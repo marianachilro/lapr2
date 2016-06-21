@@ -32,9 +32,9 @@ class Main {
     public static void main(String[] args) {
 
         CentroExposicoes ce = new CentroExposicoes();
-        Utilizador u = new Utilizador("joao", "jo", "asd@centro.pt", "aA;2", "ddddd");
+        Utilizador u = new Utilizador(2,"joao", "jo", "asd@centro.pt", "aA;2", "ddddd");
         ce.getRegistoUtilizadores().addUtilizador(u);
-        Utilizador u1 = new Utilizador("carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
+        Utilizador u1 = new Utilizador(3,"carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
         ce.getRegistoUtilizadores().addUtilizador(u1);
         Local l = new Local("Porto");
         ce.getRegistoLocais().addLocal(l);

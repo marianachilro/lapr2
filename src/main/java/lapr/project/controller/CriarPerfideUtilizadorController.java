@@ -32,7 +32,8 @@ public class CriarPerfideUtilizadorController {
     }
 
     public void setDados(String nome, String username, String email, String password, String keyword) {
-
+        
+        this.u.setShift((int) (Math.random() * 10));
         this.u.setNome(nome);
         this.u.setUsername(username);
         this.u.setEmail(email);
