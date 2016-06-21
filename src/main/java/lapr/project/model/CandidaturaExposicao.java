@@ -418,7 +418,7 @@ public class CandidaturaExposicao implements Candidatura, Removivel, Atribuivel 
     }
 
     public float estatisticaAvaliacoes(int i) {
-        int valores = 0;
+        float valores = 0;
         int nAvaliacoes = 0;
         for (Avaliacao a : this.getListaAvaliacoes().getListaAvaliacao()) {
             if (a != null) {
@@ -446,7 +446,7 @@ public class CandidaturaExposicao implements Candidatura, Removivel, Atribuivel 
         }
         float media = 0;
         if (nAvaliacoes != 0) {
-            media = valores / nAvaliacoes;
+            media = (valores/nAvaliacoes);
         }
         return media;
 
