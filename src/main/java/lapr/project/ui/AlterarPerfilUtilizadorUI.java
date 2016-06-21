@@ -107,7 +107,7 @@ public class AlterarPerfilUtilizadorUI extends JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 CentroExposicoes ce = new CentroExposicoes();
-                Utilizador util = new Utilizador("eva", "eva1","blaba@centro.pt", "M-ay1", "keyword");
+                Utilizador util = new Utilizador(3,"eva", "eva1","blaba@centro.pt", "M-ay1", "keyword");
                 ce.getRegistoUtilizadores().addUtilizador(util);
                 new AlterarPerfilUtilizadorUI(null, ce, util.getUsername()).setVisible(true);
             }

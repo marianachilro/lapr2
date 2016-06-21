@@ -81,6 +81,7 @@ public class Utilizador {
     /**
      * Construtor de um Utilizador com os atributos recebidos por parâmetro.
      *
+     * @param shift
      * @param nome Nome
      * @param username Username
      * @param email E-mail
