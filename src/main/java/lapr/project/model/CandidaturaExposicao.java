@@ -457,4 +457,10 @@ public class CandidaturaExposicao implements Candidatura, Removivel, Atribuivel 
         return estado.setRemovida();
     }
 
+    @Override
+    public boolean valida() {
+        //faltam as validações
+        return true;
+    }
+
 }
