@@ -5,13 +5,16 @@
  */
 package lapr.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.DemonstracaoEstado;
 import lapr.project.model.Exposicao;
 import lapr.project.model.ExposicaoCandidaturasExpoDecididasEstado;
 import lapr.project.model.ExposicaoEstado;
+import lapr.project.model.ListaCandidaturasExposicoes;
 import lapr.project.model.ListaDemonstracoes;
 import lapr.project.model.RegistoExposicoes;
 import lapr.project.model.RegistoUtilizadores;
@@ -62,6 +65,19 @@ public class ConfirmarRealizacaoDemonstracaoController {
     
     public void seleciona (Demonstracao d){
         this.demonstracao=d;
+    }
+    
+    public float pergentagemInteressadosDemonstracao(){
+        int numeroTotalRepresentantes = 0;
+        float percentagem;
+        List <String> emails = new ArrayList<>();
+        ListaCandidaturasExposicoes listaCandidaturas = this.exposicao.getListaCandidaturas();
+        numeroTotalRepresentantes = listaCandidaturas.getListCandidaturas().stream().filter((c) -> (!emails.contains(c.getEmailRep()))).map((c) -> {
+            emails.add(c.getEmailRep());
+            return c;
+        }).map((_item) -> 1).reduce(numeroTotalRepresentantes, Integer::sum);
+        percentagem = (this.demonstracao.getNumeroInteressados()*100)/numeroTotalRepresentantes;
+        return percentagem;
     }
     
     public String apresentaDemonstracao(){
