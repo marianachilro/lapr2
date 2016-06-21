@@ -41,7 +41,7 @@ public class ListaConflitosTest {
     @Test
     public void testNewConflito_Candidatura_FAE() {
         System.out.println("newConflito");
-        Candidatura c = new CandidaturaExposicao();
+        CandidaturaGeral c = new CandidaturaExposicao();
         FAE fae = new FAE();
         ListaConflitos instance = new ListaConflitos();
         Conflito expResult = new Conflito(fae, c);

@@ -66,7 +66,7 @@ public class DemonstracaoTest {
     public void testGetEstado() {
         System.out.println("getEstado");
         Demonstracao instance = new Demonstracao();
-        DemonstracaoEstado expResult = new DemonstracaoInicialEstado(instance);
+        DemoImpEstado expResult = new DemonstracaoInicialEstado(instance);
         instance.setEstado(expResult);
         DemonstracaoEstado result = instance.getEstado();
         assertEquals(expResult, result);

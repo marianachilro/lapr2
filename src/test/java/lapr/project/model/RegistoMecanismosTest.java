@@ -25,9 +25,9 @@ public class RegistoMecanismosTest {
        
         RegistoMecanismos instance = new RegistoMecanismos();
         
-        List<MecanismoAtribuicao> expResult = new ArrayList<>();
+        List<Object> expResult = new ArrayList<>();
         instance.setListaMecanismos(expResult);
-        List<MecanismoAtribuicao> result = instance.getListaMecanismos();
+        List<Object> result = instance.getListaMecanismos();
         assertEquals(expResult, result);
     
     }
