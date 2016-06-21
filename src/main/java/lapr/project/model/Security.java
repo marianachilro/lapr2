@@ -13,45 +13,67 @@ import java.util.Arrays;
  */
 public class Security {
 
+    /**
+     * Alfabeto
+     */
     private final char alfabeto[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
         'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '@', ',', ';', '.', ':', '-'};
 
+    /**
+     * Shift do utilizador
+     */
     private final int shift;
+    
+    /**
+     * Keyword do utilizador
+     */
     private final int keyword;
 
-    private final char[] password;
+    
+    /**
+     * Array com a palavra encriptada
+     */
     private char[] coded;
+    
+    /**
+     * Array com a palavra desencriptada
+     */
     private char[] decoded;
+    
+    /**
+     * Array com a palavra modifica pela substituicao de cipher
+     */
     private char[] substituir;
+    
+    /**
+     * Array com a palavra descodificada modifica pela substituicao de cipher
+     */
     private char[] substiruirDescodificado;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        //retirar static
-        Utilizador u = new Utilizador(2, "joao", "jo", "asd@centro.pt", "aA;2", "dddd");
-        Security s = new Security("CatarinaRibeiroFernandesb", u);
-        s.substitutionAndTranpositionCipher();
-//        System.out.print(u.getShift());
-//        System.out.print(s.codificarShift() + "\n");
-//        Security s1 = new Security(s.codificarShift(), u);
-//        System.out.print(s1.descodificarShift());
-    }
-
-    public Security(String password, Utilizador u) {
+   /**
+    * Contrutor Security com o utilizador recebido por parametro.
+    * @param u utilizador
+    */
+    public Security( Utilizador u) {
 
         this.keyword = u.getKeyword().length();
         this.shift = u.getShift();
-        this.password = password.toCharArray();
+        
 
     }
 
-    public String codificarShift() {
-        coded = new char[password.length];
 
-        for (int i = 0; i < password.length; i++) {
-            char c = password[i];
+    /**
+     * Codificar a password e a keyword
+     * @param pass palavra para codificar
+     * @return 
+     */
+    public String codificarShift(String pass) {
+        coded = new char[pass.length()];
+        char [] palavra = pass.toCharArray();
+
+        for (int i = 0; i < palavra.length; i++) {
+            char c = palavra[i];
             if (Character.isLowerCase(c)) {
                 coded[i] = (char) ((c - 'a' + shift) % alfabeto.length + 'a');
 
@@ -69,11 +91,17 @@ public class Security {
         return codificado;
     }
 
-    public String descodificarShift() {
+    /**
+     * Descodificar a password e a keyword
+     * @param pass palavra para descodificar
+     * @return 
+     */
+    public String descodificarShift(String pass) {
 
-        decoded = new char[password.length];
-        for (int i = 0; i < password.length; i++) {
-            char a = password[i];
+        decoded = new char[pass.length()];
+        char [] palavra=pass.toCharArray();
+        for (int i = 0; i < palavra.length; i++) {
+            char a = palavra[i];
 
             decoded[i] = (char) (a - (shift % alfabeto.length));
 
@@ -87,11 +115,17 @@ public class Security {
 
     }
 
-    public String SubstitutionCipher() {
-        substituir = new char[password.length];
-
-        for (int i = 0; i < password.length; i++) {
-            char c = password[i];
+    /**
+     * Substituicao de cipher
+     * @param pass palavra para encriptar
+     * @return 
+     */
+    public String SubstitutionCipher(String pass) {
+        substituir = new char[pass.length()];
+        char[] palavra = pass.toCharArray();
+        
+        for (int i = 0; i < palavra.length; i++) {
+            char c = palavra[i];
             if (Character.isLowerCase(c)) {
                 substituir[i] = (char) ((c - 'a' + keyword) % alfabeto.length + 'a');
 
@@ -110,6 +144,11 @@ public class Security {
 
     }
 
+    /**
+     * Descodificacao da substituicao de cipher
+     * @param pass palavra para descodificar
+     * @return 
+     */
     public String SubstitutionDescodificarCipher(String pass) {
         substiruirDescodificado = new char[pass.length()];
         char [] palavra = pass.toCharArray();
@@ -127,8 +166,13 @@ public class Security {
         return descodificado;
     }
 
-    public String substitutionAndTranpositionCipher() {
-        char[] substituicao = SubstitutionCipher().toCharArray();
+    /**
+     * Substituicao e transposicao de cipher
+     * @param pass palavra para encriptar
+     * @return 
+     */
+    public String substitutionAndTranpositionCipher(String pass) {
+        char[] substituicao = SubstitutionCipher(pass).toCharArray();
         
         char cipher[] = new char[substituicao.length];
         
@@ -145,13 +189,28 @@ public class Security {
 
     }
 
+    /**
+     * Descriptar a substituicao e tranposicao de cipher
+     * @param pass palavra para descriptar
+     * @return 
+     */
     public String desencriptarSubstitutionAndTranspositionCipher(String pass){
         
         char[]palavra = pass.toCharArray();
         
+       char cipher[] = new char[palavra.length];
         
+       for(int i=0;i<palavra.length;i++){
+           cipher[palavra.length-i-1]=palavra[i];
+       }
+       
+       String descodificado = "";
+
+        for (int a = 0; a <  cipher.length; a++) {
+            descodificado +=  cipher[a];
+        }
         
-        
+        return SubstitutionDescodificarCipher(descodificado);
         
         
         
