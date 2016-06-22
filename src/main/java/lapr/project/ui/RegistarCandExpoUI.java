@@ -23,6 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import lapr.project.controller.RegistarCandidaturaExposicaoController;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
@@ -49,12 +51,12 @@ public class RegistarCandExpoUI extends JDialog {
     private Keyword k;
     private List<Demonstracao> lDemonsExpo;
     private Demonstracao demo;
-    private JComboBox cb;
+    private JComboBox cb = new JComboBox();
     private JLabel lblNomeEmpresa, lblMorada, lblTelemovel,
             lblArea, lblProdutos, lblKeyword, lblDemonstracoes, lblConvites;
     private JTextField txtNomeEmpresa, txtMorada, txtTelemovel, txtArea, txtProdutos, txtKeyword, txtConvites;
     private JButton btSecAdicionarDemo, btSecNovoProduto, btSecNovaKeyword;
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -83,7 +85,7 @@ public class RegistarCandExpoUI extends JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 CentroExposicoes ce = new CentroExposicoes();
-                String email=null;
+                String email = null;
                 new RegistarCandExpoUI(null, ce, email).setVisible(true);
             }
         });
@@ -99,11 +101,7 @@ public class RegistarCandExpoUI extends JDialog {
         this.mLista = new ModeloListaExpos(controller.getListaExposicoes());
         jLista.setModel(mLista);
         jLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        lDemonsExpo = controller.getListaDemonstracoesExposicao();
-        controller.getListCandidaturas();
-        controller.getListaProdutos();
-        controller.getListaKeywords();
-        controller.getListaDemonstracoesCandidatura();
+
         criarComponentes();
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         pack();
@@ -122,12 +120,23 @@ public class RegistarCandExpoUI extends JDialog {
         add(p, BorderLayout.CENTER);
         add(criarPainelBotoes(), BorderLayout.SOUTH);
     }
-    
+
     private JPanel criarPainelExposicao() {
         JPanel p = new JPanel();
         p.setLayout(new GridLayout(1, 2));
         JLabel lbl = new JLabel("Escolha uma Exposição:");
         JScrollPane sc = new JScrollPane(jLista);
+        jLista.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                controller.getListCandidaturas();
+                controller.getListaProdutos();
+                controller.getListaKeywords();
+                controller.getListaDemonstracoesCandidatura();
+                lDemonsExpo = controller.getListaDemonstracoesExposicao();
+                cb = new JComboBox(lDemonsExpo.toArray());
+            }
+        });
         p.add(lbl);
         p.add(sc);
         return p;
@@ -175,7 +184,6 @@ public class RegistarCandExpoUI extends JDialog {
         p.add(txtKeyword);
         p.add(btSecNovaKeyword);
         lblDemonstracoes = new JLabel("Demonstração:");
-        cb = new JComboBox(lDemonsExpo.toArray());
         btSecAdicionarDemo = criarBotaoAddDemo();
         p.add(lblDemonstracoes);
         p.add(cb);
@@ -231,7 +239,7 @@ public class RegistarCandExpoUI extends JDialog {
                     JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Keyword adicionada com sucesso.",
                             "Nova Keyword", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(RegistarCandExpoUI.this, 
+                    JOptionPane.showMessageDialog(RegistarCandExpoUI.this,
                             "Keyword não foi adicionada com sucesso. Verifique se a keyword introduza já existe, ou se o limite das mesmas foi atingido",
                             "Adicionar Produto", JOptionPane.ERROR_MESSAGE);
                 }
@@ -240,7 +248,7 @@ public class RegistarCandExpoUI extends JDialog {
         });
         return b;
     }
-    
+
     private JButton criarBotaoAddDemo() {
         JButton btA = new JButton("Adicionar Demonstração");
         btA.setMnemonic(KeyEvent.VK_A);
@@ -248,7 +256,7 @@ public class RegistarCandExpoUI extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 demo = (Demonstracao) cb.getSelectedItem();
-                if(demo != null) {
+                if (demo != null) {
                     controller.selectDemonstracao(demo);
                 }
                 if (controller.registaDemonstracao()) {
@@ -271,7 +279,7 @@ public class RegistarCandExpoUI extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 boolean b = false;
                 expo = (Exposicao) jLista.getSelectedValue();
-                if(expo != null) {
+                if (expo != null) {
                     controller.selectExposicao(expo);
                     cand = controller.novaCandidatura();
                     controller.setDados(emailRep, txtNomeEmpresa.getText(), txtMorada.getText(), Integer.parseInt(txtTelemovel.getText()), Float.parseFloat(txtArea.getText()), Integer.parseInt(txtConvites.getText()));

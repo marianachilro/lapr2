@@ -96,6 +96,8 @@ public class Avaliacao {
      * Texto Justificativo por omissão.
      */
     private static final String TXT_OMISSAO = "por justificar";
+    
+    private static final int TOTAL_RATINGS = 5;
 
     /**
      * O fae da avaliação.
@@ -403,6 +405,11 @@ public class Avaliacao {
         hash = 31 * hash + Objects.hashCode(this.fae);
         hash = 31 * hash + Objects.hashCode(this.candidatura);
         return hash;
+    }
+    
+    public float calcMediaRatings() {
+        return (respostaAdequacaoCandDemonstracao + respostaAdequacaoCandExposicao + 
+                respostaAdequacaoNumConvites + respostaRecomendacaoGlobal + respostaTemaExpo)/TOTAL_RATINGS;
     }
     
     
