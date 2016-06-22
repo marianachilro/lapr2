@@ -6,42 +6,68 @@
 package lapr.project.model;
 
 /**
- *
+ * Representa um dos Estados possíveis da Candidatura (Estado de "Avaliada").
  * @author Rita
  */
 public class CandidaturaAvaliadaEstado extends CandImpEstado {
 
+    /**
+     * Contrutor do Estado de "Avaliada" da Candidatura.
+     *
+     * @param candidatura a candidatura que vai transitar de estado
+     */
     public CandidaturaAvaliadaEstado(Candidatura cand) {
         super(cand);
     }
 
+    /**
+     * Método que indica que a Candidatura está no Estado "Avaliada".
+     *
+     * @return true, porque está neste estado
+     */
     @Override
     public boolean setAvaliada() {
         return true;
     }
     
+    /**
+     * Método que muda o estado da Candidatura para o Estado "Aceite".
+     *
+     * @return false, se não puder mudar para este estado e true, se conseguir
+     * mudar
+     */
     @Override
     public boolean setAceite() {
-        CandidaturaAceiteEstado novoSt = new CandidaturaAceiteEstado(super.getCandidatura());
         if(valida()) {
-            super.getCandidatura().setEstado(novoSt);
+            super.getCandidatura().setEstado(new CandidaturaAceiteEstado(super.getCandidatura()));
             return true;
         } else {
             return false;
         }
     }
     
+    /**
+     * Método que muda o estado da Candidatura para o Estado "Rejeitada".
+     *
+     * @return false, se não puder mudar para este estado e true, se conseguir
+     * mudar
+     */
     @Override
     public boolean setRejeitada() {
-        CandidaturaRejeitadaEstado novoSt = new CandidaturaRejeitadaEstado(super.getCandidatura());
         if(valida()) {
-            super.getCandidatura().setEstado(novoSt);
+            super.getCandidatura().setEstado(new CandidaturaRejeitadaEstado(super.getCandidatura()));
             return true;
         } else {
             return false;
         }
     }
 
+    /**
+     * Verifica se a Candidatura pode mudar para o Estado "Avaliada".
+     *
+     * @return false, se não puder mudar para esse estado e true, se for
+     * possível mudar
+     */
     private boolean valida() {
         return super.getCandidatura().getEstado().setAvaliada();
     }

@@ -5,15 +5,17 @@
  */
 package lapr.project.ui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.Box;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
+import javax.swing.JOptionPane;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
+import lapr.project.model.FAE;
+import lapr.project.model.Organizador;
+import lapr.project.model.Utilizador;
 
 /**
  *
@@ -22,13 +24,41 @@ import lapr.project.model.CentroExposicoes;
 public class MenuUI extends JFrame {
 
     private CentroExposicoes ce;
+    private Utilizador utilizador;
+
     /**
      * Creates new form MenuUI
+     *
+     * @param ce
+     * @param u
      */
-    public MenuUI(CentroExposicoes ce) {
-        this.ce=ce;
+    public MenuUI(CentroExposicoes ce, Utilizador u) {
+        this.ce = ce;
+        this.utilizador = u;
         initComponents();
         setVisible(true);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int result = JOptionPane.showConfirmDialog(
+                        MenuUI.this, "Tens a certeza?");
+                if (result == JOptionPane.OK_OPTION) {
+
+                    MenuUI.this.setDefaultCloseOperation(
+                            JDialog.DISPOSE_ON_CLOSE);
+                    MenuUI.this.setVisible(false);
+                    MenuUI.this.dispose();
+
+                } else if (result == JOptionPane.CANCEL_OPTION) {
+                    MenuUI.this.setDefaultCloseOperation(
+                            JDialog.DO_NOTHING_ON_CLOSE);
+                } else if (result == JOptionPane.NO_OPTION) {
+                    MenuUI.this.setDefaultCloseOperation(
+                            JDialog.DO_NOTHING_ON_CLOSE);
+                }
+            }
+        });
     }
 
     /**
@@ -207,9 +237,19 @@ public class MenuUI extends JFrame {
         jMenu20.setText("Avaliar Candidatura");
 
         jMenuItem17.setText("Exposição");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
         jMenu20.add(jMenuItem17);
 
         jMenuItem18.setText("Demonstração");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
         jMenu20.add(jMenuItem18);
 
         jMenu13.add(jMenu20);
@@ -217,9 +257,19 @@ public class MenuUI extends JFrame {
         jMenu23.setText("Decidir Candidatura");
 
         jMenuItem19.setText("Exposição");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
         jMenu23.add(jMenuItem19);
 
         jMenuItem20.setText("Demonstração");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
         jMenu23.add(jMenuItem20);
 
         jMenu13.add(jMenu23);
@@ -240,11 +290,21 @@ public class MenuUI extends JFrame {
         jMenuBar1.add(jMenu32);
 
         jMenu41.setText("Estatistica");
+        jMenu41.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu41ActionPerformed(evt);
+            }
+        });
 
         jMenuItem3.setText("Estatistica Candidatura");
         jMenu41.add(jMenuItem3);
 
         jMenuItem4.setText("Ranking Keywords");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu41.add(jMenuItem4);
 
         jMenuItem5.setText("Estatistica FAE");
@@ -300,8 +360,170 @@ public class MenuUI extends JFrame {
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
         // TODO add your handling code here:
         dispose();
-        CriarExposicaoUI c = new CriarExposicaoUI(ce);
+        CriarExposicaoUI c = new CriarExposicaoUI(ce, utilizador);
     }//GEN-LAST:event_jMenuItem23ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        // TODO add your handling code here:
+
+        if (ce.getRegistoExposicoes().getListaExposicoesDoFAE(utilizador).isEmpty()) {
+            try {
+
+                throw new IllegalArgumentException("Não é FAE de nenhuma exposição!");
+
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(
+                        MenuUI.this,
+                        ex.getMessage(),
+                        "Aviso",
+                        JOptionPane.WARNING_MESSAGE);
+
+            }
+        }
+        FAE fae = null;
+        for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
+            for (FAE f : e.getListaFAES().getListaFAEs()) {
+                if (f.getUtilizador().equals(utilizador)) {
+                    fae = f;
+                }
+            }
+        }
+
+        dispose();
+        AvaliarCandidaturaUI av = new AvaliarCandidaturaUI(ce, fae, "exposicao");
+
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        // TODO add your handling code here:
+
+        if (ce.getRegistoExposicoes().getListaExposicoesDoFAE(utilizador).isEmpty()) {
+            try {
+
+                throw new IllegalArgumentException("Não é FAE de nenhuma demonstração!");
+
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(
+                        MenuUI.this,
+                        ex.getMessage(),
+                        "Aviso",
+                        JOptionPane.WARNING_MESSAGE);
+
+            }
+        }
+        FAE fae = null;
+        for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
+            for (FAE f : e.getListaFAES().getListaFAEs()) {
+                if (f.getUtilizador().equals(utilizador)) {
+                    fae = f;
+                }
+            }
+        }
+
+        dispose();
+        AvaliarCandidaturaUI av = new AvaliarCandidaturaUI(ce, fae, "demonstracao");
+
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        // TODO add your handling code here:
+        int cont = 0;
+        Organizador organizador = null;
+        for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
+            for (Organizador o : e.getListaOrganizadores().getListaOrganizadores()) {
+                if (o.getUtilizador().equals(utilizador)) {
+                    cont++;
+                    organizador = o;
+
+                }
+
+            }
+        }
+
+        if (cont == 0) {
+            try {
+
+                throw new IllegalArgumentException("Não é organizador!");
+
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(
+                        MenuUI.this,
+                        ex.getMessage(),
+                        "Aviso",
+                        JOptionPane.WARNING_MESSAGE);
+
+            }
+        } else {
+            dispose();
+            DecidirCandidaturaUI d = new DecidirCandidaturaUI(ce, organizador, "exposicao");
+        }
+
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        // TODO add your handling code here:
+
+        int cont = 0;
+        Organizador organizador = null;
+        for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
+            for (Organizador o : e.getListaOrganizadores().getListaOrganizadores()) {
+                if (o.getUtilizador().equals(utilizador)) {
+                    cont++;
+                    organizador = o;
+
+                }
+
+            }
+        }
+
+        if (cont == 0) {
+            try {
+
+                throw new IllegalArgumentException("Não é organizador!");
+
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(
+                        MenuUI.this,
+                        ex.getMessage(),
+                        "Aviso",
+                        JOptionPane.WARNING_MESSAGE);
+
+            }
+        } else {
+            dispose();
+            DecidirCandidaturaUI d = new DecidirCandidaturaUI(ce, organizador, "demonstracao");
+        }
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+         if(utilizador!=null){
+         if (utilizador.getEmail()!=null && utilizador.getEmail().equalsIgnoreCase("gestor@centro.pt")) {
+            dispose();
+            GerarRankingKeywordsUI r = new GerarRankingKeywordsUI(ce, utilizador);
+         }
+        } else {
+            try {
+
+                throw new IllegalArgumentException("Não é gestor de exposição!");
+
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(
+                        MenuUI.this,
+                        ex.getMessage(),
+                        "Aviso",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+
+        }
+
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenu41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu41ActionPerformed
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_jMenu41ActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -390,5 +612,4 @@ public class MenuUI extends JFrame {
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 
-    
 }

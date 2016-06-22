@@ -16,8 +16,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class ListaRecursos {
-@XmlElement(name="registoRecursos")
-    private final List<Recurso> listaRecursos;
+
+    private List<Recurso> listaRecursos;
 
     public ListaRecursos() {
         this.listaRecursos = new ArrayList<>();
@@ -25,6 +25,11 @@ public class ListaRecursos {
 
     public List<Recurso> getListaRecursos() {
         return listaRecursos;
+    }
+
+    @XmlElement(name = "registoRecursos")
+    public void setListaRecursos(List<Recurso> listaRecursos) {
+        this.listaRecursos = listaRecursos;
     }
 
     public Recurso novoRecurso() {

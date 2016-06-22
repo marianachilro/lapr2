@@ -8,16 +8,19 @@ package lapr.project.utils;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author catarinarib
  */
+@XmlRootElement
 public class Data {
 
     /**
      * O ano da data.
      */
+    
     private int ano;
 
     /**

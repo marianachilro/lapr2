@@ -19,7 +19,6 @@ public class Stand {
     /**
      * Descricao do stand
      */
-    @XmlElement
     private String descricao;
 
     /**
@@ -57,6 +56,7 @@ public class Stand {
      *
      * @param descricao descrição do stand
      */
+     @XmlElement
     public final void setDescricao(String descricao) {
         if (descricao == null || descricao.trim().isEmpty()) {
             throw new IllegalArgumentException("Descrição é inválida!");

@@ -22,13 +22,15 @@ public interface Candidatura {
     
     public ListaAvaliacoes getListaAvaliacoes();
     
+    public void setListaAvaliacoes(ListaAvaliacoes lista);
+    
     public void setDecisao(boolean decisao);
     
     public boolean getDecisao();
     
-    public CandidaturaEstado getEstado();
+    public CandImpEstado getEstado();
     
-    public void setEstado(CandidaturaEstado estado);
+    public void setEstado(CandImpEstado estado);
     
     @Override
     public String toString();
@@ -38,4 +40,6 @@ public interface Candidatura {
     public boolean verificarEstadoAtribuida();
     
     public boolean verificarEstadoAvaliada();
+
+    public boolean valida();
 }

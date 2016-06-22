@@ -46,7 +46,7 @@ public class DefinirConflitosController {
         estadoExpo = this.exposicao.getEstado();
 
         for (TipoConflito t : listaTiposConflitoAtivos) {
-            MecanismoDetecaoConflito m = t.getListaMecanismos().get(0);
+            MecanismoDetecaoConflito m =(MecanismoDetecaoConflito) t.getListaMecanismos().get(0);
             m.detetarConflitos(this.exposicao);
 
         }

@@ -21,29 +21,29 @@ public class TipoConflito {
     /**
      * nome do tipo de conflito.
      */
-    @XmlElement
     private String nome;
     /**
      * dados sobre o tipo de conflito.
      */
-    @XmlElement
+
     private String dados;
     /**
      * Lista de Mecanismos que consegue detetar o Tipo de Conflito.
      */
-    @XmlElement(name="mecanismosConfitos")
-    private final List <MecanismoDetecaoConflito> listaMecanismos;
+    private List<Object> listaMecanismos;
 
-    public TipoConflito(){
+    public TipoConflito() {
         nome = "";
         dados = "";
-        this.listaMecanismos= new ArrayList<>();
+        this.listaMecanismos = new ArrayList<>();
     }
+
     /**
      * Método que modifica o nome do tipo de conflito.
      *
      * @param nome
      */
+    @XmlElement
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -53,6 +53,7 @@ public class TipoConflito {
      *
      * @param dados
      */
+    @XmlElement
     public void setDados(String dados) {
         this.dados = dados;
     }
@@ -74,12 +75,24 @@ public class TipoConflito {
     public String getDados() {
         return dados;
     }
+
     /**
      * Devolve a lista de Mecanismo de Deteção do Tipo de Conflito.
+     *
      * @return lista de mecanismos de deteção
      */
-    public List <MecanismoDetecaoConflito> getListaMecanismos(){
+    public List<Object> getListaMecanismos() {
         return this.listaMecanismos;
+    }
+
+    /**
+     * Método que modifica a lista de mecanismos.
+     *
+     * @param listaMecanismos
+     */
+    @XmlElement(name = "mecanismosConfitos")
+    public void setListaMecanismos(List<Object> listaMecanismos) {
+        this.listaMecanismos = listaMecanismos;
     }
 
     /**
@@ -109,7 +122,7 @@ public class TipoConflito {
             return false;
         }
         TipoConflito tipo = (TipoConflito) t;
-        
+
         return this.nome.equalsIgnoreCase(tipo.getNome()) && this.dados.equalsIgnoreCase(tipo.getDados());
     }
 

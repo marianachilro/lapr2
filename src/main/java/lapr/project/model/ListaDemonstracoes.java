@@ -22,7 +22,6 @@ public class ListaDemonstracoes {
     /**
      * List com Demonstrações.
      */
-    @XmlElement(name="Demonstracao")
     private List<Demonstracao> listaDemonstracao;
 
     /**
@@ -46,6 +45,7 @@ public class ListaDemonstracoes {
      *
      * @param listaDemonstracao List de Demonstrações
      */
+    @XmlElement(name = "Demonstracao")
     public void setListaDemonstracao(List<Demonstracao> listaDemonstracao) {
         this.listaDemonstracao = listaDemonstracao;
     }
@@ -111,9 +111,11 @@ public class ListaDemonstracoes {
     public List<Demonstracao> getListaDemonstracoesDisponiveis() {
         List<Demonstracao> ld = new ArrayList<>();
 
-        for (Demonstracao d : listaDemonstracao) {
-            if (d.getRealizacao() == true) {
-                ld.add(d);
+        if (!listaDemonstracao.isEmpty()) {
+            for (Demonstracao d : listaDemonstracao) {
+                if (d.getRealizacao() == true) {
+                    ld.add(d);
+                }
             }
         }
         return ld;
@@ -128,7 +130,7 @@ public class ListaDemonstracoes {
     public List<Demonstracao> getListaDemonstracoesNaoConfirmadas() {
         List<Demonstracao> ld = new ArrayList<>();
         for (Demonstracao d : listaDemonstracao) {
-            if (d.getRealizacao() == false) {
+            if (d.getEstado().setCriada()) {
                 ld.add(d);
             }
         }
@@ -189,5 +191,17 @@ public class ListaDemonstracoes {
 
     public void ordenarPorNumeroInteressados() {
         Collections.sort(listaDemonstracao);
+    }
+
+    @Override
+    public String toString() {
+        String lista = "";
+
+        if (!listaDemonstracao.isEmpty()) {
+            for (Demonstracao d : listaDemonstracao) {
+                lista = d + "\n";
+            }
+        }
+        return lista;
     }
 }

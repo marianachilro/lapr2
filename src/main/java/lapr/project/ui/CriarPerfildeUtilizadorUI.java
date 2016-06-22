@@ -7,46 +7,55 @@ package lapr.project.ui;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.regex.Pattern;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.CriarPerfideUtilizadorController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.RegistoUtilizadores;
+import lapr.project.model.Security;
 import lapr.project.model.Utilizador;
 
 /**
  *
  * @author catarinarib
  */
-public class CriarPerfilDeUtilizadorUI extends javax.swing.JFrame {
+public class CriarPerfildeUtilizadorUI extends javax.swing.JFrame {
 
     private LoginUI login;
     private final CentroExposicoes ce;
+    private Utilizador utilizador;
+    private Security security;
 
     /**
      * Creates new form CriarPerfilDeUtilizadorUI
      *
      * @param ce
      */
-    public CriarPerfilDeUtilizadorUI(final CentroExposicoes ce) {
+    public CriarPerfildeUtilizadorUI(final CentroExposicoes ce) {
 
         this.ce = ce;
         initComponents();
         setVisible(true);
-        
+
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                int result = JOptionPane.showConfirmDialog(
-                        CriarPerfilDeUtilizadorUI.this, "Tens a certeza?");
+                int result = JOptionPane.showConfirmDialog(CriarPerfildeUtilizadorUI.this, "Tens a certeza?");
                 if (result == JOptionPane.OK_OPTION) {
 
-                    CriarPerfilDeUtilizadorUI.this.setDefaultCloseOperation(
+                    CriarPerfildeUtilizadorUI.this.setDefaultCloseOperation(
                             JDialog.DISPOSE_ON_CLOSE);
-                    CriarPerfilDeUtilizadorUI.this.setVisible(false);
-                    CriarPerfilDeUtilizadorUI.this.dispose();
+                    CriarPerfildeUtilizadorUI.this.setVisible(false);
+                    CriarPerfildeUtilizadorUI.this.dispose();
                     JFrame LoginUI = new LoginUI(ce);
+                } else if (result == JOptionPane.CANCEL_OPTION) {
+                    CriarPerfildeUtilizadorUI.this.setDefaultCloseOperation(
+                            JDialog.DO_NOTHING_ON_CLOSE);
+                } else if (result == JOptionPane.NO_OPTION) {
+                    CriarPerfildeUtilizadorUI.this.setDefaultCloseOperation(
+                            JDialog.DO_NOTHING_ON_CLOSE);
                 }
             }
         });
@@ -202,41 +211,122 @@ public class CriarPerfilDeUtilizadorUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             CriarPerfideUtilizadorController controller = new CriarPerfideUtilizadorController(ce);
+            RegistoUtilizadores ru = controller.getRegistoUtilizadores();
+            Utilizador u = controller.novoUtilizador();
+
+            int shift = (int) (Math.random() * 10);
 
             String nome = textField1.getText();
+
             String username = textField2.getText();
+
             String email = textField4.getText();
+
+            if (!(Pattern.matches("(.*)(\\@)(.*)", email))) {
+                throw new IllegalArgumentException("E-mail inválido!");
+            }
+
             String password = textField3.getText();
+            char pontuacao[] = {',', ';', '.', ':', '-'};
+
+            int contUpper = 0;
+            int contLower = 0;
+            int contNum = 0;
+            int contPuctuation = 0;
+            char c;
+
+            for (int i = 0; i < password.length(); i++) {
+
+                String letra = u.convertToASCII(password.charAt(i) + "");
+                c = letra.charAt(0);
+
+                if (Character.isWhitespace(c)) {
+                    throw new IllegalArgumentException("Password sem Espaços!");
+
+                } else if (Character.isLowerCase(c)) {
+                    contLower++;
+                } else if (Character.isUpperCase(c)) {
+                    contUpper++;
+                } else if (Character.isDigit(c)) {
+                    contNum++;
+
+                } else if (!Character.isWhitespace(c)) {
+
+                    for (char p : pontuacao) {
+                        if (p == c) {
+                            contPuctuation++;
+                        }
+                    }
+
+                }
+
+            }
+            if (contUpper == 0) {
+                throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos uma letra maiuscula!");
+            } else if (contLower == 0) {
+                throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos uma letra manuscula!");
+            } else if (contNum == 0) {
+                throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos um numero!");
+            } else if (contPuctuation == 0) {
+                throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos um destes carateres:\n  ,  .  ;  :  -  ");
+            }
+
             String keyword = textField5.getText();
 
-            RegistoUtilizadores ru = controller.getRegistoUtilizadores();
-            controller.novoUtilizador();
-            
-            if (!ru.getListaUtilizadores().isEmpty()) {
-            for (Utilizador u1 : ru.getListaUtilizadores()) {
+            if (keyword.length() < 4 || keyword.length() > 7) {
+                throw new IllegalArgumentException("Keyword é inválida! 4 a 7 carateres");
+            }
 
-                if (u1.getUsername().equals(username)) {
-                    throw new IllegalArgumentException("Username já existe!");
-                } else if (u1.getEmail().equals(email)) {
-                    throw new IllegalArgumentException("Email já existe!");
+            this.security = new Security(shift, keyword);
+
+            if (!ru.getListaUtilizadores().isEmpty()) {
+                for (Utilizador u1 : ru.getListaUtilizadores()) {
+                    Security s1 = new Security(u1);
+                    String username2 = s1.desencriptarSubstitutionAndTranspositionCipher(u1.getUsername());
+                    String email2 = s1.desencriptarSubstitutionAndTranspositionCipher(u1.getEmail());
+                    if (username2.equalsIgnoreCase(username)) {
+                        throw new IllegalArgumentException("Username já existe!");
+                    } else if (email2.equalsIgnoreCase(email)) {
+                        throw new IllegalArgumentException("Email já existe!");
+                    }
                 }
             }
-        }
-            controller.setDados(nome, username, email, password, keyword);
-            
-            
-            if (controller.RegistaUtilizador()) {
-                dispose();
 
-                MenuUI j = new MenuUI(ce);
+            if (!ce.getRegistoUtilizadoresNaoConfirmados().getListaUtilizadores().isEmpty()) {
+                for (Utilizador u2 : ce.getRegistoUtilizadoresNaoConfirmados().getListaUtilizadores()) {
+                    Security s2 = new Security(u2);
+                    String username2 = s2.desencriptarSubstitutionAndTranspositionCipher(u2.getUsername());
+                    String email2 = s2.desencriptarSubstitutionAndTranspositionCipher(u2.getEmail());
+                    if (username2.equalsIgnoreCase(username)) {
+                        throw new IllegalArgumentException("Username já existe!");
+                    } else if (email2.equalsIgnoreCase(email)) {
+                        throw new IllegalArgumentException("Email já existe!");
+                    }
+                }
             }
 
-         } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(
-                            login,
-                            "Tem que introduzir números válidos.",
-                            "Aviso",
-                            JOptionPane.WARNING_MESSAGE);
+            String nome1 = security.substitutionAndTranpositionCipher(nome);
+            String username1 = security.substitutionAndTranpositionCipher(username);
+            String email1 = security.substitutionAndTranpositionCipher(email);
+            String password1 = security.codificarShift(password);
+            String keyword1 = security.codificarShift(keyword);
+
+            controller.setDados(shift, nome1, username1, email1, password1, keyword1);
+
+            if (controller.RegistaUtilizador()) {
+                JOptionPane.showMessageDialog(CriarPerfildeUtilizadorUI.this, "Registado com sucesso!");
+                dispose();
+                this.utilizador = ce.getRegistoUtilizadoresNaoConfirmados().getUtilizador(username);
+                MenuUI j = new MenuUI(ce, this.utilizador);
+
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(
+                    login,
+                    "Tem que introduzir números válidos.",
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
         } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(
                     login,
@@ -246,7 +336,7 @@ public class CriarPerfilDeUtilizadorUI extends javax.swing.JFrame {
 
         }
 
-       
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 //    /**

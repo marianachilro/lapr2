@@ -15,48 +15,53 @@ import lapr.project.utils.Data;
  * @author Rita
  */
 @XmlRootElement
-public class Demonstracao  implements Comparable <Demonstracao>{
+public class Demonstracao implements Comparable<Demonstracao> {
 
     /**
      * Código único de Demonstração.
      */
-    @XmlElement
     private String codigo;
     /**
      * Descrição de Demonstração.
      */
-    @XmlElement
     private String descricao;
     /**
      * A confirmação de que a Demonstração se vai realizar.
      */
-    @XmlElement
     private boolean realizacao;
     /**
      * O estado da Demonstração.
      */
-    @XmlElement
-    private DemonstracaoEstado estado;
+    private DemoImpEstado estado;
     /**
      * Número de Representantes interessados em participar na Demonstração.
      */
-    @XmlElement
     private int numeroInteressados;
-    
+    /**
+     * data do inicio de submissoes das candidaturas da demonstração.
+     */
     private Data dataInicioSubmissaoCandidaturas;
-    
+    /**
+     * data do fim de submissoes das candidaturas da demonstração.
+     */
     private Data dataFimSubmissaoCandidaturas;
-    
+    /**
+     * data do fim de atualizações de conflitos para as candidaturas a uma demonstração.
+     */
     private Data dataFimAtualizacaoConflitos;
-    @XmlElement(name="registoConflitos")
+    /**
+     * Lista de conflitos de uma demonstração.
+     */
     private ListaConflitos listaConflitos;
-    @XmlElement(name="registoConflitos")
+    /**
+     * Lista de recursos usados numa demonstração.
+     */
     private ListaRecursos listaRecursos;
     /**
      * Lista de Candidaturas da demonstracao.
      */
     private ListaCandidaturasDemonstracoes listaCandidaturas;
-    
+
     /**
      * Lista de atribuicoes da exposicao.
      */
@@ -78,7 +83,8 @@ public class Demonstracao  implements Comparable <Demonstracao>{
         this.codigo = CODIGO_OMISSAO;
         this.descricao = DESCRICAO_OMISSAO;
         this.realizacao = false;
-        this.estado=new DemonstracaoInicialEstado(this);
+        this.numeroInteressados = 0;
+        this.estado = new DemonstracaoInicialEstado(this);
         listaCandidaturas = new ListaCandidaturasDemonstracoes();
         listaAtribuicoes = new ListaAtribuicoes();
         listaConflitos = new ListaConflitos();
@@ -95,7 +101,8 @@ public class Demonstracao  implements Comparable <Demonstracao>{
         this.codigo = codigo;
         this.descricao = descricao;
         this.realizacao = false;
-        this.estado=new DemonstracaoInicialEstado(this);
+        this.numeroInteressados = 0;
+        this.estado = new DemonstracaoInicialEstado(this);
         listaCandidaturas = new ListaCandidaturasDemonstracoes();
         listaAtribuicoes = new ListaAtribuicoes();
         listaConflitos = new ListaConflitos();
@@ -127,39 +134,52 @@ public class Demonstracao  implements Comparable <Demonstracao>{
     public boolean getRealizacao() {
         return this.realizacao;
     }
+
     /**
      * Devolve o estado da Demonstração.
+     *
      * @return o estado
      */
-    public DemonstracaoEstado getEstado(){
+    public DemoImpEstado getEstado() {
         return estado;
     }
+
     /**
      * Devolve o número de interessados (representantes) na Demonstração.
-     * @return 
+     *
+     * @return
      */
-    public int getNumeroInteressados(){
+    public int getNumeroInteressados() {
         return this.numeroInteressados;
     }
+
     /**
-     * Devolve a data do Início do período de submissão de Candidaturas à Demonstração.
+     * Devolve a data do Início do período de submissão de Candidaturas à
+     * Demonstração.
+     *
      * @return a data do início do período de submissão de candidaturas
      */
-    public Data getDataInicioSubmissaoCandidaturas(){
+    public Data getDataInicioSubmissaoCandidaturas() {
         return this.dataInicioSubmissaoCandidaturas;
     }
+
     /**
-     * Devolve a data do Fim do período de submissão de Candidaturas à Demonstração.
+     * Devolve a data do Fim do período de submissão de Candidaturas à
+     * Demonstração.
+     *
      * @return a data do fim do período de submissão de candidaturas
      */
-    public Data getDataFimSubmissaoCandidaturas(){
+    public Data getDataFimSubmissaoCandidaturas() {
         return this.dataFimSubmissaoCandidaturas;
     }
+
     /**
-     * Devolve a data do Fim do período de atualização de conflitos da Demonstração.
+     * Devolve a data do Fim do período de atualização de conflitos da
+     * Demonstração.
+     *
      * @return a data do fim do período de atualização de conflitos
      */
-    public Data getDataFimAtualizacaoConflitos(){
+    public Data getDataFimAtualizacaoConflitos() {
         return this.dataFimAtualizacaoConflitos;
     }
 
@@ -168,6 +188,7 @@ public class Demonstracao  implements Comparable <Demonstracao>{
      *
      * @param codigo Código
      */
+    @XmlElement
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
@@ -177,6 +198,7 @@ public class Demonstracao  implements Comparable <Demonstracao>{
      *
      * @param descricao Descrição
      */
+    @XmlElement
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
@@ -186,54 +208,73 @@ public class Demonstracao  implements Comparable <Demonstracao>{
      *
      * @param confirmacao a confirmação da realização
      */
+    @XmlElement
     public void setRealizacao(boolean confirmacao) {
         this.realizacao = confirmacao;
     }
+
     /**
      * Modifica o estado da Demonstração.
+     *
      * @param estado o novo estado
      */
-    public void setEstado(DemonstracaoEstado estado){
+    @XmlElement
+    public void setEstado(DemoImpEstado estado) {
         this.estado = estado;
     }
+
     /**
      * Modifica o número de interessados na Demonstração.
-     * @param num 
+     *
+     * @param num
      */
-    public void setNumeroInteressados(int num){
-        this.numeroInteressados=num;
-    }
-    /**
-     * Modifica a data de Início do período de submissão e candidaturas à Demonstração.
-     * @param data a nova data de início do período de submissão
-     */
-    public void setDataInicioSubmissaoCandidaturas(Data data){
-        this.dataInicioSubmissaoCandidaturas=data;
-    }
-    /**
-     * Modifica a data de Fim do período de submissão e candidaturas à Demonstração.
-     * @param data a nova data de fim do período de submissão
-     */
-    public void setDataFimSubmissaoCandidaturas(Data data){
-        this.dataFimSubmissaoCandidaturas=data;
-    }
-    /**
-     * Modifica a data de Fim do período de atualização de conflitos da Demonstração.
-     * @param data a nova data de fim de atualização de conflitos
-     */
-    public void setDataFimAtualizacaoConflitos(Data data){
-        this.dataFimAtualizacaoConflitos=data;
+    @XmlElement
+    public void setNumeroInteressados(int num) {
+        this.numeroInteressados = num;
     }
 
-    public ListaConflitos getListaConflitos(){
+    /**
+     * Modifica a data de Início do período de submissão e candidaturas à
+     * Demonstração.
+     *
+     * @param data a nova data de início do período de submissão
+     */
+    @XmlElement
+    public void setDataInicioSubmissaoCandidaturas(Data data) {
+        this.dataInicioSubmissaoCandidaturas = data;
+    }
+
+    /**
+     * Modifica a data de Fim do período de submissão e candidaturas à
+     * Demonstração.
+     *
+     * @param data a nova data de fim do período de submissão
+     */
+    @XmlElement
+    public void setDataFimSubmissaoCandidaturas(Data data) {
+        this.dataFimSubmissaoCandidaturas = data;
+    }
+
+    /**
+     * Modifica a data de Fim do período de atualização de conflitos da
+     * Demonstração.
+     *
+     * @param data a nova data de fim de atualização de conflitos
+     */
+    @XmlElement
+    public void setDataFimAtualizacaoConflitos(Data data) {
+        this.dataFimAtualizacaoConflitos = data;
+    }
+
+    public ListaConflitos getListaConflitos() {
         return listaConflitos;
-    } 
-    
+    }
+
     public ListaCandidaturasDemonstracoes getListaCandidaturas() {
         return listaCandidaturas;
     }
-    
-    public ListaAtribuicoes getListaAtribuicoes(){
+
+    public ListaAtribuicoes getListaAtribuicoes() {
         return this.listaAtribuicoes;
     }
 
@@ -246,9 +287,8 @@ public class Demonstracao  implements Comparable <Demonstracao>{
 //    public List<Candidatura> getListaAtribuicoesFAE(FAE fae) {
 //        return listaAtribuicoes.getListaCandidaturasFAE(fae);
 //    }
-    
-    public boolean valida(){
-        if(codigo == null || descricao == null){
+    public boolean valida() {
+        if (codigo == null || descricao == null) {
             throw new IllegalArgumentException("Demonstração inválida!");
         }
         return true;
@@ -258,6 +298,7 @@ public class Demonstracao  implements Comparable <Demonstracao>{
         return listaRecursos;
     }
 
+    @XmlElement(name = "registoRecursos")
     public void setListaRecursos(ListaRecursos listaRecursos) {
         this.listaRecursos = listaRecursos;
     }
@@ -286,23 +327,23 @@ public class Demonstracao  implements Comparable <Demonstracao>{
             return false;
         }
         final Demonstracao other = (Demonstracao) obj;
-        
+
         return this.codigo.equals(other.codigo);
     }
 
+    @XmlElement(name = "registoConflitos")
     public void setListaConflitos(ListaConflitos listaConflitos) {
         this.listaConflitos = listaConflitos;
     }
 
+    @XmlElement(name = "registoCandidaturas")
     public void setListaCandidaturas(ListaCandidaturasDemonstracoes listaCandidaturas) {
         this.listaCandidaturas = listaCandidaturas;
     }
 
+    @XmlElement(name = "registoAtribuicoes")
     public void setListaAtribuicoes(ListaAtribuicoes listaAtribuicoes) {
         this.listaAtribuicoes = listaAtribuicoes;
     }
-    
-    
- 
 
 }

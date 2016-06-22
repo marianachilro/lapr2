@@ -223,7 +223,7 @@ public class ExposicaoTest {
     @Test
     public void testAddOrganizador() {
         System.out.println("TesteAddOrganizador");
-        Utilizador u = new Utilizador("nome", "username", "email@centro.pt", "aA;4", "keywor");
+        Utilizador u = new Utilizador(3,"nome", "username", "email@centro.pt", "aA;4", "keywor");
         Exposicao instance = new Exposicao();
         Boolean expResult = true;
         Boolean result = instance.addOrganizador(u);;
@@ -237,7 +237,7 @@ public class ExposicaoTest {
     @Test
     public void testGetFAE() {
         System.out.println("testeFAE");
-        Utilizador u = new Utilizador("nome", "username", "email@centro.pt", "aA;2", "keywrd");
+        Utilizador u = new Utilizador(3,"nome", "username", "email@centro.pt", "aA;2", "keywrd");
         Exposicao instance = new Exposicao();
         FAE expResult = null;
         FAE result = instance.getFAE(u);
@@ -250,7 +250,7 @@ public class ExposicaoTest {
     @Test
     public void testVerificarSeEOrganizadorDaExpo() {
         System.out.println("VerificarSeEOrganizadorDaExpo");
-        Utilizador u = new Utilizador("nome", "username", "email@centro.pt", "aA;2", "keywrd");
+        Utilizador u = new Utilizador(3,"nome", "username", "email@centro.pt", "aA;2", "keywrd");
         Exposicao instance = new Exposicao();
         instance.addOrganizador(u);
         Organizador org = new Organizador(u);
@@ -266,7 +266,7 @@ public class ExposicaoTest {
     @Test
     public void testGetListaAtribuicoesFAEAndSetListaAtribuicoesFAE() {
         System.out.println("TesteListaAtribuicoesFAE");
-        Utilizador u = new Utilizador("nome", "username", "email@centro.pt", "aA;2", "Keword");
+        Utilizador u = new Utilizador(3,"nome", "username", "email@centro.pt", "aA;2", "Keword");
         FAE fae = new FAE(u);
         Exposicao instance = new Exposicao();
         ListaAtribuicoes la = new ListaAtribuicoes();
@@ -283,7 +283,7 @@ public class ExposicaoTest {
     @Test
     public void testGetEstadoAndSetEstado() {
         System.out.println("testeEstado");
-        ExposicaoEstado novoSt = null;
+        ExpoImpEstado novoSt = null;
         Exposicao instance = new Exposicao();
         instance.setEstado(novoSt);
         ExposicaoEstado expResult = novoSt;
@@ -292,44 +292,7 @@ public class ExposicaoTest {
 
     }
 
-    /**
-     * Test of setExposicaoCandidaturasAtribuidas method, of class Exposicao.
-     */
-    @Test
-    public void testSetExposicaoCandidaturasAtribuidas() {
-        System.out.println("setExposicaoCandidaturasAtribuidas");
-        Exposicao instance = new Exposicao();
-        boolean expResult = false;
-        boolean result = instance.setExposicaoCandidaturasAtribuidas();
-        assertEquals(expResult, result);
-
-    }
-
-    /**
-     * Test of setExposicaoCandidaturasAvaliadas method, of class Exposicao.
-     */
-    @Test
-    public void testSetExposicaoCandidaturasAvaliadas() {
-        System.out.println("setExposicaoCandidaturasAvaliadas");
-        Exposicao instance = new Exposicao();
-        boolean expResult = false;
-        boolean result = instance.setExposicaoCandidaturasAvaliadas();
-        assertEquals(expResult, result);
-
-    }
-
-    /**
-     * Test of setExposicaoCandidaturasDecididas method, of class Exposicao.
-     */
-    @Test
-    public void testSetExposicaoCandidaturasDecididas() {
-        System.out.println("setExposicaoCandidaturasDecididas");
-        Exposicao instance = new Exposicao();
-        boolean expResult = false;
-        boolean result = instance.setExposicaoCandidaturasDecididas();
-        assertEquals(expResult, result);
-
-    }
+    
 
     /**
      * Test of getAvaliaveis method, of class Exposicao.
@@ -337,7 +300,7 @@ public class ExposicaoTest {
     @Test
     public void testGetAvaliaveis() {
         System.out.println("TesteAvaliaveis");
-        Utilizador u = new Utilizador("nome", "username", "email@centro.pt", "aA;2", "Keword");
+        Utilizador u = new Utilizador(3,"nome", "username", "email@centro.pt", "aA;2", "Keword");
         FAE fae = new FAE(u);
         Exposicao instance = new Exposicao();
         ListaAtribuicoes la = new ListaAtribuicoes();
@@ -408,18 +371,7 @@ public class ExposicaoTest {
         
     }
 
-    /**
-     * Test of setExposicaoConflitosAtualizados method, of class Exposicao.
-     */
-    @Test
-    public void testSetExposicaoConflitosAtualizados() {
-        System.out.println("setExposicaoConflitosAtualizados");
-        Exposicao instance = new Exposicao();
-        boolean expResult = false;
-        boolean result = instance.setExposicaoConflitosAtualizados();
-        assertEquals(expResult, result);
-       
-    }
+  
     /**
      * Test of setAtribuicoes method, of class Exposicao.
      */

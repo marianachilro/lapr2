@@ -46,37 +46,9 @@ public class AvaliacaoTest {
 
     }
 
-    /**
-     * Test of getFae method, of class Avaliacao.
-     */
-    @Test
-    public void testGetFaeAndSetFae() {
-        
-        System.out.println("Teste GetFaeAndSetFae");
-        String username = "UsernameFae";
-        Avaliacao instance = new Avaliacao();
-        instance.setFae(username);
-        String expResult = "UsernameFae";
-        String result = instance.getFae();
-        assertEquals(expResult, result);
+  
 
-    }
-
-    /**
-     * Test of getCandidatura method, of class Avaliacao.
-     */
-    @Test
-    public void testGetCandidaturaAndSetCandidatura() {
-        
-        System.out.println("Teste GetCandidaturaAndSetCandidatura");
-        String nomeEmpresa = "nomeEmpresaCandidatura";
-        Avaliacao instance = new Avaliacao();
-        instance.setCandidatura(nomeEmpresa);
-        String expResult = "nomeEmpresaCandidatura";
-        String result = instance.getCandidatura();
-        assertEquals(expResult, result);
-
-    }
+ 
 
     /**
      * Test of getRespostaTemaExpo method, of class Avaliacao.
@@ -145,8 +117,8 @@ public class AvaliacaoTest {
     public void testToString() {
         
         System.out.println("TestetoString");
-        Avaliacao instance = new Avaliacao("fae", "cand", "decisao", "txt");
-        String expResult = String.format("%s;%s;%s;%s;%n", "fae", "cand", "decisao", "txt");
+        Avaliacao instance = new Avaliacao(new Atribuicao(), "decisao", "txt");
+        String expResult = String.format("FAE: %s; Decisao: %s ; Justificação: %s ;%n", "fae","decisao", "txt");
         String result = instance.toString();
         assertEquals(expResult, result);
     }
@@ -175,8 +147,7 @@ public class AvaliacaoTest {
         System.out.println("TesteEquals");
         Object a = new Avaliacao();
         Avaliacao instance = new Avaliacao();
-        instance.setCandidatura("cand");
-        instance.setFae("fae");
+        instance.setAtribuicao(new Atribuicao(new FAE(new Utilizador(3,"asd", "asd", "123@asd.com", "aA1;", "adada")),new CandidaturaExposicao()));
         boolean expResult = false;
         boolean result = instance.equals(a);
         assertEquals(expResult, result);
@@ -192,8 +163,7 @@ public class AvaliacaoTest {
         System.out.println("TesteEquals");
         Avaliacao instance = new Avaliacao();
         Object a = instance;
-        instance.setCandidatura("cand");
-        instance.setFae("fae");
+        instance.setAtribuicao(new Atribuicao());
         boolean expResult = true;
         boolean result = instance.equals(a);
         assertEquals(expResult, result);

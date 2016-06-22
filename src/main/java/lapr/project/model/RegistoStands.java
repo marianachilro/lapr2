@@ -20,7 +20,7 @@ public class RegistoStands {
     /**
      * List de Stands.
      */
-    @XmlElement(name="stands")
+    
     private List<Stand> listaStands;
 
     /**
@@ -53,6 +53,7 @@ public class RegistoStands {
      *
      * @param listaStands List de Stands
      */
+    @XmlElement(name="stands")
     public void setListaStands(List<Stand> listaStands) {
         this.listaStands = listaStands;
     }

@@ -15,18 +15,18 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class Conflito {
-    
-     /**
+
+    /**
      * FAE do Conflito.
      */
-    @XmlElement
     FAE fae;
     /**
      * Candidatura do Conflito.
      */
-    @XmlElement(name="candidatura")
-    Candidatura c;
-    @XmlElement(name="tipoConflito")
+    CandidaturaGeral c;
+    /**
+     * Tipo do conflito.
+     */
     TipoConflito tipo;
 
     /**
@@ -35,25 +35,27 @@ public class Conflito {
      * @param fae
      * @param c
      */
-    public Conflito(FAE fae, Candidatura c) {
+    public Conflito(FAE fae, CandidaturaGeral c) {
         this.fae = fae;
         this.c = c;
     }
+
     /**
      * Construtor que tem como parametro um Conflito (Construtor Cópia).
      *
      *
      * @param c o conflito que se quer copiar
      */
-    public Conflito(Conflito c){
-        this.fae=c.getFAE();
-        this.c=c.getCandidatura();
+    public Conflito(Conflito c) {
+        this.fae = c.getFAE();
+        this.c = c.getCandidatura();
     }
+
     /**
      * Contrutor vazio.
      */
-    public Conflito(){
-        
+    public Conflito() {
+
     }
 
     /**
@@ -70,36 +72,47 @@ public class Conflito {
      *
      * @return
      */
-    public Candidatura getCandidatura() {
+    public CandidaturaGeral getCandidatura() {
         return c;
     }
+
     /**
      * Devolve o tipo do conflito de interesse.
+     *
      * @return o tipo do conflito
      */
-    public TipoConflito getTipo(){
+    public TipoConflito getTipo() {
         return tipo;
     }
+
     /**
      * Modifica o FAE do Conflito.
+     *
      * @param f o novo FAE
      */
-    public void setFAE(FAE f){
-        this.fae=f;
+    @XmlElement
+    public void setFAE(FAE f) {
+        this.fae = f;
     }
+
     /**
      * Modifica a Candidatura do Conflito.
+     *
      * @param c a nova candidatura do conflito
      */
-    public void setCandidaturas(Candidatura c){
-        this.c=c;
+    @XmlElement(name = "candidatura")
+    public void setCandidaturas(CandidaturaGeral c) {
+        this.c = c;
     }
+
     /**
      * Modifica o tipo do conflito.
+     *
      * @param tipo o novo tipo do conflito
      */
-    public void setTipo(TipoConflito tipo){
-        this.tipo=tipo;
+    @XmlElement(name = "candidatura")
+    public void setTipo(TipoConflito tipo) {
+        this.tipo = tipo;
     }
 
     @Override
@@ -134,9 +147,5 @@ public class Conflito {
         }
         return true;
     }
-    
-    
-    
-    
-    
+
 }

@@ -5,6 +5,7 @@
  */
 package lapr.project.controller;
 
+import java.util.regex.Pattern;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.RegistoUtilizadores;
 import lapr.project.model.Utilizador;
@@ -24,25 +25,29 @@ public class CriarPerfideUtilizadorController {
     }
 
     public RegistoUtilizadores getRegistoUtilizadores() {
-        return this.registoUtilizadores=ce.getRegistoUtilizadoresNaoConfirmados();
+        return this.registoUtilizadores = ce.getRegistoUtilizadores();
     }
 
-    public void novoUtilizador() {
-        this.u = this.ce.getRegistoUtilizadoresNaoConfirmados().novoUtilizador();
+    public Utilizador novoUtilizador() {
+        return this.u = this.ce.getRegistoUtilizadoresNaoConfirmados().novoUtilizador();
     }
 
-    public void setDados(String nome, String username, String email, String password, String keyword) {
+    public void setDados(int shift, String nome, String username, String email, String password, String keyword) {
+
+        this.u.setShift(shift);
 
         this.u.setNome(nome);
         this.u.setUsername(username);
+
         this.u.setEmail(email);
+
         this.u.setPassword(password);
         this.u.setKeyword(keyword);
-
     }
 
     public boolean RegistaUtilizador() {
-        return this.registoUtilizadores.confirmaUtilizador(u);
+
+        return ce.getRegistoUtilizadoresNaoConfirmados().confirmaUtilizador(u);
     }
 
 }

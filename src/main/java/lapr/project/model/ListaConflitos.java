@@ -20,7 +20,7 @@ public class ListaConflitos {
     /**
      * lista com os conflitos de uma dada exposição ou demonstração.
      */
-    @XmlElement(name="conflito")
+    
     List<Conflito> lc;
 
     /**
@@ -48,7 +48,7 @@ public class ListaConflitos {
      * @param fae
      * @return conflito
      */
-    public Conflito newConflito(Candidatura c, FAE fae) {
+    public Conflito newConflito(CandidaturaGeral c, FAE fae) {
         return new Conflito(fae, c);
     }
     /**
@@ -74,6 +74,7 @@ public class ListaConflitos {
      *
      * @param lc
      */
+    @XmlElement(name="conflito")
     public void setLista(List<Conflito> lc) {
         this.lc = lc;
     }

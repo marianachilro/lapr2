@@ -20,8 +20,7 @@ public class RegistoTipoConflitos {
     /**
      * Lista com todos os tipos de conflitos.
      */
-    @XmlElement(name="RegistoConflitos")
-    private final List<TipoConflito> listaConflitos;
+    private List<TipoConflito> listaConflitos;
 
     /**
      * Construtor sem parâmetros.
@@ -38,15 +37,24 @@ public class RegistoTipoConflitos {
     public List<TipoConflito> getListaTipoConflitos() {
         return listaConflitos;
     }
+
+    @XmlElement(name = "tipoConflito")
+    public void setListaTipoConflitos(List<TipoConflito> listaConflitos) {
+        this.listaConflitos = listaConflitos;
+    }
+
     /**
-     * Devolve a lista dos Tipos de Conflito que já possuem métodos de deteção, ou seja, que estão ativos.
+     * Devolve a lista dos Tipos de Conflito que já possuem métodos de deteção,
+     * ou seja, que estão ativos.
+     *
      * @return lista tipos conflito ativos
      */
-    public List <TipoConflito> getTiposConflitoAtivos(){
-        List <TipoConflito> lista = new ArrayList <>();
-        for(TipoConflito t : this.listaConflitos){
-            if(!t.getListaMecanismos().isEmpty())
+    public List<TipoConflito> getTiposConflitoAtivos() {
+        List<TipoConflito> lista = new ArrayList<>();
+        for (TipoConflito t : this.listaConflitos) {
+            if (!t.getListaMecanismos().isEmpty()) {
                 lista.add(t);
+            }
         }
         return lista;
     }
@@ -67,7 +75,7 @@ public class RegistoTipoConflitos {
      * @return
      */
     public boolean validaTipo(TipoConflito t) {
-        if(listaConflitos.isEmpty()){
+        if (listaConflitos.isEmpty()) {
             return true;
         }
         for (TipoConflito tipo : listaConflitos) {

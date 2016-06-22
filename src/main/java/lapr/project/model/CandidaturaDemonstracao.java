@@ -6,26 +6,28 @@
 package lapr.project.model;
 
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author catarinarib
  */
-public class CandidaturaDemonstracao implements Candidatura, Removivel, Atribuivel {
+@XmlRootElement
+public class CandidaturaDemonstracao extends CandidaturaGeral implements Removivel, Atribuivel {
 
-    private String emailRep;
-    private boolean decisao;
-    private Demonstracao demonstracao;
-    private CandidaturaEstado estado;
-    public final ListaAvaliacoes listaAvaliacoes;
+    /**
+     * Contador do numero de decisoes
+     */
+    private int contador;
 
     /**
      * Construtor de uma candidatura com todos os atributos por omissão.
      */
     public CandidaturaDemonstracao() {
-        this.demonstracao = null;
-        this.decisao = false;
-        this.listaAvaliacoes = new ListaAvaliacoes();
+
+        super();
+        this.contador = 0;
     }
 
     /**
@@ -36,63 +38,38 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel, Atribuiv
      * @param emailRep email de representante
      * @param demonstracao demonstracao da candidatura
      */
-    public CandidaturaDemonstracao(String emailRep, Demonstracao demonstracao) {
-        this.emailRep = emailRep;
-        this.demonstracao = demonstracao;
-        this.listaAvaliacoes = new ListaAvaliacoes();
-        this.decisao = false;
+    public CandidaturaDemonstracao(String emailRep) {
+        super(emailRep);
+        this.contador = 0;
     }
 
-    @Override
-    public String getEmailRep() {
-        return emailRep;
+
+    /**
+     * Devolve o contador do numero de decisoes
+     *
+     * @return
+     */
+    public int getContador() {
+        return contador;
     }
 
-    @Override
-    public void setEmailRep(String email) {
-        this.emailRep = email;
-    }
-
-    @Override
-    public ListaAvaliacoes getListaAvaliacoes() {
-        return listaAvaliacoes;
-    }
-
-    @Override
-    public void setDecisao(boolean decisao) {
-        this.decisao = decisao;
-    }
-
-    @Override
-    public boolean getDecisao() {
-        return decisao;
-    }
-
-    public Demonstracao getDemonstracao() {
-        return demonstracao;
-    }
-
-    public void setDemonstracao(Demonstracao demonstracao) {
-        this.demonstracao = demonstracao;
-    }
-
-    @Override
-    public CandidaturaEstado getEstado() {
-        return estado;
-    }
-
-    @Override
-    public void setEstado(CandidaturaEstado estado) {
-        this.estado = estado;
+    /**
+     * Modifica o contador do numero de decisoes
+     *
+     * @param contador
+     */
+    @XmlElement
+    public void setContador(int contador) {
+        this.contador = contador;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 61 * hash + Objects.hashCode(this.emailRep);
-        hash = 61 * hash + Objects.hashCode(this.decisao);
-        hash = 61 * hash + Objects.hashCode(this.estado);
-        hash = 61 * hash + Objects.hashCode(this.listaAvaliacoes);
+        hash = 61 * hash + Objects.hashCode(super.getEmailRep());
+        hash = 61 * hash + Objects.hashCode(super.getDecisao());
+        hash = 61 * hash + Objects.hashCode(super.getEstado());
+        hash = 61 * hash + Objects.hashCode(super.getListaAvaliacoes());
         return hash;
     }
 
@@ -108,12 +85,12 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel, Atribuiv
 
         final CandidaturaDemonstracao other = (CandidaturaDemonstracao) obj;
 
-        return this.listaAvaliacoes.getListaAvaliacao().equals(other.getListaAvaliacoes().getListaAvaliacao()) && this.decisao==other.getDecisao();
+        return super.getListaAvaliacoes().getListaAvaliacao().equals(other.getListaAvaliacoes().getListaAvaliacao()) && super.getDecisao() == other.getDecisao() && super.getEmailRep().equals(other.getEmailRep());
     }
 
     @Override
     public String toString() {
-        return this.demonstracao + "";
+        return super.getEmailRep() + "";
     }
 
     @Override
@@ -136,7 +113,13 @@ public class CandidaturaDemonstracao implements Candidatura, Removivel, Atribuiv
 
     @Override
     public boolean setRemovida() {
-        return estado.setRemovida();
+        return super.getEstado().setRemovida();
+    }
+
+    @Override
+    public boolean valida() {
+        //faltam as validações
+        return true;
     }
 
 }

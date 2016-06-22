@@ -61,13 +61,13 @@ public class AtribuirCandidaturaController {
 
     }
 
-    public List<MecanismoAtribuicao> getListaMecanismoAtribuicao() {
+    public List<Object> getListaMecanismoAtribuicao() {
         rm = ce.getRegistoMecanismos();
         return rm.getListaMecanismos();
     }
 
     public void setMecanismo(int num) {
-        mecanismo = rm.getListaMecanismos().get(num);
+        mecanismo =(MecanismoAtribuicao) rm.getListaMecanismos().get(num);
     }
 
     public List<Atribuicao> getListaAtribuicoes() {

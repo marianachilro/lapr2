@@ -20,7 +20,6 @@ public class ListaAtribuicoes {
     /**
      * lista com as atribuições de uma dada exposição.
      */
-    @XmlElement
     List<Atribuicao> la;
 
     /**
@@ -48,7 +47,7 @@ public class ListaAtribuicoes {
      * @param fae
      * @return atribuicao
      */
-    public Atribuicao newAtribuicao(Candidatura c, FAE fae) {
+    public Atribuicao newAtribuicao(CandidaturaGeral c, FAE fae) {
         return new Atribuicao(fae, c);
     }
 
@@ -79,6 +78,7 @@ public class ListaAtribuicoes {
      *
      * @param la
      */
+    @XmlElement
     public void setLista(List<Atribuicao> la) {
         this.la = la;
     }

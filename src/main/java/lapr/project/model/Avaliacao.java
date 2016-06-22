@@ -19,49 +19,46 @@ public class Avaliacao {
     /**
      * A decisão da avaliação.
      */
-    @XmlElement
     private String decisao;
 
     /**
      * Texto justificativo da avaliação.
      */
-    @XmlElement(name="justificação")
     private String txt;
 
     /**
      * Resposta ao inquerito sobre o tema da exposição.
      */
-    @XmlElement(name="temaExpo")
     private int respostaTemaExpo;
 
     /**
      * Resposta ao inquerito sobre a adquação da candidatura à exposição.
      */
-    @XmlElement(name="adequaçãoExposição")
     private int respostaAdequacaoCandExposicao;
 
     /**
      * Resposta ao inquerito sobre a adquação da candidaturas às demonstrações
      */
-    @XmlElement(name="adequaçãoCandidaturaDemonstração")
     private int respostaAdequacaoCandDemonstracao;
 
     /**
      * Resposta ao inquerito sobre a adquação do numero de convites.
      */
-    @XmlElement(name="adequaçãoNumeroConvites")
     private int respostaAdequacaoNumConvites;
 
     /**
      * Resposta ao inquerito recomendação global.
      */
-    @XmlElement(name="recomendaçãoGlobal")
     private int respostaRecomendacaoGlobal;
+    /**
+     * A atribuição da avaliação.
+     */
+    private Atribuicao atribuicao;
 
     /**
      * Atribuição por omissão.
      */
-    private static final Atribuicao ATRIBUICAO_OMISSAO = null;
+    private static final Atribuicao ATRIBUICAO_OMISSAO = new Atribuicao();
 
     /**
      * Resposta sobre o tema da exposicao por omissao
@@ -100,21 +97,10 @@ public class Avaliacao {
     private static final int TOTAL_RATINGS = 5;
 
     /**
-     * O fae da avaliação.
-     */
-    private String fae;
-
-    /**
-     * A candidatura da avaliação.
-     */
-    private String candidatura;
-
-    /**
      * Construtor sem parametros
      */
     public Avaliacao() {
-        this.fae = "";
-        this.candidatura = "";
+        this.atribuicao = ATRIBUICAO_OMISSAO;
         this.decisao = DECISAO_OMISSAO;
         this.txt = TXT_OMISSAO;
         this.respostaTemaExpo = RESP_TEMA_EXPO_OMISSAO;
@@ -129,8 +115,7 @@ public class Avaliacao {
      * Constrói uma instância de Avaliacao recebendo o fae, a candidatura, a
      * decisao, texto justificativo e respostas do inquerito.
      *
-     * @param fae o fae da avaliacao.
-     * @param candidatura a candidatura da avaliacao.
+     * @param atribuicao
      * @param decisao a decisao da avaliacao.
      * @param txt o texto justificativo da avaliacao.
      * @param respostaTemaExpo a resposta do inquerito sobre o tema da exposicao
@@ -143,11 +128,10 @@ public class Avaliacao {
      * @param respostaRecomendacaoGlobal a respota ao inquerito sobre a
      * recomendação global
      */
-    public Avaliacao(String fae, String candidatura, String decisao, String txt, int respostaTemaExpo, int respostaAdequacaoCandExpo,
+    public Avaliacao(Atribuicao atribuicao, String decisao, String txt, int respostaTemaExpo, int respostaAdequacaoCandExpo,
             int respostaAdequacaoCandDemos, int respostaAdequacaoNumConvites, int respostaRecomendacaoGlobal) {
 
-        this.fae = fae;
-        this.candidatura = candidatura;
+        this.atribuicao = atribuicao;
         setDecisao(decisao);
         setTextoJustificativo(txt);
         setRespostaTemaExpo(respostaTemaExpo);
@@ -162,17 +146,21 @@ public class Avaliacao {
      * Constrói uma instância de Avaliacao recebendo o fae, a candidatura, a
      * decisao, texto justificativo e resposta do inquerito.
      *
-     * @param fae o fae da avaliacao
-     * @param candidatura a candidatura da avaliacao
+     * @param atribuicao
      * @param decisao a decisao da avaliacao
      * @param txt o texto justificativo da avaliacao
      */
-    public Avaliacao(String fae, String candidatura, String decisao, String txt) {
-        this.fae = fae;
-        this.candidatura = candidatura;
+    public Avaliacao(Atribuicao atribuicao, String decisao, String txt) {
+        this.atribuicao = atribuicao;
         setDecisao(decisao);
         setTextoJustificativo(txt);
 
+    }
+
+    public Avaliacao(String demo) {
+        atribuicao = new Atribuicao();
+        decisao = DECISAO_OMISSAO;
+        txt = TXT_OMISSAO;
     }
 
     /**
@@ -193,40 +181,13 @@ public class Avaliacao {
         return txt;
     }
 
-    /**
-     * Devolve o fae da avaliacao.
-     *
-     * @return fae da avalicao
-     */
-    public String getFae() {
-        return fae;
+    public Atribuicao getAtribuicao() {
+        return atribuicao;
     }
 
-    /**
-     * Devolve a candidatura da avaliacao.
-     *
-     * @return candidatura da avalicao
-     */
-    public String getCandidatura() {
-        return candidatura;
-    }
-
-    /**
-     * Modifica o fae
-     *
-     * @param fae o novo fae
-     */
-    public void setFae(String fae) {
-        this.fae = fae;
-    }
-
-    /**
-     * Modifica a candidatura
-     *
-     * @param candidatura nova candidatura
-     */
-    public void setCandidatura(String candidatura) {
-        this.candidatura = candidatura;
+    @XmlElement
+    public void setAtribuicao(Atribuicao atribuicao) {
+        this.atribuicao = atribuicao;
     }
 
     /**
@@ -234,6 +195,7 @@ public class Avaliacao {
      *
      * @param decisao a nova decisao da avaliacao
      */
+    @XmlElement
     public final void setDecisao(String decisao) {
         if (decisao == null || decisao.trim().isEmpty()) {
             throw new IllegalArgumentException("Decisao é inválida!");
@@ -246,6 +208,7 @@ public class Avaliacao {
      *
      * @param txt o novo texto justificativo da avaliacao
      */
+    @XmlElement(name = "justificação")
     public final void setTextoJustificativo(String txt) {
         if (txt == null || txt.trim().isEmpty()) {
             throw new IllegalArgumentException("Texto Justificativo é inválido!");
@@ -267,6 +230,7 @@ public class Avaliacao {
      *
      * @param respostaTemaExpo resposta do inquerito sobre o tema da exposicao
      */
+    @XmlElement(name = "temaExpo")
     public final void setRespostaTemaExpo(int respostaTemaExpo) {
         if (respostaTemaExpo > 6 || respostaTemaExpo < 0) {
             throw new IllegalArgumentException("De 1 a 5!");
@@ -290,6 +254,7 @@ public class Avaliacao {
      * @param respostaAdequacaoCand resposta do inquerito sobre a adquação da
      * candidatura
      */
+    @XmlElement(name = "adequaçãoCandExposicao")
     public final void setRespostaAdequacaoCandExposicao(int respostaAdequacaoCand) {
         if (respostaAdequacaoCand > 6 || respostaAdequacaoCand < 0) {
             throw new IllegalArgumentException("De 1 a 5!");
@@ -315,6 +280,7 @@ public class Avaliacao {
      * @param respostaAdequacaoCandDemonstracao resposta ao inquerito sobre a
      * adquação da candidatura às demonstracoes
      */
+    @XmlElement(name = "adequaçãoCandDemonstracao")
     public final void setRespostaAdequacaoCandDemonstracao(int respostaAdequacaoCandDemonstracao) {
         if (respostaAdequacaoCandDemonstracao > 6 || respostaAdequacaoCandDemonstracao < 0) {
             throw new IllegalArgumentException("De 1 a 5!");
@@ -337,6 +303,7 @@ public class Avaliacao {
      * @param respostaAdequacaoNumConvites resposta ao inquerito sobre a
      * adquação do numero de convites
      */
+    @XmlElement(name = "adequaçãoNumConvites")
     public final void setRespostaAdequacaoNumConvites(int respostaAdequacaoNumConvites) {
         if (respostaAdequacaoNumConvites > 6 || respostaAdequacaoNumConvites < 0) {
             throw new IllegalArgumentException("De 1 a 5!");
@@ -359,6 +326,7 @@ public class Avaliacao {
      * @param respostaRecomendacaoGlobal resposta ao inquerito sobre a
      * recomendação global
      */
+    @XmlElement(name = "recomendacaoGlobal")
     public final void setRespostaRecomendacaoGlobal(int respostaRecomendacaoGlobal) {
         if (respostaRecomendacaoGlobal > 6 || respostaRecomendacaoGlobal < 0) {
             throw new IllegalArgumentException("De 1 a 5!");
@@ -374,7 +342,7 @@ public class Avaliacao {
      */
     @Override
     public String toString() {
-        return String.format("%s;%s;%s;%s;%n", this.fae, this.candidatura, this.decisao, this.txt);
+        return String.format("FAE: %s; Decisao: %s ; Justificação: %s ;%n", atribuicao.getFAE().toString(), this.decisao, this.txt);
     }
 
     /**
@@ -386,7 +354,7 @@ public class Avaliacao {
     @Override
     public boolean equals(Object a) {
 
-        if (this==a) {
+        if (this == a) {
             return true;
         }
 
@@ -396,14 +364,14 @@ public class Avaliacao {
 
         final Avaliacao a1 = (Avaliacao) a;
 
-        return this.candidatura.equalsIgnoreCase(a1.getCandidatura()) && this.fae.equalsIgnoreCase(a1.getFae());
+        return this.atribuicao.equals(a1.getAtribuicao());
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 31 * hash + Objects.hashCode(this.fae);
-        hash = 31 * hash + Objects.hashCode(this.candidatura);
+        hash = 31 * hash + Objects.hashCode(this.atribuicao);
+
         return hash;
     }
     

@@ -17,8 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Recurso {
     /**
      * O nome do Recurso.
-     */
-    @XmlElement
+     */    
     private String nome;
     /**
      * O nome por omissão do Recurso.
@@ -52,6 +51,7 @@ public class Recurso {
      * Modifica o nome do Recurso.
      * @param nome
      */
+    @XmlElement
     public void setNome(String nome){
         this.nome= nome;
     }

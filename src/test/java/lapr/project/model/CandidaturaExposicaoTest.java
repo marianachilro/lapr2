@@ -150,7 +150,7 @@ public class CandidaturaExposicaoTest {
     public void testGetEstado() {
         System.out.println("getEstado");
         CandidaturaExposicao instance = new CandidaturaExposicao();
-        CandidaturaEstado expResult = new CandidaturaInicialEstado(instance);
+        CandImpEstado expResult = new CandidaturaInicialEstado(instance);
         instance.setEstado(expResult);
         CandidaturaEstado result = instance.getEstado();
         assertEquals(expResult, result);

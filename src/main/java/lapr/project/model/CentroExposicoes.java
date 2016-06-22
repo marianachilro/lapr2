@@ -18,17 +18,16 @@ public class CentroExposicoes {
     /**
      * Registo com todos os tipos de conflitos.
      */
-    @XmlElement(name = "registoConflitos")
     private RegistoTipoConflitos rc;
     /**
      * Registo com todas as exposições.
      */
-    @XmlElement(name = "registoExposicoes")
+
     private RegistoExposicoes re;
     /**
      * Registo com todos os utilizadores confirmados.
      */
-    @XmlElement(name = "registoUtilizadores")
+
     private RegistoUtilizadores ru;
 
     /**
@@ -38,25 +37,21 @@ public class CentroExposicoes {
     /**
      * Registo com todos os stands.
      */
-    @XmlElement(name = "stands")
     private RegistoStands rs;
 
     /**
      * Registo de locais do centro
      */
-    @XmlElement(name = "locais")
     private RegistoLocais rl;
 
     /**
      * Registo de recursos do centro
      */
-    @XmlElement(name = "recursos")
     private RegistoRecursos rr;
 
     /**
      * Registo ocm todos os mecanismos.
      */
-    @XmlElement(name = "mecanismos")
     private RegistoMecanismos rm;
 
     /**
@@ -71,6 +66,18 @@ public class CentroExposicoes {
         this.rl = new RegistoLocais();
         this.rr = new RegistoRecursos();
         rm = new RegistoMecanismos();
+    }
+
+    public CentroExposicoes(RegistoTipoConflitos rc, RegistoExposicoes re, RegistoUtilizadores ru, RegistoUtilizadores ruNaoConf, RegistoStands rs, RegistoLocais rl, RegistoRecursos rr, RegistoMecanismos rm) {
+        this.rc = rc;
+        this.re = re;
+        this.ru = ru;
+        this.ruNaoConf = ruNaoConf;
+        this.rs = rs;
+        this.rl = rl;
+        this.rr = rr;
+        this.rm = rm;
+
     }
 
     /**
@@ -88,6 +95,7 @@ public class CentroExposicoes {
      *
      * @return Registo das Exposições
      */
+    @XmlElement(name = "registoExposicoes")
     public RegistoExposicoes getRegistoExposicoes() {
         return re;
     }
@@ -115,6 +123,7 @@ public class CentroExposicoes {
      *
      * @param ru novo registo de utilizadores do centro de exposicoes
      */
+    @XmlElement(name = "registoUtilizadoresConfirmados")
     public void setRegistoUtilizadores(RegistoUtilizadores ru) {
         this.ru = ru;
     }
@@ -133,6 +142,7 @@ public class CentroExposicoes {
      *
      * @param rs novo registo de stands do centro de exposicoes
      */
+    @XmlElement(name = "stands")
     public void setRegistoStands(RegistoStands rs) {
         this.rs = rs;
     }
@@ -142,6 +152,7 @@ public class CentroExposicoes {
      *
      * @return Registo de locais
      */
+    
     public RegistoLocais getRegistoLocais() {
         return rl;
     }
@@ -151,6 +162,7 @@ public class CentroExposicoes {
      *
      * @param rl novo registo de llocais do centro de exposicoes
      */
+    @XmlElement(name = "locais")
     public void setRegistoLocais(RegistoLocais rl) {
         this.rl = rl;
     }
@@ -169,6 +181,7 @@ public class CentroExposicoes {
      *
      * @param rr novo registo de recursos do centro
      */
+    @XmlElement(name = "recursos")
     public void setRegistoRecursos(RegistoRecursos rr) {
         this.rr = rr;
     }
@@ -182,6 +195,7 @@ public class CentroExposicoes {
         return rm;
     }
 
+    @XmlElement(name = "mecanismos")
     public void setRegistoMecanismos(RegistoMecanismos rm) {
         this.rm = rm;
     }
@@ -191,6 +205,7 @@ public class CentroExposicoes {
      *
      * @param rc novo registo de conflitos
      */
+    @XmlElement(name = "registoTipoConflitos")
     public void setRegistoTipoConflitos(RegistoTipoConflitos rc) {
         this.rc = rc;
     }
@@ -209,6 +224,7 @@ public class CentroExposicoes {
      *
      * @param ruNaoConf novo registo de utilizadores não confirmados
      */
+    @XmlElement(name = "registoUtilizadoresNaoConfirmados")
     public void setRegistoUtilizadoresNaoConfirmados(RegistoUtilizadores ruNaoConf) {
         this.ruNaoConf = ruNaoConf;
     }
