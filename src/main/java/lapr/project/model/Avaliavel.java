@@ -15,6 +15,6 @@ import java.util.List;
  */
 public interface Avaliavel {
     
-    public abstract List<Candidatura> getAvaliaveis(FAE fae);
+    public abstract List<CandidaturaGeral> getAvaliaveis(FAE fae);
    
 }

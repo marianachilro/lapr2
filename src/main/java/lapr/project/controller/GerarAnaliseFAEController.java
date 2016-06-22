@@ -10,12 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.AnaliseFAE;
 import lapr.project.model.Avaliacao;
-import lapr.project.model.Candidatura;
-import lapr.project.model.CandidaturaExposicao;
+import lapr.project.model.CandidaturaGeral;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
-import lapr.project.model.FicheiroAnalise;
+import lapr.project.utils.FicheiroAnalise;
 import lapr.project.model.ListaAtribuicoes;
 import lapr.project.model.ListaAvaliacoes;
 import lapr.project.model.ListaFAEs;
@@ -30,6 +29,7 @@ import lapr.project.model.Utilizador;
 public class GerarAnaliseFAEController {
 
     private CentroExposicoes ce;
+    private AnaliseFAE analise;
     private RegistoUtilizadores ru;
     private RegistoExposicoes re;
     private List<Utilizador> lu;
@@ -37,12 +37,12 @@ public class GerarAnaliseFAEController {
     private ListaFAEs rf;
     private ListaAtribuicoes rAt;
     private FAE f;
-    private List<Candidatura> lc;
+    private List<CandidaturaGeral> lc;
     private ListaAvaliacoes ra;
     private List<Avaliacao> la;
     private List<Float> listMediasFae;
     private List<AnaliseFAE> listAnalises;
-    private int n;
+    private int nCand;
     private float media;
 
     public GerarAnaliseFAEController(CentroExposicoes ce) {
@@ -50,59 +50,70 @@ public class GerarAnaliseFAEController {
         listMediasFae = new ArrayList<>();
         listAnalises = new ArrayList<>();
     }
+    
+    public AnaliseFAE novaAnalise() {
+        analise = new AnaliseFAE();
+        return analise;
+    }
 
     public void criarAnalises() {
+        boolean b = false;
         ru = ce.getRegistoUtilizadores();
         lu = ru.getListaUtilizadores();
         re = ce.getRegistoExposicoes();
         le = re.getListaExposicoes();
         for (Utilizador u : lu) {
-            n = 0;
+            nCand = 0;
             media = 0;
             for (Exposicao e : le) {
                 rf = e.getListaFAES();
                 rAt = e.getListaAtribuicoes();
                 f = rf.getFAE(u);
                 lc = rAt.getListaCandidaturasFAE(f);
-                for (Candidatura c : lc) {
-                    somaCand();
+                for (CandidaturaGeral c : lc) {
+                    somaCandTotal();
                     ra = c.getListaAvaliacoes();
                     la = ra.getListaAvaliacao();
                     for (Avaliacao a : la) {
                         media = a.calcMediaRatings();
                         somaMediaTotal(media);
-                        if(a.getAtribuicao().getFAE().equals(f)) {
-                        listMediasFae.add(media);
+                        if (a.getAtribuicao().getFAE().equals(f)) {
+                            listMediasFae.add(media);
                         }
                     }
                 }
             }
-            AnaliseFAE analise = new AnaliseFAE(u, n, media, listMediasFae);
+            calcMediaTotal();
+            analise = new AnaliseFAE(u, nCand, media, listMediasFae);
             analise.gerarAnalise();
             listAnalises.add(analise);
         }
     }
-    
+
     public void toFile() throws FileNotFoundException {
         FicheiroAnalise file = new FicheiroAnalise(listAnalises);
         file.escreverFicheiro();
     }
-    
-    public boolean needsWarning() {
+
+    public boolean needsWarning(AnaliseFAE a) {
         boolean b = false;
-        for(AnaliseFAE a : listAnalises) {
-            if(a.getDecisao().equals("NÃO")) {
+        for(AnaliseFAE al : listAnalises) {
+            if (a.getDecisao().equals("SIM")) {
                 b = true;
-            }
+            }    
         }
-        return b;
+            return b;
     }
 
-    private void somaCand() {
-        n++;
+    private void somaCandTotal() {
+        nCand++;
     }
 
     private void somaMediaTotal(float media) {
         this.media = this.media + media;
+    }
+
+    private void calcMediaTotal() {
+        this.media = media / nCand;
     }
 }

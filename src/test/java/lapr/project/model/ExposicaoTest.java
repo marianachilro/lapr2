@@ -272,7 +272,7 @@ public class ExposicaoTest {
         ListaAtribuicoes la = new ListaAtribuicoes();
         instance.setListaAtribuicoes(la);
         List<Candidatura> expResult = new ArrayList<>();
-        List<Candidatura> result = instance.getListaAtribuicoesFAE(fae);
+        List<CandidaturaGeral> result = instance.getListaAtribuicoesFAE(fae);
         assertEquals(expResult, result);
 
     }
@@ -304,8 +304,8 @@ public class ExposicaoTest {
         FAE fae = new FAE(u);
         Exposicao instance = new Exposicao();
         ListaAtribuicoes la = new ListaAtribuicoes();
-        List<Candidatura> expResult = la.getListaCandidaturasFAE(fae);
-        List<Candidatura> result = instance.getAvaliaveis(fae);
+        List<CandidaturaGeral> expResult = la.getListaCandidaturasFAE(fae);
+        List<CandidaturaGeral> result = instance.getAvaliaveis(fae);
         assertEquals(expResult, result);
     }
 

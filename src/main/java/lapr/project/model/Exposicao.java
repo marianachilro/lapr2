@@ -585,7 +585,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      * @param fae
      * @return lista de atribuicoes
      */
-    public List<Candidatura> getListaAtribuicoesFAE(FAE fae) {
+    public List<CandidaturaGeral> getListaAtribuicoesFAE(FAE fae) {
         return listaAtribuicoes.getListaCandidaturasFAE(fae);
     }
 
@@ -625,7 +625,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      * @return lista de candidaturas
      */
     @Override
-    public List<Candidatura> getAvaliaveis(FAE fae) {
+    public List<CandidaturaGeral> getAvaliaveis(FAE fae) {
         return listaAtribuicoes.getListaCandidaturasFAE(fae);
     }
 

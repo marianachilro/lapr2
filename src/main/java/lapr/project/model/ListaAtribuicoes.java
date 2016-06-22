@@ -89,8 +89,8 @@ public class ListaAtribuicoes {
      * @param fae fae
      * @return lista de candidaturas
      */
-    public List<Candidatura> getListaCandidaturasFAE(FAE fae) {
-        List<Candidatura> lc = new ArrayList<>();
+    public List<CandidaturaGeral> getListaCandidaturasFAE(FAE fae) {
+        List<CandidaturaGeral> lc = new ArrayList<>();
 
         if (!la.isEmpty()) {
             for (Atribuicao a : la) {
