@@ -41,7 +41,7 @@ class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws FileNotFoundException, IOException, SAXException, JAXBException {
+    public static void main(String[] args) {
 
         CentroExposicoes ce = new CentroExposicoes();
         Utilizador u = new Utilizador(2,"joao", "jo", "asd@centro.pt", "aA;2", "ddddd");
@@ -65,7 +65,6 @@ class Main {
         exp.getListaFAES().getListaFAEs().add(fae);
 
         LoginUI login = new LoginUI(ce);
-
 
     }
 
