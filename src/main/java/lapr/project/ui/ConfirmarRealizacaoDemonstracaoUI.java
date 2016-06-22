@@ -363,7 +363,7 @@ public class ConfirmarRealizacaoDemonstracaoUI extends JDialog {
                     exposicao.setDataFimSubmissaoCandidaturasDemos(dataFimSub);
                     Data dataFimAt = organizarDadosData(txtDataFimAtualizacaoConflitos.getText());
                     exposicao.setDataFimAtualizacaoConflitosDemos(dataFimAt);
-                    controller.escalonarExposicao();
+                    controller.escalonarExposicaoEDemosConfirmadas();
                     controller.transitaEstadoExpo();
                     dispose();
                 } else {

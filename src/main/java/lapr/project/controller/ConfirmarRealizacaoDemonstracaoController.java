@@ -6,13 +6,21 @@
 package lapr.project.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import lapr.project.model.AlterarParaCandidaturasDemosAbertas;
+import lapr.project.model.AlterarParaCandidaturasDemosFechadas;
+import lapr.project.model.AlterarParaConflitosAtualizadosDemos;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.CriarControllerDetetarConflitos;
 import lapr.project.model.Demonstracao;
+import lapr.project.model.DemonstracaoConfirmadaEstado;
 import lapr.project.model.DemonstracaoEstado;
+import lapr.project.model.DemonstracaoNaoConfirmadaEstado;
 import lapr.project.model.Exposicao;
 import lapr.project.model.ExposicaoCandidaturasExpoDecididasEstado;
+import lapr.project.model.ExposicaoDemonstracoesConfirmadasEstado;
 import lapr.project.model.ExposicaoEstado;
 import lapr.project.model.ListaCandidaturasExposicoes;
 import lapr.project.model.ListaDemonstracoes;
@@ -91,8 +99,8 @@ public class ConfirmarRealizacaoDemonstracaoController {
     public void transitaEstadoDemo(){
         DemonstracaoEstado estadoDemo = this.demonstracao.getEstado();
         if(this.demonstracao.getRealizacao())
-            estadoDemo.setConfirmada();
-        estadoDemo.setNaoConfirmada();
+            this.demonstracao.setEstado(new DemonstracaoConfirmadaEstado(this.demonstracao));
+        this.demonstracao.setEstado(new DemonstracaoNaoConfirmadaEstado(this.demonstracao));
     }
     
     public boolean validaDatas(Data data1, Data data2){
@@ -102,15 +110,19 @@ public class ConfirmarRealizacaoDemonstracaoController {
     public void setDataInicioSubmissaoCandidaturasDemos(Data data1){
         this.exposicao.setDataInicioSubmissaoCandidaturasDemos(data1);
         for(Demonstracao d : this.exposicao.getListaDemonstracoes().getListaDemonstracoesDisponiveis()){
-            d.setDataInicioSubmissaoCandidaturas(data1);
-            
+            if(d.getEstado().setConfirmada()){
+               d.setDataInicioSubmissaoCandidaturas(data1); 
+            }
         }
     }
     
     public void setDataFimSubmissaoCandidaturasDemos(Data data2){
         this.exposicao.setDataFimSubmissaoCandidaturasDemos(data2);
         for(Demonstracao d : this.exposicao.getListaDemonstracoes().getListaDemonstracoesDisponiveis()){
-            d.setDataFimSubmissaoCandidaturas(data2);
+            if(d.getEstado().setConfirmada()){
+                 d.setDataFimSubmissaoCandidaturas(data2);
+            }
+           
             
         }
     }
@@ -118,22 +130,40 @@ public class ConfirmarRealizacaoDemonstracaoController {
     public void setDataFimAtualizaçãoConflitosDemos(Data data3){
         this.exposicao.setDataFimAtualizacaoConflitosDemos(data3);
         for(Demonstracao d : this.exposicao.getListaDemonstracoes().getListaDemonstracoesDisponiveis()){
-            d.setDataFimAtualizacaoConflitos(data3);
-            
+            if(d.getEstado().setConfirmada()){
+                d.setDataFimAtualizacaoConflitos(data3);
+            }
         }
     }
     
-    public void escalonarExposicao(){
+    public void escalonarExposicaoEDemosConfirmadas(){
+        
+        Data dataIniSubCandDemos = this.exposicao.getDataInicioSubmissaoCandidaturasDemos();
+        Date date1  = new Date(dataIniSubCandDemos.getAno(), dataIniSubCandDemos.getMes(), dataIniSubCandDemos.getDia(), dataIniSubCandDemos.getHora(), dataIniSubCandDemos.getMinuto(), dataIniSubCandDemos.getSegundos());
+        AlterarParaCandidaturasDemosAbertas task = new AlterarParaCandidaturasDemosAbertas(this.centro, this.exposicao);
+        this.registoExposicoes.schedule(task, dataIniSubCandDemos);
+        
+        
+        Data dataFimSubCandDemos = this.exposicao.getDataFimSubmissaoCandidaturasDemos();
+        Date date2 = new Date(dataFimSubCandDemos.getAno(), dataFimSubCandDemos.getMes(), dataFimSubCandDemos.getDia(), dataFimSubCandDemos.getHora(), dataFimSubCandDemos.getMinuto(), dataFimSubCandDemos.getSegundos());
+        AlterarParaCandidaturasDemosFechadas task1 = new AlterarParaCandidaturasDemosFechadas(this.centro, this.exposicao);
+        CriarControllerDetetarConflitos uc13cntlr = new CriarControllerDetetarConflitos(this.centro, this.exposicao);
+        this.registoExposicoes.schedule(uc13cntlr, dataFimSubCandDemos);
+        
+        Data dataFimAtualizacaoConflitosDemos = this.exposicao.getDataFimAtualizacaoConflitosDemos();
+        Date data3 = new Date(dataFimAtualizacaoConflitosDemos.getAno(), dataFimAtualizacaoConflitosDemos.getMes(), dataFimAtualizacaoConflitosDemos.getDia(), dataFimAtualizacaoConflitosDemos.getHora(), dataFimAtualizacaoConflitosDemos.getMinuto(), dataFimAtualizacaoConflitosDemos.getSegundos());
+        AlterarParaConflitosAtualizadosDemos task2 = new AlterarParaConflitosAtualizadosDemos(this.centro, this.exposicao);
+        this.registoExposicoes.schedule(task2, dataFimSubCandDemos);
         
     }
     
     public boolean transitaEstadoExpo(){
-        boolean b = false;
+        
         ExposicaoEstado estadoExpo = this.exposicao.getEstado();
-        if(estadoExpo.equals(new ExposicaoCandidaturasExpoDecididasEstado(new Exposicao()))){
-           b =  estadoExpo.setConfirmacaoRealizacaoDemos();
+        if(estadoExpo.setDemonstracaoCandidaturasDecididas()){
+           this.exposicao.setEstado(new ExposicaoDemonstracoesConfirmadasEstado(this.exposicao));
         }
-        return b;
+        return estadoExpo.setConfirmacaoRealizacaoDemos();
     }
     
     
