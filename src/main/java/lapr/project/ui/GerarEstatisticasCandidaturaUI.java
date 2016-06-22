@@ -58,7 +58,7 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
     private JTextField txtRespostaRecomendacaoGlobal;
 
     public GerarEstatisticasCandidaturaUI(JFrame janelaPai, CentroExposicoes centro, Exposicao exposicao) {
-        super(janelaPai, "Confirmar Realização de Demonstração", true);
+        super(janelaPai, "Estatística Candidatura", true);
         this.janelaPai = janelaPai;
         this.centro = centro;
         this.exposicao = exposicao;
