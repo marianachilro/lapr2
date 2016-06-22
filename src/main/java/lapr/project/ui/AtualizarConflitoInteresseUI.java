@@ -17,12 +17,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Conflito;
-import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
-import lapr.project.model.ListaConflitos;
 import lapr.project.model.Utilizador;
 
 /**
@@ -41,11 +38,11 @@ public class AtualizarConflitoInteresseUI extends JDialog{
     
     private JComboBox comboBoxConflitos;
     
-    private CentroExposicoes centro;
+    private final CentroExposicoes centro;
     
-    private Exposicao exposicao;
+    private final Exposicao exposicao;
     
-    private Utilizador utilizador;
+    private final Utilizador utilizador;
     
     private Conflito conflito;
     
