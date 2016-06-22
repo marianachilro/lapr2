@@ -162,23 +162,14 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
-            <Menu class="javax.swing.JMenu" name="jMenu29">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem31">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Listar Candidaturas Removidas"/>
               </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem15">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Exposi&#xe7;&#xe3;o"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem16">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Demonstra&#xe7;&#xe3;o"/>
-                  </Properties>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem31ActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem30">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Atribuir Candidatura"/>
