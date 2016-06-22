@@ -193,7 +193,7 @@ public class AtribuicaoTest {
     public void testHashCode() {
         System.out.println("hashCode");
         Atribuicao instance = new Atribuicao(new FAE(), new CandidaturaExposicao());
-        int expResult = 1449104;
+        int expResult = 1448614;
         int result = instance.hashCode();
         assertEquals(expResult, result);
      
@@ -205,7 +205,7 @@ public class AtribuicaoTest {
     public void testHashCode1() {
         System.out.println("hashCode");
         Atribuicao instance = new Atribuicao(new FAE(), new CandidaturaDemonstracao());
-        int expResult = 121126920;
+        int expResult = 452088946;
         int result = instance.hashCode();
         assertEquals(expResult, result);
      
