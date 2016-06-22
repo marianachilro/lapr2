@@ -6,8 +6,16 @@
  */
 package lapr.project.model;
 
-import static org.junit.Assert.assertEquals;
+import java.io.File;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import static junit.framework.Assert.assertEquals;
+import lapr.project.utils.XMLParser;
+import static org.custommonkey.xmlunit.XMLAssert.assertXMLEqual;
+import org.custommonkey.xmlunit.XMLUnit;
 import org.junit.Test;
+import org.w3c.dom.Node;
 
 /**
  *
@@ -64,6 +72,7 @@ public class UtilizadorTest {
         String result = instance.getKeyword();
         assertEquals(expResult, result);
     }
+    
 
      @Test
     public void testSetPerfilAlterado() {
@@ -74,11 +83,10 @@ public class UtilizadorTest {
         String password = "aA2;";
         String keyword = "teste";
         Utilizador clone = new Utilizador(3,nome, username, email, password,keyword);
-
         instance.setPerfilAlterado(clone);
         Utilizador expResult = clone;
         Utilizador result = instance;
-        assertEquals(expResult, result);
-
+        assertEquals(expResult,result);
     }
+    
 }

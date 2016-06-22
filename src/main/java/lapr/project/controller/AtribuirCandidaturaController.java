@@ -77,11 +77,13 @@ public class AtribuirCandidaturaController {
 
     public void registaAtribuicoes() {
         e.setAtribuicoes(lA);
-        //atribuir estado
+        st.setExposicaoCandidaturasAtribuidas();
     }
 
     public boolean checkEstado() {
-        //if(st)
+        if(st.setExposicaoConflitosAtualizados() && !st.setExposicaoConflitosDetetados()){
         return true;
+        }
+        return false;
     }
 }

@@ -8,6 +8,7 @@ package lapr.project.controller;
 import lapr.project.utils.Data;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
+import lapr.project.model.ExposicaoEstado;
 import lapr.project.model.ListaOrganizadores;
 import lapr.project.model.Local;
 import lapr.project.model.RegistoLocais;
@@ -68,7 +69,11 @@ public class CriarExposicaoController {
 
 
     public boolean registaExposicao() {
+        ExposicaoEstado es = m_exposicao.getEstado();
+        es.setCriada();
         return m_oCE.getRegistoExposicoes().registaExposicao(m_exposicao);
+        
+        
     }
 
 }

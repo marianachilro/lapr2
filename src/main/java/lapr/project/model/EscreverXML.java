@@ -19,7 +19,21 @@ import javax.xml.bind.Marshaller;
  * @author miniondevil
  */
 public class EscreverXML {
-    	public static void EscreverCentro(CentroExposicoes ce) throws FileNotFoundException, JAXBException{
+    /**
+     * Centro de exposições a ser lido.
+     */
+    private CentroExposicoes ce;
+    /**
+     * Contrutor que recebe por parâmetro o centro de exposições.
+     * @param ce 
+     */
+    public EscreverXML(CentroExposicoes ce){
+        this.ce=ce;
+    }
+    /**
+     * Método que escreve para um ficheiro XML de nome "CentroExposicoes.xml" o centro de exposições.
+     */
+    	public void EscreverCentro() {
 try{
 
 		File file = new File("teste.xml");

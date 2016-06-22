@@ -17,11 +17,22 @@ import javax.xml.bind.Unmarshaller;
  * @author miniondevil
  */
 public class LerFicheiroXML {
+    /**
+     * Ficheiro a ler.
+     */
 private final File ficheiro;
+/**
+ * Contrutor que recebe o ficheiro a ler;
+ * @param ficheiro 
+ */
 public LerFicheiroXML(File ficheiro){
     this.ficheiro=ficheiro;
 }
-public List<Exposicao> lerExposicoes(){
+/**
+ * Método que lê um centro de exposições de um ficheiro XML e o retorna.
+ * @return 
+ */
+public CentroExposicoes lerCentro(){
    CentroExposicoes centro = new CentroExposicoes();
 	 try {
 
@@ -31,17 +42,43 @@ public List<Exposicao> lerExposicoes(){
 
 		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 		 centro = (CentroExposicoes) jaxbUnmarshaller.unmarshal(ficheiro);
-                if(centro.getRegistoExposicoes().getListaExposicoes().isEmpty()){
-                    System.out.println("empty");
-                }else{
-		System.out.println(centro.getRegistoExposicoes().getListaExposicoes().get(0).toString());
-                }
-                System.out.println("123");
-
+                
 	  } catch (JAXBException e) {
               System.out.println(e.getCause());
 	  } 
-         return centro.getRegistoExposicoes().getListaExposicoes();
+         for(Exposicao e : centro.getRegistoExposicoes().getListaExposicoes()){
+             for(Organizador o : e.getListaOrganizadores().getListaOrganizadores()){
+                 boolean existeO = false;
+                 for(Utilizador u : centro.getRegistoUtilizadores().getListaUtilizadores()){
+                     if(o.getUtilizador().equals(u)){
+                         existeO = true;
+                     }
+                 }
+                 if(existeO==false){
+                    centro.getRegistoUtilizadores().addUtilizador(o.getUtilizador());
+                 }
+             }
+             for(FAE fae : e.getListaFAES().getListaFAEs()){
+                 boolean existeF = false;
+                 for(Utilizador u :centro.getRegistoUtilizadores().getListaUtilizadores()){
+                     if(fae.getUtilizador().equals(u)){
+                         existeF = true;
+                     }
+             }
+                 if(existeF==false){
+                     centro.getRegistoUtilizadores().addUtilizador(fae.getUtilizador());
+                 }
+         }
+         }
+         return centro;
 }
     
+/**
+ * Método que lê um centro de exposições apartir de um ficheiro XML e retorna as exposições do centor.
+ * @return 
+ */
+public List<Exposicao> lerExposicoes(){
+   CentroExposicoes centro = lerCentro();
+   return centro.getRegistoExposicoes().getListaExposicoes();
+}
 }

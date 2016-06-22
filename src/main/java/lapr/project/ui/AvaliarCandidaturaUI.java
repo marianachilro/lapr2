@@ -488,7 +488,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                     public void run() {
 
                         if (tpCand.equalsIgnoreCase("exposicao")) {
-                            jTextArea1.setText("Nome Empresa: " + candExp.getnomeEmpresa() + "\nMorada: " + candExp.getMorada()
+                            jTextArea1.setText("Nome Empresa: " + candExp.getNomeEmpresa() + "\nMorada: " + candExp.getMorada()
                                     + "\nTelemovel: " + candExp.getTelemovel() + "\nArea: " + candExp.getArea() + "\nNºConvites: " + candExp.getConvites()
                                     + "\nLista de Demonstrações:\n" + candExp.getListaDemonstracoes().toString());
 
@@ -543,6 +543,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                 int adqNumCov = questionario.adqNumConv();
                 int recGlobal = questionario.recGlobal();
 
+                
 //                controller.setAvaliacao(fae, candE, decisao, txt, temaExpo, adqCandExpo, adqCandDemo, adqNumCov, recGlobal);
 
                 if (controller.registaAvaliacao()) {

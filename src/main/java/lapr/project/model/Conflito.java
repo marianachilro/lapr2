@@ -48,7 +48,7 @@ public class Conflito {
      */
     public Conflito(Conflito c) {
         this.fae = c.getFAE();
-        this.c = c.getCandidatura();
+        this.c = c.getCandidaturas();
     }
 
     /**
@@ -72,7 +72,7 @@ public class Conflito {
      *
      * @return
      */
-    public CandidaturaGeral getCandidatura() {
+    public CandidaturaGeral getCandidaturas() {
         return c;
     }
 

@@ -13,6 +13,7 @@ import lapr.project.model.Candidatura;
 import lapr.project.model.CandidaturaGeral;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
+import lapr.project.model.ExposicaoEstado;
 import lapr.project.model.FAE;
 import lapr.project.model.ListaAvaliacoes;
 import lapr.project.model.Utilizador;
@@ -53,10 +54,8 @@ public class AvaliarCandidaturaController {
         c.toString();
     }
 
-    
-
     public void setAvaliacao(Atribuicao atribuicao, String decisao, String txt, int respostaTemaExpo, int respostaAdequacaoCand,
-           int respostaAdequacaoCandDemo, int respostaAdequacaoNumConvites, int respostaRecomendacaoGlobal) {
+            int respostaAdequacaoCandDemo, int respostaAdequacaoNumConvites, int respostaRecomendacaoGlobal) {
 
         this.m_avaliacao = this.candidatura.getListaAvaliacoes().novaAvaliacao();
 
@@ -68,21 +67,23 @@ public class AvaliarCandidaturaController {
         this.m_avaliacao.setRespostaAdequacaoCandDemonstracao(respostaAdequacaoCandDemo);
         this.m_avaliacao.setRespostaAdequacaoNumConvites(respostaAdequacaoNumConvites);
         this.m_avaliacao.setRespostaRecomendacaoGlobal(respostaRecomendacaoGlobal);
-        
-        
+
     }
-    
-     public void setAvaliacao(Atribuicao atribuicao, String decisao, String txt){
-         this.m_avaliacao = this.candidatura.getListaAvaliacoes().novaAvaliacaoDemo();
+
+    public void setAvaliacao(Atribuicao atribuicao, String decisao, String txt) {
+        this.m_avaliacao = this.candidatura.getListaAvaliacoes().novaAvaliacaoDemo();
 
         this.m_avaliacao.setAtribuicao(atribuicao);
         this.m_avaliacao.setDecisao(decisao);
         this.m_avaliacao.setTextoJustificativo(txt);
-     }
-    
+    }
 
     public boolean registaAvaliacao() {
         if (this.candidatura.getListaAvaliacoes().validaAvaliacao(m_avaliacao) != true) {
+            ExposicaoEstado es = m_exposicao.getEstado();
+            es.setExposicaoCandidaturasAvaliadas();
+            
+//            CandidaturaEstado
             this.candidatura.getListaAvaliacoes().addAvaliacao(m_avaliacao);
             return true;
         } else {
