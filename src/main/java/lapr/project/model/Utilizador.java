@@ -41,7 +41,7 @@ public class Utilizador {
     /**
      * Shift do utilizador
      */
-    @XmlElement
+   
     private int shift;
     
     /**
@@ -130,6 +130,7 @@ public class Utilizador {
      * Modifica o shift
      * @param shift 
      */
+     @XmlElement
     public void setShift(int shift) {
         this.shift = shift;
     }

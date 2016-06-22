@@ -5,12 +5,8 @@
  */
 package lapr.project.model;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import static junit.framework.Assert.assertEquals;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -58,5 +54,6 @@ public class OrganizadorTest {
         Utilizador result = instance.getUtilizador();
         assertEquals(expResult, result);
     }
+   
     
 }

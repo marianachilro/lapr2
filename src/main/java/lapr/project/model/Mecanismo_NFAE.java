@@ -8,17 +8,22 @@ package lapr.project.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author miniondevil
  */
-public class Mecanismo_NFAE implements MecanismoAtribuicao, Serializable {
+@XmlRootElement
+public class Mecanismo_NFAE implements MecanismoAtribuicao {
 
     /**
      * Número de FAE pretendidos por candidatura.
      */
+    @XmlElement
     private final int nPretendido;
+    private static final int N_PRETENDIDO_OMISSAO = 2;
 
     /**
      *
@@ -27,6 +32,10 @@ public class Mecanismo_NFAE implements MecanismoAtribuicao, Serializable {
     public Mecanismo_NFAE(int nPrentendido) {
         this.nPretendido = nPrentendido;
 
+    }
+
+    public Mecanismo_NFAE() {
+        nPretendido = N_PRETENDIDO_OMISSAO;
     }
 
     /**
@@ -40,28 +49,28 @@ public class Mecanismo_NFAE implements MecanismoAtribuicao, Serializable {
      * @return
      */
     @Override
-    public List<Atribuicao> atribui(List<FAE> listaf, ListaConflitos rconf, PodeAtribuir st,ListaAtribuicoes listaAtribuicoes) {
+    public List<Atribuicao> atribui(List<FAE> listaf, ListaConflitos rconf, PodeAtribuir st, ListaAtribuicoes listaAtribuicoes) {
         List<Atribuicao> listaAtribuicao = new ArrayList<>();
-       List<Atribuivel> lAtribuiveis=st.getListaAtribuiveis();
+        List<Atribuivel> lAtribuiveis = st.getListaAtribuiveis();
         List<Conflito> lconf = rconf.getLista();
         int contC = 0;
         int contF = 0;
         while (contC < lAtribuiveis.size() && contF < listaf.size()) {
             for (int i = 0; i < nPretendido; i++) {
-                Atribuicao a = listaAtribuicoes.newAtribuicao((CandidaturaGeral)lAtribuiveis.get(contC), listaf.get(contF));
+                Atribuicao a = listaAtribuicoes.newAtribuicao((CandidaturaGeral) lAtribuiveis.get(contC), listaf.get(contF));
                 int contConflitos = 0;
-                for(Conflito conf :  lconf){
-                    if(conf.getFAE().equals(a.getFAE()) && conf.getCandidatura().equals(a.getCandidatura())){
+                for (Conflito conf : lconf) {
+                    if (conf.getFAE().equals(a.getFAE()) && conf.getCandidaturas().equals(a.getCandidatura())) {
                         contConflitos++;
                     }
                 }
-                if (!listaAtribuicoes.validateAtribuicoes(a) && contConflitos==0) {
+                if (!listaAtribuicoes.validateAtribuicoes(a) && contConflitos == 0) {
                     contF++;
                     listaAtribuicao.add(a);
                 }
 
             }
-            ((Candidatura)lAtribuiveis.get(contC)).getEstado().setAvaliada();
+            ((Candidatura) lAtribuiveis.get(contC)).getEstado().setAvaliada();
             contC++;
         }
 

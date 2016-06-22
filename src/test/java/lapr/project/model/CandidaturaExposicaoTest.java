@@ -74,7 +74,7 @@ public class CandidaturaExposicaoTest {
         CandidaturaExposicao instance = new CandidaturaExposicao();
         String expResult = "nomeP";
         instance.setNomeEmpresa(expResult);
-        String result = instance.getnomeEmpresa();
+        String result = instance.getNomeEmpresa();
         assertEquals(expResult, result);
     }
 

@@ -122,7 +122,7 @@ public class CandidaturaExposicao extends CandidaturaGeral implements Removivel,
 
     public CandidaturaExposicao(CandidaturaExposicao c) {
         super(c);
-        this.nomeEmpresa = c.getnomeEmpresa();
+        this.nomeEmpresa = c.getNomeEmpresa();
         this.morada = c.getMorada();
         this.telemovel = c.getTelemovel();
         this.area = c.getArea();
@@ -163,7 +163,7 @@ public class CandidaturaExposicao extends CandidaturaGeral implements Removivel,
      *
      * @return nome da empresa
      */
-    public String getnomeEmpresa() {
+    public String getNomeEmpresa() {
         return nomeEmpresa;
     }
 
