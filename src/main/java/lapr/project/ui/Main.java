@@ -32,7 +32,7 @@ class Main {
 
         CentroExposicoes ce = new CentroExposicoes();
         Utilizador u = new Utilizador(2,"joao", "jo", "asd@centro.pt", "aA;2", "ddddd");
-        ce.getRegistoUtilizadoresNaoConfirmados().getListaUtilizadores().add(u);
+        ce.getRegistoUtilizadores().getListaUtilizadores().add(u);
         Utilizador u1 = new Utilizador(3,"carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
         ce.getRegistoUtilizadores().addUtilizador(u1);
         Local l = new Local("Porto");
@@ -43,6 +43,7 @@ class Main {
                 dati, dati);
         ce.getRegistoExposicoes().getListaExposicoes().add(exp);
         exp.addOrganizador(u);
+        exp.addOrganizador(u1);
         CandidaturaExposicao cex = new CandidaturaExposicao("rep@centro.pt", "nome empresa", "morada", 919999999, 23, 5);
         exp.getListaCandidaturas().getListCandidaturas().add(cex);
         Avaliacao a = new Avaliacao();
