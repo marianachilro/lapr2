@@ -322,7 +322,7 @@
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jList1.setSelectionModel(new DefaultListSelectionModel() {&#xa;    @Override&#xa;    public void setSelectionInterval(int index0, int index1) {&#xa;        if(super.isSelectedIndex(index0)) {&#xa;            super.removeSelectionInterval(index0, index1);&#xa;        }&#xa;        else {&#xa;            super.addSelectionInterval(index0, index1);&#xa;        }&#xa;    }&#xa;});"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="final String[] utilizadores = new String [100];&#xa;int cont=0;&#xa;if(!ce.getRegistoUtilizadores().getListaUtilizadores().isEmpty()){&#xa;for(Utilizador u : ce.getRegistoUtilizadores().getListaUtilizadores()){&#xa;      utilizadores[cont]=u.getUsername();&#xa;      cont++;&#xa;}&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="final String[] utilizadores = new String [100];&#xa;&#xa;int cont=0;&#xa;if(!ce.getRegistoUtilizadores().getListaUtilizadores().isEmpty()){&#xa;for(Utilizador u : ce.getRegistoUtilizadores().getListaUtilizadores()){&#xa;      utilizadores[cont]=u.getUsername();&#xa;      cont++;&#xa;}&#xa;}"/>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>

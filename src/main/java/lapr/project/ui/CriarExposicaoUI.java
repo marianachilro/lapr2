@@ -21,6 +21,7 @@ import lapr.project.model.Exposicao;
 import lapr.project.model.ListaOrganizadores;
 import lapr.project.model.Local;
 import lapr.project.model.RegistoUtilizadores;
+import lapr.project.model.Security;
 import lapr.project.model.Utilizador;
 import lapr.project.utils.Data;
 
@@ -224,6 +225,7 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
         label1.setBounds(70, 90, 50, 20);
 
         final String[] utilizadores = new String [100];
+
         int cont=0;
         if(!ce.getRegistoUtilizadores().getListaUtilizadores().isEmpty()){
             for(Utilizador u : ce.getRegistoUtilizadores().getListaUtilizadores()){

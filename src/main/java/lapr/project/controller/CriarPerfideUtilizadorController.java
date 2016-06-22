@@ -5,7 +5,6 @@
  */
 package lapr.project.controller;
 
-import java.util.regex.Pattern;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.RegistoUtilizadores;
 import lapr.project.model.Utilizador;

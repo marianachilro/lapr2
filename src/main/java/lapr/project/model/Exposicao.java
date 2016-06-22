@@ -594,7 +594,7 @@ public class Exposicao implements Avaliavel, Decisivel {
      *
      * @return
      */
-    public ExposicaoEstado getEstado() {
+    public ExpoImpEstado getEstado() {
         return st;
     }
 
