@@ -11,4 +11,5 @@ package lapr.project.model;
  */
 public interface MecanismoDetecaoConflito {
     public void detetarConflitos(Exposicao expo);
+    public boolean isConflito(FAE f, CandidaturaGeral c);
 }
