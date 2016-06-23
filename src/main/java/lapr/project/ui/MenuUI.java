@@ -647,5 +647,5 @@ ConfirmarStandUI ui = new ConfirmarStandUI(this, ce, utilizador.getUsername());
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
-
+private javax.swing.JMenuItem jMenuItem7;
 }
