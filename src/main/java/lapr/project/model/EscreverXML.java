@@ -36,7 +36,7 @@ public class EscreverXML {
     	public void EscreverCentro() {
 try{
 
-		File file = new File("teste.xml");
+		File file = new File("teste1.xml");
 		JAXBContext jaxbContext = JAXBContext.newInstance(CentroExposicoes.class);
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 

@@ -5,9 +5,11 @@
  */
 package lapr.project.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -20,35 +22,41 @@ public class Data {
     /**
      * O ano da data.
      */
-    
+    @XmlElement
     private int ano;
 
     /**
      * O mês da data.
      */
+    @XmlElement
     private int mes;
 
     /**
      * O dia da data.
      */
+    @XmlElement
     private int dia;
 
     /**
      * Hora.
      */
+    @XmlElement
     private int hora;
     /**
      * Minuto.
      */
+    @XmlElement
     private int minuto;
 
     /**
      * Segundos.
      */
+    @XmlElement
     private int segundos;
     /**
      * O ano da data por omissão.
      */
+
     private static final int ANO_POR_OMISSAO = 1;
 
     /**
@@ -109,7 +117,7 @@ public class Data {
      * @param segundos segundos
      */
     public Data(int ano, int mes, int dia, int hora, int minutos, int segundos) {
-       setData( ano, mes,  dia, hora,  minutos, segundos);
+        setData(ano, mes, dia, hora, minutos, segundos);
     }
 
     /**
@@ -204,44 +212,45 @@ public class Data {
      */
     public final void setData(int ano, int mes, int dia, int hora, int minutos, int segundos) {
 
-        Calendar c = Calendar.getInstance(); 
-        c.setTime(new Date()); 
-        int diaAtual = c.get(Calendar.DAY_OF_MONTH); 
-        int mesAtual = c.get(Calendar.MONTH)+1; 
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        int diaAtual = c.get(Calendar.DAY_OF_MONTH);
+        int mesAtual = c.get(Calendar.MONTH) + 1;
         int anoAtual = c.get(Calendar.YEAR);
         int horaAtual = c.get(Calendar.HOUR_OF_DAY);
-        int minutosAtual= c.get(Calendar.MINUTE);
-        int segundosAtual=c.get(Calendar.SECOND);
-        
+        int minutosAtual = c.get(Calendar.MINUTE);
+        int segundosAtual = c.get(Calendar.SECOND);
+
         if (ano < anoAtual) {
             throw new IllegalArgumentException("Ano inválido!");
         }
         this.ano = ano;
-        
-        if ( mes <1 || mes>12 || ano==anoAtual && mes<mesAtual) {
+
+        if (mes < 1 || mes > 12 || ano == anoAtual && mes < mesAtual) {
             throw new IllegalArgumentException("Mês inválido!");
-        }      
+        }
         this.mes = mes;
-        
-        if (dia<1 || dia>31||ano==anoAtual && mes==mesAtual && dia<diaAtual) {
+
+        if (dia < 1 || dia > 31 || ano == anoAtual && mes == mesAtual && dia < diaAtual) {
             throw new IllegalArgumentException("Dia inválido!");
         }
         this.dia = dia;
-        
-        if(hora<1|| hora>24||ano==anoAtual && mes==mesAtual && dia==diaAtual && hora<horaAtual){
-             throw new IllegalArgumentException("Hora inválida!");
+
+        if (hora < 1 || hora > 24 || ano == anoAtual && mes == mesAtual && dia == diaAtual && hora < horaAtual) {
+            throw new IllegalArgumentException("Hora inválida!");
         }
         this.hora = hora;
-        if(minutos<0|| minutos>59||ano==anoAtual && mes==mesAtual && dia==diaAtual && hora==horaAtual && minutos<minutosAtual){
-             throw new IllegalArgumentException("Minutos inválidos!");
+        if (minutos < 0 || minutos > 59 || ano == anoAtual && mes == mesAtual && dia == diaAtual && hora == horaAtual && minutos < minutosAtual) {
+            throw new IllegalArgumentException("Minutos inválidos!");
         }
-        
+
         this.minuto = minutos;
-        
-        if(segundos<0||segundos>59||ano==anoAtual && mes==mesAtual && dia==diaAtual && hora==horaAtual && minutos==minutosAtual && segundos<segundosAtual){
-             throw new IllegalArgumentException("Segundos inválidos!");
+
+        if (segundos < 0 || segundos > 59 || ano == anoAtual && mes == mesAtual && dia == diaAtual && hora == horaAtual && minutos == minutosAtual && segundos < segundosAtual) {
+            throw new IllegalArgumentException("Segundos inválidos!");
         }
         this.segundos = segundos;
+
     }
 
     /**

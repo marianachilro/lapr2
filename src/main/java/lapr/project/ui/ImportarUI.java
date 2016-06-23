@@ -21,7 +21,7 @@ public class ImportarUI {
     public ImportarUI(CentroExposicoes ce) throws IOException, SAXException{      
         controller = new CarregarExposicoesController(ce);
            MyFileChooser fileChooser = new MyFileChooser();
-                int resposta = fileChooser.showSaveDialog(null);
+                int resposta = fileChooser.showOpenDialog(null);
                 if (resposta == JFileChooser.APPROVE_OPTION) {
                     File ficheiro = fileChooser.getSelectedFile();          
           controller.lerExpo(ficheiro);
