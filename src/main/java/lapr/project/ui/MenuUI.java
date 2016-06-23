@@ -456,72 +456,74 @@ public class MenuUI extends JFrame {
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
-        int cont = 0;
-        Organizador organizador = null;
-        for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
-            for (Organizador o : e.getListaOrganizadores().getListaOrganizadores()) {
-                if (o.getUtilizador().equals(utilizador)) {
-                    cont++;
-                    organizador = o;
+
+        try {
+            int cont = 0;
+            Organizador organizador = null;
+            for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
+                for (Organizador o : e.getListaOrganizadores().getListaOrganizadores()) {
+                    if (o.getUtilizador().equals(utilizador)) {
+                        cont++;
+                        organizador = o;
+
+                    }
 
                 }
-
             }
-        }
 
-        if (cont == 0) {
-            try {
+            if (cont == 0) {
 
                 throw new IllegalArgumentException("Não é organizador!");
 
-            } catch (IllegalArgumentException ex) {
-                JOptionPane.showMessageDialog(
-                        MenuUI.this,
-                        ex.getMessage(),
-                        "Aviso",
-                        JOptionPane.WARNING_MESSAGE);
-
+            } else {
+                dispose();
+                DecidirCandidaturaUI d = new DecidirCandidaturaUI(ce, organizador, "exposicao");
             }
-        } else {
-            dispose();
-            DecidirCandidaturaUI d = new DecidirCandidaturaUI(ce, organizador, "exposicao");
-        }
+            
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(
+                    MenuUI.this,
+                    ex.getMessage(),
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
 
+        }
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
+        try {
+            int cont = 0;
+            Organizador organizador = null;
+            for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
+                for (Organizador o : e.getListaOrganizadores().getListaOrganizadores()) {
+                    if (o.getUtilizador().equals(utilizador)) {
+                        cont++;
+                        organizador = o;
 
-        int cont = 0;
-        Organizador organizador = null;
-        for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
-            for (Organizador o : e.getListaOrganizadores().getListaOrganizadores()) {
-                if (o.getUtilizador().equals(utilizador)) {
-                    cont++;
-                    organizador = o;
+                    }
 
                 }
-
             }
-        }
 
-        if (cont == 0) {
-            try {
+            if (cont == 0) {
 
                 throw new IllegalArgumentException("Não é organizador!");
 
-            } catch (IllegalArgumentException ex) {
-                JOptionPane.showMessageDialog(
-                        MenuUI.this,
-                        ex.getMessage(),
-                        "Aviso",
-                        JOptionPane.WARNING_MESSAGE);
-
+            } else {
+                dispose();
+                DecidirCandidaturaUI d = new DecidirCandidaturaUI(ce, organizador, "demonstracao");
             }
-        } else {
-            dispose();
-            DecidirCandidaturaUI d = new DecidirCandidaturaUI(ce, organizador, "demonstracao");
+
+        } catch (IllegalArgumentException ex) {
+
+            JOptionPane.showMessageDialog(
+                    MenuUI.this,
+                    ex.getMessage(),
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
         }
+
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -599,9 +601,28 @@ public class MenuUI extends JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
+        if (utilizador != null) {
+            if (utilizador.getEmail() != null && utilizador.getEmail().equalsIgnoreCase("gestor@centro.pt")) {
 
-        dispose();
-        CriarStandUI ui= new CriarStandUI(ce,utilizador);
+                dispose();
+                CriarStandUI ui = new CriarStandUI(ce, utilizador);
+
+            }
+        } else {
+            try {
+
+                throw new IllegalArgumentException("Não é gestor de exposição!");
+
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(
+                        MenuUI.this,
+                        ex.getMessage(),
+                        "Aviso",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+
+        }
+
 
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
