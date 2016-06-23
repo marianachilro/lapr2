@@ -18,11 +18,9 @@ import lapr.project.model.CandidaturaDemonstracao;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
-import lapr.project.model.FAE;
-import lapr.project.model.Local;
+import lapr.project.model.ExposicaoEstado;
 import lapr.project.model.Organizador;
-import lapr.project.model.Utilizador;
-import lapr.project.utils.Data;
+
 
 /**
  *
@@ -38,6 +36,7 @@ public class DecidirCandidaturaUI extends javax.swing.JFrame {
     private MenuUI menu;
     private CandidaturaExposicao candExp;
     private CandidaturaDemonstracao candDemo;
+    private  ExposicaoEstado es;
 
     /**
      * Creates new form DecidirCandidaturaUI
@@ -300,10 +299,12 @@ public class DecidirCandidaturaUI extends javax.swing.JFrame {
                 }
 
                 controller.selectExposicao(exposicao);
-                if (controller.getDecisivel().isEmpty()) {
+                if (controller.getDecisivel().isEmpty() &&  es.setExposicaoCandidaturasAvaliadas()==true || controller.getDecisivel().isEmpty() && es.setExposicaoCandidaturasAvaliadas()==false && es.setDemonstracaoCandidaturasAvaliadas()==true) {
+                   
                     try {
 
-                        throw new IllegalArgumentException("Não tem candidaturas para decidir!");
+                        throw new IllegalArgumentException("Não tem candidaturas para decidir!\n"
+                                + "OU ainda não foram avaliadas!");
 
                     } catch (IllegalArgumentException ex) {
                         JOptionPane.showMessageDialog(

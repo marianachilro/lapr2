@@ -38,7 +38,7 @@ public class Atribuicao {
 
     public Atribuicao() {
         fae = new FAE();
-        c = new CandidaturaExposicao();
+        c = new CandidaturaGeral();
     }
 
     /**

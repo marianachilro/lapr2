@@ -13,11 +13,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import lapr.project.controller.AvaliarCandidaturaController;
+import lapr.project.model.Atribuicao;
 import lapr.project.model.Candidatura;
 import lapr.project.model.CandidaturaDemonstracao;
 import lapr.project.model.CandidaturaExposicao;
+import lapr.project.model.CandidaturaGeral;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
+import lapr.project.model.ExposicaoEstado;
 import lapr.project.model.FAE;
 
 
@@ -37,6 +40,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
     private String tpCand;
     private QuestionarioFAECand questionario;
     private int contador = 0;
+    private  ExposicaoEstado es;
 
     /**
      * Creates new form AvaliarCandidaturaUI
@@ -320,6 +324,9 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
+       
+            
+         es = exposicao.getEstado();
         if (this.tpCand.equalsIgnoreCase("exposicao")) {
 
             SwingUtilities.invokeLater(new Runnable() {
@@ -338,12 +345,15 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                         }
 
                     }
+                    
+                    
 
                     controller.selecionaExposicao(exposicao);
-                    if (controller.getAvaliaveis(fae).isEmpty()) {
+                    if (controller.getAvaliaveis(fae).isEmpty()&& es.setExposicaoCandidaturasAtribuidas()) {
                         try {
 
-                            throw new IllegalArgumentException("Não existe candidaturas para avaliar!");
+                            throw new IllegalArgumentException("Não existe candidaturas para avaliar!\n"
+                                    + "OU não foram atribuidas candidaturas!");
 
                         } catch (IllegalArgumentException ex) {
                             JOptionPane.showMessageDialog(
@@ -404,7 +414,27 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                 }
 
             }
+            
+            
+             if (controller.getAvaliaveis(fae).isEmpty()&& es.setDemonstracaoCandidaturasAtribuidas()) {
+                        try {
+
+                            throw new IllegalArgumentException("Não existe candidaturas para avaliar!\n"
+                                    + "OU não foram atribuidas candidaturas!");
+
+                        } catch (IllegalArgumentException ex) {
+                            JOptionPane.showMessageDialog(
+                                    menu,
+                                    ex.getMessage(),
+                                    "Aviso",
+                                    JOptionPane.WARNING_MESSAGE);
+
+                        }
+             }
             controller.selecionaExposicao(exposicao);
+            
+            
+            
             final String[] candidaturas = new String[100];
             int cont = 0;
 
@@ -523,9 +553,25 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
 
         try {
 
+            FAE faeExp=null;
             if (tpCand.equalsIgnoreCase("exposicao")) {
                 String fae = this.fae.getID();
+                
+                for(FAE f : exposicao.getListaFAES().getListaFAEs()){
+                    if(f.getID().equalsIgnoreCase(fae)){
+                        faeExp=f;
+                    }
+                }
+                
                 String candE = this.candExp.getEmailRep();
+                Atribuicao a = null;
+                for(Atribuicao at : exposicao.getListaAtribuicoes().getLista()){
+                    if(at.getCandidatura().getEmailRep().equalsIgnoreCase(candE)){
+                        a=at;
+                    }
+                    
+                }
+                
                 String decisao = jComboBox3.getSelectedItem() + "";
                 String txt = jTextArea2.getText();
 
@@ -542,9 +588,10 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                 int adqCandDemo = questionario.adqCandDemo();
                 int adqNumCov = questionario.adqNumConv();
                 int recGlobal = questionario.recGlobal();
-
                 
-//                controller.setAvaliacao(fae, candE, decisao, txt, temaExpo, adqCandExpo, adqCandDemo, adqNumCov, recGlobal);
+                
+                
+                controller.setAvaliacao(a, decisao, txt, temaExpo, adqCandExpo, adqCandDemo, adqNumCov, recGlobal);
 
                 if (controller.registaAvaliacao()) {
 
@@ -559,7 +606,22 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
             } else {
 
                 String fae = this.fae.getID();
+                
+                for(FAE f : exposicao.getListaFAES().getListaFAEs()){
+                    if(f.getID().equalsIgnoreCase(fae)){
+                        faeExp=f;
+                    }
+                }
                 String candD = this.candDemo.getEmailRep();
+                
+                Atribuicao a = null;
+                for(Atribuicao at : exposicao.getListaAtribuicoes().getLista()){
+                    if(at.getCandidatura().getEmailRep().equalsIgnoreCase(candD)){
+                        a=at;
+                    }
+                    
+                }
+                
                 String decisao = jComboBox3.getSelectedItem() + "";
                 String txt = jTextArea2.getText();
 
@@ -567,7 +629,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                     throw new IllegalArgumentException("Justificação vazia!");
                 }
 
-//                controller.setAvaliacao(fae, candD, decisao, txt);
+                controller.setAvaliacao(a, decisao, txt);
 
                 if (controller.registaAvaliacao()) {
 
