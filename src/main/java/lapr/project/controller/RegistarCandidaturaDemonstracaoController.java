@@ -58,23 +58,24 @@ public class RegistarCandidaturaDemonstracaoController {
     }
 
     public List<Demonstracao> getListDemonstracao() {
-        rd = e.getListaDemonstracoes();
-        return rd.getListaDemonstracoesDisponiveis();
+        rd = c.getListaDemonstracoes();
+        return rd.getListaDemonstracao();
     }
 
     public void selectDemonstracao(Demonstracao d) {
         this.d = d;
     }
 
-    public CandidaturaDemonstracao novaCandidaturaDemonstracao() {
+    public CandidaturaDemonstracao novaCandidaturaDemonstracao(List<Demonstracao> lDemo) {
         rcd = d.getListaCandidaturas();
         cd = rcd.novaCandidatura();
+        cd.getListaDemonstracoes().setListaDemonstracao(lDemo);
         cd.setEmailRep(email);
         return cd;
     }
 
-    public void registarCandidatura() {
-        rcd.registaCandidatura(cd);
+    public boolean registarCandidatura() {
+        return rcd.registaCandidatura(cd);
     }
 
     public boolean transitaEstado() {

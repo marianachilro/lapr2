@@ -7,21 +7,15 @@ package lapr.project.ui;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Box;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import lapr.project.controller.AtribuirCandidaturaController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
-import lapr.project.model.Mecanismo_NFAE;
 import lapr.project.model.Organizador;
 import lapr.project.model.Utilizador;
-import org.xml.sax.SAXException;
 
 /**
  *
@@ -304,6 +298,11 @@ public class MenuUI extends JFrame {
         jMenu32.setText("Stands");
 
         jMenuItem6.setText("Criar Stand");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu32.add(jMenuItem6);
 
         jMenuItem32.setText("Confirmar Interesse em Stand");
@@ -457,72 +456,74 @@ public class MenuUI extends JFrame {
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
-        int cont = 0;
-        Organizador organizador = null;
-        for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
-            for (Organizador o : e.getListaOrganizadores().getListaOrganizadores()) {
-                if (o.getUtilizador().equals(utilizador)) {
-                    cont++;
-                    organizador = o;
+
+        try {
+            int cont = 0;
+            Organizador organizador = null;
+            for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
+                for (Organizador o : e.getListaOrganizadores().getListaOrganizadores()) {
+                    if (o.getUtilizador().equals(utilizador)) {
+                        cont++;
+                        organizador = o;
+
+                    }
 
                 }
-
             }
-        }
 
-        if (cont == 0) {
-            try {
+            if (cont == 0) {
 
                 throw new IllegalArgumentException("Não é organizador!");
 
-            } catch (IllegalArgumentException ex) {
-                JOptionPane.showMessageDialog(
-                        MenuUI.this,
-                        ex.getMessage(),
-                        "Aviso",
-                        JOptionPane.WARNING_MESSAGE);
-
+            } else {
+                dispose();
+                DecidirCandidaturaUI d = new DecidirCandidaturaUI(ce, organizador, "exposicao");
             }
-        } else {
-            dispose();
-            DecidirCandidaturaUI d = new DecidirCandidaturaUI(ce, organizador, "exposicao");
-        }
+            
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(
+                    MenuUI.this,
+                    ex.getMessage(),
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
 
+        }
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
+        try {
+            int cont = 0;
+            Organizador organizador = null;
+            for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
+                for (Organizador o : e.getListaOrganizadores().getListaOrganizadores()) {
+                    if (o.getUtilizador().equals(utilizador)) {
+                        cont++;
+                        organizador = o;
 
-        int cont = 0;
-        Organizador organizador = null;
-        for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
-            for (Organizador o : e.getListaOrganizadores().getListaOrganizadores()) {
-                if (o.getUtilizador().equals(utilizador)) {
-                    cont++;
-                    organizador = o;
+                    }
 
                 }
-
             }
-        }
 
-        if (cont == 0) {
-            try {
+            if (cont == 0) {
 
                 throw new IllegalArgumentException("Não é organizador!");
 
-            } catch (IllegalArgumentException ex) {
-                JOptionPane.showMessageDialog(
-                        MenuUI.this,
-                        ex.getMessage(),
-                        "Aviso",
-                        JOptionPane.WARNING_MESSAGE);
-
+            } else {
+                dispose();
+                DecidirCandidaturaUI d = new DecidirCandidaturaUI(ce, organizador, "demonstracao");
             }
-        } else {
-            dispose();
-            DecidirCandidaturaUI d = new DecidirCandidaturaUI(ce, organizador, "demonstracao");
+
+        } catch (IllegalArgumentException ex) {
+
+            JOptionPane.showMessageDialog(
+                    MenuUI.this,
+                    ex.getMessage(),
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
         }
+
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -554,7 +555,7 @@ public class MenuUI extends JFrame {
 
 
     }//GEN-LAST:event_jMenu41ActionPerformed
-                                        
+
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
 
@@ -568,10 +569,10 @@ public class MenuUI extends JFrame {
 
     private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
         // TODO add your handling code here:
-        
-        AtribuirCandidaturasUI ac = new AtribuirCandidaturasUI(MenuUI.this,ce);
-        
-        
+
+        AtribuirCandidaturasUI ac = new AtribuirCandidaturasUI(MenuUI.this, ce);
+
+
     }//GEN-LAST:event_jMenuItem30ActionPerformed
 
     private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
@@ -584,19 +585,46 @@ public class MenuUI extends JFrame {
 
     private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
              dispose();
-            ImportarUI ui = new ImportarUI(ce, utilizador);
+            ImportarExposicoesUI ui = new ImportarExposicoesUI(ce, utilizador);
      
     }//GEN-LAST:event_jMenuItem28ActionPerformed
 
     private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
-dispose();
-        ImportarDadosUI ui = new ImportarDadosUI(ce,utilizador);
+        dispose();
+        ImportarDadosUI ui = new ImportarDadosUI(ce, utilizador);
     }//GEN-LAST:event_jMenuItem29ActionPerformed
 
     private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
-dispose();
-ExportarUI ui = new ExportarUI(ce,utilizador);
+        dispose();
+        ExportarUI ui = new ExportarUI(ce, utilizador);
     }//GEN-LAST:event_jMenuItem27ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        if (utilizador != null) {
+            if (utilizador.getEmail() != null && utilizador.getEmail().equalsIgnoreCase("gestor@centro.pt")) {
+
+                dispose();
+                CriarStandUI ui = new CriarStandUI(ce, utilizador);
+
+            }
+        } else {
+            try {
+
+                throw new IllegalArgumentException("Não é gestor de exposição!");
+
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(
+                        MenuUI.this,
+                        ex.getMessage(),
+                        "Aviso",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+
+        }
+
+
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -683,5 +711,5 @@ ExportarUI ui = new ExportarUI(ce,utilizador);
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
-private javax.swing.JMenuItem jMenuItem7;
+
 }

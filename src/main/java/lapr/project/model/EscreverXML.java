@@ -5,11 +5,7 @@
  */
 package lapr.project.model;
 
-import java.beans.XMLEncoder;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -19,6 +15,7 @@ import javax.xml.bind.Marshaller;
  * @author miniondevil
  */
 public class EscreverXML {
+
     /**
      * Centro de exposições a ser lido.
      */
@@ -27,33 +24,56 @@ public class EscreverXML {
      * ficheiro onde vai ser gravado.
      */
     private final File ficheiro;
+
     /**
      * Contrutor que recebe por parâmetro o centro de exposições.
-     * @param ce 
-     * @param ficheiro 
+     *
+     * @param ce
+     * @param ficheiro
      */
-    public EscreverXML(CentroExposicoes ce, File ficheiro){
-        this.ce=ce;
+    public EscreverXML(CentroExposicoes ce, File ficheiro) {
+        this.ce = ce;
         this.ficheiro = ficheiro;
     }
+
     /**
-     * Método que escreve para um ficheiro XML de nome "CentroExposicoes.xml" o centro de exposições.
+     * Método que escreve para um ficheiro XML de nome "CentroExposicoes.xml" o
+     * centro de exposições.
      */
-    	public void escreverCentro() {
-try{
+    public void escreverCentro() {
+        try {
+            codificarDados();
+            JAXBContext jaxbContext = JAXBContext.newInstance(CentroExposicoes.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
-		JAXBContext jaxbContext = JAXBContext.newInstance(CentroExposicoes.class);
-		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            // output pretty printed
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-		// output pretty printed
-		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            jaxbMarshaller.marshal(ce, ficheiro);
+            jaxbMarshaller.marshal(ce, System.out);
 
-		jaxbMarshaller.marshal(ce, ficheiro);
-		jaxbMarshaller.marshal(ce, System.out);
+        } catch (JAXBException e) {
+            e.printStackTrace();
 
-	      } catch (JAXBException e) {
-		e.printStackTrace();
-	
-}
-}
+        }
+    }
+
+    public void codificarDados() {
+        for (Utilizador u : ce.getRegistoUtilizadores().getListaUtilizadores()) {
+            Security s = new Security(u.getShift(), u.getKeyword());
+            u.setNome(s.substitutionAndTranpositionCipher(u.getNome()));
+            u.setEmail(s.substitutionAndTranpositionCipher(u.getEmail()));
+            u.setUsername(s.substitutionAndTranpositionCipher(u.getUsername()));
+            u.setPassword(s.codificarShift(u.getPassword()));
+            u.setKeyword(s.codificarShift(u.getKeyword()));
+        }
+        for(Utilizador u: ce.getRegistoUtilizadoresNaoConfirmados().getListaUtilizadores()){
+            Security s = new Security(u.getShift(), u.getKeyword());
+            u.setNome(s.substitutionAndTranpositionCipher(u.getNome()));
+            u.setEmail(s.substitutionAndTranpositionCipher(u.getEmail()));
+            u.setUsername(s.substitutionAndTranpositionCipher(u.getUsername()));
+            u.setPassword(s.codificarShift(u.getPassword()));
+            u.setKeyword(s.codificarShift(u.getKeyword()));
+        }
+    }
 }

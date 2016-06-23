@@ -69,8 +69,8 @@ public class RemoverCandidaturaController {
         return lRemove;
     }
     
-    public void selectCandidatura(Candidatura c) {
-        this.c = (Removivel) c;
+    public void selectCandidatura(Removivel c) {
+        this.c = c;
     }
     
     public boolean removeCandidatura() {
