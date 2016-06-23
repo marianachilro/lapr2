@@ -353,10 +353,7 @@ public class CandidaturaExposicao extends CandidaturaGeral implements Removivel,
             return false;
         }
         final CandidaturaExposicao other = (CandidaturaExposicao) obj;
-        if (!Objects.equals(super.getEmailRep(), other.getEmailRep())) {
-            return false;
-        }
-        return true;
+        return Objects.equals(super.getEmailRep(), other.getEmailRep());
     }
 
     @Override

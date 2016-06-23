@@ -111,7 +111,7 @@ public class AnaliseFAE {
         return estatistica;
     }
 
-    public void gerarAnalise() {
+    public float gerarAnalise() {
         calcMediaClassificacoes();
         calcMediaDesvios();
         calcVariancia();
@@ -119,6 +119,7 @@ public class AnaliseFAE {
         if(estatistica > REGIAO_CRITICA) {
             setDecisao("SIM");
         }
+        return estatistica;
     }
 
     private void calcMediaDesvios() {

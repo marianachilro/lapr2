@@ -14,9 +14,9 @@ public class CandidaturaAceiteEstado extends CandImpEstado {
     /**
      * Contrutor do Estado de "Aceite" da Candidatura.
      *
-     * @param candidatura a candidatura que vai transitar de estado
+     * @param cand a candidatura que vai transitar de estado
      */
-    public CandidaturaAceiteEstado(Candidatura cand) {
+    public CandidaturaAceiteEstado(CandidaturaGeral cand) {
         super(cand);
     }
     

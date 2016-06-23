@@ -14,9 +14,9 @@ public class CandidaturaCompletaEstado extends CandImpEstado {
     /**
      * Contrutor do Estado de "Completa" da Candidatura.
      *
-     * @param candidatura a candidatura que vai transitar de estado
+     * @param cand a candidatura que vai transitar de estado
      */
-    public CandidaturaCompletaEstado(Candidatura cand) {
+    public CandidaturaCompletaEstado(CandidaturaGeral cand) {
         super(cand);
     }
 
