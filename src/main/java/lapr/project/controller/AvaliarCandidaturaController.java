@@ -10,12 +10,14 @@ import lapr.project.model.Atribuicao;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.Avaliavel;
 import lapr.project.model.Candidatura;
+import lapr.project.model.CandidaturaEstado;
 import lapr.project.model.CandidaturaGeral;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Demonstracao;
+import lapr.project.model.DemonstracaoEstado;
 import lapr.project.model.Exposicao;
 import lapr.project.model.ExposicaoEstado;
 import lapr.project.model.FAE;
-import lapr.project.model.ListaAvaliacoes;
 import lapr.project.model.Utilizador;
 
 /**
@@ -30,6 +32,7 @@ public class AvaliarCandidaturaController {
     private final FAE m_oFAE;
     private Candidatura candidatura;
     private Avaliavel interfaceAvaliavel;
+    private Demonstracao demonstracao; 
 
     public AvaliarCandidaturaController(CentroExposicoes ce, FAE fae) {
         this.m_oCE = ce;
@@ -81,9 +84,19 @@ public class AvaliarCandidaturaController {
     public boolean registaAvaliacao() {
         if (this.candidatura.getListaAvaliacoes().validaAvaliacao(m_avaliacao) != true) {
             ExposicaoEstado es = m_exposicao.getEstado();
-            es.setExposicaoCandidaturasAvaliadas();
             
-//            CandidaturaEstado
+
+            CandidaturaEstado cs = candidatura.getEstado();
+            cs.setAvaliada();
+            
+            DemonstracaoEstado ds = demonstracao.getEstado();
+        if(ds.setCandidaturasAtribuidas()){
+            ds.setCandidaturasDecididas();
+            es.setDemonstracaoCandidaturasAvaliadas();
+        }else{
+            es.setExposicaoCandidaturasAvaliadas();
+        }
+            
             this.candidatura.getListaAvaliacoes().addAvaliacao(m_avaliacao);
             return true;
         } else {

@@ -6,12 +6,10 @@
 package lapr.project.ui;
 
 import java.io.File;
-import java.io.IOException;
 import javax.swing.JFileChooser;
 import lapr.project.controller.CarregarExposicoesController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
-import org.xml.sax.SAXException;
 
 /**
  *
