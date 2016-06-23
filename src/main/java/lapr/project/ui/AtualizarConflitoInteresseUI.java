@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import lapr.project.controller.AtualizarConflitoController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Conflito;
 import lapr.project.model.Exposicao;
@@ -45,6 +46,8 @@ public class AtualizarConflitoInteresseUI extends JDialog {
     private JComboBox comboBoxConflitos;
 
     private JComboBox comboBoxExpos;
+    
+    private AtualizarConflitoController controller;
 
     private final CentroExposicoes centro;
 
@@ -58,11 +61,12 @@ public class AtualizarConflitoInteresseUI extends JDialog {
         super(janelaPai, "Atualizar Conflito", true);
 
         this.janelaPai = janelaPai;
+        this.controller = new AtualizarConflitoController(centro, utilizador, exposicao);
         this.centro = centro;
         this.exposicao = exposicao;
         this.utilizador = utilizador;
-        this.listaExposFAE = centro.getRegistoExposicoes().getListaExposicoesDoFAE(utilizador);
-        this.listaConflitos = this.exposicao.getListaConflitos().getListaConlitosFAE(utilizador);
+        this.listaExposFAE = controller.getListaExposicoesFAE();
+        this.listaConflitos = controller.getConflitosFAE();
         setModal(true);
         setLayout(new BorderLayout());
 

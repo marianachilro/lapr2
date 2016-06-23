@@ -39,19 +39,21 @@ public class AtualizarConflitoController {
     
     private CandidaturaGeral candidatura;
     
+    private TipoConflito tipo;
+    
     private Conflito conflito;
     
     private Conflito clone;
     
     private List <Conflito> listaConflitosFAE;
     
-    public AtualizarConflitoController(CentroExposicoes centro, Utilizador u, String operacao){
+    public AtualizarConflitoController(CentroExposicoes centro, Utilizador u, Exposicao exposicao){
         this.centro=centro;
         this.utilizador=u;
         this.listaExposFAE=centro.getRegistoExposicoes().getListaExposicoesDoFAE(u);
     }
     
-    public List <Exposicao> getListaExposicoes(){
+    public List <Exposicao> getListaExposicoesFAE(){
         return this.listaExposFAE;
     }
     
@@ -93,8 +95,8 @@ public class AtualizarConflitoController {
         this.exposicao=e;
     }
     
-    public void seleciona(Demonstracao d){
-        this.demonstracao=d;
+    public void seleciona(TipoConflito tipo){
+        this.tipo=tipo;
     }
     
     public void seleciona(CandidaturaGeral c){
@@ -135,8 +137,9 @@ public class AtualizarConflitoController {
         return rtc;
     }
     
-    public void setDados(String dados, TipoConflito tipo){
-        this.conflito.setTipo(tipo);
+    public void setDados(CandidaturaGeral c, TipoConflito tipo){
+        this.clone.setCandidaturas(c);
+        this.clone.setTipo(tipo);
     }
     
     public void addConflito(){
@@ -150,5 +153,9 @@ public class AtualizarConflitoController {
     
     public void removeConflito(){
         this.listaConflitosFAE.remove(this.conflito);
+    }
+    
+    public void criarCloneConflito(Conflito conflito){
+        this.clone=conflito;
     }
 }
