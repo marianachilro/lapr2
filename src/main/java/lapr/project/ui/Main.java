@@ -30,8 +30,10 @@ class Main {
     public static void main(String[] args) throws IOException, SAXException {
 
         CentroExposicoes ce = new CentroExposicoes();
-        Utilizador u = new Utilizador(2,"joao", "jo", "asd@centro.pt", "aA;2", "ddddd");
-        ce.getRegistoUtilizadores().getListaUtilizadores().add(u);
+        Utilizador gestor = new Utilizador(2,"Gestor", "gestor", "gestor@centro.pt", "aA;1", "ddddd");
+        ce.getRegistoUtilizadores().getListaUtilizadores().add(gestor);
+         Utilizador u = new Utilizador(2,"joao", "jo", "jo@centro.pt", "aB;1", "dpddd");
+        ce.getRegistoUtilizadores().getListaUtilizadores().add(gestor);
         Utilizador u1 = new Utilizador(3,"carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
         ce.getRegistoUtilizadores().addUtilizador(u1);
         Local l = new Local("Porto");

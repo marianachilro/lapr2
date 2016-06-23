@@ -51,7 +51,7 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 int result = JOptionPane.showConfirmDialog(
-                        CriarExposicaoUI.this, "Tens a certeza?");
+                        CriarExposicaoUI.this, "Tem a certeza?");
                 if (result == JOptionPane.OK_OPTION) {
 
                     CriarExposicaoUI.this.setDefaultCloseOperation(

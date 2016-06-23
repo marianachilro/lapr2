@@ -42,7 +42,7 @@ public class MenuUI extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 int result = JOptionPane.showConfirmDialog(
-                        MenuUI.this, "Tens a certeza?");
+                        MenuUI.this, "Tem a certeza?");
                 if (result == JOptionPane.OK_OPTION) {
 
                     MenuUI.this.setDefaultCloseOperation(
@@ -351,7 +351,7 @@ public class MenuUI extends JFrame {
 
         jMenu45.setText("sair");
 
-        jMenuItem2.setText("sair");
+        jMenuItem2.setText("Terminar Sessão");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -380,6 +380,7 @@ public class MenuUI extends JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         dispose();
+        LoginUI l = new LoginUI(ce);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
@@ -394,63 +395,70 @@ public class MenuUI extends JFrame {
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
-
-        if (ce.getRegistoExposicoes().getListaExposicoesDoFAE(utilizador).isEmpty()) {
-            try {
+        try {
+            if(ce.getRegistoExposicoes().getListaExposicoes().isEmpty()){
+                 throw new IllegalArgumentException("Não existe exposições!");
+            }
+            
+            if (ce.getRegistoExposicoes().getListaExposicoesDoFAE(utilizador).isEmpty()) {
 
                 throw new IllegalArgumentException("Não é FAE de nenhuma exposição!");
 
-            } catch (IllegalArgumentException ex) {
-                JOptionPane.showMessageDialog(
-                        MenuUI.this,
-                        ex.getMessage(),
-                        "Aviso",
-                        JOptionPane.WARNING_MESSAGE);
-
             }
-        }
-        FAE fae = null;
-        for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
-            for (FAE f : e.getListaFAES().getListaFAEs()) {
-                if (f.getUtilizador().equals(utilizador)) {
-                    fae = f;
+            FAE fae = null;
+            for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
+                for (FAE f : e.getListaFAES().getListaFAEs()) {
+                    if (f.getUtilizador().equals(utilizador)) {
+                        fae = f;
+                    }
                 }
             }
+
+            dispose();
+            AvaliarCandidaturaUI av = new AvaliarCandidaturaUI(ce, fae, "exposicao");
+            
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(
+                    MenuUI.this,
+                    ex.getMessage(),
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+
         }
-
-        dispose();
-        AvaliarCandidaturaUI av = new AvaliarCandidaturaUI(ce, fae, "exposicao");
-
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
-
-        if (ce.getRegistoExposicoes().getListaExposicoesDoFAE(utilizador).isEmpty()) {
-            try {
+        try {
+            if(ce.getRegistoExposicoes().getListaExposicoes().isEmpty()){
+                 throw new IllegalArgumentException("Não existe exposições!");
+            }
+            
+            if (ce.getRegistoExposicoes().getListaExposicoesDoFAE(utilizador).isEmpty()) {
 
                 throw new IllegalArgumentException("Não é FAE de nenhuma demonstração!");
 
-            } catch (IllegalArgumentException ex) {
-                JOptionPane.showMessageDialog(
-                        MenuUI.this,
-                        ex.getMessage(),
-                        "Aviso",
-                        JOptionPane.WARNING_MESSAGE);
-
             }
-        }
-        FAE fae = null;
-        for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
-            for (FAE f : e.getListaFAES().getListaFAEs()) {
-                if (f.getUtilizador().equals(utilizador)) {
-                    fae = f;
+            FAE fae = null;
+            for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
+                for (FAE f : e.getListaFAES().getListaFAEs()) {
+                    if (f.getUtilizador().equals(utilizador)) {
+                        fae = f;
+                    }
                 }
             }
-        }
 
-        dispose();
-        AvaliarCandidaturaUI av = new AvaliarCandidaturaUI(ce, fae, "demonstracao");
+            dispose();
+            AvaliarCandidaturaUI av = new AvaliarCandidaturaUI(ce, fae, "demonstracao");
+
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(
+                    MenuUI.this,
+                    ex.getMessage(),
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+
+        }
 
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
@@ -458,6 +466,9 @@ public class MenuUI extends JFrame {
         // TODO add your handling code here:
 
         try {
+            if(ce.getRegistoExposicoes().getListaExposicoes().isEmpty()){
+                 throw new IllegalArgumentException("Não existe exposições!");
+            }
             int cont = 0;
             Organizador organizador = null;
             for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
@@ -479,7 +490,7 @@ public class MenuUI extends JFrame {
                 dispose();
                 DecidirCandidaturaUI d = new DecidirCandidaturaUI(ce, organizador, "exposicao");
             }
-            
+
         } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(
                     MenuUI.this,
@@ -493,6 +504,10 @@ public class MenuUI extends JFrame {
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
         try {
+            if(ce.getRegistoExposicoes().getListaExposicoes().isEmpty()){
+                 throw new IllegalArgumentException("Não existe exposições!");
+            }
+            
             int cont = 0;
             Organizador organizador = null;
             for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
@@ -584,9 +599,9 @@ public class MenuUI extends JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
-             dispose();
-            ImportarExposicoesUI ui = new ImportarExposicoesUI(ce, utilizador);
-     
+        dispose();
+        ImportarExposicoesUI ui = new ImportarExposicoesUI(ce, utilizador);
+
     }//GEN-LAST:event_jMenuItem28ActionPerformed
 
     private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed

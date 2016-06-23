@@ -83,7 +83,7 @@ public class AlterarPerfilUtilizadorUI extends JDialog {
             @Override
             public void windowClosing(WindowEvent e) {
                 int result = JOptionPane.showConfirmDialog(
-                        AlterarPerfilUtilizadorUI.this, "Tens a certeza?");
+                        AlterarPerfilUtilizadorUI.this, "Tem a certeza?");
                 if (result == JOptionPane.OK_OPTION) {
 
                     AlterarPerfilUtilizadorUI.this.setDefaultCloseOperation(

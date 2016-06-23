@@ -28,7 +28,7 @@ public class QuestionarioFAECand extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 int result = JOptionPane.showConfirmDialog(
-                        QuestionarioFAECand.this, "Tens a certeza?");
+                        QuestionarioFAECand.this, "Tem a certeza?");
                 if (result == JOptionPane.OK_OPTION) {
 
                     QuestionarioFAECand.this.setDefaultCloseOperation(
