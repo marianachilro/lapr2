@@ -16,6 +16,7 @@ import lapr.project.model.Stand;
 public class CriarStandController {
     
     private CentroExposicoes ce;
+    private RegistoStands rs;
     private Stand stand;
     
     
@@ -24,7 +25,7 @@ public class CriarStandController {
     }
     
     public RegistoStands getRegistoStands(){
-       return this.ce.getRegistoStands();
+       return rs=this.ce.getRegistoStands();
     }
     
     public void novoStand(){
@@ -36,11 +37,11 @@ public class CriarStandController {
     }
     
     public boolean addStand(){
-        return this.ce.getRegistoStands().addStand(stand);
+        return rs.addStand(stand);
     }
     
     public String apresentaLista(){
-        return this.ce.getRegistoStands().toString();
+        return rs.toString();
     }
     
 }

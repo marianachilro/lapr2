@@ -7,7 +7,6 @@ package lapr.project.ui;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -17,7 +16,6 @@ import lapr.project.model.Atribuicao;
 import lapr.project.model.Candidatura;
 import lapr.project.model.CandidaturaDemonstracao;
 import lapr.project.model.CandidaturaExposicao;
-import lapr.project.model.CandidaturaGeral;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.ExposicaoEstado;
@@ -528,7 +526,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                             jButton4.setEnabled(true);
 
                         } else {
-               //             jTextArea1.setText("Demonstracao: " + candDemo.getDemonstracao());
+                            jTextArea1.setText("Demonstracao: " + candDemo.toString());
 
                             jTextArea1.setEditable(false);
                             jComboBox3.setEnabled(true);
