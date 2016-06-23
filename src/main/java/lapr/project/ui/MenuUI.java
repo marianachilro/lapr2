@@ -110,7 +110,7 @@ public class MenuUI extends JFrame {
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenu32 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem30 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu41 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -507,12 +507,12 @@ public class MenuUI extends JFrame {
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-         if(utilizador!=null){
-         if (utilizador.getEmail()!=null && utilizador.getEmail().equalsIgnoreCase("gestor@centro.pt")) {
-            dispose();
-            GerarRankingKeywordsUI r = new GerarRankingKeywordsUI(ce, utilizador);
-         }
+//         TODO add your handling code here:
+        if (utilizador != null) {
+            if (utilizador.getEmail() != null && utilizador.getEmail().equalsIgnoreCase("gestor@centro.pt")) {
+                dispose();
+                GerarRankingKeywordsUI r = new GerarRankingKeywordsUI(ce, utilizador);
+            }
         } else {
             try {
 
@@ -535,6 +535,17 @@ public class MenuUI extends JFrame {
 
 
     }//GEN-LAST:event_jMenu41ActionPerformed
+                                        
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // TODO add your handling code here:
+
+        AtribuirCandidaturasUI ac = new AtribuirCandidaturasUI(MenuUI.this, ce);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+        ListarCandRemovidasUI ui = new ListarCandRemovidasUI(this, ce, utilizador.getUsername());
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
         // TODO add your handling code here:
@@ -633,9 +644,8 @@ ConfirmarStandUI ui = new ConfirmarStandUI(this, ce, utilizador.getUsername());
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
-
+private javax.swing.JMenuItem jMenuItem7;
 }

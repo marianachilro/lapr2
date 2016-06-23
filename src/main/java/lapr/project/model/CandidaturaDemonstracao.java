@@ -36,7 +36,6 @@ public class CandidaturaDemonstracao extends CandidaturaGeral implements Removiv
      *
      *
      * @param emailRep email de representante
-     * @param demonstracao demonstracao da candidatura
      */
     public CandidaturaDemonstracao(String emailRep) {
         super(emailRep);

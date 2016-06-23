@@ -236,7 +236,7 @@
                 <Property name="text" type="java.lang.String" value="Criar Stand"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem32">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Confirmar Interesse em Stand"/>
               </Properties>

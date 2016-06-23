@@ -758,30 +758,43 @@ public class Exposicao implements Avaliavel, Decisivel {
         NumberFormat nf = NumberFormat.getInstance();
         nf.setMinimumFractionDigits(2);
 
-        if (!lcAceites.isEmpty() && !lcNaoAceites.isEmpty() && !lk.isEmpty()) {
+        if (!lcAceites.isEmpty()  && !lk.isEmpty()|| !lcNaoAceites.isEmpty() && !lk.isEmpty()) {
             for (Keyword k : lk) {
 
-                estatisticaKeywords.add(k + "");
+                estatisticaKeywords.add(k.getPalavra() + "");
 
                 int contNumRepAceites = 0;
                 int contNumRepNaoAceites = 0;
+                
+                if(!lcAceites.isEmpty()){
                 for (CandidaturaExposicao c : lcAceites) {
                     if (c.getListaKeywords().getListaKeywords().contains(k)) {
                         contNumRepAceites++;
 
                     }
                 }
-                double probabilidadeCandAceite = contNumRepAceites / contCandAceites;
+                
+                double probabilidadeCandAceite = ((double)contNumRepAceites / contCandAceites);
                 estatisticaKeywords.add(String.valueOf(nf.format(probabilidadeCandAceite)));
-
+                }else{
+                    estatisticaKeywords.add(String.valueOf(nf.format(0)));
+                }
+                
+                if(!lcNaoAceites.isEmpty()){
                 for (CandidaturaExposicao c : lcNaoAceites) {
                     if (c.getListaKeywords().getListaKeywords().contains(k)) {
                         contNumRepNaoAceites++;
                     }
                 }
-
-                double probabilidadeCandNaoAceites = contNumRepNaoAceites / contCandRejeitadas;
+                
+                double probabilidadeCandNaoAceites = ((double)contNumRepNaoAceites / contCandRejeitadas);
                 estatisticaKeywords.add(String.valueOf(nf.format(probabilidadeCandNaoAceites)));
+                
+                }else{
+                    estatisticaKeywords.add(String.valueOf(nf.format(0)));
+                }
+
+                
 
             }
         } else {
