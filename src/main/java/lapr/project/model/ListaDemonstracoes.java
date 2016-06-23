@@ -30,6 +30,10 @@ public class ListaDemonstracoes {
     public ListaDemonstracoes() {
         listaDemonstracao = new ArrayList<>();
     }
+    
+    public ListaDemonstracoes(ListaDemonstracoes listaDemonstracao) {
+        this.listaDemonstracao = listaDemonstracao.getListaDemonstracao();
+    }
 
     /**
      * Devolve o List das Demonstrações.

@@ -24,13 +24,15 @@ public class CandidaturaGeral implements Candidatura {
      */
     private ListaAvaliacoes listaAvaliacoes;
     /**
-     * Lista de keywords da candidatura.
+     * Lista de demonstracoes da candidatura.
      */
-
+    private ListaDemonstracoes listaDemonstracoes;
+    
     private static final String EMAIL_OMISSAO = "";
 
     public CandidaturaGeral() {
         this.emailRep = EMAIL_OMISSAO;
+        listaDemonstracoes = new ListaDemonstracoes();
         listaAvaliacoes = new ListaAvaliacoes();
         estado = new CandidaturaInicialEstado(this);
         decisao = false;
@@ -39,6 +41,7 @@ public class CandidaturaGeral implements Candidatura {
 
     public CandidaturaGeral(String email) {
         this.emailRep = email;
+        listaDemonstracoes = new ListaDemonstracoes();
         listaAvaliacoes = new ListaAvaliacoes();
         estado = new CandidaturaInicialEstado(this);
         decisao = false;
@@ -46,6 +49,7 @@ public class CandidaturaGeral implements Candidatura {
     public CandidaturaGeral(CandidaturaGeral c){
         this.emailRep = c.getEmailRep();
         this.decisao = c.getDecisao();
+        this.listaDemonstracoes = new ListaDemonstracoes(c.getListaDemonstracoes());
         this.listaAvaliacoes = new ListaAvaliacoes(c.getListaAvaliacoes());
         estado = new CandidaturaAlteradaEstado(this);
     }
@@ -112,6 +116,14 @@ public class CandidaturaGeral implements Candidatura {
     @Override
     public boolean valida() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public ListaDemonstracoes getListaDemonstracoes() {
+        return listaDemonstracoes;
+    }
+
+    public void setListaDemonstracoes(ListaDemonstracoes listaDemonstracoes) {
+        this.listaDemonstracoes = listaDemonstracoes;
     }
 
 }
