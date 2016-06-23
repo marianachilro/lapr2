@@ -363,7 +363,7 @@ public class ConfirmarRealizacaoDemonstracaoUI extends JDialog {
                     exposicao.setDataFimSubmissaoCandidaturasDemos(dataFimSub);
                     Data dataFimAt = organizarDadosData(txtDataFimAtualizacaoConflitos.getText());
                     exposicao.setDataFimAtualizacaoConflitosDemos(dataFimAt);
-                    controller.escalonarExposicao();
+                    controller.escalonarExposicaoEDemosConfirmadas();
                     controller.transitaEstadoExpo();
                     dispose();
                 } else {
@@ -412,12 +412,12 @@ public class ConfirmarRealizacaoDemonstracaoUI extends JDialog {
     }
 
     public JLabel criarLabel(String nomeLabel) {
-        JLabel lbl = new JLabel(nomeLabel);
-        return lbl;
+        
+        return new JLabel(nomeLabel);
     }
 
     public JTextField criarJTextField(int tamanho) {
-        JTextField txt = new JTextField(tamanho);
-        return txt;
+        
+        return new JTextField(tamanho);
     }
 }

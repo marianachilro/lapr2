@@ -30,7 +30,7 @@ public class TipoConflito {
     /**
      * Lista de Mecanismos que consegue detetar o Tipo de Conflito.
      */
-    private List<Object> listaMecanismos;
+    private List<MecanismoGeralDetecaoConflitos> listaMecanismos;
 
     public TipoConflito() {
         nome = "";
@@ -81,7 +81,7 @@ public class TipoConflito {
      *
      * @return lista de mecanismos de deteção
      */
-    public List<Object> getListaMecanismos() {
+    public List<MecanismoGeralDetecaoConflitos> getListaMecanismos() {
         return this.listaMecanismos;
     }
 
@@ -91,7 +91,7 @@ public class TipoConflito {
      * @param listaMecanismos
      */
     @XmlElement(name = "mecanismosConfitos")
-    public void setListaMecanismos(List<Object> listaMecanismos) {
+    public void setListaMecanismos(List<MecanismoGeralDetecaoConflitos> listaMecanismos) {
         this.listaMecanismos = listaMecanismos;
     }
 

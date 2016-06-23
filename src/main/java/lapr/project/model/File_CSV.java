@@ -39,7 +39,7 @@ public class File_CSV {
 
         String DELIMITADOR_VIRGULA = ";";
         String NOVA_LINHA_SEPARADOR = "\n";
-        String FILE_TITULO = "Keyword,Candidaturas Aceites,Candidaturas Rejeitadas";
+        String FILE_TITULO = "Keyword;Candidaturas Aceites;Candidaturas Rejeitadas";
 
         try {
 

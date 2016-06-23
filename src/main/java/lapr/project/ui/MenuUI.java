@@ -11,9 +11,11 @@ import javax.swing.Box;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import lapr.project.controller.AtribuirCandidaturaController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
+import lapr.project.model.Mecanismo_NFAE;
 import lapr.project.model.Organizador;
 import lapr.project.model.Utilizador;
 
@@ -98,9 +100,8 @@ public class MenuUI extends JFrame {
         jMenu26 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
-        jMenu29 = new javax.swing.JMenu();
-        jMenuItem15 = new javax.swing.JMenuItem();
-        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem31 = new javax.swing.JMenuItem();
+        jMenuItem30 = new javax.swing.JMenuItem();
         jMenu20 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
@@ -126,7 +127,6 @@ public class MenuUI extends JFrame {
         setTitle("MENU");
         setBackground(new java.awt.Color(153, 153, 255));
         setLocationByPlatform(true);
-        setPreferredSize(new java.awt.Dimension(900, 500));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/colour-background-back-ground-lumiere-abstract-media-wallpapers-166067.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -224,15 +224,21 @@ public class MenuUI extends JFrame {
 
         jMenu13.add(jMenu26);
 
-        jMenu29.setText("Listar Candidaturas Removidas");
+        jMenuItem31.setText("Listar Candidaturas Removidas");
+        jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem31ActionPerformed(evt);
+            }
+        });
+        jMenu13.add(jMenuItem31);
 
-        jMenuItem15.setText("Exposição");
-        jMenu29.add(jMenuItem15);
-
-        jMenuItem16.setText("Demonstração");
-        jMenu29.add(jMenuItem16);
-
-        jMenu13.add(jMenu29);
+        jMenuItem30.setText("Atribuir Candidatura");
+        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem30ActionPerformed(evt);
+            }
+        });
+        jMenu13.add(jMenuItem30);
 
         jMenu20.setText("Avaliar Candidatura");
 
@@ -282,6 +288,11 @@ public class MenuUI extends JFrame {
         jMenu32.add(jMenuItem6);
 
         jMenuItem7.setText("Confirmar Interesse em Stand");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu32.add(jMenuItem7);
 
         jMenuItem8.setText("Atribuir Stand");
@@ -496,7 +507,7 @@ public class MenuUI extends JFrame {
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+//         TODO add your handling code here:
          if(utilizador!=null){
          if (utilizador.getEmail()!=null && utilizador.getEmail().equalsIgnoreCase("gestor@centro.pt")) {
             dispose();
@@ -524,6 +535,22 @@ public class MenuUI extends JFrame {
 
 
     }//GEN-LAST:event_jMenu41ActionPerformed
+
+    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
+        // TODO add your handling code here:
+        
+        AtribuirCandidaturasUI ac = new AtribuirCandidaturasUI(MenuUI.this,ce);
+        
+        
+    }//GEN-LAST:event_jMenuItem30ActionPerformed
+
+    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
+        ListarCandRemovidasUI ui = new ListarCandRemovidasUI(this, ce, utilizador.getUsername());
+    }//GEN-LAST:event_jMenuItem31ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+ConfirmarStandUI ui = new ConfirmarStandUI(this, ce, utilizador.getUsername());
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -570,7 +597,6 @@ public class MenuUI extends JFrame {
     private javax.swing.JMenu jMenu20;
     private javax.swing.JMenu jMenu23;
     private javax.swing.JMenu jMenu26;
-    private javax.swing.JMenu jMenu29;
     private javax.swing.JMenu jMenu32;
     private javax.swing.JMenu jMenu35;
     private javax.swing.JMenu jMenu38;
@@ -587,8 +613,6 @@ public class MenuUI extends JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
@@ -604,6 +628,8 @@ public class MenuUI extends JFrame {
     private javax.swing.JMenuItem jMenuItem28;
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem30;
+    private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

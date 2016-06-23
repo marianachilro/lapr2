@@ -29,15 +29,15 @@ import lapr.project.model.Recurso;
  */
 public class DefinirRecursosUI extends JDialog{
     
-    private DefinirRecursosController controller;
+    private final DefinirRecursosController controller;
     
     private Recurso recurso;
     
     private JTextField txtNome;
     
-    private JFrame janelaPai;
+    private final JFrame janelaPai;
     
-    private CentroExposicoes ce;
+    private final CentroExposicoes ce;
     
     private JButton botaoConfirmar;
     
@@ -178,13 +178,13 @@ public class DefinirRecursosUI extends JDialog{
     
     
     public JLabel criarLabel(String nomeLabel) {
-        JLabel lbl = new JLabel(nomeLabel);
-        return lbl;
+        
+        return new JLabel(nomeLabel);
     }
     
     public JTextField criarJTextField(int tamanho) {
-        JTextField txt = new JTextField(tamanho);
-        return txt;
+        
+        return new JTextField(tamanho);
     }
     
 }

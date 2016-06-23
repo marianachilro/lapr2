@@ -23,7 +23,7 @@ public class AnaliseFAE {
     }
 
     private Utilizador utilizador;
-    private int nSub;
+    private int nCand;
     private float mediaTotal;
     private List<Float> mediasFae;
     private String decisao;
@@ -41,15 +41,15 @@ public class AnaliseFAE {
 
     public AnaliseFAE() {
         this.utilizador = UTILIZADOR_OMISSAO;
-        this.nSub = N_SUB_OMISSAO;
+        this.nCand = N_SUB_OMISSAO;
         this.mediaTotal = MEDIA_TOTAL_OMISSAO;
         this.decisao = DECISAO_OMISSAO;
         this.mediasFae = new ArrayList<>();
     }
 
-    public AnaliseFAE(Utilizador utilizador, int nSub, float mediaTotal, List<Float> mediasFaes) {
+    public AnaliseFAE(Utilizador utilizador, int nCand, float mediaTotal, List<Float> mediasFaes) {
         this.utilizador = utilizador;
-        this.nSub = nSub;
+        this.nCand = nCand;
         this.mediaTotal = mediaTotal;
         this.mediasFae = new ArrayList<>();
         this.decisao = DECISAO_OMISSAO;
@@ -59,8 +59,8 @@ public class AnaliseFAE {
         return utilizador;
     }
 
-    public int getnSub() {
-        return nSub;
+    public int getnCand() {
+        return nCand;
     }
 
     public float getMediaTotal() {
@@ -79,8 +79,8 @@ public class AnaliseFAE {
         this.utilizador = utilizador;
     }
 
-    public void setnSub(int nSub) {
-        this.nSub = nSub;
+    public void setnCand(int nCand) {
+        this.nCand = nCand;
     }
 
     public void setMediaTotal(float mediaTotal) {
@@ -115,7 +115,7 @@ public class AnaliseFAE {
         calcMediaClassificacoes();
         calcMediaDesvios();
         calcVariancia();
-        estatistica = (float) ((getMediaDesvios() - 1) / Math.sqrt(variancia / nSub));
+        estatistica = (float) ((getMediaDesvios() - 1) / Math.sqrt(variancia / nCand));
         if(estatistica > REGIAO_CRITICA) {
             setDecisao("SIM");
         }
@@ -128,7 +128,7 @@ public class AnaliseFAE {
             desvio = Math.abs(media - mediaTotal);
             soma = soma + desvio;
         }
-        mediaDesvios = soma / nSub;
+        mediaDesvios = soma / mediasFae.size();
     }
 
     private void calcVariancia() {
@@ -137,7 +137,7 @@ public class AnaliseFAE {
         for (Float media : mediasFae) {
             somatorio = (float) (somatorio + Math.pow(media, 2));
         }
-        variancia = (float) (somatorio - (nSub * Math.pow(mediaTotal, 2)) / (nSub - 1));
+        variancia = (float) (somatorio - (nCand * Math.pow(mediaTotal, 2)) / (nCand - 1));
     }
     
     private void calcMediaClassificacoes() {
@@ -145,7 +145,7 @@ public class AnaliseFAE {
         for(Float media : mediasFae) {
             soma = soma + media;
         }
-        mediaClassificacoes = soma / nSub;
+        mediaClassificacoes = soma / nCand;
     }
 
 

@@ -5,16 +5,15 @@
  */
 package lapr.project.model;
 
-import java.util.List;
-
-
+import java.util.TimerTask;
+import lapr.project.utils.Data;
 
 /**
  *
- * @author catarinarib
+ * @author marianachilro
  */
-public interface Avaliavel {
+public interface Agendavel {
     
-    public abstract List<CandidaturaGeral> getAvaliaveis(FAE fae);
-   
+    public void schedule(TimerTask task, Data data);
+    
 }

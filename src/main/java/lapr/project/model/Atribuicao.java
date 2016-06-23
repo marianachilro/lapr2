@@ -65,7 +65,7 @@ public class Atribuicao {
      *
      * @return
      */
-    public Candidatura getCandidatura() {
+    public CandidaturaGeral getCandidatura() {
         return c;
     }
 

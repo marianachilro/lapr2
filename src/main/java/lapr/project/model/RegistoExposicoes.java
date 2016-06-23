@@ -6,16 +6,20 @@
 package lapr.project.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import lapr.project.utils.Data;
 
 /**
  *
  * @author Rita
  */
 @XmlRootElement
-public class RegistoExposicoes {
+public class RegistoExposicoes implements Agendavel{
 
     /**
      * List de Exposições.
@@ -214,5 +218,12 @@ public class RegistoExposicoes {
         }
         listaExposicoes.addAll(le);
         return true;
+    }
+
+    @Override
+    public void schedule(TimerTask task, Data data) {
+        Date timeToRun = new Date(data.getAno(), data.getMes(), data.getDia(), data.getHora(), data.getMinuto(), data.getSegundos());
+        Timer timer = new Timer();
+        timer.schedule(task, timeToRun);
     }
 }

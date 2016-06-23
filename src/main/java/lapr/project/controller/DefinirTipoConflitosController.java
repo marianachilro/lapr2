@@ -26,12 +26,12 @@ public class DefinirTipoConflitosController {
         ltc = rc.getListaTipoConflitos();
         return ltc;
     }
-    public void criaTipo(String nome, String dados){
+    public boolean criaTipo(String nome, String dados){
         t = rc.newTipoConflito();
         t.setNome(nome);
         t.setDados(dados);
         t.valida();
-        rc.validaTipo(t);
+       return rc.validaTipo(t);
         
     }
     public void addTipoConflito(){

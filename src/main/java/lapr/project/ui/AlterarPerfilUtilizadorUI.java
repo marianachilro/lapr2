@@ -11,6 +11,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -30,9 +32,9 @@ import lapr.project.model.Utilizador;
  */
 public class AlterarPerfilUtilizadorUI extends JDialog {
 
-    private AlterarPerfilUtilizadorController controller;
+    private final AlterarPerfilUtilizadorController controller;
 
-    private Utilizador utilizador;
+    private final Utilizador utilizador;
     
     private Utilizador clone;
 
@@ -54,9 +56,9 @@ public class AlterarPerfilUtilizadorUI extends JDialog {
     
     private JButton botaoConfirmar;
 
-    private CentroExposicoes centro;
+    private final CentroExposicoes centro;
 
-    private JFrame janelaPai;
+    private final JFrame janelaPai;
 
     public AlterarPerfilUtilizadorUI(JFrame janelaPai, CentroExposicoes ce, String username) {
         super(janelaPai, "Alterar Perfil de Utilizador", true);
@@ -77,6 +79,27 @@ public class AlterarPerfilUtilizadorUI extends JDialog {
         setResizable(false);
         setLocationRelativeTo(janelaPai);
         setVisible(true);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int result = JOptionPane.showConfirmDialog(
+                        AlterarPerfilUtilizadorUI.this, "Tens a certeza?");
+                if (result == JOptionPane.OK_OPTION) {
+
+                    AlterarPerfilUtilizadorUI.this.setDefaultCloseOperation(
+                            JDialog.DISPOSE_ON_CLOSE);
+                    AlterarPerfilUtilizadorUI.this.setVisible(false);
+                    AlterarPerfilUtilizadorUI.this.dispose();
+                    JFrame MenuUI = new MenuUI(centro,utilizador);
+                } else if (result == JOptionPane.CANCEL_OPTION) {
+                    AlterarPerfilUtilizadorUI.this.setDefaultCloseOperation(
+                            JDialog.DO_NOTHING_ON_CLOSE);
+                } else if (result == JOptionPane.NO_OPTION) {
+                    AlterarPerfilUtilizadorUI.this.setDefaultCloseOperation(
+                            JDialog.DO_NOTHING_ON_CLOSE);
+                }
+            }
+        });
 
     }
     public static void main(String args[]) {
@@ -222,13 +245,13 @@ public class AlterarPerfilUtilizadorUI extends JDialog {
     }
     
     public JLabel criarLabel(String nomeLabel) {
-        JLabel lbl = new JLabel(nomeLabel);
-        return lbl;
+        
+        return new JLabel(nomeLabel);
     }
 
     public JTextField criarJTextField(int tamanho) {
-        JTextField txt = new JTextField(tamanho);
-        return txt;
+         
+        return new JTextField(tamanho);
     }
     
     public JButton criarBotaoSim(){

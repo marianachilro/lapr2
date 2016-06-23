@@ -22,7 +22,7 @@ public class Mecanismo_NFAE implements MecanismoAtribuicao {
      * Número de FAE pretendidos por candidatura.
      */
     @XmlElement
-    private final int nPretendido;
+    private int nPretendido;
     private static final int N_PRETENDIDO_OMISSAO = 2;
 
     /**
@@ -50,11 +50,14 @@ public class Mecanismo_NFAE implements MecanismoAtribuicao {
      */
     @Override
     public List<Atribuicao> atribui(List<FAE> listaf, ListaConflitos rconf, PodeAtribuir st, ListaAtribuicoes listaAtribuicoes) {
+        
         List<Atribuicao> listaAtribuicao = new ArrayList<>();
         List<Atribuivel> lAtribuiveis = st.getListaAtribuiveis();
         List<Conflito> lconf = rconf.getLista();
         int contC = 0;
         int contF = 0;
+        nPretendido = listaf.size()/lAtribuiveis.size();
+        
         while (contC < lAtribuiveis.size() && contF < listaf.size()) {
             for (int i = 0; i < nPretendido; i++) {
                 Atribuicao a = listaAtribuicoes.newAtribuicao((CandidaturaGeral) lAtribuiveis.get(contC), listaf.get(contF));

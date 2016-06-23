@@ -5,23 +5,32 @@
  */
 package lapr.project.model;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author miniondevil
  */
+@XmlRootElement
 public class CandImpEstado implements CandidaturaEstado {
 
+   /**
+    * Candidatura a que o estado se refere
+    */
+    @XmlElement
     private final Candidatura cand;
-    public Candidatura getCandidatura(){
-        return cand;
-    }
     
+   
 
     public CandImpEstado(Candidatura cand) {
         this.cand = cand;
     }
     
-
+ public Candidatura getCandidatura(){
+        return cand;
+    }
+    
     @Override
     public boolean setEmSubmissao() {
         return false;

@@ -11,6 +11,7 @@ import lapr.project.model.Avaliacao;
 import lapr.project.model.Avaliavel;
 import lapr.project.model.Candidatura;
 import lapr.project.model.CandidaturaEstado;
+import lapr.project.model.CandidaturaGeral;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.DemonstracaoEstado;
@@ -47,8 +48,8 @@ public class AvaliarCandidaturaController {
         this.m_exposicao = e;
     }
 
-    public List<Candidatura> getAvaliaveis(FAE fae) {
-        return this.m_exposicao.getAvaliaveis(fae);
+    public List<CandidaturaGeral> getAvaliaveis(FAE fae) {
+             return this.m_exposicao.getAvaliaveis(fae);
     }
 
     public void selectCandidatura(Candidatura c) {
