@@ -69,7 +69,7 @@ public class CandidaturaAlteradaEstado extends CandImpEstado {
      * possível mudar
      */
     private boolean valida() {
-        return super.getCandidatura().getEstado().setConflitosAlterados();
+        return super.getCandidatura().getEstado().setAlterada();
     }
 
 }
