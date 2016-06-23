@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -137,6 +138,18 @@ public class TipoConflitoTest {
         boolean result = instance.equals(t);
         assertEquals(expResult, result);
         
+    }
+
+    /**
+     * Test of hashCode method, of class TipoConflito.
+     */
+    @Test
+    public void testHashCode() {
+        System.out.println("hashCode");
+        TipoConflito instance = new TipoConflito();
+        int expResult = 0;
+        int result = instance.hashCode();
+        assertEquals(expResult, result);
     }
     
 }

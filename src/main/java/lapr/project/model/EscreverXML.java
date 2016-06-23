@@ -22,28 +22,33 @@ public class EscreverXML {
     /**
      * Centro de exposições a ser lido.
      */
-    private CentroExposicoes ce;
+    private final CentroExposicoes ce;
+    /**
+     * ficheiro onde vai ser gravado.
+     */
+    private final File ficheiro;
     /**
      * Contrutor que recebe por parâmetro o centro de exposições.
      * @param ce 
+     * @param ficheiro 
      */
-    public EscreverXML(CentroExposicoes ce){
+    public EscreverXML(CentroExposicoes ce, File ficheiro){
         this.ce=ce;
+        this.ficheiro = ficheiro;
     }
     /**
      * Método que escreve para um ficheiro XML de nome "CentroExposicoes.xml" o centro de exposições.
      */
-    	public void EscreverCentro() {
+    	public void escreverCentro() {
 try{
 
-		File file = new File("teste.xml");
 		JAXBContext jaxbContext = JAXBContext.newInstance(CentroExposicoes.class);
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
 		// output pretty printed
 		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-		jaxbMarshaller.marshal(ce, file);
+		jaxbMarshaller.marshal(ce, ficheiro);
 		jaxbMarshaller.marshal(ce, System.out);
 
 	      } catch (JAXBException e) {

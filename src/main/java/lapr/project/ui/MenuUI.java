@@ -7,6 +7,9 @@ package lapr.project.ui;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Box;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -18,6 +21,7 @@ import lapr.project.model.FAE;
 import lapr.project.model.Mecanismo_NFAE;
 import lapr.project.model.Organizador;
 import lapr.project.model.Utilizador;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -110,7 +114,7 @@ public class MenuUI extends JFrame {
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenu32 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem30 = new javax.swing.JMenuItem();
+        jMenuItem32 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu41 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -133,15 +137,30 @@ public class MenuUI extends JFrame {
 
         jMenu1.setText("Ficheiro");
 
-        jMenuItem27.setText("Importar");
+        jMenuItem27.setText("Exportar");
+        jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem27ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem27);
 
-        jMenu4.setText("Exportar");
+        jMenu4.setText("Importar");
 
         jMenuItem28.setText("Exposições");
+        jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem28ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem28);
 
-        jMenuItem29.setText("jMenuItem29");
+        jMenuItem29.setText("Carregar centro");
+        jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem29ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem29);
 
         jMenu1.add(jMenu4);
@@ -287,13 +306,13 @@ public class MenuUI extends JFrame {
         jMenuItem6.setText("Criar Stand");
         jMenu32.add(jMenuItem6);
 
-        jMenuItem7.setText("Confirmar Interesse em Stand");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem32.setText("Confirmar Interesse em Stand");
+        jMenuItem32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
             }
         });
-        jMenu32.add(jMenuItem7);
+        jMenu32.add(jMenuItem32);
 
         jMenuItem8.setText("Atribuir Stand");
         jMenu32.add(jMenuItem8);
@@ -560,8 +579,24 @@ public class MenuUI extends JFrame {
     }//GEN-LAST:event_jMenuItem31ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-ConfirmarStandUI ui = new ConfirmarStandUI(this, ce, utilizador.getUsername());
+        ConfirmarStandUI ui = new ConfirmarStandUI(this, ce, utilizador.getUsername());
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
+             dispose();
+            ImportarUI ui = new ImportarUI(ce, utilizador);
+     
+    }//GEN-LAST:event_jMenuItem28ActionPerformed
+
+    private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
+dispose();
+        ImportarDadosUI ui = new ImportarDadosUI(ce,utilizador);
+    }//GEN-LAST:event_jMenuItem29ActionPerformed
+
+    private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
+dispose();
+ExportarUI ui = new ExportarUI(ce,utilizador);
+    }//GEN-LAST:event_jMenuItem27ActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -641,6 +676,7 @@ ConfirmarStandUI ui = new ConfirmarStandUI(this, ce, utilizador.getUsername());
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem31;
+    private javax.swing.JMenuItem jMenuItem32;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

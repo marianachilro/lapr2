@@ -7,7 +7,7 @@ package lapr.project.ui;
 
 import java.io.File;
 import javax.swing.JFileChooser;
-import lapr.project.controller.CarregarExposicoesController;
+import lapr.project.controller.ImportarDadosController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 
@@ -15,19 +15,16 @@ import lapr.project.model.Utilizador;
  *
  * @author miniondevil
  */
-public class ImportarUI {
-    private final CarregarExposicoesController controller;
-    public ImportarUI(CentroExposicoes ce,  Utilizador u){      
-        controller = new CarregarExposicoesController(ce);
+public class ImportarDadosUI {
+      private final ImportarDadosController controller;
+    public ImportarDadosUI(CentroExposicoes ce, Utilizador u){      
+        controller = new ImportarDadosController(ce);
            MyFileChooser fileChooser = new MyFileChooser();
                 int resposta = fileChooser.showOpenDialog(null);
                 if (resposta == JFileChooser.APPROVE_OPTION) {
                     File ficheiro = fileChooser.getSelectedFile();          
-          controller.lerExpo(ficheiro);
-          controller.addDados();
+          controller.lerCentro(ficheiro);
                 }
                 MenuUI ui = new MenuUI(ce,u);
     }
-    
-    }
-
+}

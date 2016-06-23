@@ -20,23 +20,32 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem27">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Importar"/>
+                <Property name="text" type="java.lang.String" value="Exportar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem27ActionPerformed"/>
+              </Events>
             </MenuItem>
             <Menu class="javax.swing.JMenu" name="jMenu4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Exportar"/>
+                <Property name="text" type="java.lang.String" value="Importar"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem28">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Exposi&#xe7;&#xf5;es"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem28ActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem29">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jMenuItem29"/>
+                    <Property name="text" type="java.lang.String" value="Carregar centro"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem29ActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>

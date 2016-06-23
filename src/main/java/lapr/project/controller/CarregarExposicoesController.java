@@ -6,14 +6,12 @@
 package lapr.project.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.LerFicheiroXML;
 import lapr.project.model.RegistoExposicoes;
-import org.xml.sax.SAXException;
 
 /**
  *
@@ -27,7 +25,7 @@ public class CarregarExposicoesController {
         this.ce=ce;
         le = new ArrayList<>();
     }
-    public void lerExpo(File ficheiro) throws IOException, SAXException{
+    public void lerExpo(File ficheiro){
         re = ce.getRegistoExposicoes();
         LerFicheiroXML ler = new LerFicheiroXML(ficheiro);
          le = ler.lerExposicoes();

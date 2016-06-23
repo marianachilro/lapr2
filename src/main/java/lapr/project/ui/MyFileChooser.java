@@ -57,16 +57,16 @@ public class MyFileChooser extends JFileChooser {
     public static void personalizarEmPortugues() {
 
         // Títulos das Caixas de Diálogo
-        UIManager.put("FileChooser.openDialogTitleText", "Importar Lista Telefónica");
-        UIManager.put("FileChooser.saveDialogTitleText", "Exportar Lista Telefónica");
+        UIManager.put("FileChooser.openDialogTitleText", "Importar dados");
+        UIManager.put("FileChooser.saveDialogTitleText", "Exportar dados");
 
         // Botão "Importar"
         UIManager.put("FileChooser.openButtonText", "Importar");
-        UIManager.put("FileChooser.openButtonToolTipText", "Importar Lista Telefónica");
+        UIManager.put("FileChooser.openButtonToolTipText", "Importar dados");
 
         // Botão "Exportar"
         UIManager.put("FileChooser.saveButtonText", "Exportar");
-        UIManager.put("FileChooser.saveButtonToolTipText", "Exportar Lista Telefónica");
+        UIManager.put("FileChooser.saveButtonToolTipText", "Exportar dados");
 
         // Botão "Cancelar"
         UIManager.put("FileChooser.cancelButtonText", "Cancelar");
