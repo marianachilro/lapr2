@@ -100,8 +100,8 @@ public class MenuUI extends JFrame {
         jMenu26 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem16 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem31 = new javax.swing.JMenuItem();
+        jMenuItem30 = new javax.swing.JMenuItem();
         jMenu20 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
@@ -224,21 +224,21 @@ public class MenuUI extends JFrame {
 
         jMenu13.add(jMenu26);
 
-        jMenuItem16.setText("Listar Candidaturas Removidas");
-        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem31.setText("Listar Candidaturas Removidas");
+        jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem16ActionPerformed(evt);
+                jMenuItem31ActionPerformed(evt);
             }
         });
-        jMenu13.add(jMenuItem16);
+        jMenu13.add(jMenuItem31);
 
-        jMenuItem15.setText("AtribuirCandidatura");
-        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem30.setText("Atribuir Candidatura");
+        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem15ActionPerformed(evt);
+                jMenuItem30ActionPerformed(evt);
             }
         });
-        jMenu13.add(jMenuItem15);
+        jMenu13.add(jMenuItem30);
 
         jMenu20.setText("Avaliar Candidatura");
 
@@ -287,8 +287,13 @@ public class MenuUI extends JFrame {
         jMenuItem6.setText("Criar Stand");
         jMenu32.add(jMenuItem6);
 
-        jMenuItem30.setText("Confirmar Interesse em Stand");
-        jMenu32.add(jMenuItem30);
+        jMenuItem7.setText("Confirmar Interesse em Stand");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu32.add(jMenuItem7);
 
         jMenuItem8.setText("Atribuir Stand");
         jMenu32.add(jMenuItem8);
@@ -530,23 +535,7 @@ public class MenuUI extends JFrame {
 
 
     }//GEN-LAST:event_jMenu41ActionPerformed
-
-    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-
-        ConfirmarStandUI ui = new ConfirmarStandUI(this, ce, utilizador.getUsername());
-
-
-    }                                           
-
-    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-      
-    }                                           
-
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        
-    }                                          
-
+                                        
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
 
@@ -557,6 +546,22 @@ public class MenuUI extends JFrame {
         // TODO add your handling code here:
         ListarCandRemovidasUI ui = new ListarCandRemovidasUI(this, ce, utilizador.getUsername());
     }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
+        // TODO add your handling code here:
+        
+        AtribuirCandidaturasUI ac = new AtribuirCandidaturasUI(MenuUI.this,ce);
+        
+        
+    }//GEN-LAST:event_jMenuItem30ActionPerformed
+
+    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
+        ListarCandRemovidasUI ui = new ListarCandRemovidasUI(this, ce, utilizador.getUsername());
+    }//GEN-LAST:event_jMenuItem31ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+ConfirmarStandUI ui = new ConfirmarStandUI(this, ce, utilizador.getUsername());
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -619,8 +624,6 @@ public class MenuUI extends JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
@@ -637,6 +640,7 @@ public class MenuUI extends JFrame {
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem30;
+    private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
