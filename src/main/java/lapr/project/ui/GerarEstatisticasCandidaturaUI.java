@@ -21,11 +21,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import lapr.project.controller.GerarEstatisticasCandidaturaController;
+import lapr.project.model.Atribuicao;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
+import lapr.project.model.FAE;
+import lapr.project.model.Utilizador;
 
 /**
  *
@@ -58,7 +61,7 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
     private JTextField txtRespostaRecomendacaoGlobal;
 
     public GerarEstatisticasCandidaturaUI(JFrame janelaPai, CentroExposicoes centro, Exposicao exposicao) {
-        super(janelaPai, "Confirmar Realização de Demonstração", true);
+        super(janelaPai, "Estatística Candidatura", true);
         this.janelaPai = janelaPai;
         this.centro = centro;
         this.exposicao = exposicao;
@@ -116,7 +119,14 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
                 expo.getEstado().setExposicaoCandidaturasAtribuidas();
                 expo.getEstado().setExposicaoCandidaturasAvaliadas();
                 expo.getEstado().setExposicaoCandidaturasDecididas();
-
+                
+                Utilizador u = new Utilizador(1, "nome", "username", "email@centro.pt", "Password.0", "key0");
+                Utilizador u1 = new Utilizador(1, "nome1", "username1", "email1@centro.pt", "Password.1", "key1");
+                Utilizador u2 = new Utilizador(1, "nome2", "username2", "email2@centro.pt", "Password.2", "key2");
+                FAE fae = new FAE(u);
+                FAE fae1 = new FAE(u1);
+                FAE fae2 = new FAE(u2);
+                
                 CandidaturaExposicao c = new CandidaturaExposicao();
                 c.setEmailRep("email@centro.pt");
                 c.getEstado().setEmSubmissao();
@@ -139,20 +149,24 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
                 expo.getListaDemonstracoes().addDemonstracao(d1);
                 d1.getEstado().setCriada();
 
-//                Avaliacao a = new Avaliacao("fae1", "email@centro.pt", "aceite", "justificação", 5, 5,
-//                        5, 4, 5);
-//                Avaliacao a1 = new Avaliacao("fae2", "email1@centro.pt", "aceite", "justificação1", 4, 3,
-//                        5, 4, 5);
-//
-//                Avaliacao a2 = new Avaliacao("fae1", "email2@centro.pt", "aceite", "justificação2", 4, 4,
-//                        4, 4, 4);
+                Atribuicao atrib = new Atribuicao(fae, c);
+                Atribuicao atrib1 = new Atribuicao(fae1, c1);
+                Atribuicao atrib2 = new Atribuicao(fae2, c2);
+                
+                Avaliacao a = new Avaliacao(atrib, "aceite", "justificação", 5, 5,
+                        5, 4, 5);
+                Avaliacao a1 = new Avaliacao(atrib1, "aceite", "justificação1", 4, 3,
+                        5, 4, 5);
+
+                Avaliacao a2 = new Avaliacao(atrib2, "aceite", "justificação2", 4, 4,
+                        4, 4, 4);
                 c.getEstado().setCompleta();
                 c.getEstado().setConflitosDetetados();
                 c.getEstado().setConflitosAlterados();
                 c.getEstado().setEmAvaliacao();
-//                c.getListaAvaliacoes().addAvaliacao(a);
-//                c.getListaAvaliacoes().addAvaliacao(a1);
-//                c.getListaAvaliacoes().addAvaliacao(a2);
+                c.getListaAvaliacoes().addAvaliacao(a);
+                c.getListaAvaliacoes().addAvaliacao(a1);
+                c.getListaAvaliacoes().addAvaliacao(a2);
                 c.getEstado().setAvaliada();
 
                 new GerarEstatisticasCandidaturaUI(null, ce, expo).setVisible(true);
@@ -329,13 +343,13 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
     }
 
     public JLabel criarLabel(String nomeLabel) {
-        JLabel lbl = new JLabel(nomeLabel);
-        return lbl;
+        
+        return new JLabel(nomeLabel);
     }
 
     public JTextField criarJTextField(int tamanho) {
-        JTextField txt = new JTextField(tamanho);
-        return txt;
+        
+        return new JTextField(tamanho);
     }
 
 }

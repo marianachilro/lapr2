@@ -30,9 +30,9 @@ import lapr.project.model.Utilizador;
  */
 public class AlterarPerfilUtilizadorUI extends JDialog {
 
-    private AlterarPerfilUtilizadorController controller;
+    private final AlterarPerfilUtilizadorController controller;
 
-    private Utilizador utilizador;
+    private final Utilizador utilizador;
     
     private Utilizador clone;
 
@@ -54,9 +54,9 @@ public class AlterarPerfilUtilizadorUI extends JDialog {
     
     private JButton botaoConfirmar;
 
-    private CentroExposicoes centro;
+    private final CentroExposicoes centro;
 
-    private JFrame janelaPai;
+    private final JFrame janelaPai;
 
     public AlterarPerfilUtilizadorUI(JFrame janelaPai, CentroExposicoes ce, String username) {
         super(janelaPai, "Alterar Perfil de Utilizador", true);
@@ -222,13 +222,13 @@ public class AlterarPerfilUtilizadorUI extends JDialog {
     }
     
     public JLabel criarLabel(String nomeLabel) {
-        JLabel lbl = new JLabel(nomeLabel);
-        return lbl;
+        
+        return new JLabel(nomeLabel);
     }
 
     public JTextField criarJTextField(int tamanho) {
-        JTextField txt = new JTextField(tamanho);
-        return txt;
+         
+        return new JTextField(tamanho);
     }
     
     public JButton criarBotaoSim(){

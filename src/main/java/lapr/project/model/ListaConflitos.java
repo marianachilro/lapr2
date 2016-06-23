@@ -83,4 +83,14 @@ public class ListaConflitos {
         return lc.add(c);
     }
     
+    public List <Conflito> getListaConlitosFAE(Utilizador u){
+        List <Conflito> lista = new ArrayList<>();
+        for(Conflito c : lc){
+            if(c.getFAE().equals(u)){
+                lista.add(c);
+            }
+        }
+        return lista;
+    }
+    
 }

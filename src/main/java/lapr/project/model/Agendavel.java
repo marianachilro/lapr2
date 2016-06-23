@@ -5,11 +5,15 @@
  */
 package lapr.project.model;
 
+import java.util.TimerTask;
+import lapr.project.utils.Data;
+
 /**
  *
  * @author marianachilro
  */
-public interface MecanismoDetecaoConflito {
-    public void detetarConflitos(Exposicao expo);
-    public boolean isConflito(FAE f, CandidaturaGeral c);
+public interface Agendavel {
+    
+    public void schedule(TimerTask task, Data data);
+    
 }

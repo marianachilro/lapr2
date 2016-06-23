@@ -19,15 +19,15 @@ public class CandImpEstado implements CandidaturaEstado {
     * Candidatura a que o estado se refere
     */
     @XmlElement
-    private final Candidatura cand;
+    private final CandidaturaGeral cand;
     
    
 
-    public CandImpEstado(Candidatura cand) {
+    public CandImpEstado(CandidaturaGeral cand) {
         this.cand = cand;
     }
     
- public Candidatura getCandidatura(){
+ public CandidaturaGeral getCandidatura(){
         return cand;
     }
     
