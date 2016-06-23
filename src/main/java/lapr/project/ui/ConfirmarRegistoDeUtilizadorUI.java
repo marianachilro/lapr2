@@ -122,7 +122,7 @@ public class ConfirmarRegistoDeUtilizadorUI extends JDialog {
                         int i = JOptionPane.showConfirmDialog(ConfirmarRegistoDeUtilizadorUI.this, u.toString() + 
                                 " foi confirmado com sucesso! Deseja continuar?", "Utilizador Confirmado", JOptionPane.YES_NO_OPTION);
                         if (i == JOptionPane.YES_OPTION) {
-                            jLista.setSelectedValue(null, false);
+                            jLista.clearSelection();
                         } else {
                             dispose();
                         }
