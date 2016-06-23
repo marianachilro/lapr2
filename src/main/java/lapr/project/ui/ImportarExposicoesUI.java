@@ -15,9 +15,9 @@ import lapr.project.model.Utilizador;
  *
  * @author miniondevil
  */
-public class ImportarUI {
+public class ImportarExposicoesUI {
     private final CarregarExposicoesController controller;
-    public ImportarUI(CentroExposicoes ce,  Utilizador u){      
+    public ImportarExposicoesUI(CentroExposicoes ce,  Utilizador u){      
         controller = new CarregarExposicoesController(ce);
            MyFileChooser fileChooser = new MyFileChooser();
                 int resposta = fileChooser.showOpenDialog(null);
