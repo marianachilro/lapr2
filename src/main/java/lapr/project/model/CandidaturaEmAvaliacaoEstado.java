@@ -14,7 +14,7 @@ public class CandidaturaEmAvaliacaoEstado extends CandImpEstado {
     /**
      * Contrutor do Estado de "Em Avaliação" da Candidatura.
      *
-     * @param candidatura a candidatura que vai transitar de estado
+     * @param cand a candidatura que vai transitar de estado
      */
     public CandidaturaEmAvaliacaoEstado(CandidaturaGeral cand) {
         super(cand);

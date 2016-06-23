@@ -142,10 +142,7 @@ public class Conflito {
         if (!Objects.equals(this.c, other.c)) {
             return false;
         }
-        if (!Objects.equals(this.tipo, other.tipo)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.tipo, other.tipo);
     }
 
 }
