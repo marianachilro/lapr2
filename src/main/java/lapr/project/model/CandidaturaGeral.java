@@ -113,5 +113,9 @@ public class CandidaturaGeral implements Candidatura {
     public boolean valida() {
         return true;
     }
+    
+    public String toString(){
+        return String.format("Representante: %s", emailRep);
+    }
 
 }
