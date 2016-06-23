@@ -42,6 +42,10 @@ public class AtualizarConflitoController {
         this.listaExposFAE=centro.getRegistoExposicoes().getListaExposicoesDoFAE(u);
     }
     
+    public List <Exposicao> getListaExposicoes(){
+        return this.listaExposFAE;
+    }
+    
     public void seleciona (Exposicao e){
         this.exposicao=e;
     }
