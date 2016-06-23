@@ -584,7 +584,7 @@ public class MenuUI extends JFrame {
 
     private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
              dispose();
-            ImportarUI ui = new ImportarUI(ce, utilizador);
+            ImportarExposicoesUI ui = new ImportarExposicoesUI(ce, utilizador);
      
     }//GEN-LAST:event_jMenuItem28ActionPerformed
 
