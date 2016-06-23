@@ -7,8 +7,12 @@ package lapr.project.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Arrays;
+import java.util.regex.Pattern;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -22,7 +26,7 @@ import lapr.project.model.Utilizador;
 public class LoginUI extends javax.swing.JFrame {
 
     private CentroExposicoes ce;
-    
+    private Utilizador utilizador;
 
     /**
      * Creates new form LoginUI
@@ -32,14 +36,14 @@ public class LoginUI extends javax.swing.JFrame {
     public LoginUI(CentroExposicoes ce) {
 
         this.ce = ce;
-        
+
         initComponents();
         setVisible(true);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 int result = JOptionPane.showConfirmDialog(
-                        LoginUI.this, "Tens a certeza?");
+                        LoginUI.this, "Tem a certeza?");
                 if (result == JOptionPane.OK_OPTION) {
 
                     LoginUI.this.setDefaultCloseOperation(
@@ -88,6 +92,11 @@ public class LoginUI extends javax.swing.JFrame {
         });
 
         jTextField1.setText("username/e-mail...");
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTextField1MousePressed(evt);
+            }
+        });
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -103,7 +112,20 @@ public class LoginUI extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.setText("************");
+        jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPasswordField1MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPasswordField1MousePressed(evt);
+            }
+        });
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -113,7 +135,7 @@ public class LoginUI extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 531, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login.jpg"))); // NOI18N
@@ -125,33 +147,34 @@ public class LoginUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(290, 290, 290)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(110, 110, 110)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
                         .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(140, 140, 140)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(290, 290, 290)
+                .addGap(230, 230, 230)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(280, 280, 280)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
@@ -164,9 +187,61 @@ public class LoginUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        try{
+       String email="";
+       String username="";
+       String password="";
+       if(jTextField1.getText().isEmpty() || Arrays.toString(jPasswordField1.getPassword()).isEmpty()){
+           throw new IllegalArgumentException("Dados vazios!");
+       }
+        if((Pattern.matches("(.*)(\\@)(.*)",jTextField1.getText()))){
+            email=jTextField1.getText();
+        }else{
+            username=jTextField1.getText();
+            if(username == null || username.trim().isEmpty()){
+                throw new IllegalArgumentException("E-mail/Username vazio!");
+            }
+        }
+        
+        if(email.equalsIgnoreCase("") && !username.trim().isEmpty()){
+            for(Utilizador u : ce.getRegistoUtilizadores().getListaUtilizadores()){
+                if(u.getUsername().equalsIgnoreCase(username)){
+                    password=u.getPassword();
+                    utilizador=u;
+                    
+                }
+            }
+        }else{
+            for(Utilizador u : ce.getRegistoUtilizadores().getListaUtilizadores()){
+                if(u.getEmail().equalsIgnoreCase(email)){
+                    password=u.getPassword();
+                    utilizador=u;
+                }
+            }
+        }
+        if(utilizador==null){
+            throw new IllegalArgumentException("Não é utilizador!");
+        }
+       char[] inputPass =jPasswordField1.getPassword();
+       String passIntroduzida="";
+       for(int i=0;i<inputPass.length;i++){
+           passIntroduzida+=inputPass[i];
+       }
+        if(password.equalsIgnoreCase(passIntroduzida)){
+        
         dispose();
-       Utilizador u= null;
-        MenuUI j = new MenuUI(ce,u);
+        MenuUI j = new MenuUI(ce, utilizador);
+        }else{
+            throw new IllegalArgumentException("Dados incorretos!");
+        }
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(
+                    LoginUI.this,
+                    ex.getMessage(),
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -174,6 +249,29 @@ public class LoginUI extends javax.swing.JFrame {
         dispose();
         CriarPerfildeUtilizadorUI c = new CriarPerfildeUtilizadorUI(ce);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void jTextField1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MousePressed
+        // TODO add your handling code here:
+
+        jTextField1.setText("");
+
+
+    }//GEN-LAST:event_jTextField1MousePressed
+
+    private void jPasswordField1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField1MousePressed
+        // TODO add your handling code here:
+         jPasswordField1.setEchoChar((char)0);
+         jPasswordField1.setText("");
+         jPasswordField1.setEchoChar('\u25cf');
+    }//GEN-LAST:event_jPasswordField1MousePressed
+
+    private void jPasswordField1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1MouseExited
 // /**
 //     * @param args the command line arguments
 //     */

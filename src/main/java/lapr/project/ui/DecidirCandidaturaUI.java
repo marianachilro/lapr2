@@ -57,7 +57,7 @@ public class DecidirCandidaturaUI extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 int result = JOptionPane.showConfirmDialog(
-                        DecidirCandidaturaUI.this, "Tens a certeza?");
+                        DecidirCandidaturaUI.this, "Tem a certeza?");
                 if (result == JOptionPane.OK_OPTION) {
 
                     DecidirCandidaturaUI.this.setDefaultCloseOperation(

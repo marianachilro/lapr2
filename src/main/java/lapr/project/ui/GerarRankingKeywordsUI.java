@@ -50,7 +50,7 @@ public class GerarRankingKeywordsUI extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 int result = JOptionPane.showConfirmDialog(
-                        GerarRankingKeywordsUI.this, "Tens a certeza?");
+                        GerarRankingKeywordsUI.this, "Tem a certeza?");
                 if (result == JOptionPane.OK_OPTION) {
 
                     GerarRankingKeywordsUI.this.setDefaultCloseOperation(
