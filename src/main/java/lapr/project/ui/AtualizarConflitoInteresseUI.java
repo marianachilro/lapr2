@@ -125,6 +125,7 @@ public class AtualizarConflitoInteresseUI extends JDialog {
             p.add(criarPainelExposicoes());
             p.add(criarPainelConflitos());
             if (!listaConflitos.isEmpty()) {
+                p.add(criarBotaoVerDescricao());
                 p.add(criarBotaoRemoverConflito());
                 p.add(criarBotaoAlterarConflito());
             } else {
@@ -200,6 +201,22 @@ public class AtualizarConflitoInteresseUI extends JDialog {
         return p;
     }
 
+    public JButton criarBotaoVerDescricao() {
+        JButton btn = new JButton("Ver Descrição");
+        btn.setToolTipText("Ver descrição do Conflito selecionado");
+        btn.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Conflito conf = (Conflito) comboBoxConflitos.getSelectedItem();
+                if (conf != null) {
+                    JOptionPane.showMessageDialog(AtualizarConflitoInteresseUI.this, conf.toString());
+                }
+            }
+        });
+        return btn;
+    }
+
     public JButton criarBotaoRemoverConflito() {
         JButton btn = new JButton("Remover Conflito");
         btn.setToolTipText("Remove o Conflito selecionado");
@@ -207,7 +224,10 @@ public class AtualizarConflitoInteresseUI extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                Conflito conf = (Conflito) comboBoxConflitos.getSelectedItem();
+                if (conf != null) {
+                    listaConflitos.remove(conf);
+                }
             }
         });
         return btn;
