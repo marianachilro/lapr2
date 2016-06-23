@@ -7,9 +7,14 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.Avaliacao;
+import lapr.project.model.CandidaturaDemonstracao;
+import lapr.project.model.CandidaturaExposicao;
+import lapr.project.model.CandidaturaGeral;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Conflito;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.FAE;
 import lapr.project.model.ListaConflitos;
 import lapr.project.model.RegistoTipoConflitos;
@@ -30,6 +35,10 @@ public class AtualizarConflitoController {
     
     private Exposicao exposicao;
     
+    private Demonstracao demonstracao;
+    
+    private CandidaturaGeral candidatura;
+    
     private Conflito conflito;
     
     private Conflito clone;
@@ -46,8 +55,50 @@ public class AtualizarConflitoController {
         return this.listaExposFAE;
     }
     
+    public List<CandidaturaExposicao> getListaCandidaturasFAEExpo(){
+        List <CandidaturaExposicao> lista = exposicao.getListaCandidaturas().getListCandidaturas();
+        boolean b = false;
+        for(CandidaturaExposicao c : lista){
+            List <Avaliacao> listaAvaliacoes = c.getListaAvaliacoes().getListaAvaliacao();
+            for(Avaliacao a : listaAvaliacoes){
+                if(a.getAtribuicao().getFAE().getUtilizador().equals(utilizador)){
+                    b = true;
+                }
+            }
+            if(!b){
+                lista.remove(c);
+            }
+        }
+        return lista;
+    }
+    
+    public List<CandidaturaDemonstracao> getListaCandidaturasFAEDemo(){
+        List <CandidaturaDemonstracao> lista = demonstracao.getListaCandidaturas().getListCandidaturas();
+        boolean b = false;
+        for(CandidaturaDemonstracao c : lista){
+            List <Avaliacao> listaAvaliacoes = c.getListaAvaliacoes().getListaAvaliacao();
+            for(Avaliacao a : listaAvaliacoes){
+                if(a.getAtribuicao().getFAE().getUtilizador().equals(utilizador)){
+                    b = true;
+                }
+            }
+            if(!b){
+                lista.remove(c);
+            }
+        }
+        return lista;
+    }
+    
     public void seleciona (Exposicao e){
         this.exposicao=e;
+    }
+    
+    public void seleciona(Demonstracao d){
+        this.demonstracao=d;
+    }
+    
+    public void seleciona(CandidaturaGeral c){
+        this.candidatura=c;
     }
     
     public List <Conflito> getConflitosFAE(){
