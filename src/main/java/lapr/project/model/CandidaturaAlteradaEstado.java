@@ -14,7 +14,7 @@ public class CandidaturaAlteradaEstado extends CandImpEstado {
     /**
      * Contrutor do Estado de "Alterada" da Candidatura.
      *
-     * @param candidatura a candidatura que vai transitar de estado
+     * @param cand a candidatura que vai transitar de estado
      */
     public CandidaturaAlteradaEstado(CandidaturaGeral cand) {
         super(cand);
@@ -69,7 +69,7 @@ public class CandidaturaAlteradaEstado extends CandImpEstado {
      * possível mudar
      */
     private boolean valida() {
-        return super.getCandidatura().getEstado().setConflitosAlterados();
+        return super.getCandidatura().getEstado().setAlterada();
     }
 
 }

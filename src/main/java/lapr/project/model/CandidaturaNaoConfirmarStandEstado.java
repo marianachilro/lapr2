@@ -14,7 +14,7 @@ public class CandidaturaNaoConfirmarStandEstado extends CandImpEstado {
     /**
      * Contrutor do Estado de "Não Confirmar Stand" da Candidatura.
      *
-     * @param candidatura a candidatura que vai transitar de estado
+     * @param cand a candidatura que vai transitar de estado
      */
     public CandidaturaNaoConfirmarStandEstado(CandidaturaGeral cand) {
         super(cand);
