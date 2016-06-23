@@ -136,6 +136,7 @@ public class RegistarCandidaturaDemonstracaoUI extends JDialog {
         p.setLayout(new GridLayout(2, 2));
         JLabel lbl1 = new JLabel("Escolha uma candidatura:");
         JLabel lbl2 = new JLabel("Escolha as demonstrações:");
+        JScrollPane sc = new JScrollPane(jListaDemo);
         p.add(lbl1);
         p.add(cb);
         p.add(lbl2);
@@ -159,7 +160,7 @@ public class RegistarCandidaturaDemonstracaoUI extends JDialog {
                 btConf.setEnabled(true);
             }
         });
-        p.add(jListaDemo);
+        p.add(sc);
         return p;
     }
     

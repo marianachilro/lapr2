@@ -36,6 +36,7 @@ public class AnaliseFAE {
     private static final int N_SUB_OMISSAO = 0;
     private static final float MEDIA_TOTAL_OMISSAO = 0;
     private static final String DECISAO_OMISSAO = "NÃO";
+    private static final float ESTATISTICA_OMISSAO = 0;
     private static final float NIVEL_SIGNIFICANCIA = (float) 0.05;
     private static final float REGIAO_CRITICA = (float) 1.645;
 
@@ -45,6 +46,7 @@ public class AnaliseFAE {
         this.mediaTotal = MEDIA_TOTAL_OMISSAO;
         this.decisao = DECISAO_OMISSAO;
         this.mediasFae = new ArrayList<>();
+        this.estatistica = ESTATISTICA_OMISSAO;
     }
 
     public AnaliseFAE(Utilizador utilizador, int nCand, float mediaTotal, List<Float> mediasFaes) {
@@ -52,7 +54,7 @@ public class AnaliseFAE {
         this.nCand = nCand;
         this.mediaTotal = mediaTotal;
         this.mediasFae = new ArrayList<>();
-        this.decisao = DECISAO_OMISSAO;
+        gerarAnalise();
     }
 
     public Utilizador getUtilizador() {
@@ -120,6 +122,12 @@ public class AnaliseFAE {
             setDecisao("SIM");
         }
         return estatistica;
+    }
+    
+    @Override
+    public String toString() {
+        return String.format("\t%s\t \t%d\t \t%.3f\t \t%.3f\t \t%.3f\t \t%s\t", utilizador.getUsername(), nCand, mediaClassificacoes,
+                mediaDesvios, estatistica, decisao);
     }
 
     private void calcMediaDesvios() {

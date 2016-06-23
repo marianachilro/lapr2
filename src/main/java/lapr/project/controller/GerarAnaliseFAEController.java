@@ -14,7 +14,6 @@ import lapr.project.model.CandidaturaGeral;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
-import lapr.project.utils.FicheiroAnalise;
 import lapr.project.model.ListaAtribuicoes;
 import lapr.project.model.ListaAvaliacoes;
 import lapr.project.model.ListaFAEs;
@@ -84,21 +83,26 @@ public class GerarAnaliseFAEController {
                 }
             }
             calcMediaTotal();
+            novaAnalise();
             analise = new AnaliseFAE(u, nCand, media, listMediasFae);
-            analise.gerarAnalise();
             listAnalises.add(analise);
         }
     }
 
-    public void toFile() throws FileNotFoundException {
-        FicheiroAnalise file = new FicheiroAnalise(listAnalises);
-        file.escreverFicheiro();
+    @Override
+    public String toString() {
+        String str = "FAE  |  Nº de submissões  |  Média das Classificações do FAE  |  Média dos Desvios  |  Valor observado da estatística de teste  |  Alerta\n";
+        str = str +  "==========================================================================================================\n";  
+        for(AnaliseFAE al : listAnalises) {
+            str = str + al.toString();
+        }
+        return str;
     }
 
-    public boolean needsWarning(AnaliseFAE a) {
+    public boolean needsWarning() {
         boolean b = false;
         for(AnaliseFAE al : listAnalises) {
-            if (a.getDecisao().equals("SIM")) {
+            if (al.getDecisao().equals("SIM")) {
                 b = true;
             }    
         }
