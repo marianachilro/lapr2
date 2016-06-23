@@ -50,7 +50,7 @@ public class AtribuirCandidaturaController {
     }
 
     public void getExpo(String expo) {
-        e = re.getExpo(expo);
+       e = re.getExpo(expo);
         st = e.getEstado();
         if (checkEstado()) {
             listaAtribuicoes = e.getListaAtribuicoes();
@@ -81,7 +81,7 @@ public class AtribuirCandidaturaController {
     }
 
     public boolean checkEstado() {
-        if(st.setExposicaoConflitosAtualizados() && !st.setExposicaoConflitosDetetados()){
+        if(st.setExposicaoConflitosAtualizados() && !st.setExposicaoConflitosDetetados() || st.setDemonstracaoConflitosAtualizados() &&!st.setDemonstracaoConflitosDetetados()){
         return true;
         }
         return false;
