@@ -10,6 +10,7 @@ import lapr.project.model.Atribuicao;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.Avaliavel;
 import lapr.project.model.Candidatura;
+import lapr.project.model.CandidaturaEstado;
 import lapr.project.model.CandidaturaGeral;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
@@ -31,7 +32,7 @@ public class AvaliarCandidaturaController {
     private final FAE m_oFAE;
     private Candidatura candidatura;
     private Avaliavel interfaceAvaliavel;
-    private Demonstracao demonstracao;
+    private Demonstracao demonstracao; 
 
     public AvaliarCandidaturaController(CentroExposicoes ce, FAE fae) {
         this.m_oCE = ce;
