@@ -14,9 +14,9 @@ public class CandidaturaConflitosDetetadosEstado extends CandImpEstado {
     /**
      * Contrutor do Estado de "Conflitos Detetados" da Candidatura.
      *
-     * @param candidatura a candidatura que vai transitar de estado
+     * @param cand a candidatura que vai transitar de estado 
      */
-    public CandidaturaConflitosDetetadosEstado(Candidatura cand) {
+    public CandidaturaConflitosDetetadosEstado(CandidaturaGeral cand) {
         super(cand);
     }
 

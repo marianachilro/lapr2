@@ -16,7 +16,7 @@ public class CandidaturaNaoConfirmarStandEstado extends CandImpEstado {
      *
      * @param candidatura a candidatura que vai transitar de estado
      */
-    public CandidaturaNaoConfirmarStandEstado(Candidatura cand) {
+    public CandidaturaNaoConfirmarStandEstado(CandidaturaGeral cand) {
         super(cand);
     }
     
