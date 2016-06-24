@@ -123,7 +123,7 @@ public class AtualizarConflitoInteresseUI extends JDialog {
     }
 
     public JPanel criarPainelOutput() {
-        JPanel p = new JPanel(new GridLayout(5, 2, 3, 3));
+        JPanel p = new JPanel(new GridLayout(7, 2, 3, 3));
         p.setBorder(new EmptyBorder(10, 10, 10, 10));
         if (!listaExposFAE.isEmpty()) {
             p.add(criarPainelExposicoes());
@@ -195,13 +195,10 @@ public class AtualizarConflitoInteresseUI extends JDialog {
                 if (conf != null) {
                     conflito = conf;
                 }
-
             }
-
         });
         p.add(lbl);
         p.add(comboBoxConflitos);
-
         return p;
     }
 

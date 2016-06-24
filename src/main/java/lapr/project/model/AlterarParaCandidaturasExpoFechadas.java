@@ -5,25 +5,24 @@
  */
 package lapr.project.model;
 
-import lapr.project.controller.DetetarConflitosController;
 import java.util.TimerTask;
 
 /**
  *
  * @author marianachilro
  */
-public class CriarControllerDetetarConflitos extends TimerTask{
+public class AlterarParaCandidaturasExpoFechadas extends TimerTask{
 
     private final CentroExposicoes centro;
     private final Exposicao exposicao;
     
-    public CriarControllerDetetarConflitos(CentroExposicoes centro, Exposicao exposicao){
+    public AlterarParaCandidaturasExpoFechadas(CentroExposicoes centro, Exposicao expo){
         this.centro=centro;
-        this.exposicao=exposicao;
+        this.exposicao=expo;
     }
     @Override
     public void run() {
-        DetetarConflitosController controller = new DetetarConflitosController(centro, exposicao);
+        this.exposicao.setEstado(new ExposicaoCandidaturasExpoFechadasEstado(this.exposicao));
     }
     
 }

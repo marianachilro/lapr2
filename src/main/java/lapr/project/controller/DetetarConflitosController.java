@@ -36,7 +36,6 @@ public class DetetarConflitosController {
             for(MecanismoGeralDetecaoConflitos mecanismo : listaMecanismos){
                 mecanismo.detetarConflitos(exposicao);
             }
-        }
-        
+        }  
     }
 }
