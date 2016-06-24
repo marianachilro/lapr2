@@ -29,8 +29,8 @@ public class CriarExposicaoController {
         this.m_oCE = ce;
     }
 
-    public void newExposicao() {
-        this.m_exposicao = m_oCE.getRegistoExposicoes().newExposicao();
+    public Exposicao newExposicao() {
+       return this.m_exposicao = m_oCE.getRegistoExposicoes().newExposicao();
     }
 
     public void setDadosExposicao(String sTitulo, String sDescritivo, Data oDtInicio, Data oDtFim,Local local,Data oDtIniSubCand, Data oDtFimSubCand, Data oDtFimActConf, Data oDtFimAvCand) {
@@ -52,6 +52,7 @@ public class CriarExposicaoController {
     }
 
     public void setLocal(Local local) {
+        
         this.m_exposicao.setLocal(local);
     }
 
