@@ -5,6 +5,7 @@
  */
 package lapr.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
@@ -81,4 +82,20 @@ public class AtribuirStandController {
         }
     }
 
+    public List<String> candToListString(List<CandidaturaExposicao> lista) {
+        List <String> listaSt = new ArrayList<>();
+        for(CandidaturaExposicao obj  : lista) {
+            listaSt.add(obj.toString());
+        }
+        return listaSt;
+    }
+    
+    public List<String> standToListString(List<Stand> lista) {
+        List <String> listaSt = new ArrayList<>();
+        for(Stand obj  : lista) {
+            listaSt.add(obj.toString());
+        }
+        return listaSt;
+    }
+    
 }

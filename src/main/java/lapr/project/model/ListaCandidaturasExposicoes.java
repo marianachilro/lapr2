@@ -51,8 +51,8 @@ public class ListaCandidaturasExposicoes {
      * remove uma candidatura da lista de candidaturas.
      * @param c
      */
-    public void removeCandidatura(CandidaturaExposicao c) {
-        listaCandidaturas.remove(c);
+    public boolean removeCandidatura(CandidaturaExposicao c) {
+        return listaCandidaturas.remove(c);
     }
 
     /**

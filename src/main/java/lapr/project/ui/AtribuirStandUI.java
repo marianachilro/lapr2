@@ -115,8 +115,8 @@ public class AtribuirStandUI extends JDialog {
                 controller.selectExposicao((Exposicao) jLista.getSelectedValue());
                 List<CandidaturaExposicao> lc = controller.getListaCandidaturas();
                 List<Stand> ls = controller.getListaStandsNaoAtribuidos();
-                cbCand.setModel(new DefaultComboBoxModel(lc.toArray()));
-                cbStand.setModel(new DefaultComboBoxModel(ls.toArray()));
+                cbCand.setModel(new DefaultComboBoxModel(controller.candToListString(lc).toArray()));
+                cbStand.setModel(new DefaultComboBoxModel(controller.standToListString(ls).toArray()));
                 if (lc.isEmpty()) {
                     int i = JOptionPane.showConfirmDialog(AtribuirStandUI.this, "Não existem candidaturas disponíveis. Deseja selecionar outra exposição?",
                             "Atribuir Stand", JOptionPane.YES_NO_OPTION);

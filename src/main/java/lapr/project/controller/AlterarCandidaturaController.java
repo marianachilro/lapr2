@@ -43,15 +43,15 @@ public class AlterarCandidaturaController {
         this.email = email;
     }
 
-    public List<Exposicao> getListaExposicoes(){
+    public List<Exposicao> getListaExposicoes() {
         this.re = ce.getRegistoExposicoes();
-      
-        
+
         return re.getListaExposicoes();
     }
-    public List<CandidaturaExposicao>getListaCandidaturasRep(Exposicao e){
-        this.e=e;
-        lc=e.getListaCandidaturas();
+
+    public List<CandidaturaExposicao> getListaCandidaturasRep(Exposicao e) {
+        this.e = e;
+        lc = e.getListaCandidaturas();
         return lc.getListaCandRepEstadoCriadoOuAlterado(email);
     }
 
@@ -59,6 +59,26 @@ public class AlterarCandidaturaController {
         this.c = c;
         cc = new CandidaturaExposicao(c);
         return cc;
+    }
+
+    public String getNomeEmpresa() {
+        return c.getNomeEmpresa();
+    }
+
+    public String getMorada() {
+        return c.getMorada();
+    }
+
+    public String getTelemovel() {
+        return Integer.toString(c.getTelemovel());
+    }
+
+    public String getArea() {
+        return Double.toString(c.getArea());
+    }
+
+    public String getConvites() {
+        return Integer.toString(c.getConvites());
     }
 
     public void setDados(String nome, String morada, int telemovel, double area, int convites) {
@@ -80,8 +100,8 @@ public class AlterarCandidaturaController {
         lp.validaProduto(p);
     }
 
-    public void addProduto() {
-        lp.addProduto(p);
+    public boolean addProduto() {
+        return lp.addProduto(p);
     }
 
     public List<Keyword> getListaKeyWords() {
@@ -93,8 +113,8 @@ public class AlterarCandidaturaController {
         return k;
     }
 
-    public void registaKeyword() {
-        cc.getListaKeywords().addKeyword(k);
+    public boolean registaKeyword() {
+        return cc.getListaKeywords().addKeyword(k);
     }
 
     public List<Demonstracao> getListaDemonstracoesExposicao() {
@@ -111,15 +131,17 @@ public class AlterarCandidaturaController {
 
     }
 
-    public void registaDemo() {
-        lcd.registaDemonstracao(d);
+    public boolean registaDemo() {
+        return lcd.registaDemonstracao(d);
     }
 
-    public void alterarCandidatura() {
-        lc.removeCandidatura(c);
-        lc.registaCandidatura(cc);
+    public boolean alterarCandidatura() {
         CandidaturaEstado st = cc.getEstado();
-        st.setAlterada();
+        if (lc.removeCandidatura(c) && lc.registaCandidatura(cc) && st.setAlterada()) {
+            return true;
+        } else {
+            return false;
+        }
 
     }
 }
