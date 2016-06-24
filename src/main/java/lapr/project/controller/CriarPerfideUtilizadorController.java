@@ -34,12 +34,9 @@ public class CriarPerfideUtilizadorController {
     public void setDados(int shift, String nome, String username, String email, String password, String keyword) {
 
         this.u.setShift(shift);
-
         this.u.setNome(nome);
         this.u.setUsername(username);
-
         this.u.setEmail(email);
-
         this.u.setPassword(password);
         this.u.setKeyword(keyword);
     }

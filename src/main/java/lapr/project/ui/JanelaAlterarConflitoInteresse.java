@@ -128,7 +128,7 @@ public class JanelaAlterarConflitoInteresse extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 botaoSim.setEnabled(false);
                 botaoNao.setEnabled(true);
-                comboBox.setEnabled(true);
+//                comboBox.setEnabled(true);
             }
 
         });
@@ -141,14 +141,14 @@ public class JanelaAlterarConflitoInteresse extends JDialog {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                botaoSim.setEnabled(true);
-                botaoNao.setEnabled(false);
-                if (comboBox.equals(comboBoxCandidaturas)) {
-                    comboBox.setSelectedItem(conflito.getCandidaturas());
-                } else {
-                    comboBox.setSelectedItem(conflito.getTipo());
-                }
-                comboBox.setEnabled(false);
+//                botaoSim.setEnabled(true);
+//                botaoNao.setEnabled(false);
+//                if (comboBox.equals(comboBoxCandidaturas)) {
+//                    comboBox.setSelectedItem(conflito.getCandidaturas());
+//                } else {
+//                    comboBox.setSelectedItem(conflito.getTipo());
+//                }
+//                comboBox.setEnabled(false);
             }
 
         });

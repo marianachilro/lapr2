@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import lapr.project.controller.GerarRankingKeywordsController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
+import lapr.project.model.ExposicaoEstado;
 import lapr.project.model.Local;
 import lapr.project.model.Utilizador;
 import lapr.project.utils.Data;
@@ -31,6 +32,7 @@ public class GerarRankingKeywordsUI extends javax.swing.JFrame {
     private MenuUI menu;
     private final GerarRankingKeywordsController controller;
     private Utilizador utilizador;
+    private  ExposicaoEstado es;
 
     /**
      * Creates new form GerarRankingKeywordsUI
@@ -173,12 +175,20 @@ public class GerarRankingKeywordsUI extends javax.swing.JFrame {
 
             }
 
+             es = exposicao.getEstado();
             try {
+                
+                
+                if(es.setExposicaoCandidaturasDecididas()){
+                
                 controller.selectExposicao(exposicao);
                 JOptionPane.showMessageDialog(menu, "Ficheiro CSV criado!");
                     dispose();
 
                     MenuUI j = new MenuUI(ce,utilizador);
+                }else{
+                    throw new IllegalArgumentException("Candidaturas não foram decididas!");
+                }
                 
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(GerarRankingKeywordsUI.class.getName()).log(Level.SEVERE, null, ex);

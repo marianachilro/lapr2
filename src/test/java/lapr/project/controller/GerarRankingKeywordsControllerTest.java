@@ -1,42 +1,50 @@
-package lapr.project.ui;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package lapr.project.controller;
 
-import java.io.IOException;
-import lapr.project.model.Avaliacao;
+import java.util.List;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
-import lapr.project.model.ExposicaoEstado;
-import lapr.project.model.FAE;
 import lapr.project.model.Keyword;
 import lapr.project.model.Local;
-import lapr.project.model.Utilizador;
 import lapr.project.utils.Data;
-import org.xml.sax.SAXException;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
- * @author Nuno Bettencourt <nmb@isep.ipp.pt> on 24/05/16.
+ *
+ * @author catarinarib
  */
-class Main {
+public class GerarRankingKeywordsControllerTest {
 
     /**
-     * Private constructor to hide implicit public one.
+     * Test of getListaExposicoes method, of class
+     * GerarRankingKeywordsController.
      */
-    private Main() {
+    @Test
+    public void testGetListaExposicoes() {
+        System.out.println("getListaExposicoes");
+
+        CentroExposicoes ce = new CentroExposicoes();
+        GerarRankingKeywordsController instance = new GerarRankingKeywordsController(ce);
+
+        List<Exposicao> expResult = ce.getRegistoExposicoes().getListaExposicoes();
+        List<Exposicao> result = instance.getListaExposicoes();
+        assertEquals(expResult, result);
 
     }
 
     /**
-     * @param args the command line arguments
+     * Test of selectExposicao method, of class GerarRankingKeywordsController.
      */
-    public static void main(String[] args) throws IOException, SAXException {
-
+    @Test
+    public void testSelectExposicao() throws Exception {
+        System.out.println("selectExposicao");
         CentroExposicoes ce = new CentroExposicoes();
-        Utilizador gestor = new Utilizador(2, "Gestor", "gestor", "gestor@centro.pt", "aA;1", "ddddd");
-        ce.getRegistoUtilizadores().getListaUtilizadores().add(gestor);
-        Utilizador u = new Utilizador(2, "joao", "jo", "jo@centro.pt", "aB;1", "dpddd");
-        ce.getRegistoUtilizadores().getListaUtilizadores().add(u);
-        Utilizador u1 = new Utilizador(3, "carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
-        ce.getRegistoUtilizadores().addUtilizador(u1);
         Local l = new Local("Porto");
         ce.getRegistoLocais().addLocal(l);
         Data dati = new Data(2016, 07, 21, 20, 20, 20);
@@ -44,8 +52,7 @@ class Main {
         Exposicao exp = new Exposicao("titulo", "descricao", dati, datf, l, dati, dati,
                 dati, dati);
         ce.getRegistoExposicoes().getListaExposicoes().add(exp);
-        exp.addOrganizador(u);
-        exp.addOrganizador(u1);
+
         CandidaturaExposicao cex = new CandidaturaExposicao("rep@centro.pt", "nome empresa", "morada", 919999999, 23, 5);
         exp.getListaCandidaturas().getListCandidaturas().add(cex);
         CandidaturaExposicao cex3 = new CandidaturaExposicao("rep3@centro.pt", "nome empresa3", "morada3", 919999999, 23, 5);
@@ -66,12 +73,9 @@ class Main {
         cex2.getListaKeywords().addKeyword(k4);
         cex2.getListaKeywords().addKeyword(k);
         cex2.getListaKeywords().addKeyword(k3);
-        Avaliacao a = new Avaliacao();
-        cex.getListaAvaliacoes().getListaAvaliacao().add(a);
-        FAE fae = new FAE(u1);
-        exp.getListaFAES().getListaFAEs().add(fae);
 
-        LoginUI login = new LoginUI(ce);
+        GerarRankingKeywordsController instance = new GerarRankingKeywordsController(ce);
+        instance.selectExposicao(exp);
 
     }
 

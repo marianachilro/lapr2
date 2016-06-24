@@ -23,8 +23,9 @@ import lapr.project.model.Utilizador;
  */
 public class MenuUI extends JFrame {
 
-    private CentroExposicoes ce;
-    private Utilizador utilizador;
+    private final CentroExposicoes ce;
+    private final Utilizador utilizador;
+
 
     /**
      * Creates new form MenuUI
@@ -396,6 +397,8 @@ public class MenuUI extends JFrame {
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
         try {
+         
+            
             if(ce.getRegistoExposicoes().getListaExposicoes().isEmpty()){
                  throw new IllegalArgumentException("Não existe exposições!");
             }
