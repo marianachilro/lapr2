@@ -198,16 +198,5 @@ public class AtribuicaoTest {
         assertEquals(expResult, result);
      
     }
-   /**
-     * Testa o método com uma candidatura da demonstracao.
-     */
-    @Test
-    public void testHashCode1() {
-        System.out.println("hashCode");
-        Atribuicao instance = new Atribuicao(new FAE(), new CandidaturaDemonstracao());
-        int expResult = 452088946;
-        int result = instance.hashCode();
-        assertEquals(expResult, result);
-     
-    }
+
 }

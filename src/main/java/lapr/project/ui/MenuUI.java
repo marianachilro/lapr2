@@ -598,7 +598,7 @@ public class MenuUI extends JFrame {
     }//GEN-LAST:event_jMenuItem31ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        ConfirmarStandUI ui = new ConfirmarStandUI(this, ce, utilizador.getUsername());
+        ConfirmarStandUI ui = new ConfirmarStandUI(this, ce, utilizador);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
