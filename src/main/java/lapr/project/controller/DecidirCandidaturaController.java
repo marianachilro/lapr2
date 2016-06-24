@@ -8,6 +8,7 @@ package lapr.project.controller;
 import java.util.List;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.Candidatura;
+import lapr.project.model.CandidaturaDemonstracao;
 import lapr.project.model.CandidaturaEstado;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Decisivel;
@@ -59,20 +60,30 @@ public class DecidirCandidaturaController {
         this.candidatura.setDecisao(decisao);
 
         ExposicaoEstado es = exposicao.getEstado();
-        
 
         CandidaturaEstado cs = candidatura.getEstado();
-        if (decisao ==true) {
+        if (decisao == true) {
             cs.setAceite();
-        }else{
+        } else {
             cs.setRejeitada();
         }
-        
-        DemonstracaoEstado ds = demonstracao.getEstado();
-        if(ds.setCandidaturasAvaliadas()){
-            ds.setCandidaturasDecididas();
-            es.setDemonstracaoCandidaturasDecididas();
-        }else{
+
+        if (es.setDemonstracaoCandidaturasAvaliadas()) {
+            CandidaturaDemonstracao cd = (CandidaturaDemonstracao) candidatura;
+            for (Demonstracao d : cd.getListaDemonstracoes().getListaDemonstracao()) {
+                for (CandidaturaDemonstracao c : d.getListaCandidaturas().getListCandidaturas()) {
+                    if (c.equals(cd)) {
+                        demonstracao = d;
+                    }
+                }
+            }
+
+            DemonstracaoEstado ds = demonstracao.getEstado();
+            if (ds.setCandidaturasAvaliadas()) {
+                ds.setCandidaturasDecididas();
+                es.setDemonstracaoCandidaturasDecididas();
+            }
+        } else {
             es.setExposicaoCandidaturasDecididas();
         }
     }
