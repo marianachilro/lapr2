@@ -27,7 +27,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import lapr.project.controller.AlterarCandidaturaController;
-import lapr.project.controller.RegistarCandidaturaExposicaoController;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;

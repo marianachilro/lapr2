@@ -28,7 +28,7 @@ import lapr.project.model.Organizador;
  */
 public class DecidirCandidaturaUI extends javax.swing.JFrame {
 
-    private String tpCand;
+    private final String tpCand;
     private final CentroExposicoes ce;
     private Organizador organizador;
     private final DecidirCandidaturaController controller;
@@ -299,7 +299,7 @@ public class DecidirCandidaturaUI extends javax.swing.JFrame {
                 }
                  es = exposicao.getEstado();
                 controller.selectExposicao(exposicao);
-                if (controller.getDecisivel().isEmpty() &&  es.setExposicaoCandidaturasAvaliadas()==true || controller.getDecisivel().isEmpty() && es.setExposicaoCandidaturasAvaliadas()==false && es.setDemonstracaoCandidaturasAvaliadas()==true) {
+                if (controller.getDecisivel().isEmpty() && !es.setExposicaoCandidaturasAtribuidas() && es.setExposicaoCandidaturasAvaliadas() || controller.getDecisivel().isEmpty() && !es.setDemonstracaoCandidaturasAtribuidas() && es.setDemonstracaoCandidaturasAvaliadas()) {
                    
                     try {
 

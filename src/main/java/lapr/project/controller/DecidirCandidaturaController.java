@@ -68,7 +68,7 @@ public class DecidirCandidaturaController {
             cs.setRejeitada();
         }
 
-        if (es.setDemonstracaoCandidaturasAvaliadas()) {
+        if (!es.setDemonstracaoCandidaturasAvaliadas() && es.setDemonstracaoCandidaturasAvaliadas()) {
             CandidaturaDemonstracao cd = (CandidaturaDemonstracao) candidatura;
             for (Demonstracao d : cd.getListaDemonstracoes().getListaDemonstracao()) {
                 for (CandidaturaDemonstracao c : d.getListaCandidaturas().getListCandidaturas()) {
@@ -79,7 +79,7 @@ public class DecidirCandidaturaController {
             }
 
             DemonstracaoEstado ds = demonstracao.getEstado();
-            if (ds.setCandidaturasAvaliadas()) {
+            if (!ds.setCandidaturasAvaliadas() && ds.setCandidaturasAvaliadas()) {
                 ds.setCandidaturasDecididas();
                 es.setDemonstracaoCandidaturasDecididas();
             }

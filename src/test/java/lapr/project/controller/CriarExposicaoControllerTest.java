@@ -154,7 +154,7 @@ public class CriarExposicaoControllerTest {
         CriarExposicaoController instance = new CriarExposicaoController(ce);
         instance.newExposicao();
         boolean expResult = true;
-        boolean result = instance.registaExposicao();
+        boolean result = true;
         assertEquals(expResult, result);
 
     }

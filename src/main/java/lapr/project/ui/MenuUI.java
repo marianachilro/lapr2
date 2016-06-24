@@ -94,7 +94,6 @@ public class MenuUI extends JFrame {
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenu17 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem31 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem30 = new javax.swing.JMenuItem();
@@ -243,10 +242,12 @@ public class MenuUI extends JFrame {
         jMenu17.setText("Alterar Candidatura");
 
         jMenuItem11.setText("Exposição");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu17.add(jMenuItem11);
-
-        jMenuItem12.setText("Demonstração");
-        jMenu17.add(jMenuItem12);
 
         jMenu13.add(jMenu17);
 
@@ -692,6 +693,10 @@ public class MenuUI extends JFrame {
         new RegistarCandidaturaDemonstracaoUI(MenuUI.this, ce, utilizador.getEmail());
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:     
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
 //    /**
 //     * @param args the command line arguments
 //     */
@@ -749,7 +754,6 @@ public class MenuUI extends JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;

@@ -347,7 +347,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                     es = exposicao.getEstado();
 
                     controller.selecionaExposicao(exposicao);
-                    if (controller.getAvaliaveis(fae).isEmpty()&& es.setExposicaoCandidaturasAtribuidas()) {
+                    if (controller.getAvaliaveis(fae).isEmpty()&& !es.setExposicaoConflitosAtualizados() && es.setExposicaoCandidaturasAtribuidas()) {
                         try {
 
                             throw new IllegalArgumentException("Não existe candidaturas para avaliar!\n"
@@ -416,7 +416,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
             }
             es = exposicao.getEstado();
             
-             if (controller.getAvaliaveis(fae).isEmpty()&& es.setDemonstracaoCandidaturasAtribuidas()) {
+             if (controller.getAvaliaveis(fae).isEmpty()&& !es.setDemonstracaoConflitosAtualizados() && es.setDemonstracaoCandidaturasAtribuidas()) {
                         try {
 
                             throw new IllegalArgumentException("Não existe candidaturas para avaliar!\n"
