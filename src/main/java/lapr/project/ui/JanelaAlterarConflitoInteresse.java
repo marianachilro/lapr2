@@ -18,7 +18,6 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import lapr.project.controller.AtualizarConflitoController;
@@ -28,7 +27,6 @@ import lapr.project.model.CandidaturaGeral;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Conflito;
 import lapr.project.model.Exposicao;
-import lapr.project.model.RegistoTipoConflitos;
 import lapr.project.model.TipoConflito;
 
 /**
@@ -172,11 +170,8 @@ public class JanelaAlterarConflitoInteresse extends JDialog {
                     CandidaturaExposicao candExpo = (CandidaturaExposicao) comboBoxCandidaturas.getSelectedItem();
                     if (candExpo != null) {
                         controller.seleciona(candExpo);
-
                     }
-
                 }
-
             });
         }
         this.comboBoxCandidaturas.setSelectedItem(conflito.getCandidaturas());
@@ -267,18 +262,13 @@ public class JanelaAlterarConflitoInteresse extends JDialog {
                 CandidaturaGeral c = (CandidaturaGeral)comboBoxCandidaturas.getSelectedItem();
                 TipoConflito t = (TipoConflito) comboBoxTiposConflito.getSelectedItem();
                 controller.setDados(c,t);
-
-                
-//                if (b) {
-//                    JOptionPane.showMessageDialog(AlterarPerfilUtilizadorUI.this, "Os dados introduzidos já existem!", "ERRO", ERROR_MESSAGE);
-//                } else if (controller.validaPassword(txtPassword.getText())) {
-//                    controller.setNovaPassword(txtNovaPassword.getText());
-//                    controller.registaAlteracoes();
-//                    JOptionPane.showMessageDialog(AlterarPerfilUtilizadorUI.this, "Perfil de Utilizador alterado com Sucesso!");
-//                    dispose();
-//                } else {
-//                    JOptionPane.showMessageDialog(AlterarPerfilUtilizadorUI.this, "Password incorreta!", "ERRO", ERROR_MESSAGE);
-//                }
+                int i = JOptionPane.showConfirmDialog(JanelaAlterarConflitoInteresse.this, "Deseja Confirmar Alteração?",
+                            "Alterar Conflito", JOptionPane.YES_NO_OPTION);
+                if (i == JOptionPane.YES_OPTION) {
+                    controller.setAlteracaoConflito();
+                } else {
+                    dispose();
+                }
             }
         });
         return btn;

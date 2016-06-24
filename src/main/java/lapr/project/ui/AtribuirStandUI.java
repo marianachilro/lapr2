@@ -45,39 +45,6 @@ public class AtribuirStandUI extends JDialog {
     private Stand stand;
     private JButton btGuardar;
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CentroExposicoes ce = new CentroExposicoes();
-                new AtribuirStandUI(null, ce, "").setVisible(true);
-            }
-        });
-    }
-
     public AtribuirStandUI(JFrame janelaPai, CentroExposicoes ce, String username) {
         super(janelaPai, "Atribuir Stand", true);
         this.controller = new AtribuirStandController(ce);
@@ -85,6 +52,16 @@ public class AtribuirStandUI extends JDialog {
         this.mLista = new ModeloListaExpos(controller.getListaExposicoesOrganizador(username));
         jLista.setModel(mLista);
         jLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jLista.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(!controller.checkEstado()) {
+                    JOptionPane.showMessageDialog(AtribuirStandUI.this, "Não é possível atribuir stands na exposição selecionada.",
+                            "Atribuir Stand", JOptionPane.WARNING_MESSAGE);
+                    jLista.clearSelection();
+                }
+            }
+        });
         cbCand = new JComboBox();
         cbStand = new JComboBox();
         criarComponentes();
@@ -115,8 +92,8 @@ public class AtribuirStandUI extends JDialog {
                 controller.selectExposicao((Exposicao) jLista.getSelectedValue());
                 List<CandidaturaExposicao> lc = controller.getListaCandidaturas();
                 List<Stand> ls = controller.getListaStandsNaoAtribuidos();
-                cbCand.setModel(new DefaultComboBoxModel(lc.toArray()));
-                cbStand.setModel(new DefaultComboBoxModel(ls.toArray()));
+                cbCand.setModel(new DefaultComboBoxModel(controller.candToListString(lc).toArray()));
+                cbStand.setModel(new DefaultComboBoxModel(controller.standToListString(ls).toArray()));
                 if (lc.isEmpty()) {
                     int i = JOptionPane.showConfirmDialog(AtribuirStandUI.this, "Não existem candidaturas disponíveis. Deseja selecionar outra exposição?",
                             "Atribuir Stand", JOptionPane.YES_NO_OPTION);

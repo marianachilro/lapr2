@@ -270,7 +270,7 @@ public class CandidaturaExposicao extends CandidaturaGeral implements Removivel,
      *
      * @param area
      */
-    @XmlElement
+    @XmlElement(name="areaPretendida")
     public void setArea(double area) {
         this.area = area;
     }
@@ -280,7 +280,7 @@ public class CandidaturaExposicao extends CandidaturaGeral implements Removivel,
      *
      * @param convites numero de convites
      */
-    @XmlElement(name = "nConvites")
+    @XmlElement(name = "quantidadeConvites")
     public void setConvites(int convites) {
         this.convites = convites;
     }

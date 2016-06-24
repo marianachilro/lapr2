@@ -5,8 +5,15 @@
  */
 package lapr.project.controller;
 
+import java.util.Date;
+import lapr.project.model.AlterarParaCandidaturasDemosAbertas;
+import lapr.project.model.AlterarParaCandidaturasDemosFechadas;
+import lapr.project.model.AlterarParaCandidaturasExpoAbertas;
+import lapr.project.model.AlterarParaCandidaturasExpoFechadas;
+import lapr.project.model.AlterarParaConflitosAtualizadosDemos;
 import lapr.project.utils.Data;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.CriarControllerDetetarConflitos;
 import lapr.project.model.Exposicao;
 import lapr.project.model.ExposicaoEstado;
 import lapr.project.model.ListaOrganizadores;
@@ -72,9 +79,25 @@ public class CriarExposicaoController {
     public boolean registaExposicao() {
         ExposicaoEstado es = m_exposicao.getEstado();
         es.setCriada();
+        
+        Data dataIniSubCand = this.m_exposicao.getDataIniSubCan();
+        Date date1  = new Date(dataIniSubCand.getAno(), dataIniSubCand.getMes(), dataIniSubCand.getDia(), dataIniSubCand.getHora(), dataIniSubCand.getMinuto(), dataIniSubCand.getSegundos());
+        AlterarParaCandidaturasExpoAbertas task = new AlterarParaCandidaturasExpoAbertas(this.m_oCE, this.m_exposicao);
+        this.m_oCE.getRegistoExposicoes().schedule(task, dataIniSubCand);
+        
+        
+        Data dataFimSubCand = this.m_exposicao.getDataFimSubCand();
+        Date date2 = new Date(dataFimSubCand.getAno(), dataFimSubCand.getMes(), dataFimSubCand.getDia(), dataFimSubCand.getHora(), dataFimSubCand.getMinuto(), dataFimSubCand.getSegundos());
+        AlterarParaCandidaturasExpoFechadas task1 = new AlterarParaCandidaturasExpoFechadas(this.m_oCE, this.m_exposicao);
+        CriarControllerDetetarConflitos uc13cntlr = new CriarControllerDetetarConflitos(this.m_oCE, this.m_exposicao);
+        this.m_oCE.getRegistoExposicoes().schedule(uc13cntlr, dataFimSubCand);
+        
+        Data dataFimAtualizacaoConflitos = this.m_exposicao.getDataFimAtcConf();
+        Date data3 = new Date(dataFimAtualizacaoConflitos.getAno(), dataFimAtualizacaoConflitos.getMes(), dataFimAtualizacaoConflitos.getDia(), dataFimAtualizacaoConflitos.getHora(), dataFimAtualizacaoConflitos.getMinuto(), dataFimAtualizacaoConflitos.getSegundos());
+        AlterarParaConflitosAtualizadosDemos task2 = new AlterarParaConflitosAtualizadosDemos(this.m_oCE, this.m_exposicao);
+        this.m_oCE.getRegistoExposicoes().schedule(task2, dataFimSubCand);
+        
         return m_oCE.getRegistoExposicoes().registaExposicao(m_exposicao);
-        
-        
     }
 
 }

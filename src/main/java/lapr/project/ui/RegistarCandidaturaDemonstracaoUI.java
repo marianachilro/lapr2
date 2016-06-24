@@ -25,7 +25,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import lapr.project.controller.RegistarCandidaturaDemonstracaoController;
-import lapr.project.model.CandidaturaDemonstracao;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
@@ -44,39 +43,6 @@ public class RegistarCandidaturaDemonstracaoUI extends JDialog {
     private ModeloListaDemonstracoes mListaDemo;
     private JComboBox cb;
     private JButton btConf;
-    
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CentroExposicoes ce = new CentroExposicoes();
-                new RegistarCandidaturaDemonstracaoUI(null, ce, "").setVisible(true);
-            }
-        });
-    }
     
     public RegistarCandidaturaDemonstracaoUI(JFrame janelaPai, CentroExposicoes ce, String email) {
         super(janelaPai, "Registar Candidatura de Demonstração", true);
@@ -135,7 +101,7 @@ public class RegistarCandidaturaDemonstracaoUI extends JDialog {
         JPanel p = new JPanel();
         p.setLayout(new GridLayout(2, 2));
         JLabel lbl1 = new JLabel("Escolha uma candidatura:");
-        JLabel lbl2 = new JLabel("Escolha as demonstrações:");
+        JLabel lbl2 = new JLabel("Escolha a demonstração:");
         JScrollPane sc = new JScrollPane(jListaDemo);
         p.add(lbl1);
         p.add(cb);
@@ -155,7 +121,7 @@ public class RegistarCandidaturaDemonstracaoUI extends JDialog {
                 } else {
                     mListaDemo = new ModeloListaDemonstracoes(ld);
                     jListaDemo.setModel(mLista);
-                    jListaDemo.setSelectionMode( ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+                    jListaDemo.setSelectionMode( ListSelectionModel.SINGLE_SELECTION);
                 }
                 btConf.setEnabled(true);
             }
@@ -178,9 +144,9 @@ public class RegistarCandidaturaDemonstracaoUI extends JDialog {
         btConf.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<Demonstracao> ld = jListaDemo.getSelectedValuesList();
-                if(!ld.isEmpty()) {
-                    controller.novaCandidaturaDemonstracao(ld);
+                Demonstracao d = (Demonstracao) jListaDemo.getSelectedValue();
+                if(d != null) {
+                    controller.novaCandidaturaDemonstracao(d);
                     if(controller.registarCandidatura() && controller.transitaEstado()) {
                         JOptionPane.showMessageDialog(RegistarCandidaturaDemonstracaoUI.this, 
                                 "Candidatura foi registada com sucesso.", "Registar Candidatura de Demonstração", JOptionPane.INFORMATION_MESSAGE);

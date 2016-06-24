@@ -95,7 +95,7 @@ public class CentroExposicoes {
      *
      * @return Registo das Exposições
      */
-    @XmlElement(name = "registoExposicoes")
+    
     public RegistoExposicoes getRegistoExposicoes() {
         return re;
     }
@@ -105,6 +105,7 @@ public class CentroExposicoes {
      *
      * @param re novo registo de exposicoes
      */
+    @XmlElement(name = "registoExposicoes")
     public void setRegistoExposicoes(RegistoExposicoes re) {
         this.re = re;
     }

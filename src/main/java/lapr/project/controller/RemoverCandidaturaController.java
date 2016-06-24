@@ -7,7 +7,6 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.Candidatura;
 import lapr.project.model.CandidaturaDemonstracao;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;

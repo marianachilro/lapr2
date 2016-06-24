@@ -66,10 +66,9 @@ public class RegistarCandidaturaDemonstracaoController {
         this.d = d;
     }
 
-    public CandidaturaDemonstracao novaCandidaturaDemonstracao(List<Demonstracao> lDemo) {
+    public CandidaturaDemonstracao novaCandidaturaDemonstracao(Demonstracao demo) {
         rcd = d.getListaCandidaturas();
         cd = rcd.novaCandidatura();
-        cd.getListaDemonstracoes().setListaDemonstracao(lDemo);
         cd.setEmailRep(email);
         return cd;
     }
