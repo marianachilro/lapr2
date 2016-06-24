@@ -23,7 +23,6 @@ public class ListaAvaliacoes {
     /**
      * lista com as Avaliações.
      */
-    @XmlElement(name="avaliacao")
     private List<Avaliacao> la;
 
     /**
@@ -32,29 +31,30 @@ public class ListaAvaliacoes {
     public ListaAvaliacoes() {
         la = new ArrayList<>();
     }
-    public ListaAvaliacoes(ListaAvaliacoes la){
+
+    public ListaAvaliacoes(ListaAvaliacoes la) {
         this.la = new ArrayList<>(la.getListaAvaliacao());
     }
+
     /**
      * Método que retorna a lista de Avaliações.
      *
      * @return lista de avaliações
-     */     
+     */
     public List<Avaliacao> getListaAvaliacao() {
         return la;
     }
-/**
- * Método que modifica a lista de avaliações.
- * @param la 
- */
-    
- 
+
+    /**
+     * Método que modifica a lista de avaliações.
+     *
+     * @param la
+     */
+    @XmlElement(name = "avaliacao")
     public void setListaAvaliacao(List<Avaliacao> la) {
         this.la = la;
     }
 
-
-    
     /**
      * Validar avaliação,verificando se a avaliacao recebida por parametro ja
      * existe.

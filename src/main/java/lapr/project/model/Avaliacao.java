@@ -208,7 +208,7 @@ public class Avaliacao {
      *
      * @param txt o novo texto justificativo da avaliacao
      */
-    @XmlElement(name = "justificação")
+    @XmlElement(name = "texto")
     public final void setTextoJustificativo(String txt) {
         if (txt == null || txt.trim().isEmpty()) {
             throw new IllegalArgumentException("Texto Justificativo é inválido!");
@@ -230,7 +230,7 @@ public class Avaliacao {
      *
      * @param respostaTemaExpo resposta do inquerito sobre o tema da exposicao
      */
-    @XmlElement(name = "temaExpo")
+    @XmlElement(name = "conhecimentoFAE")
     public final void setRespostaTemaExpo(int respostaTemaExpo) {
         if (respostaTemaExpo > 6 || respostaTemaExpo < 0) {
             throw new IllegalArgumentException("De 1 a 5!");
@@ -254,7 +254,7 @@ public class Avaliacao {
      * @param respostaAdequacaoCand resposta do inquerito sobre a adquação da
      * candidatura
      */
-    @XmlElement(name = "adequaçãoCandExposicao")
+    @XmlElement(name = "adequacaoExposicao")
     public final void setRespostaAdequacaoCandExposicao(int respostaAdequacaoCand) {
         if (respostaAdequacaoCand > 6 || respostaAdequacaoCand < 0) {
             throw new IllegalArgumentException("De 1 a 5!");
@@ -280,7 +280,7 @@ public class Avaliacao {
      * @param respostaAdequacaoCandDemonstracao resposta ao inquerito sobre a
      * adquação da candidatura às demonstracoes
      */
-    @XmlElement(name = "adequaçãoCandDemonstracao")
+    @XmlElement(name = "adequacaoDemonstracoes")
     public final void setRespostaAdequacaoCandDemonstracao(int respostaAdequacaoCandDemonstracao) {
         if (respostaAdequacaoCandDemonstracao > 6 || respostaAdequacaoCandDemonstracao < 0) {
             throw new IllegalArgumentException("De 1 a 5!");
@@ -303,7 +303,7 @@ public class Avaliacao {
      * @param respostaAdequacaoNumConvites resposta ao inquerito sobre a
      * adquação do numero de convites
      */
-    @XmlElement(name = "adequaçãoNumConvites")
+    @XmlElement(name = "adequacaoConvites")
     public final void setRespostaAdequacaoNumConvites(int respostaAdequacaoNumConvites) {
         if (respostaAdequacaoNumConvites > 6 || respostaAdequacaoNumConvites < 0) {
             throw new IllegalArgumentException("De 1 a 5!");
@@ -326,7 +326,7 @@ public class Avaliacao {
      * @param respostaRecomendacaoGlobal resposta ao inquerito sobre a
      * recomendação global
      */
-    @XmlElement(name = "recomendacaoGlobal")
+    @XmlElement(name = "recomendacao")
     public final void setRespostaRecomendacaoGlobal(int respostaRecomendacaoGlobal) {
         if (respostaRecomendacaoGlobal > 6 || respostaRecomendacaoGlobal < 0) {
             throw new IllegalArgumentException("De 1 a 5!");

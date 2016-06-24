@@ -27,7 +27,7 @@ public class CandidaturaGeral implements Candidatura {
      * Lista de demonstracoes da candidatura.
      */
     private ListaDemonstracoes listaDemonstracoes;
-    
+
     private static final String EMAIL_OMISSAO = "";
 
     public CandidaturaGeral() {
@@ -46,7 +46,8 @@ public class CandidaturaGeral implements Candidatura {
         estado = new CandidaturaInicialEstado(this);
         decisao = false;
     }
-    public CandidaturaGeral(CandidaturaGeral c){
+
+    public CandidaturaGeral(CandidaturaGeral c) {
         this.emailRep = c.getEmailRep();
         this.decisao = c.getDecisao();
         this.listaDemonstracoes = new ListaDemonstracoes(c.getListaDemonstracoes());
@@ -70,14 +71,14 @@ public class CandidaturaGeral implements Candidatura {
         return listaAvaliacoes;
     }
 
-    @XmlElement(name = "RegistoAvaliacoes")
+    @XmlElement(name = "Avaliacoes")
     @Override
     public void setListaAvaliacoes(ListaAvaliacoes lista) {
         listaAvaliacoes = lista;
     }
 
     @Override
-    @XmlElement
+    @XmlElement(name = "aceite")
     public void setDecisao(boolean decisao) {
         this.decisao = decisao;
     }
@@ -117,8 +118,8 @@ public class CandidaturaGeral implements Candidatura {
     public boolean valida() {
         return true;
     }
-    
-    public String toString(){
+
+    public String toString() {
         return String.format("Representante: %s", emailRep);
     }
 
