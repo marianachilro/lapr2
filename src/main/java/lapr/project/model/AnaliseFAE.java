@@ -7,6 +7,7 @@ package lapr.project.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -157,5 +158,31 @@ public class AnaliseFAE {
         mediaClassificacoes = soma / nCand;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.utilizador);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AnaliseFAE other = (AnaliseFAE) obj;
+        if (!Objects.equals(this.utilizador, other.utilizador)) {
+            return false;
+        }
+        return true;
+    }
+
+    
 
 }

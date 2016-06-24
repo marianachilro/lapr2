@@ -259,6 +259,11 @@ public class MenuUI extends JFrame {
         jMenu13.add(jMenuItem31);
 
         jMenuItem7.setText("Remover Candidatura");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed1(evt);
+            }
+        });
         jMenu13.add(jMenuItem7);
 
         jMenuItem30.setText("Atribuir Candidatura");
@@ -691,6 +696,10 @@ public class MenuUI extends JFrame {
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         new RegistarCandidaturaDemonstracaoUI(MenuUI.this, ce, utilizador.getEmail());
     }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem7ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed1
+        new RemoverCandidaturaUI(MenuUI.this, ce, utilizador.getEmail());
+    }//GEN-LAST:event_jMenuItem7ActionPerformed1
 
 //    /**
 //     * @param args the command line arguments

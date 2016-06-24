@@ -113,6 +113,7 @@ public class RegistarCandidaturaExposicaoController {
 
     public void selectDemonstracao(Demonstracao d) {
         this.d = d;
+        d.setNumeroInteressados(d.getNumeroInteressados() + 1);
     }
 
     public boolean registaDemonstracao() {
