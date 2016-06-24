@@ -133,5 +133,9 @@ public class TipoConflito {
         hash = 37 * hash + Objects.hashCode(this.dados);
         return hash;
     }
+    
+    public String toString(){
+        return String.format("%s - %s", this.nome, this.dados);
+    }
 
 }

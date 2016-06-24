@@ -144,5 +144,9 @@ public class Conflito {
         }
         return Objects.equals(this.tipo, other.tipo);
     }
+    
+    public String toString(){
+        return String.format("Tipo do Conflito: %s%nCandidatura: %s", this.tipo, this.c);
+    }
 
 }

@@ -21,7 +21,6 @@ import lapr.project.model.Exposicao;
 import lapr.project.model.ListaOrganizadores;
 import lapr.project.model.Local;
 import lapr.project.model.RegistoUtilizadores;
-import lapr.project.model.Security;
 import lapr.project.model.Utilizador;
 import lapr.project.utils.Data;
 
@@ -51,7 +50,7 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 int result = JOptionPane.showConfirmDialog(
-                        CriarExposicaoUI.this, "Tens a certeza?");
+                        CriarExposicaoUI.this, "Tem a certeza?");
                 if (result == JOptionPane.OK_OPTION) {
 
                     CriarExposicaoUI.this.setDefaultCloseOperation(
@@ -295,31 +294,33 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
             Local local = null;
 
             for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
-                if (e.getDataInicio().getAno() == dataIni.getAno() && e.getDataInicio().getMes() == dataIni.getMes() && e.getDataInicio().getDia() == dataIni.getDia()) {
-                    if (dataIni.getHora() < e.getDataInicio().getHora() && dataFim.getHora() > e.getDataInicio().getHora()
-                            || dataIni.getHora() == e.getDataInicio().getHora() && dataFim.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() < e.getDataInicio().getMinuto() && dataFim.getMinuto() > e.getDataInicio().getMinuto()
-                            || dataIni.getHora() == e.getDataInicio().getHora() && dataFim.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() == e.getDataInicio().getMinuto() && dataFim.getMinuto() == e.getDataInicio().getMinuto() && dataIni.getSegundos() < e.getDataInicio().getSegundos() && dataFim.getSegundos() > e.getDataInicio().getSegundos()) {
+                if (e.getLocal().getNome().equalsIgnoreCase(local1)) {
+                    if (e.getDataInicio().getAno() == dataIni.getAno() && e.getDataInicio().getMes() == dataIni.getMes() && e.getDataInicio().getDia() == dataIni.getDia()) {
+                        if (dataIni.getHora() < e.getDataInicio().getHora() && dataFim.getHora() > e.getDataInicio().getHora()
+                                || dataIni.getHora() == e.getDataInicio().getHora() && dataFim.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() < e.getDataInicio().getMinuto() && dataFim.getMinuto() > e.getDataInicio().getMinuto()
+                                || dataIni.getHora() == e.getDataInicio().getHora() && dataFim.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() == e.getDataInicio().getMinuto() && dataFim.getMinuto() == e.getDataInicio().getMinuto() && dataIni.getSegundos() < e.getDataInicio().getSegundos() && dataFim.getSegundos() > e.getDataInicio().getSegundos()) {
 
-                        throw new IllegalArgumentException("Já existe uma exposição neste local à mesma hora!");
+                            throw new IllegalArgumentException("Já existe uma exposição neste local à mesma hora!");
 
-                    } else if (dataIni.getHora() > e.getDataInicio().getHora() && dataFim.getHora() > e.getDataFim().getHora() && dataIni.getHora() < e.getDataFim().getHora()
-                            || dataIni.getHora() == e.getDataFim().getHora() && dataIni.getMinuto() < e.getDataFim().getMinuto() && dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() > e.getDataInicio().getMinuto() && dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() > e.getDataFim().getMinuto()
-                            || dataIni.getHora() == e.getDataFim().getHora() && dataIni.getMinuto()==e.getDataFim().getMinuto() && dataIni.getSegundos()<e.getDataFim().getSegundos() && dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() == e.getDataInicio().getMinuto() && dataIni.getSegundos() > e.getDataInicio().getSegundos() && dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() == e.getDataFim().getMinuto() && dataFim.getSegundos() > e.getDataFim().getSegundos()) {
+                        } else if (dataIni.getHora() > e.getDataInicio().getHora() && dataFim.getHora() > e.getDataFim().getHora() && dataIni.getHora() < e.getDataFim().getHora()
+                                || dataIni.getHora() == e.getDataFim().getHora() && dataIni.getMinuto() < e.getDataFim().getMinuto() && dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() > e.getDataInicio().getMinuto() && dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() > e.getDataFim().getMinuto()
+                                || dataIni.getHora() == e.getDataFim().getHora() && dataIni.getMinuto() == e.getDataFim().getMinuto() && dataIni.getSegundos() < e.getDataFim().getSegundos() && dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() == e.getDataInicio().getMinuto() && dataIni.getSegundos() > e.getDataInicio().getSegundos() && dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() == e.getDataFim().getMinuto() && dataFim.getSegundos() > e.getDataFim().getSegundos()) {
 
-                        throw new IllegalArgumentException("Já existe uma exposição neste local à mesma hora!");
+                            throw new IllegalArgumentException("Já existe uma exposição neste local à mesma hora!");
 
-                    } else if (dataIni.getHora() > e.getDataInicio().getHora() && dataFim.getHora() < e.getDataFim().getHora()
-                            || dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() > e.getDataInicio().getMinuto() && dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() < e.getDataFim().getMinuto()
-                            || dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() == e.getDataInicio().getMinuto() && dataIni.getSegundos() > e.getDataInicio().getSegundos() && dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() == e.getDataFim().getMinuto() && dataFim.getSegundos() < e.getDataFim().getSegundos()) {
+                        } else if (dataIni.getHora() > e.getDataInicio().getHora() && dataFim.getHora() < e.getDataFim().getHora()
+                                || dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() > e.getDataInicio().getMinuto() && dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() < e.getDataFim().getMinuto()
+                                || dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() == e.getDataInicio().getMinuto() && dataIni.getSegundos() > e.getDataInicio().getSegundos() && dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() == e.getDataFim().getMinuto() && dataFim.getSegundos() < e.getDataFim().getSegundos()) {
 
-                        throw new IllegalArgumentException("Já existe uma exposição neste local à mesma hora!");
-                    
-                    }else if(dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() ==e.getDataInicio().getMinuto() && dataIni.getSegundos()==e.getDataInicio().getSegundos()
-                            || dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() ==e.getDataInicio().getMinuto() && dataIni.getSegundos()==e.getDataInicio().getSegundos() && dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() ==e.getDataFim().getMinuto() && dataFim.getSegundos()==e.getDataFim().getSegundos() 
-                            || dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() ==e.getDataFim().getMinuto() && dataFim.getSegundos()==e.getDataFim().getSegundos()){
-                        throw new IllegalArgumentException("Já existe uma exposição neste local à mesma hora!");
+                            throw new IllegalArgumentException("Já existe uma exposição neste local à mesma hora!");
+
+                        } else if (dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() == e.getDataInicio().getMinuto() && dataIni.getSegundos() == e.getDataInicio().getSegundos()
+                                || dataIni.getHora() == e.getDataInicio().getHora() && dataIni.getMinuto() == e.getDataInicio().getMinuto() && dataIni.getSegundos() == e.getDataInicio().getSegundos() && dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() == e.getDataFim().getMinuto() && dataFim.getSegundos() == e.getDataFim().getSegundos()
+                                || dataFim.getHora() == e.getDataFim().getHora() && dataFim.getMinuto() == e.getDataFim().getMinuto() && dataFim.getSegundos() == e.getDataFim().getSegundos()) {
+                            throw new IllegalArgumentException("Já existe uma exposição neste local à mesma hora!");
+                        }
+
                     }
-
                 }
             }
 

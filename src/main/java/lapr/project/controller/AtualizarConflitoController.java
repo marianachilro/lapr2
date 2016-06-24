@@ -7,9 +7,14 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.Avaliacao;
+import lapr.project.model.CandidaturaDemonstracao;
+import lapr.project.model.CandidaturaExposicao;
+import lapr.project.model.CandidaturaGeral;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Conflito;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.FAE;
 import lapr.project.model.ListaConflitos;
 import lapr.project.model.RegistoTipoConflitos;
@@ -30,24 +35,72 @@ public class AtualizarConflitoController {
     
     private Exposicao exposicao;
     
+    private Demonstracao demonstracao;
+    
+    private CandidaturaGeral candidatura;
+    
+    private TipoConflito tipo;
+    
     private Conflito conflito;
     
     private Conflito clone;
     
     private List <Conflito> listaConflitosFAE;
     
-    public AtualizarConflitoController(CentroExposicoes centro, Utilizador u, String operacao){
+    public AtualizarConflitoController(CentroExposicoes centro, Utilizador u, Exposicao exposicao){
         this.centro=centro;
         this.utilizador=u;
         this.listaExposFAE=centro.getRegistoExposicoes().getListaExposicoesDoFAE(u);
     }
     
-    public List <Exposicao> getListaExposicoes(){
+    public List <Exposicao> getListaExposicoesFAE(){
         return this.listaExposFAE;
+    }
+    
+    public List<CandidaturaExposicao> getListaCandidaturasFAEExpo(){
+        List <CandidaturaExposicao> lista = exposicao.getListaCandidaturas().getListCandidaturas();
+        boolean b = false;
+        for(CandidaturaExposicao c : lista){
+            List <Avaliacao> listaAvaliacoes = c.getListaAvaliacoes().getListaAvaliacao();
+            for(Avaliacao a : listaAvaliacoes){
+                if(a.getAtribuicao().getFAE().getUtilizador().equals(utilizador)){
+                    b = true;
+                }
+            }
+            if(!b){
+                lista.remove(c);
+            }
+        }
+        return lista;
+    }
+    
+    public List<CandidaturaDemonstracao> getListaCandidaturasFAEDemo(){
+        List <CandidaturaDemonstracao> lista = demonstracao.getListaCandidaturas().getListCandidaturas();
+        boolean b = false;
+        for(CandidaturaDemonstracao c : lista){
+            List <Avaliacao> listaAvaliacoes = c.getListaAvaliacoes().getListaAvaliacao();
+            for(Avaliacao a : listaAvaliacoes){
+                if(a.getAtribuicao().getFAE().getUtilizador().equals(utilizador)){
+                    b = true;
+                }
+            }
+            if(!b){
+                lista.remove(c);
+            }
+        }
+        return lista;
     }
     
     public void seleciona (Exposicao e){
         this.exposicao=e;
+    }
+    
+    public void seleciona(TipoConflito tipo){
+        this.tipo=tipo;
+    }
+    
+    public void seleciona(CandidaturaGeral c){
+        this.candidatura=c;
     }
     
     public List <Conflito> getConflitosFAE(){
@@ -84,8 +137,9 @@ public class AtualizarConflitoController {
         return rtc;
     }
     
-    public void setDados(String dados, TipoConflito tipo){
-        this.conflito.setTipo(tipo);
+    public void setDados(CandidaturaGeral c, TipoConflito tipo){
+        this.clone.setCandidaturas(c);
+        this.clone.setTipo(tipo);
     }
     
     public void addConflito(){
@@ -99,5 +153,9 @@ public class AtualizarConflitoController {
     
     public void removeConflito(){
         this.listaConflitosFAE.remove(this.conflito);
+    }
+    
+    public void criarCloneConflito(Conflito conflito){
+        this.clone=conflito;
     }
 }

@@ -10,6 +10,7 @@ import lapr.project.model.Atribuicao;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.Avaliavel;
 import lapr.project.model.Candidatura;
+import lapr.project.model.CandidaturaDemonstracao;
 import lapr.project.model.CandidaturaEstado;
 import lapr.project.model.CandidaturaGeral;
 import lapr.project.model.CentroExposicoes;
@@ -32,7 +33,7 @@ public class AvaliarCandidaturaController {
     private final FAE m_oFAE;
     private Candidatura candidatura;
     private Avaliavel interfaceAvaliavel;
-    private Demonstracao demonstracao; 
+    private Demonstracao demonstracao;
 
     public AvaliarCandidaturaController(CentroExposicoes ce, FAE fae) {
         this.m_oCE = ce;
@@ -49,7 +50,7 @@ public class AvaliarCandidaturaController {
     }
 
     public List<CandidaturaGeral> getAvaliaveis(FAE fae) {
-             return this.m_exposicao.getAvaliaveis(fae);
+        return this.m_exposicao.getAvaliaveis(fae);
     }
 
     public void selectCandidatura(Candidatura c) {
@@ -84,19 +85,31 @@ public class AvaliarCandidaturaController {
     public boolean registaAvaliacao() {
         if (this.candidatura.getListaAvaliacoes().validaAvaliacao(m_avaliacao) != true) {
             ExposicaoEstado es = m_exposicao.getEstado();
-            
 
             CandidaturaEstado cs = candidatura.getEstado();
             cs.setAvaliada();
-            
-            DemonstracaoEstado ds = demonstracao.getEstado();
-        if(ds.setCandidaturasAtribuidas()){
-            ds.setCandidaturasDecididas();
-            es.setDemonstracaoCandidaturasAvaliadas();
-        }else{
-            es.setExposicaoCandidaturasAvaliadas();
-        }
-            
+
+            if (es.setDemonstracaoCandidaturasAtribuidas()) {
+                CandidaturaDemonstracao cd = (CandidaturaDemonstracao)candidatura;
+                for(Demonstracao d : cd.getListaDemonstracoes().getListaDemonstracao()){
+                    for(CandidaturaDemonstracao c : d.getListaCandidaturas().getListCandidaturas()){
+                        if(c.equals(cd)){
+                            demonstracao =d;
+                        }
+                    }
+                }
+                DemonstracaoEstado ds = demonstracao.getEstado();
+                
+                if (ds.setCandidaturasAtribuidas()) {
+                    ds.setCandidaturasAvaliadas();
+                    es.setDemonstracaoCandidaturasAvaliadas();
+                }
+                
+                
+            } else {
+                es.setExposicaoCandidaturasAvaliadas();
+            }
+
             this.candidatura.getListaAvaliacoes().addAvaliacao(m_avaliacao);
             return true;
         } else {

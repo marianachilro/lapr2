@@ -15,7 +15,7 @@ import lapr.project.model.Stand;
  */
 public class CriarStandController {
     
-    private CentroExposicoes ce;
+    private final CentroExposicoes ce;
     private RegistoStands rs;
     private Stand stand;
     

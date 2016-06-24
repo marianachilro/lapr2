@@ -31,11 +31,11 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
     private final CentroExposicoes ce;
     private MenuUI menu;
     private Exposicao exposicao;
-    private FAE fae;
+    private final FAE fae;
     private CandidaturaExposicao candExp;
     private CandidaturaDemonstracao candDemo;
     private final AvaliarCandidaturaController controller;
-    private String tpCand;
+    private final String tpCand;
     private QuestionarioFAECand questionario;
     private int contador = 0;
     private  ExposicaoEstado es;
@@ -58,7 +58,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 int result = JOptionPane.showConfirmDialog(
-                        AvaliarCandidaturaUI.this, "Tens a certeza?");
+                        AvaliarCandidaturaUI.this, "Tem a certeza?");
                 if (result == JOptionPane.OK_OPTION) {
 
                     AvaliarCandidaturaUI.this.setDefaultCloseOperation(
@@ -324,7 +324,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
 
        
             
-         es = exposicao.getEstado();
+         
         if (this.tpCand.equalsIgnoreCase("exposicao")) {
 
             SwingUtilities.invokeLater(new Runnable() {
@@ -344,7 +344,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
 
                     }
                     
-                    
+                    es = exposicao.getEstado();
 
                     controller.selecionaExposicao(exposicao);
                     if (controller.getAvaliaveis(fae).isEmpty()&& es.setExposicaoCandidaturasAtribuidas()) {
@@ -361,7 +361,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                                     JOptionPane.WARNING_MESSAGE);
 
                         }
-                    } else {
+                    } else if(es.setExposicaoCandidaturasAtribuidas()){
 
                         final String[] candidaturas = new String[100];
                         int cont = 0;
@@ -375,10 +375,12 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
 
                         jList2.setModel(new javax.swing.AbstractListModel<String>() {
 
+                            @Override
                             public int getSize() {
                                 return candidaturas.length;
                             }
 
+                            @Override
                             public String getElementAt(int i) {
                                 return candidaturas[i];
                             }
@@ -412,7 +414,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                 }
 
             }
-            
+            es = exposicao.getEstado();
             
              if (controller.getAvaliaveis(fae).isEmpty()&& es.setDemonstracaoCandidaturasAtribuidas()) {
                         try {
@@ -428,7 +430,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                                     JOptionPane.WARNING_MESSAGE);
 
                         }
-             }
+             }else if(es.setDemonstracaoCandidaturasAtribuidas()){
             controller.selecionaExposicao(exposicao);
             
             
@@ -445,10 +447,12 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
 
             jList2.setModel(new javax.swing.AbstractListModel<String>() {
 
+                @Override
                 public int getSize() {
                     return candidaturas.length;
                 }
 
+                @Override
                 public String getElementAt(int i) {
                     return candidaturas[i];
                 }
@@ -457,7 +461,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
             jList2.setEnabled(true);
 
             jButton2.setEnabled(true);
-
+        }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -603,10 +607,10 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
 
             } else {
 
-                String fae = this.fae.getID();
+                String fae2 = this.fae.getID();
                 
                 for(FAE f : exposicao.getListaFAES().getListaFAEs()){
-                    if(f.getID().equalsIgnoreCase(fae)){
+                    if(f.getID().equalsIgnoreCase(fae2)){
                         faeExp=f;
                     }
                 }

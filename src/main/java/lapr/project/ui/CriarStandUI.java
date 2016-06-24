@@ -38,12 +38,13 @@ public class CriarStandUI extends javax.swing.JFrame {
         this.u = u;
         this.controller = new CriarStandController(ce);
         initComponents();
+        setVisible(true);
 
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 int result = JOptionPane.showConfirmDialog(
-                        CriarStandUI.this, "Tens a certeza?");
+                        CriarStandUI.this, "Tem a certeza?");
                 if (result == JOptionPane.OK_OPTION) {
 
                     CriarStandUI.this.setDefaultCloseOperation(
@@ -191,8 +192,8 @@ public class CriarStandUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-       dispose();
-       MenuUI m = new MenuUI(ce, u);
+        dispose();
+        MenuUI m = new MenuUI(ce, u);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -211,21 +212,19 @@ public class CriarStandUI extends javax.swing.JFrame {
             jButton1.setEnabled(false);
             textArea2.setEnabled(true);
             textArea2.setEditable(false);
-            
+
             controller.getRegistoStands();
             controller.novoStand();
             controller.setStand(descricao);
             controller.addStand();
-             SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                         textArea2.setText(controller.apresentaLista());
-                         
-                    }
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    textArea2.setText(controller.apresentaLista());
+
                 }
-                );
-             
-           
+            }
+            );
 
         } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(

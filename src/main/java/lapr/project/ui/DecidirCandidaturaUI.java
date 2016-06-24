@@ -57,7 +57,7 @@ public class DecidirCandidaturaUI extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 int result = JOptionPane.showConfirmDialog(
-                        DecidirCandidaturaUI.this, "Tens a certeza?");
+                        DecidirCandidaturaUI.this, "Tem a certeza?");
                 if (result == JOptionPane.OK_OPTION) {
 
                     DecidirCandidaturaUI.this.setDefaultCloseOperation(
@@ -297,7 +297,7 @@ public class DecidirCandidaturaUI extends javax.swing.JFrame {
                     }
 
                 }
-
+                 es = exposicao.getEstado();
                 controller.selectExposicao(exposicao);
                 if (controller.getDecisivel().isEmpty() &&  es.setExposicaoCandidaturasAvaliadas()==true || controller.getDecisivel().isEmpty() && es.setExposicaoCandidaturasAvaliadas()==false && es.setDemonstracaoCandidaturasAvaliadas()==true) {
                    
@@ -314,7 +314,7 @@ public class DecidirCandidaturaUI extends javax.swing.JFrame {
                                 JOptionPane.WARNING_MESSAGE);
 
                     }
-                } else {
+                } else if(es.setExposicaoCandidaturasAvaliadas()==true || es.setDemonstracaoCandidaturasAvaliadas()==true){
 
                     final String[] candidaturas = new String[100];
                     int cont = 0;
@@ -328,10 +328,12 @@ public class DecidirCandidaturaUI extends javax.swing.JFrame {
 
                     jList1.setModel(new javax.swing.AbstractListModel<String>() {
 
+                        @Override
                         public int getSize() {
                             return candidaturas.length;
                         }
 
+                        @Override
                         public String getElementAt(int i) {
                             return candidaturas[i];
                         }

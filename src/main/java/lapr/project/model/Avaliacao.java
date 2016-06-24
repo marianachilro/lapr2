@@ -93,7 +93,7 @@ public class Avaliacao {
      * Texto Justificativo por omissão.
      */
     private static final String TXT_OMISSAO = "por justificar";
-    
+
     private static final int TOTAL_RATINGS = 5;
 
     /**
@@ -158,7 +158,7 @@ public class Avaliacao {
     }
 
     public Avaliacao(String demo) {
-        atribuicao = new Atribuicao();
+        atribuicao = ATRIBUICAO_OMISSAO;
         decisao = DECISAO_OMISSAO;
         txt = TXT_OMISSAO;
     }
@@ -374,11 +374,10 @@ public class Avaliacao {
 
         return hash;
     }
-    
+
     public float calcMediaRatings() {
-        return (respostaAdequacaoCandDemonstracao + respostaAdequacaoCandExposicao + 
-                respostaAdequacaoNumConvites + respostaRecomendacaoGlobal + respostaTemaExpo)/TOTAL_RATINGS;
+        return (respostaAdequacaoCandDemonstracao + respostaAdequacaoCandExposicao
+                + respostaAdequacaoNumConvites + respostaRecomendacaoGlobal + respostaTemaExpo) / TOTAL_RATINGS;
     }
-    
-    
+
 }
