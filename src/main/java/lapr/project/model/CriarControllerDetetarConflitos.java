@@ -14,8 +14,8 @@ import java.util.TimerTask;
  */
 public class CriarControllerDetetarConflitos extends TimerTask{
 
-    private CentroExposicoes centro;
-    private Exposicao exposicao;
+    private final CentroExposicoes centro;
+    private final Exposicao exposicao;
     
     public CriarControllerDetetarConflitos(CentroExposicoes centro, Exposicao exposicao){
         this.centro=centro;
