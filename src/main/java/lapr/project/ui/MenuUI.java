@@ -165,9 +165,19 @@ public class MenuUI extends JFrame {
         jMenu2.setText("Utilizadores");
 
         jMenuItem25.setText("Confirmar Perfil de Utilizadores");
+        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem25ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem25);
 
         jMenuItem26.setText("Definir FAE");
+        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem26ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem26);
 
         jMenuBar1.add(jMenu2);
@@ -199,6 +209,11 @@ public class MenuUI extends JFrame {
         jMenu35.setText("Demonstração");
 
         jMenuItem21.setText("Criar Demonstração");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
         jMenu35.add(jMenuItem21);
 
         jMenuItem22.setText("Confirmar Interesse");
@@ -211,9 +226,19 @@ public class MenuUI extends JFrame {
         jMenu14.setText("Registar Candidatura");
 
         jMenuItem9.setText("Exposição");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu14.add(jMenuItem9);
 
         jMenuItem10.setText("Demonstração");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu14.add(jMenuItem10);
 
         jMenu13.add(jMenu14);
@@ -315,6 +340,11 @@ public class MenuUI extends JFrame {
         jMenu32.add(jMenuItem32);
 
         jMenuItem8.setText("Atribuir Stand");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu32.add(jMenuItem8);
 
         jMenuBar1.add(jMenu32);
@@ -338,6 +368,11 @@ public class MenuUI extends JFrame {
         jMenu41.add(jMenuItem4);
 
         jMenuItem5.setText("Estatistica FAE");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu41.add(jMenuItem5);
 
         jMenuBar1.add(jMenu41);
@@ -598,7 +633,7 @@ public class MenuUI extends JFrame {
     }//GEN-LAST:event_jMenuItem31ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        ConfirmarStandUI ui = new ConfirmarStandUI(this, ce, utilizador.getUsername());
+        ConfirmarStandUI ui = new ConfirmarStandUI(this, ce, utilizador);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
@@ -643,6 +678,34 @@ public class MenuUI extends JFrame {
 
 
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        new AtribuirStandUI(MenuUI.this, ce, utilizador.getUsername());
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
+        new ConfirmarRegistoDeUtilizadorUI(MenuUI.this, ce);
+    }//GEN-LAST:event_jMenuItem25ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+        new CriarDemonstracaoUI(MenuUI.this, ce, utilizador.getEmail());
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+        new DefFaeUI(MenuUI.this, ce, utilizador.getUsername());
+    }//GEN-LAST:event_jMenuItem26ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        new GerarAnaliseFAEUI(MenuUI.this, ce);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        new RegistarCandExpoUI(MenuUI.this, ce, utilizador.getEmail());
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        new RegistarCandidaturaDemonstracaoUI(MenuUI.this, ce, utilizador.getEmail());
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
 //    /**
 //     * @param args the command line arguments

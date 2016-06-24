@@ -5,6 +5,7 @@
  */
 package lapr.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
@@ -69,16 +70,40 @@ public class AtribuirStandController {
     }
 
     public void setStand() {
-        c.setStand(s);    
+        c.setStand(s);
     }
-    
+
     public boolean transitaEstado() {
-        if(ls.isEmpty()) {
+        if (ls.isEmpty()) {
             as = e.getEstado();
             return as.setStandsAtribuidos();
         } else {
             return false;
         }
+    }
+
+    public boolean checkEstado() {
+        if (!as.setStandsAtribuidos() && as.setDemonstracaoCandidaturasDecididas()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public List<String> candToListString(List<CandidaturaExposicao> lista) {
+        List<String> listaSt = new ArrayList<>();
+        for (CandidaturaExposicao obj : lista) {
+            listaSt.add(obj.toString());
+        }
+        return listaSt;
+    }
+
+    public List<String> standToListString(List<Stand> lista) {
+        List<String> listaSt = new ArrayList<>();
+        for (Stand obj : lista) {
+            listaSt.add(obj.toString());
+        }
+        return listaSt;
     }
 
 }
