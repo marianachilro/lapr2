@@ -89,7 +89,7 @@ public class AvaliarCandidaturaController {
             CandidaturaEstado cs = candidatura.getEstado();
             cs.setAvaliada();
 
-            if (es.setDemonstracaoCandidaturasAtribuidas()) {
+            if (!es.setDemonstracaoCandidaturasFechadas() && es.setDemonstracaoCandidaturasAtribuidas()) {
                 CandidaturaDemonstracao cd = (CandidaturaDemonstracao)candidatura;
                 for(Demonstracao d : cd.getListaDemonstracoes().getListaDemonstracao()){
                     for(CandidaturaDemonstracao c : d.getListaCandidaturas().getListCandidaturas()){

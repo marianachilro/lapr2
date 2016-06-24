@@ -342,7 +342,7 @@ public class Avaliacao {
      */
     @Override
     public String toString() {
-        return String.format("FAE: %s; Decisao: %s ; Justificação: %s ;%n", atribuicao.getFAE().toString(), this.decisao, this.txt);
+        return String.format("FAE: %s; Decisao: %s ; Justificação: %s ;%n", atribuicao.getFAE().getID(), this.decisao, this.txt);
     }
 
     /**

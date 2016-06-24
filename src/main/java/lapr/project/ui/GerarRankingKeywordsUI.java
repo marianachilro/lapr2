@@ -17,9 +17,8 @@ import lapr.project.controller.GerarRankingKeywordsController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.ExposicaoEstado;
-import lapr.project.model.Local;
 import lapr.project.model.Utilizador;
-import lapr.project.utils.Data;
+
 
 /**
  *

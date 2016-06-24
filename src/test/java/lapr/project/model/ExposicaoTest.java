@@ -5,12 +5,12 @@
  */
 package lapr.project.model;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.utils.Data;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
 
 /**
  *
@@ -223,7 +223,7 @@ public class ExposicaoTest {
     @Test
     public void testAddOrganizador() {
         System.out.println("TesteAddOrganizador");
-        Utilizador u = new Utilizador(3,"nome", "username", "email@centro.pt", "aA;4", "keywor");
+        Utilizador u = new Utilizador(3, "nome", "username", "email@centro.pt", "aA;4", "keywor");
         Exposicao instance = new Exposicao();
         Boolean expResult = true;
         Boolean result = instance.addOrganizador(u);;
@@ -237,7 +237,7 @@ public class ExposicaoTest {
     @Test
     public void testGetFAE() {
         System.out.println("testeFAE");
-        Utilizador u = new Utilizador(3,"nome", "username", "email@centro.pt", "aA;2", "keywrd");
+        Utilizador u = new Utilizador(3, "nome", "username", "email@centro.pt", "aA;2", "keywrd");
         Exposicao instance = new Exposicao();
         FAE expResult = null;
         FAE result = instance.getFAE(u);
@@ -250,7 +250,7 @@ public class ExposicaoTest {
     @Test
     public void testVerificarSeEOrganizadorDaExpo() {
         System.out.println("VerificarSeEOrganizadorDaExpo");
-        Utilizador u = new Utilizador(3,"nome", "username", "email@centro.pt", "aA;2", "keywrd");
+        Utilizador u = new Utilizador(3, "nome", "username", "email@centro.pt", "aA;2", "keywrd");
         Exposicao instance = new Exposicao();
         instance.addOrganizador(u);
         Organizador org = new Organizador(u);
@@ -266,7 +266,7 @@ public class ExposicaoTest {
     @Test
     public void testGetListaAtribuicoesFAEAndSetListaAtribuicoesFAE() {
         System.out.println("TesteListaAtribuicoesFAE");
-        Utilizador u = new Utilizador(3,"nome", "username", "email@centro.pt", "aA;2", "Keword");
+        Utilizador u = new Utilizador(3, "nome", "username", "email@centro.pt", "aA;2", "Keword");
         FAE fae = new FAE(u);
         Exposicao instance = new Exposicao();
         ListaAtribuicoes la = new ListaAtribuicoes();
@@ -292,15 +292,13 @@ public class ExposicaoTest {
 
     }
 
-    
-
     /**
      * Test of getAvaliaveis method, of class Exposicao.
      */
     @Test
     public void testGetAvaliaveis() {
         System.out.println("TesteAvaliaveis");
-        Utilizador u = new Utilizador(3,"nome", "username", "email@centro.pt", "aA;2", "Keword");
+        Utilizador u = new Utilizador(3, "nome", "username", "email@centro.pt", "aA;2", "Keword");
         FAE fae = new FAE(u);
         Exposicao instance = new Exposicao();
         ListaAtribuicoes la = new ListaAtribuicoes();
@@ -368,10 +366,9 @@ public class ExposicaoTest {
         Data expResult = null;
         Data result = instance.getDataFimAtualizacaoConflitosDemos();
         assertEquals(expResult, result);
-        
+
     }
 
-  
     /**
      * Test of setAtribuicoes method, of class Exposicao.
      */
@@ -381,8 +378,9 @@ public class ExposicaoTest {
         List<Atribuicao> lA = new ArrayList<>();
         Exposicao instance = new Exposicao();
         instance.setAtribuicoes(lA);
-        
+
     }
+
     /**
      * Test of valida method, of class Exposicao.
      */
@@ -393,9 +391,9 @@ public class ExposicaoTest {
         boolean expResult = true;
         boolean result = instance.valida();
         assertEquals(expResult, result);
-       
+
     }
-    
+
     /**
      * Test of listacandidaturasAceites method, of class Exposicao.
      */
@@ -403,12 +401,12 @@ public class ExposicaoTest {
     public void testListacandidaturasAceites() {
         System.out.println("listacandidaturasAceites");
         Exposicao instance = new Exposicao();
-        List<CandidaturaExposicao> expResult =new ArrayList<>();
+        List<CandidaturaExposicao> expResult = new ArrayList<>();
         List<CandidaturaExposicao> result = instance.listacandidaturasAceites();
         assertEquals(expResult, result);
-        
+
     }
-    
+
     /**
      * Test of listacandidaturasNaoAceites method, of class Exposicao.
      */
@@ -419,9 +417,8 @@ public class ExposicaoTest {
         List<CandidaturaExposicao> expResult = new ArrayList<>();
         List<CandidaturaExposicao> result = instance.listacandidaturasNaoAceites();
         assertEquals(expResult, result);
-        
+
     }
-    
 
     /**
      * Test of getlistaTodasKeywords method, of class Exposicao.
@@ -433,7 +430,7 @@ public class ExposicaoTest {
         List<Keyword> expResult = new ArrayList<>();
         List<Keyword> result = instance.getlistaTodasKeywords();
         assertEquals(expResult, result);
-       
+
     }
 
     /**
@@ -442,11 +439,37 @@ public class ExposicaoTest {
     @Test
     public void testEstatisticaCandidaturas() {
         System.out.println("estatisticaCandidaturas");
-        Exposicao instance = new Exposicao();
-        List<String> expResult = new ArrayList<>();
+        CentroExposicoes ce = new CentroExposicoes();
+        Local l = new Local("Porto");
+        ce.getRegistoLocais().addLocal(l);
+        Data dati = new Data(2016, 07, 21, 20, 20, 20);
+        Data datf = new Data(2016, 07, 21, 20, 20, 23);
+        Exposicao instance = new Exposicao("titulo", "descricao", dati, datf, l, dati, dati,
+                dati, dati);
+        ce.getRegistoExposicoes().getListaExposicoes().add(instance);
+
+        CandidaturaExposicao cex = new CandidaturaExposicao("rep@centro.pt", "nome empresa", "morada", 919999999, 23, 5);
+        instance.getListaCandidaturas().getListCandidaturas().add(cex);
+        cex.setDecisao(true);
+
+        Keyword k = new Keyword("luz");
+
+        cex.getListaKeywords().addKeyword(k);
+
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMinimumFractionDigits(2);
+
+        List<String> estatisticaKeywords = new ArrayList<>();
+        estatisticaKeywords.add(k.getPalavra() + "");
+        double num = 1;
+        estatisticaKeywords.add(String.valueOf(nf.format(num)));
+        double num2 = 0;
+        estatisticaKeywords.add(String.valueOf(nf.format(num2)));
+
+        List<String> expResult = estatisticaKeywords;
         List<String> result = instance.estatisticaCandidaturas();
         assertEquals(expResult, result);
-       
+
     }
 
 }

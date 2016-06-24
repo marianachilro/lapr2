@@ -26,7 +26,6 @@ public class MenuUI extends JFrame {
     private final CentroExposicoes ce;
     private final Utilizador utilizador;
 
-
     /**
      * Creates new form MenuUI
      *
@@ -96,10 +95,8 @@ public class MenuUI extends JFrame {
         jMenu17 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
-        jMenu26 = new javax.swing.JMenu();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem31 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem30 = new javax.swing.JMenuItem();
         jMenu20 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
@@ -228,16 +225,6 @@ public class MenuUI extends JFrame {
 
         jMenu13.add(jMenu17);
 
-        jMenu26.setText("Remover Candidatura");
-
-        jMenuItem13.setText("Exposição");
-        jMenu26.add(jMenuItem13);
-
-        jMenuItem14.setText("Demontração");
-        jMenu26.add(jMenuItem14);
-
-        jMenu13.add(jMenu26);
-
         jMenuItem31.setText("Listar Candidaturas Removidas");
         jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,6 +232,9 @@ public class MenuUI extends JFrame {
             }
         });
         jMenu13.add(jMenuItem31);
+
+        jMenuItem7.setText("Remover Candidatura");
+        jMenu13.add(jMenuItem7);
 
         jMenuItem30.setText("Atribuir Candidatura");
         jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
@@ -397,12 +387,11 @@ public class MenuUI extends JFrame {
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
         try {
-         
-            
-            if(ce.getRegistoExposicoes().getListaExposicoes().isEmpty()){
-                 throw new IllegalArgumentException("Não existe exposições!");
+
+            if (ce.getRegistoExposicoes().getListaExposicoes().isEmpty()) {
+                throw new IllegalArgumentException("Não existe exposições!");
             }
-            
+
             if (ce.getRegistoExposicoes().getListaExposicoesDoFAE(utilizador).isEmpty()) {
 
                 throw new IllegalArgumentException("Não é FAE de nenhuma exposição!");
@@ -419,7 +408,7 @@ public class MenuUI extends JFrame {
 
             dispose();
             AvaliarCandidaturaUI av = new AvaliarCandidaturaUI(ce, fae, "exposicao");
-            
+
         } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(
                     MenuUI.this,
@@ -433,10 +422,10 @@ public class MenuUI extends JFrame {
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
         try {
-            if(ce.getRegistoExposicoes().getListaExposicoes().isEmpty()){
-                 throw new IllegalArgumentException("Não existe exposições!");
+            if (ce.getRegistoExposicoes().getListaExposicoes().isEmpty()) {
+                throw new IllegalArgumentException("Não existe exposições!");
             }
-            
+
             if (ce.getRegistoExposicoes().getListaExposicoesDoFAE(utilizador).isEmpty()) {
 
                 throw new IllegalArgumentException("Não é FAE de nenhuma demonstração!");
@@ -469,8 +458,8 @@ public class MenuUI extends JFrame {
         // TODO add your handling code here:
 
         try {
-            if(ce.getRegistoExposicoes().getListaExposicoes().isEmpty()){
-                 throw new IllegalArgumentException("Não existe exposições!");
+            if (ce.getRegistoExposicoes().getListaExposicoes().isEmpty()) {
+                throw new IllegalArgumentException("Não existe exposições!");
             }
             int cont = 0;
             Organizador organizador = null;
@@ -507,10 +496,10 @@ public class MenuUI extends JFrame {
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
         try {
-            if(ce.getRegistoExposicoes().getListaExposicoes().isEmpty()){
-                 throw new IllegalArgumentException("Não existe exposições!");
+            if (ce.getRegistoExposicoes().getListaExposicoes().isEmpty()) {
+                throw new IllegalArgumentException("Não existe exposições!");
             }
-            
+
             int cont = 0;
             Organizador organizador = null;
             for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
@@ -546,26 +535,22 @@ public class MenuUI extends JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
 //         TODO add your handling code here:
-        if (utilizador != null) {
+        try {
+
             if (utilizador.getEmail() != null && utilizador.getEmail().equalsIgnoreCase("gestor@centro.pt")) {
                 dispose();
                 GerarRankingKeywordsUI r = new GerarRankingKeywordsUI(ce, utilizador);
-            }
-        } else {
-            try {
-
+            } else {
                 throw new IllegalArgumentException("Não é gestor de exposição!");
-
-            } catch (IllegalArgumentException ex) {
-                JOptionPane.showMessageDialog(
-                        MenuUI.this,
-                        ex.getMessage(),
-                        "Aviso",
-                        JOptionPane.WARNING_MESSAGE);
             }
 
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(
+                    MenuUI.this,
+                    ex.getMessage(),
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
         }
-
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenu41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu41ActionPerformed
@@ -688,7 +673,6 @@ public class MenuUI extends JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu20;
     private javax.swing.JMenu jMenu23;
-    private javax.swing.JMenu jMenu26;
     private javax.swing.JMenu jMenu32;
     private javax.swing.JMenu jMenu35;
     private javax.swing.JMenu jMenu38;
@@ -703,8 +687,6 @@ public class MenuUI extends JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
@@ -726,6 +708,7 @@ public class MenuUI extends JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables

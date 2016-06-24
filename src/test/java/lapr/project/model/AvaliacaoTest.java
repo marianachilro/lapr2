@@ -117,8 +117,9 @@ public class AvaliacaoTest {
     public void testToString() {
         
         System.out.println("TestetoString");
-        Avaliacao instance = new Avaliacao(new Atribuicao(), "decisao", "txt");
-        String expResult = String.format("FAE: %s; Decisao: %s ; Justificação: %s ;%n", "fae","decisao", "txt");
+        Atribuicao a =new Atribuicao();
+        Avaliacao instance = new Avaliacao(a, "decisao", "txt");
+        String expResult = String.format("FAE: %s; Decisao: %s ; Justificação: %s ;%n", a.getFAE().getID(),"decisao", "txt");
         String result = instance.toString();
         assertEquals(expResult, result);
     }
