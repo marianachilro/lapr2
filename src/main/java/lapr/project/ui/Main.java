@@ -13,6 +13,8 @@ import lapr.project.model.ExposicaoEstado;
 import lapr.project.model.FAE;
 import lapr.project.model.Keyword;
 import lapr.project.model.Local;
+import lapr.project.model.MecanismoConflitoIdentidadeNumerica;
+import lapr.project.model.MecanismoGeralDetecaoConflitos;
 import lapr.project.model.RegistoExposicoes;
 import lapr.project.model.Utilizador;
 import lapr.project.utils.Data;

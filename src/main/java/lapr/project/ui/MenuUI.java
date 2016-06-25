@@ -627,22 +627,6 @@ public class MenuUI extends JFrame {
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-        try {
-            boolean b = false;
-            for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
-                if (e.getListaOrganizadores().hasOrganizador(utilizador)) {
-                    b = true;
-                }
-            }
-            if (b == true) {
-                ListarCandRemovidasUI ui = new ListarCandRemovidasUI(this, ce, utilizador.getUsername());
-            } else {
-                throw new Exception("Não é organizador.");
-            }
-        } catch (Exception exp) {
-            JOptionPane.showMessageDialog(MenuUI.this, exp.getMessage(),
-                    "Aviso", JOptionPane.WARNING_MESSAGE);
-        }
 
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
@@ -688,10 +672,10 @@ public class MenuUI extends JFrame {
         try {
             boolean b = false;
             for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
-                    if (!e.getListaCandidaturas().getListaCandidaturasRep(utilizador.getEmail()).isEmpty()) {
-                        b = true;
-                    }
-                
+                if (!e.getListaCandidaturas().getListaCandidaturasRep(utilizador.getEmail()).isEmpty()) {
+                    b = true;
+                }
+
                 if (b == true) {
                     ConfirmarStandUI ui = new ConfirmarStandUI(this, ce, utilizador);
                 } else {
@@ -702,7 +686,7 @@ public class MenuUI extends JFrame {
             JOptionPane.showMessageDialog(MenuUI.this, exp.getMessage(),
                     "Aviso", JOptionPane.WARNING_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
@@ -813,7 +797,7 @@ public class MenuUI extends JFrame {
                 }
             }
             if (b == true) {
-                new AtribuirStandUI(MenuUI.this, ce, utilizador.getUsername());
+                AtribuirStandUI ui = new AtribuirStandUI(MenuUI.this, ce, utilizador.getUsername());
             } else {
                 throw new Exception("Não é organizador.");
             }
@@ -828,7 +812,7 @@ public class MenuUI extends JFrame {
         try {
 
             if (utilizador.getEmail() != null && utilizador.getEmail().equalsIgnoreCase("gestor@centro.pt")) {
-                new ConfirmarRegistoDeUtilizadorUI(MenuUI.this, ce);
+                ConfirmarRegistoDeUtilizadorUI ui = new ConfirmarRegistoDeUtilizadorUI(MenuUI.this, ce);
             } else {
                 throw new IllegalArgumentException("Não é gestor de exposição!");
             }
@@ -852,7 +836,7 @@ public class MenuUI extends JFrame {
                 }
             }
             if (b == true) {
-                new CriarDemonstracaoUI(MenuUI.this, ce, utilizador.getEmail());
+                CriarDemonstracaoUI ui = new CriarDemonstracaoUI(MenuUI.this, ce, utilizador.getEmail());
             } else {
                 throw new Exception("Não é organizador.");
             }
@@ -872,7 +856,7 @@ public class MenuUI extends JFrame {
                 }
             }
             if (b == true) {
-                new DefFaeUI(MenuUI.this, ce, utilizador.getUsername());
+                DefFaeUI ui = new DefFaeUI(MenuUI.this, ce, utilizador.getUsername());
             } else {
                 throw new Exception("Não é organizador.");
             }
@@ -883,43 +867,43 @@ public class MenuUI extends JFrame {
     }//GEN-LAST:event_jMenuItem26ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-//        try {
-//            boolean b = false;
-//            for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
-//                if (e.getListaOrganizadores().hasOrganizador(utilizador)) {
-//                    b = true;
-//                }
-//            }
-//            if (b == true) {
-                new GerarAnaliseFAEUI(MenuUI.this, ce);
-//            } else {
-//                throw new Exception("Não é organizador.");
-//            }
-//        } catch (Exception exp) {
-//            JOptionPane.showMessageDialog(MenuUI.this, exp.getMessage(),
-//                    "Aviso", JOptionPane.WARNING_MESSAGE);
-//        }
+        try {
+            boolean b = false;
+            for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
+                if (e.getListaOrganizadores().hasOrganizador(utilizador)) {
+                    b = true;
+                }
+            }
+            if (b == true) {
+                GerarAnaliseFAEUI ui = new GerarAnaliseFAEUI(MenuUI.this, ce);
+            } else {
+                throw new Exception("Não é organizador.");
+            }
+        } catch (Exception exp) {
+            JOptionPane.showMessageDialog(MenuUI.this, exp.getMessage(),
+                    "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
 
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        new RegistarCandExpoUI(MenuUI.this, ce, utilizador.getEmail());
+        RegistarCandExpoUI ui = new RegistarCandExpoUI(MenuUI.this, ce, utilizador.getEmail());
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        new RegistarCandidaturaDemonstracaoUI(MenuUI.this, ce, utilizador.getEmail());
+        RegistarCandidaturaDemonstracaoUI ui = new RegistarCandidaturaDemonstracaoUI(MenuUI.this, ce, utilizador.getEmail());
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem7ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed1
         try {
             boolean b = false;
             for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
-                    if (!e.getListaCandidaturas().getListaCandidaturasRep(utilizador.getEmail()).isEmpty()) {
-                        b = true;
-                    }
-                
+                if (!e.getListaCandidaturas().getListaCandidaturasRep(utilizador.getEmail()).isEmpty()) {
+                    b = true;
+                }
+
                 if (b == true) {
-                    new RemoverCandidaturaUI(MenuUI.this, ce, utilizador.getEmail());
+                    RemoverCandidaturaUI ui = new RemoverCandidaturaUI(MenuUI.this, ce, utilizador.getEmail());
                 } else {
                     throw new Exception("Não é representante de um expositor.");
                 }
@@ -939,12 +923,12 @@ public class MenuUI extends JFrame {
         try {
             boolean b = false;
             for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
-                    if (!e.getListaCandidaturas().getListaCandidaturasRep(utilizador.getEmail()).isEmpty()) {
-                        b = true;
-                    }
-                
+                if (!e.getListaCandidaturas().getListaCandidaturasRep(utilizador.getEmail()).isEmpty()) {
+                    b = true;
+                }
+
                 if (b == true) {
-                    new AlterarCandidaturaUI(MenuUI.this, ce, utilizador.getEmail());
+                    AlterarCandidaturaUI ui = new AlterarCandidaturaUI(MenuUI.this, ce, utilizador.getEmail());
                 } else {
                     throw new Exception("Não é representante de um expositor.");
                 }
