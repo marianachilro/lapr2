@@ -10,6 +10,10 @@ package lapr.project.model;
  * @author marianachilro
  */
 public class MecanismoConflitoIdentidadeNumerica extends MecanismoGeralDetecaoConflitos {
+    
+    public MecanismoConflitoIdentidadeNumerica(){
+        
+    }
 
     @Override
     public void detetarConflitos(Exposicao expo) {

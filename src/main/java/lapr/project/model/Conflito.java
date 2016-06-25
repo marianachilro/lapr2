@@ -145,8 +145,9 @@ public class Conflito {
         return Objects.equals(this.tipo, other.tipo);
     }
     
+    @Override
     public String toString(){
-        return String.format("Tipo do Conflito: %s%nCandidatura: %s", this.tipo, this.c);
+        return String.format("Tipo do Conflito: %s Candidatura: %s", this.tipo.getNome(), this.c);
     }
 
 }
