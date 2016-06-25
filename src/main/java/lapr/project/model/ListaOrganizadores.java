@@ -30,6 +30,10 @@ public class ListaOrganizadores {
     public ListaOrganizadores() {
         listaOrganizadores = new ArrayList<>();
     }
+    
+    public ListaOrganizadores(List <Organizador> lista){
+        this.listaOrganizadores=lista;
+    }
 
     /**
      * Devolve a List de Organizadores.

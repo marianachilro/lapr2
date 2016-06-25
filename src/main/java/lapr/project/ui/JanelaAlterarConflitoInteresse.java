@@ -35,12 +35,10 @@ import lapr.project.model.TipoConflito;
  */
 public class JanelaAlterarConflitoInteresse extends JDialog {
 
-    private final JFrame janelaPai;
-
     private final AtualizarConflitoController controller;
 
     private final CentroExposicoes centro;
-
+    
     private final Exposicao exposicao;
 
     private final Conflito conflito;
@@ -59,11 +57,11 @@ public class JanelaAlterarConflitoInteresse extends JDialog {
 
     private JComboBox comboBoxTiposConflito;
 
-    public JanelaAlterarConflitoInteresse(JFrame janelaPai, AtualizarConflitoController controller, CentroExposicoes centro, Exposicao exposicao, Conflito conflito) {
-        this.janelaPai = janelaPai;
+    public JanelaAlterarConflitoInteresse(AtualizarConflitoController controller, CentroExposicoes centro, Conflito conflito) {
+       
         this.controller = controller;
         this.centro = centro;
-        this.exposicao = exposicao;
+        this.exposicao=controller.getExposicao();
         this.conflito = conflito;
         this.listaCandidaturasExpo = controller.getListaCandidaturasFAEExpo();
         this.listaCandidaturasDemo = controller.getListaCandidaturasFAEDemo();
@@ -77,7 +75,6 @@ public class JanelaAlterarConflitoInteresse extends JDialog {
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         pack();
         setResizable(false);
-        setLocationRelativeTo(janelaPai);
         setVisible(true);
     }
 
@@ -128,7 +125,7 @@ public class JanelaAlterarConflitoInteresse extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 botaoSim.setEnabled(false);
                 botaoNao.setEnabled(true);
-//                comboBox.setEnabled(true);
+                comboBox.setEnabled(true);
             }
 
         });
@@ -141,14 +138,14 @@ public class JanelaAlterarConflitoInteresse extends JDialog {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                botaoSim.setEnabled(true);
-//                botaoNao.setEnabled(false);
-//                if (comboBox.equals(comboBoxCandidaturas)) {
-//                    comboBox.setSelectedItem(conflito.getCandidaturas());
-//                } else {
-//                    comboBox.setSelectedItem(conflito.getTipo());
-//                }
-//                comboBox.setEnabled(false);
+                botaoSim.setEnabled(true);
+                botaoNao.setEnabled(false);
+                if (comboBox.equals(comboBoxCandidaturas)) {
+                    comboBox.setSelectedItem(conflito.getCandidaturas());
+                } else {
+                    comboBox.setSelectedItem(conflito.getTipo());
+                }
+                comboBox.setEnabled(false);
             }
 
         });
@@ -260,8 +257,10 @@ public class JanelaAlterarConflitoInteresse extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 controller.criarCloneConflito(conflito);
                 CandidaturaGeral c = (CandidaturaGeral)comboBoxCandidaturas.getSelectedItem();
+                controller.seleciona(c);
                 TipoConflito t = (TipoConflito) comboBoxTiposConflito.getSelectedItem();
-                controller.setDados(c,t);
+                controller.seleciona(t);
+                controller.setDados();
                 int i = JOptionPane.showConfirmDialog(JanelaAlterarConflitoInteresse.this, "Deseja Confirmar Alteração?",
                             "Alterar Conflito", JOptionPane.YES_NO_OPTION);
                 if (i == JOptionPane.YES_OPTION) {
