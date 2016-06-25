@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
-import lapr.project.model.File_CSV;
+import lapr.project.utils.File_CSV;
 
 /**
  *

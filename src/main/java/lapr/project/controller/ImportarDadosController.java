@@ -15,7 +15,7 @@ import lapr.project.model.AlterarParaConflitosAtualizadosDemos;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.CriarControllerDetetarConflitos;
 import lapr.project.model.Exposicao;
-import lapr.project.model.LerFicheiroXML;
+import lapr.project.utils.LerFicheiroXML;
 import lapr.project.utils.Data;
 
 /**

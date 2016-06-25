@@ -43,11 +43,12 @@ public class ListaFAEs {
      * @return o FAE
      */
     public FAE getFAE(Utilizador u){
+        FAE fa = null;
         for(FAE f: this.listaFAEs){
             if(f.getID().equalsIgnoreCase(u.getUsername()))
-                return f;
+                fa = f;
         }
-        return null;
+        return fa;
     }
 
     /**

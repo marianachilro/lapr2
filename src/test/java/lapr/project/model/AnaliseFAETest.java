@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import lapr.project.utils.AnaliseFAE;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
