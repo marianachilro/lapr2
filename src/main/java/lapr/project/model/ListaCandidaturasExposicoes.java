@@ -22,14 +22,12 @@ public class ListaCandidaturasExposicoes {
      */
     
     private List<CandidaturaExposicao> listaCandidaturas;
-   // private List<CandidaturaExposicao> listaCandidaturasRemovidas;
 
     /**
      * Construtor de uma Lista de Candidaturas.
      */
     public ListaCandidaturasExposicoes() {
         this.listaCandidaturas = new ArrayList<>();
-      //  this.listaCandidaturasRemovidas = new ArrayList<>();
     }
     /**
      * retorna a lista de candidaturas removidas.

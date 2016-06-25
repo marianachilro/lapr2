@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lapr.project.model;
+package lapr.project.utils;
 
+import lapr.project.model.CandidaturaExposicao;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
+import lapr.project.model.Keyword;
+import lapr.project.model.Local;
 import lapr.project.utils.File_CSV;
 import lapr.project.utils.Data;
 import org.junit.Test;

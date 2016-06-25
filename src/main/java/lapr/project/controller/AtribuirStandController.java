@@ -83,6 +83,7 @@ public class AtribuirStandController {
     }
 
     public boolean checkEstado() {
+        as = e.getEstado();
         if (!as.setDemonstracaoCandidaturasAvaliadas()&& as.setDemonstracaoCandidaturasDecididas()) {
             return true;
         } else {

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lapr.project.utils.AnaliseFAE;
 import lapr.project.model.Avaliacao;
+import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CandidaturaGeral;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
@@ -50,7 +51,7 @@ public class GerarAnaliseFAEController {
         listMediasFae = new ArrayList<>();
         listAnalises = new ArrayList<>();
     }
-    
+
     public AnaliseFAE novaAnalise() {
         analise = new AnaliseFAE();
         return analise;
@@ -87,7 +88,7 @@ public class GerarAnaliseFAEController {
                     }
                 }
             }
-            if(nCand!=0) {
+            if (nCand != 0) {
                 calcMediaTotal();
                 novaAnalise();
                 analise = new AnaliseFAE(u, nCand, media, listMediasFae);
@@ -99,8 +100,8 @@ public class GerarAnaliseFAEController {
     @Override
     public String toString() {
         String str = "FAE  |  Nº de submissões  |  Média das Classificações do FAE  |  Média dos Desvios  |  Valor observado da estatística de teste  |  Alerta\n";
-        str = str +  "==========================================================================================================================================\n";  
-        for(AnaliseFAE al : listAnalises) {
+        str = str + "==========================================================================================================================================\n";
+        for (AnaliseFAE al : listAnalises) {
             str = str + al.toString();
         }
         return str;
@@ -108,15 +109,31 @@ public class GerarAnaliseFAEController {
 
     public boolean needsWarning() {
         boolean b = false;
-        for(AnaliseFAE al : listAnalises) {
+        for (AnaliseFAE al : listAnalises) {
             if (al.getDecisao().equals("SIM")) {
                 b = true;
-            }    
+            }
         }
-            return b;
+        return b;
     }
 
-    private void somaCandTotal() {
+    public boolean valida() {
+        int i = 0;
+        re = ce.getRegistoExposicoes();
+        le = re.getListaExposicoes();
+        for (Exposicao e : le) {
+            List<CandidaturaExposicao> listC = e.getListaCandidaturas().getListCandidaturas();
+            i = i + listC.size();
+        }
+        if(i < 31) {
+            return false;
+        } else {
+            return true;
+    }
+
+}
+
+private void somaCandTotal() {
         nCand++;
     }
 

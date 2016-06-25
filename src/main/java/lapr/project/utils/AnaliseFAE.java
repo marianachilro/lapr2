@@ -93,13 +93,13 @@ public class AnaliseFAE {
     }
 
     public void setMediasFae(List<Float> mediasFae) {
-        this.mediasFae=mediasFae;
+        this.mediasFae = mediasFae;
     }
 
     public void setDecisao(String decisao) {
         this.decisao = decisao;
     }
-    
+
     public float getVariancia() {
         return variancia;
     }
@@ -120,15 +120,15 @@ public class AnaliseFAE {
         calcMediaClassificacoes();
         calcMediaDesvios();
         calcVariancia();
-        estatistica = (float) ((mediaDesvios - 1) / (variancia / Math.sqrt( mediasFae.size())));
-        if(estatistica > REGIAO_CRITICA) {
+        estatistica = (float) ((mediaDesvios - 1) / (variancia / Math.sqrt(mediasFae.size())));
+        if (estatistica > REGIAO_CRITICA) {
             decisao = "SIM";
         } else {
             decisao = "NÃO";
         }
         return estatistica;
     }
-    
+
     @Override
     public String toString() {
         return String.format("%s \t%9d\t  \t%10.3f\t  \t%17.3f\t  \t%16.3f\t  \t%7s \n", utilizador.getUsername(), nCand, mediaClassificacoes,
@@ -154,11 +154,11 @@ public class AnaliseFAE {
         }
         variancia = (float) ((somatorio - (mediasFae.size() * Math.pow(mediaTotal, 2))) / (mediasFae.size() - 1));
     }
-    
+
     private void calcMediaClassificacoes() {
         mediaClassificacoes = 0;
         float soma = 0;
-        for(Float media : mediasFae) {
+        for (Float media : mediasFae) {
             soma = soma + media;
         }
         mediaClassificacoes = soma / mediasFae.size();
@@ -188,7 +188,5 @@ public class AnaliseFAE {
         }
         return true;
     }
-
-    
 
 }

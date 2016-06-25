@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -29,20 +30,26 @@ public class GerarAnaliseFAEUI extends JDialog {
     public GerarAnaliseFAEUI(JFrame janelaPai, CentroExposicoes ce) {
         super(janelaPai, "Gerar Análise", true);
         this.controller = new GerarAnaliseFAEController(ce);
-        criarComponentes();
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        pack();
-        setResizable(true);
-        setLocationRelativeTo(janelaPai);
-        
-        setVisible(true);
+        if (controller.valida()) {
+            JOptionPane.showMessageDialog(GerarAnaliseFAEUI.this, "Não existem dados suficientes para gerar a análise.",
+                    "Gerar Análise de FAE", JOptionPane.ERROR_MESSAGE);
+            dispose();
+        } else {
+            criarComponentes();
+            setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            pack();
+            setResizable(true);
+            setLocationRelativeTo(janelaPai);
+
+            setVisible(true);
+        }
     }
 
     public void criarComponentes() {
         controller.criarAnalises();
-        setLayout(new BorderLayout(30,30));
+        setLayout(new BorderLayout(30, 30));
         JLabel lbl = new JLabel();
-        if(controller.needsWarning()) {
+        if (controller.needsWarning()) {
             lbl.setText("Existem alertas.");
         } else {
             lbl.setText("Não existem alertas.");
@@ -65,7 +72,7 @@ public class GerarAnaliseFAEUI extends JDialog {
     private JPanel criarPainelBotao() {
         JPanel p = new JPanel();
         p.setLayout(new BorderLayout());
-        
+
         p.add(criarBotaoOk(), BorderLayout.EAST);
         return p;
     }

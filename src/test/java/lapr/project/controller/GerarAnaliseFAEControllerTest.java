@@ -181,10 +181,10 @@ public class GerarAnaliseFAEControllerTest {
                     avaliacao.setRespostaRecomendacaoGlobal(5);
                     avaliacao.setRespostaTemaExpo(3);
                 } else {
-                    avaliacao.setRespostaAdequacaoCandDemonstracao(0);
-                    avaliacao.setRespostaAdequacaoCandExposicao(0);
-                    avaliacao.setRespostaAdequacaoNumConvites(0);
-                    avaliacao.setRespostaRecomendacaoGlobal(0);
+                    avaliacao.setRespostaAdequacaoCandDemonstracao(1);
+                    avaliacao.setRespostaAdequacaoCandExposicao(1);
+                    avaliacao.setRespostaAdequacaoNumConvites(1);
+                    avaliacao.setRespostaRecomendacaoGlobal(1);
                     avaliacao.setRespostaTemaExpo(1);
                 }
                 
