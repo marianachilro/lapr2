@@ -75,6 +75,24 @@ public class Conflito {
     public CandidaturaGeral getCandidaturas() {
         return c;
     }
+    /**
+     * Devolve a Candidatura do conflito.
+     * @return caso esta seja de uma Exposicao
+     */
+    public CandidaturaExposicao getCandidaturaExpo(){
+        if(c.getListaDemonstracoes().getListaDemonstracao() != null)
+            return (CandidaturaExposicao) c;
+        return null;
+    }
+    /**
+     * Devolve a Candidatura do conflito.
+     * @return caso esta seja de uma Demonstracao
+     */
+    public CandidaturaDemonstracao getCandidaturaDemo(){
+        if(c.getListaDemonstracoes().getListaDemonstracao() == null)
+            return (CandidaturaDemonstracao) c;
+        return null;
+    }
 
     /**
      * Devolve o tipo do conflito de interesse.

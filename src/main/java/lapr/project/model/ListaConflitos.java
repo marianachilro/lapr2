@@ -86,7 +86,7 @@ public class ListaConflitos {
     public List <Conflito> getListaConlitosFAE(Utilizador u){
         List <Conflito> lista = new ArrayList<>();
         for(Conflito c : lc){
-            if(c.getFAE().equals(u)){
+            if(c.getFAE().getUtilizador().getEmail().equalsIgnoreCase(u.getEmail())){
                 lista.add(c);
             }
         }
