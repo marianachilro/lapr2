@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lapr.project.model;
+package lapr.project.utils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import lapr.project.model.Utilizador;
 
 /**
  *
@@ -32,6 +33,7 @@ public class AnaliseFAE {
     private float mediaDesvios;
     private float mediaClassificacoes;
     private float estatistica;
+    private float somatorio;
 
     private static final Utilizador UTILIZADOR_OMISSAO = null;
     private static final int N_SUB_OMISSAO = 0;
@@ -54,7 +56,7 @@ public class AnaliseFAE {
         this.utilizador = utilizador;
         this.nCand = nCand;
         this.mediaTotal = mediaTotal;
-        this.mediasFae = new ArrayList<>();
+        this.mediasFae = mediasFaes;
         gerarAnalise();
     }
 
@@ -118,21 +120,24 @@ public class AnaliseFAE {
         calcMediaClassificacoes();
         calcMediaDesvios();
         calcVariancia();
-        estatistica = (float) ((getMediaDesvios() - 1) / Math.sqrt(variancia / nCand));
+        estatistica = (float) ((mediaDesvios - 1) / (variancia / Math.sqrt( mediasFae.size())));
         if(estatistica > REGIAO_CRITICA) {
-            setDecisao("SIM");
+            decisao = "SIM";
+        } else {
+            decisao = "NÃO";
         }
         return estatistica;
     }
     
     @Override
     public String toString() {
-        return String.format("\t%s\t \t%d\t \t%.3f\t \t%.3f\t \t%.3f\t \t%s\t", utilizador.getUsername(), nCand, mediaClassificacoes,
+        return String.format("%s \t%9d\t  \t%10.3f\t  \t%17.3f\t  \t%16.3f\t  \t%7s \n", utilizador.getUsername(), nCand, mediaClassificacoes,
                 mediaDesvios, estatistica, decisao);
     }
 
     private void calcMediaDesvios() {
         float soma = 0;
+        mediaDesvios = 0;
         float desvio = 0;
         for (Float media : mediasFae) {
             desvio = Math.abs(media - mediaTotal);
@@ -142,20 +147,21 @@ public class AnaliseFAE {
     }
 
     private void calcVariancia() {
-        float somatorio = 0;
-
+        somatorio = 0;
+        variancia = 0;
         for (Float media : mediasFae) {
-            somatorio = (float) (somatorio + Math.pow(media, 2));
+            somatorio = (float) (somatorio + (Math.pow(media, 2)));
         }
-        variancia = (float) (somatorio - (nCand * Math.pow(mediaTotal, 2)) / (nCand - 1));
+        variancia = (float) ((somatorio - (mediasFae.size() * Math.pow(mediaTotal, 2))) / (mediasFae.size() - 1));
     }
     
     private void calcMediaClassificacoes() {
+        mediaClassificacoes = 0;
         float soma = 0;
         for(Float media : mediasFae) {
             soma = soma + media;
         }
-        mediaClassificacoes = soma / nCand;
+        mediaClassificacoes = soma / mediasFae.size();
     }
 
     @Override

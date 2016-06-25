@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
-import lapr.project.model.LerFicheiroXML;
+import lapr.project.utils.LerFicheiroXML;
 import lapr.project.model.RegistoExposicoes;
 
 /**

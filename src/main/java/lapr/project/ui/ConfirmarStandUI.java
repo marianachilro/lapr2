@@ -96,8 +96,7 @@ public class ConfirmarStandUI extends JDialog {
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                CandidaturaExposicao c = new CandidaturaExposicao();
-//                c.setStand(new Stand());
+
                  ConfirmaStand confirma = new ConfirmaStand(ConfirmarStandUI.this, controller,(CandidaturaExposicao)cb.getSelectedItem());
             }
         });
@@ -111,7 +110,7 @@ public class ConfirmarStandUI extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                
+                MenuUI ui = new MenuUI(ce, utilizador);
             }
         });
         return b1;

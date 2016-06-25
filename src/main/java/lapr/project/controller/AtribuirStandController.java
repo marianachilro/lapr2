@@ -83,7 +83,7 @@ public class AtribuirStandController {
     }
 
     public boolean checkEstado() {
-        if (!as.setStandsAtribuidos() && as.setDemonstracaoCandidaturasDecididas()) {
+        if (!as.setDemonstracaoCandidaturasAvaliadas()&& as.setDemonstracaoCandidaturasDecididas()) {
             return true;
         } else {
             return false;

@@ -89,23 +89,22 @@ public class AvaliarCandidaturaController {
             CandidaturaEstado cs = candidatura.getEstado();
             cs.setAvaliada();
 
-            if (!es.setDemonstracaoConflitosAtualizados()&& es.setDemonstracaoCandidaturasAtribuidas()) {
-                CandidaturaDemonstracao cd = (CandidaturaDemonstracao)candidatura;
-                for(Demonstracao d : cd.getListaDemonstracoes().getListaDemonstracao()){
-                    for(CandidaturaDemonstracao c : d.getListaCandidaturas().getListCandidaturas()){
-                        if(c.equals(cd)){
-                            demonstracao =d;
+            if (!es.setDemonstracaoConflitosAtualizados() && es.setDemonstracaoCandidaturasAtribuidas()) {
+                CandidaturaDemonstracao cd = (CandidaturaDemonstracao) candidatura;
+                for (Demonstracao d : cd.getListaDemonstracoes().getListaDemonstracao()) {
+                    for (CandidaturaDemonstracao c : d.getListaCandidaturas().getListCandidaturas()) {
+                        if (c.equals(cd)) {
+                            demonstracao = d;
                         }
                     }
                 }
                 DemonstracaoEstado ds = demonstracao.getEstado();
-                
+
                 if (!ds.setConflitosAtualizados() && ds.setCandidaturasAtribuidas()) {
                     ds.setCandidaturasAvaliadas();
                     es.setDemonstracaoCandidaturasAvaliadas();
                 }
-                
-                
+
             } else {
                 es.setExposicaoCandidaturasAvaliadas();
             }

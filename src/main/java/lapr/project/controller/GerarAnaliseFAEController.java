@@ -8,7 +8,7 @@ package lapr.project.controller;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.AnaliseFAE;
+import lapr.project.utils.AnaliseFAE;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.CandidaturaGeral;
 import lapr.project.model.CentroExposicoes;
@@ -42,6 +42,7 @@ public class GerarAnaliseFAEController {
     private List<Float> listMediasFae;
     private List<AnaliseFAE> listAnalises;
     private int nCand;
+    private int nAval;
     private float media;
 
     public GerarAnaliseFAEController(CentroExposicoes ce) {
@@ -57,11 +58,14 @@ public class GerarAnaliseFAEController {
 
     public void criarAnalises() {
         boolean b = false;
+        float mediaadd = 0;
         ru = ce.getRegistoUtilizadores();
         lu = ru.getListaUtilizadores();
         for (Utilizador u : lu) {
             nCand = 0;
+            nAval = 0;
             media = 0;
+            listMediasFae.clear();
             re = ce.getRegistoExposicoes();
             le = re.getListaExposicoes();
             for (Exposicao e : le) {
@@ -74,25 +78,28 @@ public class GerarAnaliseFAEController {
                     ra = c.getListaAvaliacoes();
                     la = ra.getListaAvaliacao();
                     for (Avaliacao a : la) {
-                        media = a.calcMediaRatings();
-                        somaMediaTotal(media);
+                        mediaadd = a.calcMediaRatings();
+                        somaMediaTotal(mediaadd);
                         if (a.getAtribuicao().getFAE().equals(f)) {
-                            listMediasFae.add(media);
+                            listMediasFae.add(mediaadd);
                         }
+                        nAval++;
                     }
                 }
             }
-            calcMediaTotal();
-            novaAnalise();
-            analise = new AnaliseFAE(u, nCand, media, listMediasFae);
-            listAnalises.add(analise);
+            if(nCand!=0) {
+                calcMediaTotal();
+                novaAnalise();
+                analise = new AnaliseFAE(u, nCand, media, listMediasFae);
+                listAnalises.add(analise);
+            }
         }
     }
 
     @Override
     public String toString() {
         String str = "FAE  |  Nº de submissões  |  Média das Classificações do FAE  |  Média dos Desvios  |  Valor observado da estatística de teste  |  Alerta\n";
-        str = str +  "==========================================================================================================\n";  
+        str = str +  "==========================================================================================================================================\n";  
         for(AnaliseFAE al : listAnalises) {
             str = str + al.toString();
         }
@@ -118,6 +125,6 @@ public class GerarAnaliseFAEController {
     }
 
     private void calcMediaTotal() {
-        this.media = media / nCand;
+        this.media = (media / nAval);
     }
 }
