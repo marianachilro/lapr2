@@ -27,7 +27,7 @@ public class CriarPerfideUtilizadorControllerTest {
         CentroExposicoes ce = new CentroExposicoes();
         CriarPerfideUtilizadorController instance = new CriarPerfideUtilizadorController(ce);
 
-        RegistoUtilizadores expResult = ce.getRegistoUtilizadores();
+        RegistoUtilizadores expResult = ce.getRegistoUtilizadoresNaoConfirmados();
         RegistoUtilizadores result = instance.getRegistoUtilizadores();
         assertEquals(expResult, result);
 

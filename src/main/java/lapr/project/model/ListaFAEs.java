@@ -97,7 +97,7 @@ public class ListaFAEs {
         if (!listaFAEs.isEmpty()) {
             return listaFAEs.contains(fae);
         } else {
-            return true;
+            return false;
         }
     }
 

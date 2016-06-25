@@ -24,24 +24,24 @@ import static org.junit.Assert.*;
  * @author catarinarib
  */
 public class DecidirCandidaturaControllerTest {
-    
 
     /**
-     * Test of getListaExposicoesOrganizador method, of class DecidirCandidaturaController.
+     * Test of getListaExposicoesOrganizador method, of class
+     * DecidirCandidaturaController.
      */
     @Test
     public void testGetListaExposicoesOrganizador() {
         System.out.println("getListaExposicoesOrganizador");
-        
-        CentroExposicoes ce=new CentroExposicoes();
-         Utilizador u = new Utilizador(3, "carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
-        Organizador org=new Organizador(u);
-        
-        DecidirCandidaturaController instance = new DecidirCandidaturaController(ce,org);
+
+        CentroExposicoes ce = new CentroExposicoes();
+        Utilizador u = new Utilizador(3, "carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
+        Organizador org = new Organizador(u);
+
+        DecidirCandidaturaController instance = new DecidirCandidaturaController(ce, org);
         List<Exposicao> expResult = new ArrayList<>();
         List<Exposicao> result = instance.getListaExposicoesOrganizador();
         assertEquals(expResult, result);
-       
+
     }
 
     /**
@@ -50,21 +50,21 @@ public class DecidirCandidaturaControllerTest {
     @Test
     public void testSelectExposicao() {
         System.out.println("selectExposicao");
-         CentroExposicoes ce=new CentroExposicoes();
-        
+        CentroExposicoes ce = new CentroExposicoes();
+
         Local l = new Local("Porto");
         ce.getRegistoLocais().addLocal(l);
         Data dati = new Data(2016, 07, 21, 20, 20, 20);
         Data datf = new Data(2016, 07, 21, 20, 20, 23);
         Exposicao e = new Exposicao("titulo", "descricao", dati, datf, l, dati, dati,
                 dati, dati);
-       
-         Utilizador u = new Utilizador(3, "carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
-        Organizador org=new Organizador(u);
-        
-        DecidirCandidaturaController instance = new DecidirCandidaturaController(ce,org);
+
+        Utilizador u = new Utilizador(3, "carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
+        Organizador org = new Organizador(u);
+
+        DecidirCandidaturaController instance = new DecidirCandidaturaController(ce, org);
         instance.selectExposicao(e);
-        
+
     }
 
     /**
@@ -73,25 +73,25 @@ public class DecidirCandidaturaControllerTest {
     @Test
     public void testGetDecisivel() {
         System.out.println("getDecisivel");
-        CentroExposicoes ce=new CentroExposicoes();
-        
+        CentroExposicoes ce = new CentroExposicoes();
+
         Local l = new Local("Porto");
         ce.getRegistoLocais().addLocal(l);
         Data dati = new Data(2016, 07, 21, 20, 20, 20);
         Data datf = new Data(2016, 07, 21, 20, 20, 23);
         Exposicao e = new Exposicao("titulo", "descricao", dati, datf, l, dati, dati,
                 dati, dati);
-       
-         Utilizador u = new Utilizador(3, "carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
-        Organizador org=new Organizador(u);
-        
-        DecidirCandidaturaController instance = new DecidirCandidaturaController(ce,org);
+
+        Utilizador u = new Utilizador(3, "carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
+        Organizador org = new Organizador(u);
+
+        DecidirCandidaturaController instance = new DecidirCandidaturaController(ce, org);
         instance.selectExposicao(e);
-        
+
         List<Candidatura> expResult = new ArrayList<>();
         List<Candidatura> result = instance.getDecisivel();
         assertEquals(expResult, result);
-       
+
     }
 
     /**
@@ -100,37 +100,38 @@ public class DecidirCandidaturaControllerTest {
     @Test
     public void testSelectCandidatura() {
         System.out.println("selectCandidatura");
-        
-       CandidaturaExposicao c = new CandidaturaExposicao("rep@centro.pt", "nome empresa", "morada", 919999999, 23, 5);
-       
-        CentroExposicoes ce=new CentroExposicoes();
-         Utilizador u = new Utilizador(3, "carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
-        Organizador org=new Organizador(u);
-        
-        DecidirCandidaturaController instance = new DecidirCandidaturaController(ce,org);
+
+        CandidaturaExposicao c = new CandidaturaExposicao("rep@centro.pt", "nome empresa", "morada", 919999999, 23, 5);
+
+        CentroExposicoes ce = new CentroExposicoes();
+        Utilizador u = new Utilizador(3, "carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
+        Organizador org = new Organizador(u);
+
+        DecidirCandidaturaController instance = new DecidirCandidaturaController(ce, org);
         instance.selectCandidatura(c);
-       
+
     }
 
     /**
-     * Test of getListaAvaliacoesDaCandidatura method, of class DecidirCandidaturaController.
+     * Test of getListaAvaliacoesDaCandidatura method, of class
+     * DecidirCandidaturaController.
      */
     @Test
     public void testGetListaAvaliacoesDaCandidatura() {
         System.out.println("getListaAvaliacoesDaCandidatura");
-        
+
         CandidaturaExposicao c = new CandidaturaExposicao("rep@centro.pt", "nome empresa", "morada", 919999999, 23, 5);
-       
-       CentroExposicoes ce=new CentroExposicoes();
-         Utilizador u = new Utilizador(3, "carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
-        Organizador org=new Organizador(u);
-        
-        DecidirCandidaturaController instance = new DecidirCandidaturaController(ce,org);
+
+        CentroExposicoes ce = new CentroExposicoes();
+        Utilizador u = new Utilizador(3, "carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
+        Organizador org = new Organizador(u);
+
+        DecidirCandidaturaController instance = new DecidirCandidaturaController(ce, org);
         instance.selectCandidatura(c);
         List<Avaliacao> expResult = new ArrayList<>();
         List<Avaliacao> result = instance.getListaAvaliacoesDaCandidatura();
         assertEquals(expResult, result);
-       
+
     }
 
     /**
@@ -139,28 +140,27 @@ public class DecidirCandidaturaControllerTest {
     @Test
     public void testSetDecisao() {
         System.out.println("setDecisao");
-        
-        CentroExposicoes ce=new CentroExposicoes();
+
+        CentroExposicoes ce = new CentroExposicoes();
         boolean decisao = true;
         CandidaturaExposicao c = new CandidaturaExposicao("rep@centro.pt", "nome empresa", "morada", 919999999, 23, 5);
-       
+
         Local l = new Local("Porto");
         ce.getRegistoLocais().addLocal(l);
         Data dati = new Data(2016, 07, 21, 20, 20, 20);
         Data datf = new Data(2016, 07, 21, 20, 20, 23);
         Exposicao e = new Exposicao("titulo", "descricao", dati, datf, l, dati, dati,
                 dati, dati);
-        
-       
-         Utilizador u = new Utilizador(3, "carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
-        Organizador org=new Organizador(u);
-        
-        DecidirCandidaturaController instance = new DecidirCandidaturaController(ce,org);
+
+        Utilizador u = new Utilizador(3, "carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
+        Organizador org = new Organizador(u);
+
+        DecidirCandidaturaController instance = new DecidirCandidaturaController(ce, org);
         instance.selectExposicao(e);
         instance.selectCandidatura(c);
-        
+
         instance.setDecisao(decisao);
-       
+
     }
-    
+
 }
