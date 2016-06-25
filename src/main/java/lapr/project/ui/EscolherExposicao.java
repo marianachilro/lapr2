@@ -16,14 +16,16 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import lapr.project.controller.AtualizarConflitoController;
+import lapr.project.model.Atribuicao;
+import lapr.project.model.Avaliacao;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Conflito;
 import lapr.project.model.Demonstracao;
-import lapr.project.model.ExpoImpEstado;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
 import lapr.project.model.ListaOrganizadores;
@@ -57,7 +59,7 @@ public class EscolherExposicao extends JDialog{
         this.centro=centro;
         this.utilizador=utilizador;
         this.controller=new AtualizarConflitoController(centro, utilizador);
-        this.listaExposFAE=controller.getListaExposicoesFAE();
+        this.listaExposFAE=controller.getListaExposicoesFAEDisponiveis();
         
         setModal(true);
         setLayout(new BorderLayout());
@@ -132,6 +134,17 @@ public class EscolherExposicao extends JDialog{
                 expo.getEstado().setExposicaoCandidaturasFechadas();
                 expo.getEstado().setExposicaoConflitosDetetados();
                 
+                
+                Exposicao expo1 = new Exposicao("titulo1", "descriçã1o", new Data(2017,1,1,1,1,2), new Data(2017,2,1,1,1,4), new Local("nome"), new Data(2017,3,1,1,1,1),
+                new Data(2017,4,1,1,1,1), new Data(2017,5,1,1,1,1),new Data(2017,6,1,1,1,1));
+                expo1.setListaOrganizadores(new ListaOrganizadores(listaOrgs));
+                ce.getRegistoExposicoes().addExposicao(expo1);
+                boolean bo = expo1.valida();
+                expo1.getEstado().setCriada();
+                expo1.getEstado().setDemoSemFae();
+                expo1.getEstado().setCompleta();
+                expo1.getEstado().setExposicaoCandidaturasAbertas();
+                
                 CandidaturaExposicao c = new CandidaturaExposicao();
                 c.setEmailRep("email@centro.pt");
                 expo.getListaCandidaturas().addCandidatura(c);
@@ -151,13 +164,15 @@ public class EscolherExposicao extends JDialog{
                 expo.getListaDemonstracoes().addDemonstracao(d1);
                 d1.getEstado().setCriada();
                 
-                Utilizador util = new Utilizador(1,"eva", "eva1","blaba@centro.pt", "M-ay1", "key1");
+                Utilizador util = new Utilizador(1,"eva", "eva1","email@centro.pt", "M-ay1", "key1");
                 ce.getRegistoUtilizadores().addUtilizador(util);
                 FAE f = new FAE(util);
                 expo.getListaFAES().addFae(f);
                 Conflito conf = new Conflito(f,c);
                 conf.setTipo(tipo);
                 expo.getListaConflitos().addConflito(conf);
+                
+                
 
                 new EscolherExposicao(null, ce, util).setVisible(true);
             }
@@ -177,6 +192,9 @@ public class EscolherExposicao extends JDialog{
         if (!listaExposFAE.isEmpty()) {
             p.add(criarPainelExposicoes());
             p.add(criarBotaoNext());
+        }else{
+            JOptionPane.showMessageDialog(EscolherExposicao.this, "Não existem Exposições disponívies!",
+                            "Erro", JOptionPane.ERROR_MESSAGE);
         }
         p.add(criarBotaoCancelar());
         pack();
@@ -200,7 +218,7 @@ public class EscolherExposicao extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 Exposicao expo = (Exposicao) comboBoxExpos.getSelectedItem();
                 if (expo != null) {
-                    controller.seleciona(expo);
+                    controller.selecionaExpo(expo);
                 }
 
             }
@@ -220,7 +238,8 @@ public class EscolherExposicao extends JDialog{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                AtualizarConflitoInteresseUI atualizarConflitoInteresseUI = new AtualizarConflitoInteresseUI(centro, utilizador, controller);
+                AtualizarConflitoInteresseUI atualizarConflitoInteresseUI = new AtualizarConflitoInteresseUI(controller);
+                dispose();
             }
         });
         return btn;
