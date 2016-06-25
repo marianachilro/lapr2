@@ -883,22 +883,22 @@ public class MenuUI extends JFrame {
     }//GEN-LAST:event_jMenuItem26ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        try {
-            boolean b = false;
-            for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
-                if (e.getListaOrganizadores().hasOrganizador(utilizador)) {
-                    b = true;
-                }
-            }
-            if (b == true) {
+//        try {
+//            boolean b = false;
+//            for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
+//                if (e.getListaOrganizadores().hasOrganizador(utilizador)) {
+//                    b = true;
+//                }
+//            }
+//            if (b == true) {
                 new GerarAnaliseFAEUI(MenuUI.this, ce);
-            } else {
-                throw new Exception("Não é organizador.");
-            }
-        } catch (Exception exp) {
-            JOptionPane.showMessageDialog(MenuUI.this, exp.getMessage(),
-                    "Aviso", JOptionPane.WARNING_MESSAGE);
-        }
+//            } else {
+//                throw new Exception("Não é organizador.");
+//            }
+//        } catch (Exception exp) {
+//            JOptionPane.showMessageDialog(MenuUI.this, exp.getMessage(),
+//                    "Aviso", JOptionPane.WARNING_MESSAGE);
+//        }
 
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 

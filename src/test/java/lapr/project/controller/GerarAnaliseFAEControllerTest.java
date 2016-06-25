@@ -7,7 +7,7 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.AnaliseFAE;
+import lapr.project.utils.AnaliseFAE;
 import lapr.project.model.Atribuicao;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.CandidaturaExposicao;
@@ -155,31 +155,40 @@ public class GerarAnaliseFAEControllerTest {
         lc.add(c31);
         FAE f = new FAE(u1);
         FAE f2 = new FAE(u2);
-        ce.getRegistoExposicoes().registaExposicao(e);
-        e.getListaCandidaturas().setListCandidaturas(lc);
+        
         RegistoExposicoes re = ce.getRegistoExposicoes();
+        re.registaExposicao(e);
+        e.getListaCandidaturas().setListCandidaturas(lc);
+        e.getListaFAES().registaFae(f);
+        e.getListaFAES().registaFae(f2);
+        List<Atribuicao> lat = new ArrayList<>();
         for (CandidaturaExposicao c : lc) {
-            e.getListaAtribuicoes().getLista().add(new Atribuicao(f, c));
-            e.getListaAtribuicoes().getLista().add(new Atribuicao(f2, c));
+            Atribuicao ata = new Atribuicao(f, c);
+            lat.add(ata);
+            ata = new Atribuicao(f2, c);
+            lat.add(ata);
         }
+        e.getListaAtribuicoes().setLista(lat);
 
         for (int n = 0; n < lc.size(); n++) {
             for (Atribuicao at : e.getListaAtribuicoes().getLista()) {
                 Avaliacao avaliacao = e.getListaCandidaturas().getListCandidaturas().get(n).getListaAvaliacoes().novaAvaliacao();
                 avaliacao.setAtribuicao(at);
                 if (n < 25) {
-                    avaliacao.setRespostaAdequacaoCandDemonstracao(3);
-                    avaliacao.setRespostaAdequacaoCandExposicao(3);
-                    avaliacao.setRespostaAdequacaoNumConvites(3);
-                    avaliacao.setRespostaRecomendacaoGlobal(3);
+                    avaliacao.setRespostaAdequacaoCandDemonstracao(5);
+                    avaliacao.setRespostaAdequacaoCandExposicao(5);
+                    avaliacao.setRespostaAdequacaoNumConvites(5);
+                    avaliacao.setRespostaRecomendacaoGlobal(5);
                     avaliacao.setRespostaTemaExpo(3);
                 } else {
-                    avaliacao.setRespostaAdequacaoCandDemonstracao(1);
-                    avaliacao.setRespostaAdequacaoCandExposicao(1);
-                    avaliacao.setRespostaAdequacaoNumConvites(1);
-                    avaliacao.setRespostaRecomendacaoGlobal(1);
+                    avaliacao.setRespostaAdequacaoCandDemonstracao(0);
+                    avaliacao.setRespostaAdequacaoCandExposicao(0);
+                    avaliacao.setRespostaAdequacaoNumConvites(0);
+                    avaliacao.setRespostaRecomendacaoGlobal(0);
                     avaliacao.setRespostaTemaExpo(1);
                 }
+                
+                e.getListaCandidaturas().getListCandidaturas().get(n).getListaAvaliacoes().addAvaliacao(avaliacao);
             }
         }
     }

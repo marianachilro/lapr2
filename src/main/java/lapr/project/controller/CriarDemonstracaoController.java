@@ -92,7 +92,7 @@ public class CriarDemonstracaoController {
     }
 
     public boolean checkEstado() {
-        if ((st.setCriada() && !st.setDemoSemFae()) || (st.setFaeSemDemo() && !st.setCompleta())) {
+        if ((st.setCriada() || (st.setFaeSemDemo() && !st.setCriada()))) {
             return true;
         } else {
             return false;

@@ -38,7 +38,7 @@ public class GerarAnaliseFAEUI extends JDialog {
         setVisible(true);
     }
 
-    private void criarComponentes() {
+    public void criarComponentes() {
         controller.criarAnalises();
         setLayout(new BorderLayout(30,30));
         JLabel lbl = new JLabel();

@@ -12,4 +12,6 @@ package lapr.project.model;
 public interface Removivel {
     
     public boolean setRemovida();
+    
+    public CandImpEstado getEstado();
 }

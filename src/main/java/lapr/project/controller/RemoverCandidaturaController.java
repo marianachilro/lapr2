@@ -7,6 +7,7 @@ package lapr.project.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.CandImpEstado;
 import lapr.project.model.CandidaturaDemonstracao;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
@@ -23,7 +24,7 @@ import lapr.project.model.Removivel;
  * @author Rita
  */
 public class RemoverCandidaturaController {
-    
+
     private CentroExposicoes ce;
     private Exposicao e;
     private Removivel c;
@@ -34,46 +35,52 @@ public class RemoverCandidaturaController {
     private ListaDemonstracoes rd;
     private List<Removivel> lc;
     private List<Demonstracao> ld;
-    
+
     public RemoverCandidaturaController(CentroExposicoes ce, String email) {
         this.ce = ce;
         this.email = email;
     }
-    
+
     public List<Exposicao> getListaExposicoes() {
         re = ce.getRegistoExposicoes();
         return re.getListaExposicoes();
     }
-    
+
     public void selectExposicao(Exposicao e) {
         this.e = e;
     }
-    
+
     public List<Removivel> getListaRemoviveis() {
         List<Removivel> lRemove = new ArrayList<>();
         rce = e.getListaCandidaturas();
         lc = (List<Removivel>) (CandidaturaExposicao) rce.getListaCandidaturasRep(email);
-        for(Removivel r : lc) {
-            lRemove.add(r);
+        for (Removivel r : lc) {
+            CandImpEstado st = r.getEstado();
+            if (st.setEmSubmissao() || (st.setAlterada() && !st.setEmSubmissao())) {
+                lRemove.add(r);
+            }
         }
         rd = e.getListaDemonstracoes();
         ld = rd.getListaDemonstracao();
-        for(Demonstracao d : ld) {
+        for (Demonstracao d : ld) {
             rcd = d.getListaCandidaturas();
             lc = (List<Removivel>) (CandidaturaDemonstracao) rcd.getListaCandidaturasRep(email);
-            for(Removivel r : lc) {
-            lRemove.add(r);
-        }
+            for (Removivel r : lc) {
+                CandImpEstado st = r.getEstado();
+                if (st.setEmSubmissao() || (st.setAlterada() && !st.setEmSubmissao())) {
+                    lRemove.add(r);
+                }
+            }
         }
         return lRemove;
     }
-    
+
     public void selectCandidatura(Removivel c) {
         this.c = c;
     }
-    
+
     public boolean removeCandidatura() {
         return c.setRemovida();
-    } 
-    
+    }
+
 }

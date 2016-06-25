@@ -7,7 +7,7 @@ package lapr.project.controller;
 
 import java.io.File;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.LerFicheiroXML;
+import lapr.project.utils.LerFicheiroXML;
 
 /**
  *
