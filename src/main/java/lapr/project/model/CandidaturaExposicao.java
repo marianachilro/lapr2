@@ -367,18 +367,6 @@ public class CandidaturaExposicao extends CandidaturaGeral implements Removivel,
         return true;
     }
 
-    @Override
-    public boolean verificarEstadoAtribuida() {
-        //falta verificacoes
-        return true;
-    }
-
-    @Override
-    public boolean verificarEstadoAvaliada() {
-        //falta verificacoes
-        return true;
-    }
-
     public String toStringEstatisticaAvaliacoes() {
 
         return String.format("%nResposta sobre o Tema da Exposição (média): %.2f%n"

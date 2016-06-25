@@ -416,8 +416,25 @@ public class MenuUI extends JFrame {
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
         // TODO add your handling code here:
-        dispose();
-        CriarExposicaoUI c = new CriarExposicaoUI(ce, utilizador);
+
+        try {
+
+            if (utilizador.getEmail() != null && utilizador.getEmail().equalsIgnoreCase("gestor@centro.pt")) {
+                dispose();
+                CriarExposicaoUI c = new CriarExposicaoUI(ce, utilizador);
+            } else {
+                throw new IllegalArgumentException("Não é gestor de exposição!");
+            }
+
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(
+                    MenuUI.this,
+                    ex.getMessage(),
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
