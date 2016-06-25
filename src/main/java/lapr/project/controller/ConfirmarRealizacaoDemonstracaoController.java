@@ -19,7 +19,6 @@ import lapr.project.model.DemonstracaoConfirmadaEstado;
 import lapr.project.model.DemonstracaoEstado;
 import lapr.project.model.DemonstracaoNaoConfirmadaEstado;
 import lapr.project.model.Exposicao;
-import lapr.project.model.ExposicaoCandidaturasExpoDecididasEstado;
 import lapr.project.model.ExposicaoDemonstracoesConfirmadasEstado;
 import lapr.project.model.ExposicaoEstado;
 import lapr.project.model.ListaCandidaturasExposicoes;
@@ -53,7 +52,7 @@ public class ConfirmarRealizacaoDemonstracaoController {
        RegistoUtilizadores ru = this.centro.getRegistoUtilizadores();
        List <Exposicao> lista = this.registoExposicoes.getListaExposicoesOrganizador(userName, ru);
        for(Exposicao e : lista){
-           if(!e.getEstado().equals(new ExposicaoCandidaturasExpoDecididasEstado(new Exposicao())))
+           if(!(!e.getEstado().setExposicaoCandidaturasAtribuidas() && e.getEstado().setExposicaoCandidaturasDecididas()))
                lista.remove(e);
        }
        return lista;
@@ -80,10 +79,12 @@ public class ConfirmarRealizacaoDemonstracaoController {
         float percentagem;
         List <String> emails = new ArrayList<>();
         ListaCandidaturasExposicoes listaCandidaturas = this.exposicao.getListaCandidaturas();
-        numeroTotalRepresentantes = listaCandidaturas.getListCandidaturas().stream().filter((c) -> (!emails.contains(c.getEmailRep()))).map((c) -> {
-            emails.add(c.getEmailRep());
-            return c;
-        }).map((_item) -> 1).reduce(numeroTotalRepresentantes, Integer::sum);
+        for(CandidaturaExposicao c : listaCandidaturas.getListCandidaturas()){
+            if(!emails.contains(c.getEmailRep())){
+                emails.add(c.getEmailRep());
+                numeroTotalRepresentantes++;
+            }
+        }
         percentagem = (this.demonstracao.getNumeroInteressados()*100)/numeroTotalRepresentantes;
         return percentagem;
     }
@@ -130,7 +131,7 @@ public class ConfirmarRealizacaoDemonstracaoController {
     public void setDataFimAtualizaçãoConflitosDemos(Data data3){
         this.exposicao.setDataFimAtualizacaoConflitosDemos(data3);
         for(Demonstracao d : this.exposicao.getListaDemonstracoes().getListaDemonstracoesDisponiveis()){
-            if(d.getEstado().setConfirmada()){
+            if(!d.getEstado().setCriada() && d.getEstado().setConfirmada()){
                 d.setDataFimAtualizacaoConflitos(data3);
             }
         }
@@ -159,10 +160,10 @@ public class ConfirmarRealizacaoDemonstracaoController {
     public boolean transitaEstadoExpo(){
         
         ExposicaoEstado estadoExpo = this.exposicao.getEstado();
-        if(estadoExpo.setDemonstracaoCandidaturasDecididas()){
+        if(!estadoExpo.setDemonstracaoCandidaturasAvaliadas() && estadoExpo.setDemonstracaoCandidaturasDecididas()){
            this.exposicao.setEstado(new ExposicaoDemonstracoesConfirmadasEstado(this.exposicao));
         }
-        return estadoExpo.setConfirmacaoRealizacaoDemos();
+        return this.exposicao.getEstado().setConfirmacaoRealizacaoDemos();
     }
     
     

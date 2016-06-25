@@ -134,7 +134,7 @@ public class ListaDemonstracoes {
     public List<Demonstracao> getListaDemonstracoesNaoConfirmadas() {
         List<Demonstracao> ld = new ArrayList<>();
         for (Demonstracao d : listaDemonstracao) {
-            if (d.getEstado().setCriada()) {
+            if (!d.getEstado().setCriada() && d.getEstado().setNaoConfirmada()) {
                 ld.add(d);
             }
         }
