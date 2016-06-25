@@ -57,7 +57,7 @@ public class AlterarCandidaturaController {
 
     public CandidaturaExposicao clonarCandidatura(CandidaturaExposicao c) {
         this.c = c;
-        cc = new CandidaturaExposicao(c);
+        cc = lc.clonarCandidatura(c);
         return cc;
     }
 

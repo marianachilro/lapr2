@@ -62,9 +62,12 @@ public class AlterarCandidaturaControllerTest {
     @Test
     public void testClonarCandidatura() {
         CentroExposicoes ce = new CentroExposicoes();
-
+        Exposicao e = new Exposicao();
+        ce.getRegistoExposicoes().addExposicao(e);
         CandidaturaExposicao c = new CandidaturaExposicao("123", "aaa", "aaad", 911111111, 10, 30);
+        e.getListaCandidaturas().addCandidatura(c);
         AlterarCandidaturaController instance = new AlterarCandidaturaController(ce, "123");
+        instance.getListaCandidaturasRep(e);
         CandidaturaExposicao expResult = c;
         CandidaturaExposicao result = instance.clonarCandidatura(c);
         assertEquals(expResult, result);
@@ -96,11 +99,11 @@ public class AlterarCandidaturaControllerTest {
         System.out.println("addProduto");
         CentroExposicoes ce = new CentroExposicoes();
         Exposicao e = new Exposicao();
-        CandidaturaExposicao c = new CandidaturaExposicao();
+        CandidaturaExposicao c = new CandidaturaExposicao("123", "asb", "321321 rua", 123432120, 430, 230);
         e.getListaCandidaturas().addCandidatura(c);
         ce.getRegistoExposicoes().addExposicao(e);
         AlterarCandidaturaController instance = new AlterarCandidaturaController(ce, "123");
-
+instance.getListaCandidaturasRep(e);
         CandidaturaExposicao cc = instance.clonarCandidatura(c);
         instance.setDados("joao", "asd", 911111111, 0, 0);
         instance.criaProduto();
@@ -119,11 +122,12 @@ public class AlterarCandidaturaControllerTest {
         System.out.println("getListaKeyWords");
         CentroExposicoes ce = new CentroExposicoes();
         Exposicao e = new Exposicao();
-        CandidaturaExposicao c = new CandidaturaExposicao();
+        CandidaturaExposicao c = new CandidaturaExposicao("123", "whisquers saquetas", "123 rua falsa", 555666770, 03, 20);
         c.getListaKeywords().addKeyword(new Keyword());
         e.getListaCandidaturas().addCandidatura(c);
         ce.getRegistoExposicoes().addExposicao(e);
         AlterarCandidaturaController instance = new AlterarCandidaturaController(ce, "123");
+        instance.getListaCandidaturasRep(e);
         CandidaturaExposicao cc = instance.clonarCandidatura(c);
         instance.setDados("joao", "asd", 911111111, 0, 0);
         List<Keyword> expResult = new ArrayList<>();
@@ -142,10 +146,11 @@ public class AlterarCandidaturaControllerTest {
         String keyWord = "asd";
         CentroExposicoes ce = new CentroExposicoes();
         Exposicao e = new Exposicao();
-        CandidaturaExposicao c = new CandidaturaExposicao();
+        CandidaturaExposicao c = new CandidaturaExposicao("123", "asd", "asd", 123456789, 230, 0);
         e.getListaCandidaturas().addCandidatura(c);
         ce.getRegistoExposicoes().addExposicao(e);
         AlterarCandidaturaController instance = new AlterarCandidaturaController(ce, "123");
+        instance.getListaCandidaturasRep(e);
         instance.clonarCandidatura(c);
         Keyword expResult = new Keyword("asd");
         Keyword result = instance.novaKeyWord(keyWord);
@@ -161,10 +166,11 @@ public class AlterarCandidaturaControllerTest {
         String keyWord = "asd";
         CentroExposicoes ce = new CentroExposicoes();
         Exposicao e = new Exposicao();
-        CandidaturaExposicao c = new CandidaturaExposicao();
+        CandidaturaExposicao c = new CandidaturaExposicao("123", "huelele", "batatas", 333444660, 540, 420);
         e.getListaCandidaturas().addCandidatura(c);
         ce.getRegistoExposicoes().addExposicao(e);
         AlterarCandidaturaController instance = new AlterarCandidaturaController(ce, "123");
+        instance.getListaCandidaturasRep(e);
         CandidaturaExposicao cc = instance.clonarCandidatura(c);
         Keyword expResult = instance.novaKeyWord(keyWord);
         instance.registaKeyword();
@@ -199,18 +205,17 @@ public class AlterarCandidaturaControllerTest {
         System.out.println("registaDemo");
         CentroExposicoes ce = new CentroExposicoes();
         Exposicao e = new Exposicao();
-        CandidaturaExposicao c = new CandidaturaExposicao();
+        CandidaturaExposicao c = new CandidaturaExposicao("123", "asd", "asd", 123321120, 05, 04);
         e.getListaCandidaturas().addCandidatura(c);
         ce.getRegistoExposicoes().addExposicao(e);
         AlterarCandidaturaController instance = new AlterarCandidaturaController(ce, "123");
+        instance.getListaCandidaturasRep(e);
         CandidaturaExposicao cc = instance.clonarCandidatura(c);
         Demonstracao d = new Demonstracao();
         instance.getListaDemonstracoesCandidatura();
         instance.selectDemo(d);
-        instance.registaDemo();
-        List<Demonstracao> expResult = new ArrayList<>();
-        expResult.add(d);
-        List<Demonstracao> result = cc.getListaDemonstracoes().getListaDemonstracao();
+        boolean expResult =true;
+        boolean result = instance.registaDemo();
         assertEquals(expResult, result);
 
     }

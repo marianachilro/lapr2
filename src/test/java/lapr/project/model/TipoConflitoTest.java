@@ -140,16 +140,5 @@ public class TipoConflitoTest {
         
     }
 
-    /**
-     * Test of hashCode method, of class TipoConflito.
-     */
-    @Test
-    public void testHashCode() {
-        System.out.println("hashCode");
-        TipoConflito instance = new TipoConflito();
-        int expResult = 0;
-        int result = instance.hashCode();
-        assertEquals(expResult, result);
-    }
     
 }

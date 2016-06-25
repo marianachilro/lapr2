@@ -5,7 +5,6 @@
  */
 package lapr.project.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
@@ -61,13 +60,13 @@ public class Mecanismo_NFAE implements MecanismoAtribuicao {
         while (contC < lAtribuiveis.size() && contF < listaf.size()) {
             for (int i = 0; i < nPretendido; i++) {
                 Atribuicao a = listaAtribuicoes.newAtribuicao((CandidaturaGeral) lAtribuiveis.get(contC), listaf.get(contF));
-                int contConflitos = 0;
+                boolean conflitos = false;
                 for (Conflito conf : lconf) {
                     if (conf.getFAE().equals(a.getFAE()) && conf.getCandidaturas().equals(a.getCandidatura())) {
-                        contConflitos++;
+                        conflitos = true;
                     }
                 }
-                if (!listaAtribuicoes.validateAtribuicoes(a) && contConflitos == 0) {
+                if (!listaAtribuicoes.validateAtribuicoes(a) && !conflitos) {
                     contF++;
                     listaAtribuicao.add(a);
                 }
