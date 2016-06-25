@@ -17,6 +17,7 @@ import lapr.project.controller.GerarRankingKeywordsController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.ExposicaoEstado;
+import lapr.project.model.ExposicaoInicialEstado;
 import lapr.project.model.Utilizador;
 
 
@@ -175,10 +176,11 @@ public class GerarRankingKeywordsUI extends javax.swing.JFrame {
             }
 
              es = exposicao.getEstado();
+            
             try {
                 
-                
-                if(!es.setExposicaoCandidaturasAvaliadas() && es.setExposicaoCandidaturasDecididas()){
+                if(!es.equals(new ExposicaoInicialEstado(exposicao)) && !es.setCriada() && !es.setFaeSemDemo() && !es.setDemoSemFae() && !es.setCompleta() && !es.setExposicaoCandidaturasAbertas() && !es.setExposicaoCandidaturasFechadas() && !es.setExposicaoConflitosDetetados() && !es.setExposicaoConflitosAtualizados() && !es.setExposicaoCandidaturasAvaliadas() && es.setExposicaoCandidaturasDecididas()|| 
+                        !es.equals(new ExposicaoInicialEstado(exposicao)) && !es.setCriada() && !es.setFaeSemDemo() && !es.setDemoSemFae() && !es.setCompleta() && !es.setExposicaoCandidaturasAbertas() && !es.setExposicaoCandidaturasFechadas() && !es.setExposicaoConflitosDetetados() && !es.setExposicaoConflitosAtualizados() && !es.setExposicaoCandidaturasAvaliadas() && !es.setExposicaoCandidaturasDecididas()){
                 
                 controller.selectExposicao(exposicao);
                 JOptionPane.showMessageDialog(menu, "Ficheiro CSV criado!");
