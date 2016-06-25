@@ -178,7 +178,7 @@ public class GerarRankingKeywordsUI extends javax.swing.JFrame {
             try {
                 
                 
-                if(es.setExposicaoCandidaturasDecididas()){
+                if(!es.setExposicaoCandidaturasAvaliadas() && es.setExposicaoCandidaturasDecididas()){
                 
                 controller.selectExposicao(exposicao);
                 JOptionPane.showMessageDialog(menu, "Ficheiro CSV criado!");
