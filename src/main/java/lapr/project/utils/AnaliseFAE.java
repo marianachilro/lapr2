@@ -131,7 +131,7 @@ public class AnaliseFAE {
     
     @Override
     public String toString() {
-        return String.format("%s \t%9d\t  \t%10.3f\t  \t%17.3f\t  \t%16.3f\t  \t%7s \n", utilizador.getUsername(), nCand, mediaClassificacoes,
+        return String.format("%s \t%17d\t  \t%10.3f\t  \t%11.3f\t  \t%16.3f\t  \t%7s \n", utilizador.getUsername(), nCand, mediaClassificacoes,
                 mediaDesvios, estatistica, decisao);
     }
 
