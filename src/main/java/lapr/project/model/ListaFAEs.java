@@ -111,5 +111,14 @@ public class ListaFAEs {
     public boolean addFae(FAE fae) {
         return listaFAEs.add(fae);
     }
+    
+    @Override
+    public String toString() {
+        String str = "";
+        for(FAE f : listaFAEs) {
+            str = str + f.toString();
+        }
+        return str;
+    }
 
 }

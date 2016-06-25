@@ -50,8 +50,9 @@ public class DefinirFaeController {
         this.e = e;
     }
 
-    public void getListaFae() {
+    public List<FAE> getListaFae() {
         lFae = e.getListaFAES();
+        return lFae.getListaFAEs();
     }
 
     public FAE novoFae(String username) {

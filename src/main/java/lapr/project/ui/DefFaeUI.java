@@ -172,7 +172,12 @@ public class DefFaeUI extends JDialog {
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                if(controller.getListaFae().size() < 2) {
+                    JOptionPane.showMessageDialog(DefFaeUI.this, "Necessita de definir pelo menos 2 FAEs",
+                            "Definir FAE", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    dispose();
+                }
             }
         });
         return b;

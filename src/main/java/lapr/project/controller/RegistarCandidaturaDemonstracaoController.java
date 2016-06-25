@@ -59,7 +59,7 @@ public class RegistarCandidaturaDemonstracaoController {
 
     public List<Demonstracao> getListDemonstracao() {
         rd = c.getListaDemonstracoes();
-        return rd.getListaDemonstracao();
+        return rd.getListaDemonstracoesDisponiveis();
     }
 
     public void selectDemonstracao(Demonstracao d) {

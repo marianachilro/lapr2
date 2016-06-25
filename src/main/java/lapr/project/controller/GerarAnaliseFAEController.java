@@ -59,11 +59,11 @@ public class GerarAnaliseFAEController {
         boolean b = false;
         ru = ce.getRegistoUtilizadores();
         lu = ru.getListaUtilizadores();
-        re = ce.getRegistoExposicoes();
-        le = re.getListaExposicoes();
         for (Utilizador u : lu) {
             nCand = 0;
             media = 0;
+            re = ce.getRegistoExposicoes();
+            le = re.getListaExposicoes();
             for (Exposicao e : le) {
                 rf = e.getListaFAES();
                 rAt = e.getListaAtribuicoes();
