@@ -143,7 +143,6 @@ public class ConfirmarRealizacaoDemonstracaoController {
         AlterarParaCandidaturasDemosAbertas task = new AlterarParaCandidaturasDemosAbertas(this.centro, this.exposicao);
         this.registoExposicoes.schedule(task, dataIniSubCandDemos);
         
-        
         Data dataFimSubCandDemos = this.exposicao.getDataFimSubmissaoCandidaturasDemos();
         Date date2 = new Date(dataFimSubCandDemos.getAno(), dataFimSubCandDemos.getMes(), dataFimSubCandDemos.getDia(), dataFimSubCandDemos.getHora(), dataFimSubCandDemos.getMinuto(), dataFimSubCandDemos.getSegundos());
         AlterarParaCandidaturasDemosFechadas task1 = new AlterarParaCandidaturasDemosFechadas(this.centro, this.exposicao);
