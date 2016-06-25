@@ -234,4 +234,11 @@ public class ListaCandidaturasExposicoesTest {
 //        assertEquals(expResult, result);
 //    }
 //    
+    @Test
+    public void testClonarCandidatura(){
+        CandidaturaExposicao expResult = new CandidaturaExposicao("asd@asd.com", "asd", "asd", 123455670, 230,30);
+        ListaCandidaturasExposicoes instance = new ListaCandidaturasExposicoes();
+        CandidaturaExposicao result = instance.clonarCandidatura(expResult);
+        assertEquals(expResult,result);
+    }
 }

@@ -182,5 +182,8 @@ public class ListaCandidaturasExposicoes {
         return null;
         
     }
+    public CandidaturaExposicao clonarCandidatura(CandidaturaExposicao c){
+        return new CandidaturaExposicao(c);
+    }
 
 }

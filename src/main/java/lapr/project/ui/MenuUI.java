@@ -711,7 +711,7 @@ public class MenuUI extends JFrame {
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        // TODO add your handling code here:     
+        new AlterarCandidaturaUI(MenuUI.this, ce, utilizador.getEmail());
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
 //    /**
