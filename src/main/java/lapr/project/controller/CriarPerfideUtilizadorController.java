@@ -24,7 +24,7 @@ public class CriarPerfideUtilizadorController {
     }
 
     public RegistoUtilizadores getRegistoUtilizadores() {
-        return this.registoUtilizadores = ce.getRegistoUtilizadores();
+        return this.registoUtilizadores = ce.getRegistoUtilizadoresNaoConfirmados();
     }
 
     public Utilizador novoUtilizador() {

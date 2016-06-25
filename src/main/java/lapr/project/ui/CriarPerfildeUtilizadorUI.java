@@ -236,8 +236,8 @@ public class CriarPerfildeUtilizadorUI extends javax.swing.JFrame {
                 }
             }
 
-            if (!ce.getRegistoUtilizadoresNaoConfirmados().getListaUtilizadores().isEmpty()) {
-                for (Utilizador u2 : ce.getRegistoUtilizadoresNaoConfirmados().getListaUtilizadores()) {
+            if (!ce.getRegistoUtilizadores().getListaUtilizadores().isEmpty()) {
+                for (Utilizador u2 : ce.getRegistoUtilizadores().getListaUtilizadores()) {
 
                     if (u2.getUsername().equalsIgnoreCase(username)) {
                         throw new IllegalArgumentException("Username já existe!");

@@ -99,18 +99,6 @@ public class CandidaturaDemonstracao extends CandidaturaGeral implements Removiv
     }
 
     @Override
-    public boolean verificarEstadoAtribuida() {
-        //falta verificacoes
-        return true;
-    }
-
-    @Override
-    public boolean verificarEstadoAvaliada() {
-        //falta verificacoes
-        return true;
-    }
-
-    @Override
     public boolean setRemovida() {
         return super.getEstado().setRemovida();
     }

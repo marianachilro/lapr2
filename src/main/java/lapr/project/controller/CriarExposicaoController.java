@@ -6,8 +6,6 @@
 package lapr.project.controller;
 
 import java.util.Date;
-import lapr.project.model.AlterarParaCandidaturasDemosAbertas;
-import lapr.project.model.AlterarParaCandidaturasDemosFechadas;
 import lapr.project.model.AlterarParaCandidaturasExpoAbertas;
 import lapr.project.model.AlterarParaCandidaturasExpoFechadas;
 import lapr.project.model.AlterarParaConflitosAtualizadosDemos;
