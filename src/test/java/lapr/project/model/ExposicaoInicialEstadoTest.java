@@ -5,7 +5,6 @@
  */
 package lapr.project.model;
 
-import lapr.project.utils.Data;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

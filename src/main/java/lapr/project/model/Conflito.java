@@ -75,6 +75,24 @@ public class Conflito {
     public CandidaturaGeral getCandidaturas() {
         return c;
     }
+    /**
+     * Devolve a Candidatura do conflito.
+     * @return caso esta seja de uma Exposicao
+     */
+    public CandidaturaExposicao getCandidaturaExpo(){
+        if(c.getListaDemonstracoes().getListaDemonstracao() != null)
+            return (CandidaturaExposicao) c;
+        return null;
+    }
+    /**
+     * Devolve a Candidatura do conflito.
+     * @return caso esta seja de uma Demonstracao
+     */
+    public CandidaturaDemonstracao getCandidaturaDemo(){
+        if(c.getListaDemonstracoes().getListaDemonstracao() == null)
+            return (CandidaturaDemonstracao) c;
+        return null;
+    }
 
     /**
      * Devolve o tipo do conflito de interesse.
@@ -145,8 +163,9 @@ public class Conflito {
         return Objects.equals(this.tipo, other.tipo);
     }
     
+    @Override
     public String toString(){
-        return String.format("Tipo do Conflito: %s%nCandidatura: %s", this.tipo, this.c);
+        return String.format("Tipo do Conflito: %s Candidatura: %s", this.tipo.getNome(), this.c);
     }
 
 }

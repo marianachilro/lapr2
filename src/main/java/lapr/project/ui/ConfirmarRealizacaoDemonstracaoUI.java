@@ -87,72 +87,72 @@ public class ConfirmarRealizacaoDemonstracaoUI extends JDialog {
         setVisible(true);
     }
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CentroExposicoes ce = new CentroExposicoes();
-                Exposicao expo = new Exposicao();
-                ce.getRegistoExposicoes().addExposicao(expo);
-                expo.getEstado().setCriada();
-                expo.getEstado().setDemoSemFae();
-                expo.getEstado().setCompleta();
-                expo.getEstado().setExposicaoCandidaturasAbertas();
-                expo.getEstado().setExposicaoCandidaturasFechadas();
-                expo.getEstado().setExposicaoConflitosDetetados();
-                expo.getEstado().setExposicaoConflitosAtualizados();
-                expo.getEstado().setExposicaoCandidaturasAtribuidas();
-                expo.getEstado().setExposicaoCandidaturasAvaliadas();
-                expo.getEstado().setExposicaoCandidaturasDecididas();
-                
-                CandidaturaExposicao c = new CandidaturaExposicao();
-                c.setEmailRep("email@centro.pt");
-                expo.getListaCandidaturas().addCandidatura(c);
-                CandidaturaExposicao c1 = new CandidaturaExposicao();
-                c.setEmailRep("email1@centro.pt");
-                expo.getListaCandidaturas().addCandidatura(c1);
-                CandidaturaExposicao c2 = new CandidaturaExposicao();
-                c.setEmailRep("email2@centro.pt");
-                expo.getListaCandidaturas().addCandidatura(c2);
-                
-                Demonstracao d = new Demonstracao("codigo1", "descricao");
-                d.setNumeroInteressados(2);
-                expo.getListaDemonstracoes().addDemonstracao(d);
-                d.getEstado().setCriada();
-                Demonstracao d1 = new Demonstracao("coddigo1", "descricao1");
-                d1.setNumeroInteressados(1);
-                expo.getListaDemonstracoes().addDemonstracao(d1);
-                d1.getEstado().setCriada();
-                
-                
-
-                new ConfirmarRealizacaoDemonstracaoUI(null, ce, expo).setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                CentroExposicoes ce = new CentroExposicoes();
+//                Exposicao expo = new Exposicao();
+//                ce.getRegistoExposicoes().addExposicao(expo);
+//                expo.getEstado().setCriada();
+//                expo.getEstado().setDemoSemFae();
+//                expo.getEstado().setCompleta();
+//                expo.getEstado().setExposicaoCandidaturasAbertas();
+//                expo.getEstado().setExposicaoCandidaturasFechadas();
+//                expo.getEstado().setExposicaoConflitosDetetados();
+//                expo.getEstado().setExposicaoConflitosAtualizados();
+//                expo.getEstado().setExposicaoCandidaturasAtribuidas();
+//                expo.getEstado().setExposicaoCandidaturasAvaliadas();
+//                expo.getEstado().setExposicaoCandidaturasDecididas();
+//                
+//                CandidaturaExposicao c = new CandidaturaExposicao();
+//                c.setEmailRep("email@centro.pt");
+//                expo.getListaCandidaturas().addCandidatura(c);
+//                CandidaturaExposicao c1 = new CandidaturaExposicao();
+//                c.setEmailRep("email1@centro.pt");
+//                expo.getListaCandidaturas().addCandidatura(c1);
+//                CandidaturaExposicao c2 = new CandidaturaExposicao();
+//                c.setEmailRep("email2@centro.pt");
+//                expo.getListaCandidaturas().addCandidatura(c2);
+//                
+//                Demonstracao d = new Demonstracao("codigo1", "descricao");
+//                d.setNumeroInteressados(2);
+//                expo.getListaDemonstracoes().addDemonstracao(d);
+//                d.getEstado().setCriada();
+//                Demonstracao d1 = new Demonstracao("coddigo1", "descricao1");
+//                d1.setNumeroInteressados(1);
+//                expo.getListaDemonstracoes().addDemonstracao(d1);
+//                d1.getEstado().setCriada();
+//                
+//                
+//
+//                new ConfirmarRealizacaoDemonstracaoUI(null, ce, expo).setVisible(true);
+//            }
+//        });
+//    }
 
     public JPanel criarPainelInfo() {
         JPanel p = new JPanel(new BorderLayout());

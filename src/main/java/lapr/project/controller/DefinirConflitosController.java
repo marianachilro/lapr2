@@ -12,8 +12,6 @@ import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.DemonstracaoEstado;
 import lapr.project.model.Exposicao;
-import lapr.project.model.ExposicaoCandidaturasDemosFechadasEstado;
-import lapr.project.model.ExposicaoCandidaturasExpoFechadasEstado;
 import lapr.project.model.ExposicaoEstado;
 import lapr.project.model.ListaCandidaturasDemonstracoes;
 import lapr.project.model.ListaCandidaturasExposicoes;
@@ -51,7 +49,7 @@ public class DefinirConflitosController {
 
         }
 
-        if (this.estadoExpo.equals(new ExposicaoCandidaturasExpoFechadasEstado(new Exposicao()))) {
+        if (!this.estadoExpo.setExposicaoCandidaturasAbertas() && this.estadoExpo.setExposicaoCandidaturasFechadas()) {
             ListaCandidaturasExposicoes lcandidaturas = this.exposicao.getListaCandidaturas();
             for (Candidatura c : lcandidaturas.getListCandidaturas()) {
                 CandidaturaEstado estadoCandidaturaExpo = c.getEstado();
@@ -61,7 +59,7 @@ public class DefinirConflitosController {
             boolean b = this.estadoExpo.setExposicaoConflitosAtualizados();
         }
         
-        if(this.estadoExpo.equals(new ExposicaoCandidaturasDemosFechadasEstado(new Exposicao()))){
+        if(!this.estadoExpo.setDemonstracaoCandidaturasAbertas() && this.estadoExpo.setDemonstracaoCandidaturasFechadas()){
             List <Demonstracao> lDemonstracoes = this.exposicao.getListaDemonstracoes().getListaDemonstracoesDisponiveis();
             for(Demonstracao d : lDemonstracoes){
                 DemonstracaoEstado estadoDemo = d.getEstado();

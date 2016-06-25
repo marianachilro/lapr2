@@ -39,7 +39,7 @@ public class ListaAvaliacoesTest {
         System.out.println("testeValidaAvaliacao");
         Avaliacao novaAvaliacao = new Avaliacao();
         ListaAvaliacoes instance = new ListaAvaliacoes();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.validaAvaliacao(novaAvaliacao);
         assertEquals(expResult, result);
        

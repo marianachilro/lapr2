@@ -37,6 +37,12 @@ public class TipoConflito {
         dados = "";
         this.listaMecanismos = new ArrayList<>();
     }
+    
+    public TipoConflito(String nome, String dados){
+        this.nome=nome;
+        this.dados=dados;
+        this.listaMecanismos=new ArrayList <>();
+    }
 
     /**
      * Método que modifica o nome do tipo de conflito.
@@ -134,6 +140,7 @@ public class TipoConflito {
         return hash;
     }
     
+    @Override
     public String toString(){
         return String.format("%s - %s", this.nome, this.dados);
     }

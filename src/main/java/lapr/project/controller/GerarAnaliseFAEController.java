@@ -99,7 +99,7 @@ public class GerarAnaliseFAEController {
 
     @Override
     public String toString() {
-        String str = "FAE  |  Nº de submissões  |  Média das Classificações do FAE  |  Média dos Desvios  |  Valor observado da estatística de teste  |  Alerta\n";
+        String str = "          FAE            |  Nº de submissões  |  Média das Classificações do FAE  |        Média dos Desvios        |  Valor observado da estatística de teste  |    Alerta\n";
         str = str + "==========================================================================================================================================\n";
         for (AnaliseFAE al : listAnalises) {
             str = str + al.toString();
@@ -125,15 +125,14 @@ public class GerarAnaliseFAEController {
             List<CandidaturaExposicao> listC = e.getListaCandidaturas().getListCandidaturas();
             i = i + listC.size();
         }
-        if(i < 31) {
+        if (i < 31) {
             return false;
         } else {
             return true;
+        }
     }
 
-}
-
-private void somaCandTotal() {
+    private void somaCandTotal() {
         nCand++;
     }
 

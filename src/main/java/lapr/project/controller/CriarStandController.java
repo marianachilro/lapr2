@@ -14,34 +14,33 @@ import lapr.project.model.Stand;
  * @author catarinarib
  */
 public class CriarStandController {
-    
+
     private final CentroExposicoes ce;
     private RegistoStands rs;
     private Stand stand;
-    
-    
-    public CriarStandController(CentroExposicoes ce){       
-        this.ce=ce;       
+
+    public CriarStandController(CentroExposicoes ce) {
+        this.ce = ce;
     }
-    
-    public RegistoStands getRegistoStands(){
-       return rs=this.ce.getRegistoStands();
+
+    public RegistoStands getRegistoStands() {
+        return rs = this.ce.getRegistoStands();
     }
-    
-    public void novoStand(){
-        this.stand=this.ce.getRegistoStands().novoStand();
+
+    public void novoStand() {
+        this.stand = this.ce.getRegistoStands().novoStand();
     }
-    
-    public void setStand(String descricao){
+
+    public void setStand(String descricao) {
         this.stand.setDescricao(descricao);
     }
-    
-    public boolean addStand(){
+
+    public boolean addStand() {
         return rs.addStand(stand);
     }
-    
-    public String apresentaLista(){
+
+    public String apresentaLista() {
         return rs.toString();
     }
-    
+
 }

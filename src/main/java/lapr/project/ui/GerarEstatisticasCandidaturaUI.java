@@ -79,100 +79,100 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
         setVisible(true);
     }
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CentroExposicoes ce = new CentroExposicoes();
-                Exposicao expo = new Exposicao();
-                ce.getRegistoExposicoes().addExposicao(expo);
-                expo.getEstado().setCriada();
-                expo.getEstado().setDemoSemFae();
-                expo.getEstado().setCompleta();
-                expo.getEstado().setExposicaoCandidaturasAbertas();
-                expo.getEstado().setExposicaoCandidaturasFechadas();
-                expo.getEstado().setExposicaoConflitosDetetados();
-                expo.getEstado().setExposicaoConflitosAtualizados();
-                expo.getEstado().setExposicaoCandidaturasAtribuidas();
-                expo.getEstado().setExposicaoCandidaturasAvaliadas();
-                expo.getEstado().setExposicaoCandidaturasDecididas();
-                
-                Utilizador u = new Utilizador(1, "nome", "username", "email@centro.pt", "Password.0", "key0");
-                Utilizador u1 = new Utilizador(1, "nome1", "username1", "email1@centro.pt", "Password.1", "key1");
-                Utilizador u2 = new Utilizador(1, "nome2", "username2", "email2@centro.pt", "Password.2", "key2");
-                FAE fae = new FAE(u);
-                FAE fae1 = new FAE(u1);
-                FAE fae2 = new FAE(u2);
-                
-                CandidaturaExposicao c = new CandidaturaExposicao();
-                c.setEmailRep("email@centro.pt");
-                c.getEstado().setEmSubmissao();
-                expo.getListaCandidaturas().addCandidatura(c);
-                CandidaturaExposicao c1 = new CandidaturaExposicao();
-                c1.setEmailRep("email1@centro.pt");
-                c1.getEstado().setEmSubmissao();
-                expo.getListaCandidaturas().addCandidatura(c1);
-                CandidaturaExposicao c2 = new CandidaturaExposicao();
-                c2.setEmailRep("email2@centro.pt");
-                c2.getEstado().setEmSubmissao();
-                expo.getListaCandidaturas().addCandidatura(c2);
-
-                Demonstracao d = new Demonstracao("codigo1", "descricao");
-                d.setNumeroInteressados(2);
-                expo.getListaDemonstracoes().addDemonstracao(d);
-                d.getEstado().setCriada();
-                Demonstracao d1 = new Demonstracao("coddigo1", "descricao1");
-                d1.setNumeroInteressados(1);
-                expo.getListaDemonstracoes().addDemonstracao(d1);
-                d1.getEstado().setCriada();
-
-                Atribuicao atrib = new Atribuicao(fae, c);
-                Atribuicao atrib1 = new Atribuicao(fae1, c1);
-                Atribuicao atrib2 = new Atribuicao(fae2, c2);
-                
-                Avaliacao a = new Avaliacao(atrib, "aceite", "justificação", 5, 5,
-                        5, 4, 5);
-                Avaliacao a1 = new Avaliacao(atrib1, "aceite", "justificação1", 4, 3,
-                        5, 4, 5);
-
-                Avaliacao a2 = new Avaliacao(atrib2, "aceite", "justificação2", 4, 4,
-                        4, 4, 4);
-                c.getEstado().setCompleta();
-                c.getEstado().setConflitosDetetados();
-                c.getEstado().setConflitosAlterados();
-                c.getEstado().setEmAvaliacao();
-                c.getListaAvaliacoes().addAvaliacao(a);
-                c.getListaAvaliacoes().addAvaliacao(a1);
-                c.getListaAvaliacoes().addAvaliacao(a2);
-                c.getEstado().setAvaliada();
-
-                new GerarEstatisticasCandidaturaUI(null, ce, expo).setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                CentroExposicoes ce = new CentroExposicoes();
+//                Exposicao expo = new Exposicao();
+//                ce.getRegistoExposicoes().addExposicao(expo);
+//                expo.getEstado().setCriada();
+//                expo.getEstado().setDemoSemFae();
+//                expo.getEstado().setCompleta();
+//                expo.getEstado().setExposicaoCandidaturasAbertas();
+//                expo.getEstado().setExposicaoCandidaturasFechadas();
+//                expo.getEstado().setExposicaoConflitosDetetados();
+//                expo.getEstado().setExposicaoConflitosAtualizados();
+//                expo.getEstado().setExposicaoCandidaturasAtribuidas();
+//                expo.getEstado().setExposicaoCandidaturasAvaliadas();
+//                expo.getEstado().setExposicaoCandidaturasDecididas();
+//                
+//                Utilizador u = new Utilizador(1, "nome", "username", "email@centro.pt", "Password.0", "key0");
+//                Utilizador u1 = new Utilizador(1, "nome1", "username1", "email1@centro.pt", "Password.1", "key1");
+//                Utilizador u2 = new Utilizador(1, "nome2", "username2", "email2@centro.pt", "Password.2", "key2");
+//                FAE fae = new FAE(u);
+//                FAE fae1 = new FAE(u1);
+//                FAE fae2 = new FAE(u2);
+//                
+//                CandidaturaExposicao c = new CandidaturaExposicao();
+//                c.setEmailRep("email@centro.pt");
+//                c.getEstado().setEmSubmissao();
+//                expo.getListaCandidaturas().addCandidatura(c);
+//                CandidaturaExposicao c1 = new CandidaturaExposicao();
+//                c1.setEmailRep("email1@centro.pt");
+//                c1.getEstado().setEmSubmissao();
+//                expo.getListaCandidaturas().addCandidatura(c1);
+//                CandidaturaExposicao c2 = new CandidaturaExposicao();
+//                c2.setEmailRep("email2@centro.pt");
+//                c2.getEstado().setEmSubmissao();
+//                expo.getListaCandidaturas().addCandidatura(c2);
+//
+//                Demonstracao d = new Demonstracao("codigo1", "descricao");
+//                d.setNumeroInteressados(2);
+//                expo.getListaDemonstracoes().addDemonstracao(d);
+//                d.getEstado().setCriada();
+//                Demonstracao d1 = new Demonstracao("coddigo1", "descricao1");
+//                d1.setNumeroInteressados(1);
+//                expo.getListaDemonstracoes().addDemonstracao(d1);
+//                d1.getEstado().setCriada();
+//
+//                Atribuicao atrib = new Atribuicao(fae, c);
+//                Atribuicao atrib1 = new Atribuicao(fae1, c1);
+//                Atribuicao atrib2 = new Atribuicao(fae2, c2);
+//                
+//                Avaliacao a = new Avaliacao(atrib, "aceite", "justificação", 5, 5,
+//                        5, 4, 5);
+//                Avaliacao a1 = new Avaliacao(atrib1, "aceite", "justificação1", 4, 3,
+//                        5, 4, 5);
+//
+//                Avaliacao a2 = new Avaliacao(atrib2, "aceite", "justificação2", 4, 4,
+//                        4, 4, 4);
+//                c.getEstado().setCompleta();
+//                c.getEstado().setConflitosDetetados();
+//                c.getEstado().setConflitosAlterados();
+//                c.getEstado().setEmAvaliacao();
+//                c.getListaAvaliacoes().addAvaliacao(a);
+//                c.getListaAvaliacoes().addAvaliacao(a1);
+//                c.getListaAvaliacoes().addAvaliacao(a2);
+//                c.getEstado().setAvaliada();
+//
+//                new GerarEstatisticasCandidaturaUI(null, ce, expo).setVisible(true);
+//            }
+//        });
+//    }
 
     public JPanel criarPainelInfo() {
         JPanel p = new JPanel(new BorderLayout());
