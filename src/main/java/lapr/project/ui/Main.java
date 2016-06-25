@@ -1,6 +1,9 @@
 package lapr.project.ui;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import lapr.project.controller.DefinirTipoConflitosController;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
@@ -9,6 +12,8 @@ import lapr.project.model.ExposicaoEstado;
 import lapr.project.model.FAE;
 import lapr.project.model.Keyword;
 import lapr.project.model.Local;
+import lapr.project.model.MecanismoConflitoIdentidadeNumerica;
+import lapr.project.model.MecanismoGeralDetecaoConflitos;
 import lapr.project.model.Utilizador;
 import lapr.project.utils.Data;
 import org.xml.sax.SAXException;
@@ -70,6 +75,12 @@ class Main {
         cex.getListaAvaliacoes().getListaAvaliacao().add(a);
         FAE fae = new FAE(u1);
         exp.getListaFAES().getListaFAEs().add(fae);
+        DefinirTipoConflitosController controller = new DefinirTipoConflitosController(ce);
+        controller.criaTipo("conflitoIdentidade", "conflito caso o representante já tenha outro papel no centro");
+        controller.addTipoConflito();
+        List<MecanismoGeralDetecaoConflitos> listaMecanismos = new ArrayList<>();
+        listaMecanismos.add(new MecanismoConflitoIdentidadeNumerica());
+        ce.getRegistoTipoConflitos().getListaTipoConflitos().get(0).setListaMecanismos(listaMecanismos);
 
         LoginUI login = new LoginUI(ce);
 
