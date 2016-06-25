@@ -98,7 +98,7 @@ public class GerarAnaliseFAEController {
 
     @Override
     public String toString() {
-        String str = "FAE  |  Nº de submissões  |  Média das Classificações do FAE  |  Média dos Desvios  |  Valor observado da estatística de teste  |  Alerta\n";
+        String str = "          FAE            |  Nº de submissões  |  Média das Classificações do FAE  |        Média dos Desvios        |  Valor observado da estatística de teste  |    Alerta\n";
         str = str +  "==========================================================================================================================================\n";  
         for(AnaliseFAE al : listAnalises) {
             str = str + al.toString();
