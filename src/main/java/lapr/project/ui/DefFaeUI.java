@@ -141,7 +141,7 @@ public class DefFaeUI extends JDialog {
                             JOptionPane.showMessageDialog(DefFaeUI.this, "Não foi possível adicionar o FAE", "Definir FAE", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(DefFaeUI.this, "Não existe nenhum Utilizador com esse username!",
+                        JOptionPane.showMessageDialog(DefFaeUI.this, "Não é possível definir um fae com esse username",
                                 "Definir FAE", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {

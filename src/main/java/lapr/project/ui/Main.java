@@ -309,9 +309,27 @@ class Main {
         u3.setUsername("username3");
         u3.setShift(3);
         u3.setKeyword("peixes");
-        ce.getRegistoUtilizadores().addUtilizador(u3);
+        ce.getRegistoUtilizadores().confirmaUtilizador(u3);
+        Utilizador u4 = new Utilizador();
+          u4.setNome("nome4");
+        u4.setEmail("email24@lol.com");
+        u4.setPassword("Aa;4");
+        u4.setUsername("username4");
+        u4.setShift(3);
+        u4.setKeyword("peixes");
+        ce.getRegistoUtilizadores().confirmaUtilizador(u4);
+        Utilizador u5 = new Utilizador();
+        u5.setNome("nome5");
+        u5.setEmail("email25@lol.com");
+        u5.setPassword("Aa;5");
+        u5.setUsername("username5");
+        u5.setShift(3);
+        u5.setKeyword("peixes");
+        ce.getRegistoUtilizadores().confirmaUtilizador(u5);
         e.getListaOrganizadores().add(new Organizador(u3));
         e.getListaFAES().addFae(new FAE(u1));
+        e.getListaFAES().registaFae(new FAE(u4));
+        e.getListaFAES().registaFae(new FAE(u5));
         e.getListaConflitos().addConflito(new Conflito(new FAE(u1),c1));
 
          LoginUI login = new LoginUI(ce);

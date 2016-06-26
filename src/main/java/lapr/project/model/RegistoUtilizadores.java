@@ -114,7 +114,7 @@ public class RegistoUtilizadores {
     public boolean hasUtilizador(String username) {
         boolean b = false; 
         for(Utilizador u : listaUtilizadores) {
-            if(u.getUsername().equals(username)) {
+            if(username.equals(u.getUsername())) {
                 b = true;
             }
         }
@@ -125,7 +125,7 @@ public class RegistoUtilizadores {
     public String toString() {
         String st ="";
         for (Utilizador u : listaUtilizadores) {
-            st = u.toString() + "\n";
+            st = st + u.toString() + "\n";
         }
         return st;
     }

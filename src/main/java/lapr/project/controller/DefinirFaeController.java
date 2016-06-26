@@ -57,7 +57,7 @@ public class DefinirFaeController {
 
     public FAE novoFae(String username) {
         fae = null;
-        if(ru.hasUtilizador(username)) {
+        if(ru.hasUtilizador(username) && !e.getListaOrganizadores().hasOrganizador(u)) {
             u = ru.getUtilizador(username);
             fae = lFae.novoFae();
             fae.setUtilizador(u);
