@@ -14,6 +14,9 @@ import lapr.project.model.Conflito;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.DemonstracaoCandidaturasDecididasEstado;
 import lapr.project.model.Exposicao;
+import lapr.project.model.ExposicaoCandidaturasDemosAbertasEstado;
+import lapr.project.model.ExposicaoCandidaturasExpoAbertasEstado;
+import lapr.project.model.ExposicaoCompletaEstado;
 import lapr.project.model.ExposicaoEstado;
 import lapr.project.model.ExposicaoFAESemDemoEstado;
 import lapr.project.model.FAE;
@@ -257,7 +260,7 @@ class Main {
         ce.getRegistoTipoConflitos().getListaTipoConflitos().add(new TipoConflito("tentativa1", "dados"));
         Exposicao e = new Exposicao("expo1", "descricao", new Data(2017, 3, 4, 2, 3, 4), new Data(2018, 3, 4, 2, 3, 4), new Local("porto"), new Data(2017, 4, 4, 2, 3, 4), new Data(2017, 5, 4, 2, 3, 4), new Data(2017, 6, 4, 2, 3, 4), new Data(2017, 7, 4, 2, 3, 4));
        ce.getRegistoExposicoes().addExposicao(e);
-       e.setEstado(new ExposicaoFAESemDemoEstado(e) );
+       e.setEstado(new ExposicaoCandidaturasDemosAbertasEstado(e) );
        List<CandidaturaExposicao> lc = e.getListaCandidaturas().getListCandidaturas();
           
         ce.getRegistoUtilizadores().getListaUtilizadores().add(gestor);
@@ -279,13 +282,14 @@ class Main {
         u2.setShift(3);
         u2.setKeyword("peixes");
         ce.getRegistoUtilizadoresNaoConfirmados().addUtilizador(u2);
-        CandidaturaExposicao c1 = new CandidaturaExposicao("asd@asd.com", "asd", "123 rua", 911231230, 30, 40);
+        CandidaturaExposicao c1 = new CandidaturaExposicao("email1@lol.com", "asd", "123 rua", 911231230, 30, 40);
         
         c1.setStand(new Stand("stand"));
         c1.setContador(2);
         c1.setEstado(new CandidaturaConfirmarStandEstado(c1));
         c1.getListaProdutos().addProduto(new Produto("produto"));
         c1.getListaKeywords().addKeyword(new Keyword("keyword"));
+        e.getListaCandidaturas().registaCandidatura(c1);
         Demonstracao d = new Demonstracao("d1", "demonstracao");
         c1.getListaDemonstracoes().addDemonstracao(d);
         Atribuicao a1 = new Atribuicao(new FAE(u1), c1);

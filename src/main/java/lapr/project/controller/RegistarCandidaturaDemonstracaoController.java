@@ -6,11 +6,13 @@
 package lapr.project.controller;
 
 import java.util.List;
+import lapr.project.model.CandImpEstado;
 import lapr.project.model.CandidaturaDemonstracao;
 import lapr.project.model.CandidaturaEstado;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
+import lapr.project.model.ExpoImpEstado;
 import lapr.project.model.Exposicao;
 import lapr.project.model.ListaCandidaturasDemonstracoes;
 import lapr.project.model.ListaCandidaturasExposicoes;
@@ -78,7 +80,16 @@ public class RegistarCandidaturaDemonstracaoController {
     }
 
     public boolean transitaEstado() {
-        CandidaturaEstado st = cd.getEstado();
+        CandImpEstado st = cd.getEstado();
         return st.setEmSubmissao();
+    }
+    
+    public boolean checkEstado() {
+        ExpoImpEstado sts = e.getEstado();
+        if(sts.setDemonstracaoCandidaturasAbertas() && !sts.setConfirmacaoRealizacaoDemos()) {
+            return true;
+        } else { 
+            return false;
+        }
     }
 }

@@ -48,10 +48,10 @@ public class RegistarCandidaturaDemonstracaoUI extends JDialog {
         super(janelaPai, "Registar Candidatura de Demonstração", true);
         controller = new RegistarCandidaturaDemonstracaoController(email, ce);
         jListaExpo = new JList();
-        jListaDemo = new JList();
         mLista = new ModeloListaExpos(controller.getListaExposicoes());
         jListaExpo.setModel(mLista);
         jListaExpo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jListaDemo = new JList();
         cb = new JComboBox();
         criarComponentes();
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -81,19 +81,22 @@ public class RegistarCandidaturaDemonstracaoUI extends JDialog {
                 if (!e.getValueIsAdjusting()) {
                     Exposicao exp = (Exposicao) jListaExpo.getSelectedValue();
                     controller.selectExposicoes(exp);
-                    List<CandidaturaExposicao> lc = controller.getListaCandidaturasRep();
-                    if (lc.isEmpty()) {
-                        int i = JOptionPane.showConfirmDialog(RegistarCandidaturaDemonstracaoUI.this, "Não existem candidaturas disponíveis."
-                                + "Deseja escolher outra exposição?", "Registar Candidatura de Demonstração", JOptionPane.YES_NO_OPTION);
-                        if (i == JOptionPane.YES_OPTION) {
-                            jListaExpo.clearSelection();
+                    if (controller.checkEstado()) {
+                        
+                        List<CandidaturaExposicao> lc = controller.getListaCandidaturasRep();
+                        if (lc.isEmpty()) {
+                            int i = JOptionPane.showConfirmDialog(RegistarCandidaturaDemonstracaoUI.this, "Não existem candidaturas disponíveis."
+                                    + "Deseja escolher outra exposição?", "Registar Candidatura de Demonstração", JOptionPane.YES_NO_OPTION);
+                            if (i == JOptionPane.YES_OPTION) {
+                                jListaExpo.clearSelection();
+                            } else {
+                                dispose();
+                            }
                         } else {
-                            dispose();
+                            cb.setModel(new DefaultComboBoxModel(lc.toArray()));
                         }
                     } else {
-                        Demonstracao d = (Demonstracao) jListaDemo.getSelectedValue();
-                        controller.novaCandidaturaDemonstracao(d);
-                        cb.setModel(new DefaultComboBoxModel(lc.toArray()));
+                        JOptionPane.showMessageDialog(RegistarCandidaturaDemonstracaoUI.this, "Não é possível criar candidaturas a demonsracoes nesta esposição", "Registar Candidatura de Demonstração", JOptionPane.WARNING_MESSAGE);
                     }
                 }
             }
@@ -124,7 +127,7 @@ public class RegistarCandidaturaDemonstracaoUI extends JDialog {
                     }
                 } else {
                     mListaDemo = new ModeloListaDemonstracoes(ld);
-                    jListaDemo.setModel(mLista);
+                    jListaDemo.setModel(mListaDemo);
                     jListaDemo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                 }
                 btConf.setEnabled(true);
@@ -148,27 +151,33 @@ public class RegistarCandidaturaDemonstracaoUI extends JDialog {
         btConf.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                if (controller.registarCandidatura() && controller.transitaEstado()) {
-                    JOptionPane.showMessageDialog(RegistarCandidaturaDemonstracaoUI.this,
-                            "Candidatura foi registada com sucesso.", "Registar Candidatura de Demonstração", JOptionPane.INFORMATION_MESSAGE);
-                    dispose();
+                Demonstracao d = (Demonstracao) jListaDemo.getSelectedValue();
+                if (d != null) {
+                    controller.selectDemonstracao(d);
+                    controller.novaCandidaturaDemonstracao(d);
+                    if (controller.registarCandidatura() && controller.transitaEstado()) {
+                        JOptionPane.showMessageDialog(RegistarCandidaturaDemonstracaoUI.this,
+                                "Candidatura foi registada com sucesso.", "Registar Candidatura de Demonstração", JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(RegistarCandidaturaDemonstracaoUI.this,
+                                "Candidatura foi registada com sucesso.", "Registar Candidatura de Demonstração", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(RegistarCandidaturaDemonstracaoUI.this,
-                            "Candidatura foi registada com sucesso.", "Registar Candidatura de Demonstração", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(RegistarCandidaturaDemonstracaoUI.this, "Escolha uma demonstração",
+                            "Registar Candidatura Demonstracao", JOptionPane.WARNING_MESSAGE);
                 }
-            
+            }
         }
+        );
+        return btConf;
     }
-    );
-    return btConf ;
-}
 
-private JButton criarBotaoCancelar() {
+    private JButton criarBotaoCancelar() {
         JButton b = new JButton("Cancelar");
         b.addActionListener(new ActionListener() {
             @Override
-        public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(RegistarCandidaturaDemonstracaoUI.this, "Candidatura não foi registada.",
                         "Registar Candidatura de Demonstração", JOptionPane.WARNING_MESSAGE);
                 dispose();

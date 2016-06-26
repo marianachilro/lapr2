@@ -348,5 +348,10 @@ public class Demonstracao implements Comparable<Demonstracao> {
     public void setListaAtribuicoes(ListaAtribuicoes listaAtribuicoes) {
         this.listaAtribuicoes = listaAtribuicoes;
     }
+    
+    @Override
+    public String toString() {
+        return String.format("Código: %s %n Descrição: %s %n", codigo, descricao);
+    }
 
 }
