@@ -58,6 +58,8 @@ public class AlterarCandidaturaController {
     public CandidaturaExposicao clonarCandidatura(CandidaturaExposicao c) {
         this.c = c;
         cc = lc.clonarCandidatura(c);
+        cc.getListaProdutos().getListaProdutos().clear();
+        lp = cc.getListaProdutos();
         return cc;
     }
 
@@ -88,7 +90,6 @@ public class AlterarCandidaturaController {
         cc.setTelemovel(telemovel);
         cc.setArea(area);
         cc.setConvites(convites);
-        lp = cc.getListaProdutos();
     }
 
     public void criaProduto() {
@@ -105,6 +106,7 @@ public class AlterarCandidaturaController {
     }
 
     public List<Keyword> getListaKeyWords() {
+        cc.getListaKeywords().getListaKeywords().clear();
         return cc.getListaKeywords().getListaKeywords();
     }
 
@@ -114,7 +116,7 @@ public class AlterarCandidaturaController {
     }
 
     public boolean registaKeyword() {
-        return cc.getListaKeywords().addKeyword(k);
+        return cc.getListaKeywords().registaKeyword(k);
     }
 
     public List<Demonstracao> getListaDemonstracoesExposicao() {
@@ -123,6 +125,7 @@ public class AlterarCandidaturaController {
     }
 
     public void getListaDemonstracoesCandidatura() {
+        cc.getListaDemonstracoes().getListaDemonstracao().clear();
         lcd = cc.getListaDemonstracoes();
     }
 

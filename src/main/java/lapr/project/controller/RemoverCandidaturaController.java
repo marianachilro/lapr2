@@ -52,8 +52,11 @@ public class RemoverCandidaturaController {
 
     public List<Removivel> getListaRemoviveis() {
         List<Removivel> lRemove = new ArrayList<>();
+        lc = new ArrayList<>();
         rce = e.getListaCandidaturas();
-        lc = (List<Removivel>) (CandidaturaExposicao) rce.getListaCandidaturasRep(email);
+        for (CandidaturaExposicao c : rce.getListaCandidaturasRep(email)) {
+            lc.add((Removivel) c);
+        }
         for (Removivel r : lc) {
             CandImpEstado st = r.getEstado();
             if (st.setEmSubmissao() || (st.setAlterada() && !st.setEmSubmissao())) {

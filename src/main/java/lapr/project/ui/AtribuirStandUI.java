@@ -55,10 +55,15 @@ public class AtribuirStandUI extends JDialog {
         jLista.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(!controller.checkEstado()) {
-                    JOptionPane.showMessageDialog(AtribuirStandUI.this, "Não é possível atribuir stands na exposição selecionada.",
-                            "Atribuir Stand", JOptionPane.WARNING_MESSAGE);
-                    jLista.clearSelection();
+                if (!e.getValueIsAdjusting()) {
+                    if (!controller.checkEstado()) {
+                        JOptionPane.showMessageDialog(AtribuirStandUI.this, "Não é possível atribuir stands na exposição selecionada.",
+                                "Atribuir Stand", JOptionPane.WARNING_MESSAGE);
+                        jLista.clearSelection();
+                    } else {
+                        controller.selectExposicao((Exposicao) jLista.getSelectedValue());
+                    }
+
                 }
             }
         });
@@ -103,7 +108,7 @@ public class AtribuirStandUI extends JDialog {
                         dispose();
                     }
                 } else if (ls.isEmpty()) {
-                    int i = JOptionPane.showConfirmDialog(AtribuirStandUI.this, "Não existem stands disponíveis Deseja selecionar outra exposição?.",
+                    int i = JOptionPane.showConfirmDialog(AtribuirStandUI.this, "Não existem stands disponíveis Deseja selecionar outra exposição?",
                             "Atribuir Stand", JOptionPane.YES_NO_OPTION);
                     if (i == JOptionPane.YES_OPTION) {
                         jLista.clearSelection();

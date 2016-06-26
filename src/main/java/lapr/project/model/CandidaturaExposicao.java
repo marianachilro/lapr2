@@ -88,7 +88,6 @@ public class CandidaturaExposicao extends CandidaturaGeral implements Removivel,
         listaProdutos = new ListaProdutos();
         listaKeywords = new ListaKeywords();
         listaDemonstracoes = new ListaDemonstracoes();
-        
         stand = null;
         this.contador = 0;
 
@@ -111,11 +110,9 @@ public class CandidaturaExposicao extends CandidaturaGeral implements Removivel,
         setTelemovel(telemovel);
         this.area = area;
         this.convites = convites;
-        
         listaProdutos = new ListaProdutos();
         listaKeywords = new ListaKeywords();
         listaDemonstracoes = new ListaDemonstracoes();
-        
         stand = null;
         this.contador = 0;
     }
@@ -358,7 +355,7 @@ public class CandidaturaExposicao extends CandidaturaGeral implements Removivel,
 
     @Override
     public String toString() {
-        return super.getEmailRep();
+        return String.format("Nome Empresa: %s %n E-mail: %s %n",nomeEmpresa ,super.getEmailRep());
     }
 
     @Override

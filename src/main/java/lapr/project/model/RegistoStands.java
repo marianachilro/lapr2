@@ -70,7 +70,7 @@ public class RegistoStands {
         boolean b = false;
         for (Stand st : listaStands) {
             for (CandidaturaExposicao c : lc) {
-                if (c.getStand().equals(st)) {
+                if (st.equals(c.getStand())) {
                     b = true;
                 }
             }

@@ -95,12 +95,17 @@ public class RegistarCandExpoUI extends JDialog {
         jLista.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                controller.getListCandidaturas();
-                controller.getListaProdutos();
-                controller.getListaKeywords();
-                controller.getListaDemonstracoesCandidatura();
-                lDemonsExpo = controller.getListaDemonstracoesExposicao();
-                cb = new JComboBox(lDemonsExpo.toArray());
+                if (!e.getValueIsAdjusting()) {
+                    expo = (Exposicao) jLista.getSelectedValue();
+                    controller.selectExposicao(expo);
+                    controller.getListCandidaturas();
+                    cand = controller.novaCandidatura();
+                    controller.getListaProdutos();
+                    controller.getListaKeywords();
+                    controller.getListaDemonstracoesCandidatura();
+                    lDemonsExpo = controller.getListaDemonstracoesExposicao();
+                    cb = new JComboBox(lDemonsExpo.toArray());
+                }
             }
         });
         p.add(lbl);
@@ -172,23 +177,21 @@ public class RegistarCandExpoUI extends JDialog {
         btP.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean b = false;
+
                 prod = controller.novoProduto();
                 try {
                     controller.setNome(txtProdutos.getText().trim());
+                    if (!prod.getNome().equals("") && controller.registaProduto()) {
+                        JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Produto adicionado com sucesso.",
+                                "Novo Produto", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Produto não foi adicionado com sucesso.",
+                                "Adicionar Produto", JOptionPane.ERROR_MESSAGE);
+                    }
                 } catch (IllegalArgumentException exc) {
-                    b = true;
                     txtProdutos.setText("");
                     JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Produto não foi adicionado com sucesso.", "Novo Produto", JOptionPane.ERROR_MESSAGE);
                 }
-                if (b == false && controller.registaProduto()) {
-                    JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Produto adicionado com sucesso.",
-                            "Novo Produto", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Produto não foi adicionado com sucesso.",
-                            "Adicionar Produto", JOptionPane.ERROR_MESSAGE);
-                }
-                b = false;
                 txtProdutos.setText("");
             }
         });
@@ -200,8 +203,8 @@ public class RegistarCandExpoUI extends JDialog {
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                k = controller.novaKeyword(txtKeyword.getText());
-                if (controller.registaKeyword()) {
+                k = controller.novaKeyword(txtKeyword.getText().trim());
+                if (!k.getPalavra().equals("") && controller.registaKeyword()) {
                     JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Keyword adicionada com sucesso.",
                             "Nova Keyword", JOptionPane.INFORMATION_MESSAGE);
                 } else {
@@ -224,13 +227,15 @@ public class RegistarCandExpoUI extends JDialog {
                 demo = (Demonstracao) cb.getSelectedItem();
                 if (demo != null) {
                     controller.selectDemonstracao(demo);
-                }
-                if (controller.registaDemonstracao()) {
-                    JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Demonstração adicionada com sucesso.",
-                            "Adicionar Demonstração", JOptionPane.INFORMATION_MESSAGE);
+                    if (controller.registaDemonstracao()) {
+                        JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Demonstração adicionada com sucesso.",
+                                "Adicionar Demonstração", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Demonstração não foi adicionada.",
+                                "Adicionar Demonstração", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Demonstração não foi adicionada.",
-                            "Adicionar Demonstração", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Selecione uma demonstração", "Nova Candidatura", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -244,21 +249,26 @@ public class RegistarCandExpoUI extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boolean b = false;
-                expo = (Exposicao) jLista.getSelectedValue();
-                if (expo != null) {
-                    controller.selectExposicao(expo);
-                    cand = controller.novaCandidatura();
-                    controller.setDados(emailRep, txtNomeEmpresa.getText(), txtMorada.getText(), Integer.parseInt(txtTelemovel.getText()), Float.parseFloat(txtArea.getText()), Integer.parseInt(txtConvites.getText()));
-                    if (controller.registaCandidatura()) {
-                        b = false;
-                        controller.transitaEstado();
-                        JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Candidatura criada com sucesso.", "Nova Candidatura", JOptionPane.INFORMATION_MESSAGE);
-                        dispose();
+                try {
+                    if (expo != null) {
+                        controller.setDados(emailRep, txtNomeEmpresa.getText(), txtMorada.getText(), Integer.parseInt(txtTelemovel.getText()), Float.parseFloat(txtArea.getText()), Integer.parseInt(txtConvites.getText()));
+                        if (controller.registaCandidatura()) {
+                            b = false;
+                            controller.transitaEstado();
+                            JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Candidatura criada com sucesso.", "Nova Candidatura", JOptionPane.INFORMATION_MESSAGE);
+                            dispose();
+                        } else {
+                            b = false;
+                            JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Candidatura não foi criada.", "Nova Candidatura", JOptionPane.ERROR_MESSAGE);
+                            dispose();
+                        }
+
                     } else {
-                        b = false;
-                        JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Candidatura não foi criada.", "Nova Candidatura", JOptionPane.ERROR_MESSAGE);
-                        dispose();
+                        JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Seleciona uma exposição",
+                                "Nova Candidatura", JOptionPane.WARNING_MESSAGE);
                     }
+                } catch (Exception exc) {
+                    JOptionPane.showMessageDialog(RegistarCandExpoUI.this, "Dados introduzidos inválidos", "Nova Candidatura", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

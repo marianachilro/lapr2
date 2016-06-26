@@ -31,6 +31,7 @@ import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
+import lapr.project.model.Keyword;
 
 /**
  *
@@ -55,12 +56,12 @@ public class AlterarCandidaturaUI extends JDialog {
         this.mLista = new ModeloListaExpos(controller.getListaExposicoes());
         jLista.setModel(mLista);
         jLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        txtNomeEmpresa = new JTextField(); 
-        txtMorada = new JTextField(); 
-        txtTelemovel = new JTextField(); 
-        txtArea = new JTextField(); 
-        txtProdutos = new JTextField(); 
-        txtKeyword = new JTextField(); 
+        txtNomeEmpresa = new JTextField();
+        txtMorada = new JTextField();
+        txtTelemovel = new JTextField();
+        txtArea = new JTextField();
+        txtProdutos = new JTextField();
+        txtKeyword = new JTextField();
         txtConvites = new JTextField();
         cbDemo = new JComboBox();
         criarComponentes();
@@ -92,17 +93,19 @@ public class AlterarCandidaturaUI extends JDialog {
         jLista.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                List<CandidaturaExposicao> lc = controller.getListaCandidaturasRep((Exposicao) jLista.getSelectedValue());
-                if (lc.isEmpty()) {
-                    int i = JOptionPane.showConfirmDialog(AlterarCandidaturaUI.this,
-                            "Não existem candidaturas disponíveis. Deseja selecionar outra exposição?", "Alterar Candidatura", JOptionPane.YES_NO_OPTION);
-                    if (i == JOptionPane.YES_OPTION) {
-                        jLista.clearSelection();
+                if (!e.getValueIsAdjusting()) {
+                    List<CandidaturaExposicao> lc = controller.getListaCandidaturasRep((Exposicao) jLista.getSelectedValue());
+                    if (lc.isEmpty()) {
+                        int i = JOptionPane.showConfirmDialog(AlterarCandidaturaUI.this,
+                                "Não existem candidaturas disponíveis. Deseja selecionar outra exposição?", "Alterar Candidatura", JOptionPane.YES_NO_OPTION);
+                        if (i == JOptionPane.YES_OPTION) {
+                            jLista.clearSelection();
+                        } else {
+                            dispose();
+                        }
                     } else {
-                        dispose();
+                        cbCand.setModel(new DefaultComboBoxModel(lc.toArray()));
                     }
-                } else {
-                    cbCand.setModel(new DefaultComboBoxModel(lc.toArray()));
                 }
             }
         });
@@ -110,11 +113,11 @@ public class AlterarCandidaturaUI extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.clonarCandidatura((CandidaturaExposicao) cbCand.getSelectedItem());
-                txtNomeEmpresa = new JTextField(controller.getNomeEmpresa());
-                txtMorada = new JTextField(controller.getMorada());
-                txtTelemovel = new JTextField(controller.getTelemovel());
-                txtArea = new JTextField(controller.getArea());
-                txtConvites = new JTextField(controller.getConvites());
+                txtNomeEmpresa.setText(controller.getNomeEmpresa());
+                txtMorada.setText(controller.getMorada());
+                txtTelemovel.setText(controller.getTelemovel());
+                txtArea.setText(controller.getArea());
+                txtConvites.setText(controller.getConvites());
             }
         });
         p.add(lbl);
@@ -184,13 +187,13 @@ public class AlterarCandidaturaUI extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 controller.criaProduto();
                 try {
-                    controller.setProduto(txtProdutos.getText());
+                    controller.setProduto(txtProdutos.getText().trim());
                 } catch (IllegalArgumentException exc) {
                     txtProdutos.setText("");
                     JOptionPane.showMessageDialog(AlterarCandidaturaUI.this, "Produto não foi adicionado com sucesso.",
                             "Novo Produto", JOptionPane.ERROR_MESSAGE);
                 }
-                if (controller.addProduto()) {
+                if (controller.addProduto() && !txtProdutos.getText().equals("")) {
                     JOptionPane.showMessageDialog(AlterarCandidaturaUI.this, "Produto adicionado com sucesso",
                             "Novo Produto", JOptionPane.INFORMATION_MESSAGE);
                 } else {
@@ -208,8 +211,8 @@ public class AlterarCandidaturaUI extends JDialog {
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.novaKeyWord(txtKeyword.getText());
-                if (controller.registaKeyword()) {
+                Keyword k = controller.novaKeyWord(txtKeyword.getText().trim());
+                if (!k.getPalavra().equals("") && controller.registaKeyword()) {
                     JOptionPane.showMessageDialog(AlterarCandidaturaUI.this, "Keyword adicionada com sucesso.",
                             "Nova Keyword", JOptionPane.INFORMATION_MESSAGE);
                 } else {
@@ -232,13 +235,16 @@ public class AlterarCandidaturaUI extends JDialog {
                 demo = (Demonstracao) cbDemo.getSelectedItem();
                 if (demo != null) {
                     controller.selectDemo(demo);
-                }
-                if (controller.registaDemo()) {
-                    JOptionPane.showMessageDialog(AlterarCandidaturaUI.this, "Demonstração adicionada com sucesso.",
-                            "Adicionar Demonstração", JOptionPane.INFORMATION_MESSAGE);
+                    if (controller.registaDemo()) {
+                        JOptionPane.showMessageDialog(AlterarCandidaturaUI.this, "Demonstração adicionada com sucesso.",
+                                "Adicionar Demonstração", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(AlterarCandidaturaUI.this, "Demonstração não foi adicionada.",
+                                "Adicionar Demonstração", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(AlterarCandidaturaUI.this, "Demonstração não foi adicionada.",
-                            "Adicionar Demonstração", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(AlterarCandidaturaUI.this,"Selecione uma demonstração.",
+                            "Adicionar demonstração", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -251,12 +257,16 @@ public class AlterarCandidaturaUI extends JDialog {
         btG.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.setDados(txtNomeEmpresa.getText(), txtMorada.getText(), Integer.parseInt(txtTelemovel.getText()), Float.parseFloat(txtArea.getText()), Integer.parseInt(txtConvites.getText()));
-                if (controller.alterarCandidatura()) {
-                    JOptionPane.showMessageDialog(AlterarCandidaturaUI.this, "Candidatura criada com sucesso.", "Nova Candidatura", JOptionPane.INFORMATION_MESSAGE);
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(AlterarCandidaturaUI.this, "Candidatura não foi criada.", "Nova Candidatura", JOptionPane.ERROR_MESSAGE);
+                try {
+                    controller.setDados(txtNomeEmpresa.getText(), txtMorada.getText(), Integer.parseInt(txtTelemovel.getText()), Float.parseFloat(txtArea.getText()), Integer.parseInt(txtConvites.getText()));
+                    if (controller.alterarCandidatura()) {
+                        JOptionPane.showMessageDialog(AlterarCandidaturaUI.this, "Candidatura criada com sucesso.", "Nova Candidatura", JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(AlterarCandidaturaUI.this, "Candidatura não foi criada.", "Nova Candidatura", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (Exception exx) {
+                    JOptionPane.showMessageDialog(AlterarCandidaturaUI.this, exx.getMessage(), "Aviso", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

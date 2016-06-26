@@ -41,7 +41,7 @@ public class RemoverCandidaturaUI extends JDialog {
     private ModeloListaExpos mLista;
     private JComboBox cb;
     private JButton btRemover;
-    
+
     public RemoverCandidaturaUI(JFrame janelaPai, CentroExposicoes ce, String email) {
         super(janelaPai, "Remover Candidatura", true);
         controller = new RemoverCandidaturaController(ce, email);
@@ -72,20 +72,24 @@ public class RemoverCandidaturaUI extends JDialog {
         jLista.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                controller.selectExposicao((Exposicao) jLista.getSelectedValue());
-                List<Removivel> lc = controller.getListaRemoviveis();
-                if (lc.isEmpty()) {
-                    int i = JOptionPane.showConfirmDialog(RemoverCandidaturaUI.this, "Não existem candidaturas disponíveis nesta exposição. "
-                            + "Deseja selecionar outra exposição?", "Remover Candidatura", JOptionPane.YES_NO_OPTION);
-                    if (i == JOptionPane.YES_OPTION) {
-                        jLista.clearSelection();
+                if (!e.getValueIsAdjusting()) {
+                    controller.selectExposicao((Exposicao) jLista.getSelectedValue());
+                    List<Removivel> lc = controller.getListaRemoviveis();
+                    if (lc.isEmpty()) {
+                        int i = JOptionPane.showConfirmDialog(RemoverCandidaturaUI.this, "Não existem candidaturas disponíveis nesta exposição. "
+                                + "Deseja selecionar outra exposição?", "Remover Candidatura", JOptionPane.YES_NO_OPTION);
+                        if (i == JOptionPane.YES_OPTION) {
+                            jLista.clearSelection();
+                        } else {
+                            dispose();
+                        }
                     } else {
-                        dispose();
+                        Removivel cand = (Removivel) cb.getSelectedItem();
+                        controller.selectCandidatura(cand);
+                        cb.setModel(new DefaultComboBoxModel(lc.toArray()));
                     }
-                } else {
-                    cb.setModel(new DefaultComboBoxModel(lc.toArray()));
+                    btRemover.setEnabled(true);
                 }
-                btRemover.setEnabled(true);
             }
         });
         JScrollPane sc = new JScrollPane(jLista);
@@ -116,8 +120,7 @@ public class RemoverCandidaturaUI extends JDialog {
         btRemover.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {;
-                Removivel cand = (Removivel) cb.getSelectedItem();
-                controller.selectCandidatura(cand);
+
                 if (controller.removeCandidatura()) {
                     int i = JOptionPane.showConfirmDialog(RemoverCandidaturaUI.this, "Candidatura Removida com sucesso. Deseja continuar?",
                             "Remover Candidatura", JOptionPane.YES_NO_OPTION);

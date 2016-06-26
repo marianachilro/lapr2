@@ -102,7 +102,7 @@ public class ListaCandidaturasDemonstracoes {
     public List<CandidaturaDemonstracao> getListaCandidaturasRep(String email) {
         List<CandidaturaDemonstracao> le = new ArrayList<>();
         for (CandidaturaDemonstracao c : listaCandidaturas) {
-            if (c.getEmailRep().equals(email)) {
+            if (email.equals(c.getEmailRep())) {
                 le.add(c);
             }
         }

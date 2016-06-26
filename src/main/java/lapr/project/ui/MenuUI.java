@@ -7,14 +7,17 @@ package lapr.project.ui;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 import javax.swing.Box;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lapr.project.controller.AtualizarConflitoController;
+import lapr.project.model.CandidaturaDemonstracao;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CandidaturaGeral;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
 import lapr.project.model.Organizador;
@@ -881,7 +884,7 @@ public class MenuUI extends JFrame {
                 }
             }
             if (b == true) {
-                CriarDemonstracaoUI ui = new CriarDemonstracaoUI(MenuUI.this, ce, utilizador.getEmail());
+                CriarDemonstracaoUI ui = new CriarDemonstracaoUI(MenuUI.this, ce, utilizador.getUsername());
             } else {
                 throw new Exception("Não é organizador.");
             }
@@ -969,16 +972,24 @@ public class MenuUI extends JFrame {
         try {
             boolean b = false;
             for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
-                if (!e.getListaCandidaturas().getListaCandidaturasRep(utilizador.getEmail()).isEmpty()) {
+                List<Demonstracao> ld = e.getListaDemonstracoes().getListaDemonstracao();
+                for(Demonstracao d : ld) {
+                    List<CandidaturaDemonstracao> lc = d.getListaCandidaturas().getListaCandidaturasRep(utilizador.getEmail());
+                    if(!lc.isEmpty()) {
+                        b = true;
+                    }
+                }
+                List<CandidaturaExposicao> lc = e.getListaCandidaturas().getListaCandidaturasRep(utilizador.getEmail());
+                if (!lc.isEmpty()) {
                     b = true;
                 }
-
-                if (b == true) {
-                    RemoverCandidaturaUI ui = new RemoverCandidaturaUI(MenuUI.this, ce, utilizador.getEmail());
-                } else {
-                    throw new Exception("Não é representante de um expositor.");
-                }
             }
+            if (b == true) {
+                RemoverCandidaturaUI ui = new RemoverCandidaturaUI(MenuUI.this, ce, utilizador.getEmail());
+            } else {
+                throw new Exception("Não é representante de um expositor.");
+            }
+
         } catch (Exception exp) {
             JOptionPane.showMessageDialog(MenuUI.this, exp.getMessage(),
                     "Aviso", JOptionPane.WARNING_MESSAGE);

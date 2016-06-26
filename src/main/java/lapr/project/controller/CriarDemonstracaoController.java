@@ -5,6 +5,7 @@
  */
 package lapr.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
@@ -23,7 +24,7 @@ import lapr.project.model.RegistoUtilizadores;
  */
 public class CriarDemonstracaoController {
 
-    private String email;
+    private String username;
     private final CentroExposicoes ce;
     private Exposicao expo;
     private Demonstracao demo;
@@ -35,15 +36,15 @@ public class CriarDemonstracaoController {
     private ListaDemonstracoes rd;
     private ListaRecursos lr;
 
-    public CriarDemonstracaoController(CentroExposicoes ce, String email) {
+    public CriarDemonstracaoController(CentroExposicoes ce, String username) {
         this.ce = ce;
-        this.email = email;
+        this.username = username;
     }
 
     public List<Exposicao> mostrarExpo() {
         re = ce.getRegistoExposicoes();
         ru = ce.getRegistoUtilizadores();
-        return re.getListaExposicoesOrganizador(email, ru);
+        return re.getListaExposicoesOrganizador(username, ru);
     }
 
     public void selectExposicao(Exposicao expo) {
@@ -81,7 +82,7 @@ public class CriarDemonstracaoController {
     }
 
     public boolean transitaEstado() {
-        st = expo.getEstado();
+        
         if (st.setCriada()) {
             return st.setDemoSemFae();
         } else if (st.setFaeSemDemo()) {
@@ -92,10 +93,21 @@ public class CriarDemonstracaoController {
     }
 
     public boolean checkEstado() {
+        st = expo.getEstado();
         if ((st.setCriada() || (st.setFaeSemDemo() && !st.setCriada()))) {
             return true;
         } else {
             return false;
         }
     }
+    
+    public List<String> recursoToListString(List<Recurso> lista) {
+        List<String> listaSt = new ArrayList<>();
+        for (Recurso obj : lista) {
+            listaSt.add(obj.toString());
+        }
+        return listaSt;
+    }
+    
+    
 }

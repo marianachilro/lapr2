@@ -10,6 +10,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -36,7 +37,7 @@ public class CriarDemonstracaoUI extends JDialog {
 
     private JFrame janelaPai;
     private CriarDemonstracaoController controller;
-    private String email;
+    private String username;
     private CentroExposicoes ce;
     private Exposicao exp;
     private JList jLista;
@@ -44,22 +45,28 @@ public class CriarDemonstracaoUI extends JDialog {
     private JTextField txtCodigo, txtDescricao;
     private JComboBox cb;
 
-    public CriarDemonstracaoUI(JFrame janelaPai, CentroExposicoes ce, String email) {
+    public CriarDemonstracaoUI(JFrame janelaPai, CentroExposicoes ce, String username) {
         super(janelaPai, "Criar Demonstração", true);
         this.janelaPai = janelaPai;
-        this.email = email;
+        this.username = username;
         this.ce = ce;
-        this.controller = new CriarDemonstracaoController(ce, email);
+        this.controller = new CriarDemonstracaoController(ce, username);
         jLista = new JList();
-        mLista = new ModeloListaExpos(controller.mostrarExpo());
-        jLista.setModel(mLista);
-        jLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        criarComponentes();
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        pack();
-        setResizable(false);
-        setLocationRelativeTo(janelaPai);
-        setVisible(true);
+        if(!controller.mostrarExpo().isEmpty()) {
+            mLista = new ModeloListaExpos(controller.mostrarExpo());
+            jLista.setModel(mLista);
+            jLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            criarComponentes();
+            setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            pack();
+            setResizable(false);
+            setLocationRelativeTo(janelaPai);
+            setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(CriarDemonstracaoUI.this, "Não existem exposições disponíveis!",
+                    "Criar demonstração", JOptionPane.ERROR_MESSAGE);
+            dispose();
+        }
     }
 
     private void criarComponentes() {
@@ -77,10 +84,16 @@ public class CriarDemonstracaoUI extends JDialog {
         jLista.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if (!controller.checkEstado()) {
-                    JOptionPane.showMessageDialog(CriarDemonstracaoUI.this, "Não é possível criar demonstrações na exposição selecionada.",
-                            "Criar Demonstração", JOptionPane.WARNING_MESSAGE);
-                    jLista.clearSelection();
+                if (!e.getValueIsAdjusting()) {
+                    controller.novaDemonstracao();
+                    if (!controller.checkEstado()) {
+                        JOptionPane.showMessageDialog(CriarDemonstracaoUI.this, "Não é possível criar demonstrações na exposição selecionada.",
+                                "Criar Demonstração", JOptionPane.WARNING_MESSAGE);
+                        jLista.clearSelection();
+                    } else {
+                        exp = (Exposicao) jLista.getSelectedValue();
+                        controller.selectExposicao(exp);
+                    }
                 }
             }
         });
@@ -115,7 +128,7 @@ public class CriarDemonstracaoUI extends JDialog {
         JPanel p = new JPanel();
         p.setLayout(new GridLayout(1, 3));
         JLabel lbl2 = new JLabel("Recursos:");
-        cb = new JComboBox(controller.getListaRecursos().toArray());
+        cb = new JComboBox(controller.recursoToListString(controller.getListaRecursos()).toArray());
         p.add(lbl2);
         p.add(cb);
         p.add(criarBotaoSecAdicionar());
@@ -135,31 +148,23 @@ public class CriarDemonstracaoUI extends JDialog {
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exp = (Exposicao) jLista.getSelectedValue();
-                if (exp != null) {
-                    controller.selectExposicao(exp);
-                    controller.novaDemonstracao();
-                    try {
-                        controller.setDadosDemonstracao(txtCodigo.getText(), txtDescricao.getText());
-                    } catch (Exception exc) {
-                        txtCodigo.setText("");
-                        txtDescricao.setText("");
-                        JOptionPane.showMessageDialog(CriarDemonstracaoUI.this,
-                                "Dados inválidos. Introduza novamente.", "Criar Demonstração", JOptionPane.ERROR_MESSAGE);
-                    }
-                    if (controller.registaDemo()) {
-                        controller.transitaEstado();
-                        JOptionPane.showMessageDialog(CriarDemonstracaoUI.this, "Demonstração criada com sucesso!",
-                                "Criar Demonstração", JOptionPane.INFORMATION_MESSAGE);
-                        dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(CriarDemonstracaoUI.this, "Demonstração não foi criada com sucesso!",
-                                "Criar Demonstração", JOptionPane.ERROR_MESSAGE);
-                        dispose();
-                    }
+                try {
+                    controller.setDadosDemonstracao(txtCodigo.getText(), txtDescricao.getText());
+                } catch (Exception exc) {
+                    txtCodigo.setText("");
+                    txtDescricao.setText("");
+                    JOptionPane.showMessageDialog(CriarDemonstracaoUI.this,
+                            "Dados inválidos. Introduza novamente.", "Criar Demonstração", JOptionPane.ERROR_MESSAGE);
+                }
+                if (controller.registaDemo()) {
+                    controller.transitaEstado();
+                    JOptionPane.showMessageDialog(CriarDemonstracaoUI.this, "Demonstração criada com sucesso!",
+                            "Criar Demonstração", JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
                 } else {
-                    JOptionPane.showMessageDialog(CriarDemonstracaoUI.this, "Não é possível criar demonstrações para esta exposição",
+                    JOptionPane.showMessageDialog(CriarDemonstracaoUI.this, "Demonstração não foi criada com sucesso!",
                             "Criar Demonstração", JOptionPane.ERROR_MESSAGE);
+                    dispose();
                 }
             }
         });

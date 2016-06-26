@@ -85,6 +85,11 @@ public class Recurso {
         return true;
     }
     
+    @Override
+    public String toString() {
+        return String.format("%s %n", nome);
+    }
+    
     
     
 }

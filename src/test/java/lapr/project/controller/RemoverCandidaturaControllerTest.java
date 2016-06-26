@@ -111,7 +111,7 @@ public class RemoverCandidaturaControllerTest {
         RemoverCandidaturaController instance = controller;
         Exposicao e = new Exposicao();
         instance.selectExposicao(e);
-        List<Removivel> expResult = null;
+        List<Removivel> expResult = new ArrayList<>();
         List<Removivel> result = instance.getListaRemoviveis();
         assertEquals(expResult, result);
     }

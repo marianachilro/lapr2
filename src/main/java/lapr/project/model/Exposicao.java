@@ -884,5 +884,9 @@ public class Exposicao implements Avaliavel, Decisivel {
         return true;
     }
     
-
+    @Override
+    public String toString() {
+        return String.format("Exposição: %s %n Local:%s %n",titulo, local);
+    }
+    
 }

@@ -125,7 +125,6 @@ public class RegistoUtilizadores {
     public String toString() {
         String st ="";
         for (Utilizador u : listaUtilizadores) {
-            Security s = new Security(u.getShift(),u.getKeyword());
             st = u.toString() + "\n";
         }
         return st;

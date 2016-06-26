@@ -45,6 +45,7 @@ public class DefFaeUI extends JDialog {
     private JList jListaExp;
     private JTextField txtUsername;
     private ModeloListaExpos mLista;
+    private JTextArea txtFae;
 
     public DefFaeUI(JFrame janelaPai, CentroExposicoes ce, String username) {
         super(janelaPai, "DefinirFae", true);
@@ -78,10 +79,17 @@ public class DefFaeUI extends JDialog {
         jListaExp.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(!controller.checkEstado()) {
-                    JOptionPane.showMessageDialog(DefFaeUI.this, "Não é possível definir FAEs na exposição selecionada.",
-                            "Definir FAE", JOptionPane.WARNING_MESSAGE);
-                    jListaExp.clearSelection();
+                if (!e.getValueIsAdjusting()) {
+                    exp = (Exposicao) jListaExp.getSelectedValue();
+                    controller.selectExposicao(exp);
+                    controller.getListaFae();
+                    controller.getEstado();
+                    if (!controller.checkEstado()) {
+                        JOptionPane.showMessageDialog(DefFaeUI.this, "Não é possível definir FAEs na exposição selecionada.",
+                                "Definir FAE", JOptionPane.WARNING_MESSAGE);
+                        jListaExp.clearSelection();
+                    }
+
                 }
             }
         });
@@ -115,10 +123,9 @@ public class DefFaeUI extends JDialog {
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exp = (Exposicao) jListaExp.getSelectedValue();
+
                 if (exp != null) {
-                    controller.selectExposicao(exp);
-                    controller.getListaFae();
+
                     f = controller.novoFae(txtUsername.getText());
                     if (f != null) {
                         if (controller.registaFae()) {
@@ -150,12 +157,16 @@ public class DefFaeUI extends JDialog {
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(DefFaeUI.this, criarPainelFAE(), "Definir FAE", JOptionPane.PLAIN_MESSAGE);
+                if(exp == null) {
+                    JOptionPane.showMessageDialog(DefFaeUI.this, "Seleciona uma exposição", "DefinirFAE", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(DefFaeUI.this, criarPainelFAE(), "Definir FAE", JOptionPane.PLAIN_MESSAGE);
+                }
             }
         });
         return b;
     }
-    
+
     private JButton criarBotaoVerLista() {
         JButton b = new JButton("Ver Lista Utilizadores");
         b.addActionListener(new ActionListener() {
@@ -172,9 +183,13 @@ public class DefFaeUI extends JDialog {
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(controller.getListaFae().size() < 2) {
-                    JOptionPane.showMessageDialog(DefFaeUI.this, "Necessita de definir pelo menos 2 FAEs",
-                            "Definir FAE", JOptionPane.WARNING_MESSAGE);
+                if (exp != null) {
+                    if (controller.getListaFae().size() < 2) {
+                        JOptionPane.showMessageDialog(DefFaeUI.this, "Necessita de definir pelo menos 2 FAEs",
+                                "Definir FAE", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        dispose();
+                    }
                 } else {
                     dispose();
                 }
@@ -200,10 +215,10 @@ public class DefFaeUI extends JDialog {
         p.add(sc);
         return p;
     }
-    
+
     private JPanel criarPainelFAE() {
         JPanel p = new JPanel();
-        JTextArea txtFae = new JTextArea(controller.apresentaLista());
+        txtFae = new JTextArea(controller.apresentaLista());
         txtFae.setEditable(false);
         p.add(txtFae);
         return p;
