@@ -59,13 +59,15 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
     private JTextField txtRespostaAdequacaoNumConvites;
 
     private JTextField txtRespostaRecomendacaoGlobal;
+    
+    private JTextField txtTaxaMediaAceitacao;
 
     public GerarEstatisticasCandidaturaUI(JDialog janelaPai, GerarEstatisticasCandidaturaController controller) {
         super(janelaPai, "Estatística Candidatura", true);
         this.janelaPai = janelaPai;
         this.centro = controller.getCentro();
         this.exposicao = controller.getExposicao();
-        this.controller = new GerarEstatisticasCandidaturaController(centro);
+        this.controller = controller;
         controller.seleciona(exposicao);
         setModal(true);
         setLayout(new BorderLayout());
@@ -153,12 +155,12 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
 //                Atribuicao atrib1 = new Atribuicao(fae1, c1);
 //                Atribuicao atrib2 = new Atribuicao(fae2, c2);
 //                
-//                Avaliacao a = new Avaliacao(atrib, "aceite", "justificação", 5, 5,
+//                Avaliacao a = new Avaliacao(fae.getUtilizador().getEmail(), c.getEmailRep(), "aceite", "justificação", 5, 5,
 //                        5, 4, 5);
-//                Avaliacao a1 = new Avaliacao(atrib1, "aceite", "justificação1", 4, 3,
+//                Avaliacao a1 = new Avaliacao(fae1.getUtilizador().getEmail(),c1.getEmailRep(), "aceite", "justificação1", 4, 3,
 //                        5, 4, 5);
 //
-//                Avaliacao a2 = new Avaliacao(atrib2, "aceite", "justificação2", 4, 4,
+//                Avaliacao a2 = new Avaliacao(fae2.getUtilizador().getEmail(), c2.getEmailRep(), "aceite", "justificação2", 4, 4,
 //                        4, 4, 4);
 //                c.getEstado().setCompleta();
 //                c.getEstado().setConflitosDetetados();
@@ -169,7 +171,7 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
 //                c.getListaAvaliacoes().addAvaliacao(a2);
 //                c.getEstado().setAvaliada();
 //
-//                new GerarEstatisticasCandidaturaUI(null, ce, expo).setVisible(true);
+//                new GerarEstatisticasCandidaturaUI(null, controller).setVisible(true);
 //            }
 //        });
 //    }
@@ -183,7 +185,7 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
     }
 
     public JPanel criarPainelInputOutput() {
-        JPanel p = new JPanel(new GridLayout(8, 2, 3, 3));
+        JPanel p = new JPanel(new GridLayout(9, 2, 3, 3));
         p.setBorder(new EmptyBorder(10, 10, 10, 10));
         p.add(criarPainelCandidaturas());
         p.add(criarPainelRespostaTema());
@@ -191,6 +193,7 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
         p.add(criarPainelRespostaAdequacaoCandDemos());
         p.add(criarPainelRespostaAdequacaoNumConvites());
         p.add(criarPainelRespostaRecomendacaoGlobal());
+        p.add(criarPainelTaxaMediaAceitacao());
 
         pack();
         return p;
@@ -233,6 +236,9 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
                     txtRespostaAdequacaoNumConvites.setText(Float.toString(candidatura.estatisticaAvaliacoes(4)).substring(0,3));
 
                     txtRespostaRecomendacaoGlobal.setText(Float.toString(candidatura.estatisticaAvaliacoes(5)).substring(0,3));
+                    
+                    txtTaxaMediaAceitacao.setText(Float.toString(controller.getTaxaMediaAceitacao()).substring(0,3));
+        
                 }
 
             }
@@ -297,6 +303,17 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
         p.add(txtRespostaRecomendacaoGlobal);
         return p;
     }
+    
+    public JPanel criarPainelTaxaMediaAceitacao(){
+        JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        p.add(criarLabel("Taxa Média de Aceitação (%):"));
+        txtTaxaMediaAceitacao = criarJTextField(4);
+        txtTaxaMediaAceitacao.setEditable(false);
+        txtTaxaMediaAceitacao.requestFocusInWindow();
+        p.add(txtTaxaMediaAceitacao);
+        return p;
+    }
 
     public JPanel criarPainelBotoes() {
         JPanel p = new JPanel();
@@ -336,6 +353,8 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
                 txtRespostaAdequacaoNumConvites.setText(null);
 
                 txtRespostaRecomendacaoGlobal.setText(null);
+                
+                txtTaxaMediaAceitacao.setText(null);
 
             }
         });
