@@ -89,9 +89,6 @@ public class ConfirmarRealizacaoDemonstracaoController {
         return percentagem;
     }
     
-    public String apresentaDemonstracao(){
-        return this.demonstracao.toString();
-    }
     
     public void setRealizacao(boolean b){
         this.demonstracao.setRealizacao(b);
