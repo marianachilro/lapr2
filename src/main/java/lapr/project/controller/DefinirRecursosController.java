@@ -47,8 +47,5 @@ public class DefinirRecursosController {
         return this.rc.addRecurso(recurso);
     }
     
-    public String apresentaLista(){
-        return this.rc.getListaRecursos().toString();
-    }
     
 }
