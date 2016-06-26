@@ -81,9 +81,9 @@ public class GerarAnaliseFAEController {
                     for (Avaliacao a : la) {
                         mediaadd = a.calcMediaRatings();
                         somaMediaTotal(mediaadd);
-//                        if (a.getAtribuicao().getFAE().equals(f)) {
-//                            listMediasFae.add(mediaadd);
-//                        }
+                        if (a.getFae().equals(f.getUtilizador().getEmail())) {
+                            listMediasFae.add(mediaadd);
+                        }
                         nAval++;
                     }
                 }

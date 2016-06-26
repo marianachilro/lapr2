@@ -173,7 +173,8 @@ public class GerarAnaliseFAEControllerTest {
         for (int n = 0; n < lc.size(); n++) {
             for (Atribuicao at : e.getListaAtribuicoes().getLista()) {
                 Avaliacao avaliacao = e.getListaCandidaturas().getListCandidaturas().get(n).getListaAvaliacoes().novaAvaliacao();
-//                avaliacao.setAtribuicao(at);
+                avaliacao.setFae(at.getFAE().getUtilizador().getEmail());
+                avaliacao.setEmailRepCand(at.getCandidatura().getEmailRep());
                 if (n < 25) {
                     avaliacao.setRespostaAdequacaoCandDemonstracao(5);
                     avaliacao.setRespostaAdequacaoCandExposicao(5);
