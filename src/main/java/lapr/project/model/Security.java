@@ -5,8 +5,6 @@
  */
 package lapr.project.model;
 
-import java.util.Arrays;
-
 /**
  *
  * @author catarinarib

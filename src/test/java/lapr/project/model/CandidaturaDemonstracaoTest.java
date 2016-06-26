@@ -58,47 +58,22 @@ public class CandidaturaDemonstracaoTest {
         boolean result = instance.getDecisao();
         assertEquals(expResult, result);
     }
-//    
-//    /**
-//     * Test of getDemonstracao method, of class CandidaturaDemonstracao.
-//     */
-//    @Test
-//    public void testGetDemonstracaoAndSetDemonstracao(){
-//        System.out.println("testeDemonstracao");
-//        CandidaturaDemonstracao instance = new CandidaturaDemonstracao();
-//        Demonstracao demo = new Demonstracao();
-//        instance.setDemonstracao(demo);
-//        Demonstracao expResult = demo;
-//        Demonstracao result = instance.getDemonstracao();
-//        assertEquals(expResult, result);
-//    }
-
-//    /**
-//     * Test of getEstado method, of class CandidaturaDemonstracao.
-//     */
-//    @Test
-//    public void testGetEstado() {
-//        System.out.println("getEstado");
-//        CandidaturaDemonstracao instance = new CandidaturaDemonstracao();
-//        CandidaturaEstado expResult = null;
-//        CandidaturaEstado result = instance.getEstado();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setEstado method, of class CandidaturaDemonstracao.
-//     */
-//    @Test
-//    public void testSetEstado() {
-//        System.out.println("setEstado");
-//        CandidaturaEstado estado = null;
-//        CandidaturaDemonstracao instance = new CandidaturaDemonstracao();
-//        instance.setEstado(estado);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    
+  
+    /**
+     * Test of getEstado method, of class CandidaturaDemonstracao.
+     */
+    @Test
+    public void testGetAndSetEstado() {
+        System.out.println("getEstado");
+        CandidaturaDemonstracao instance = new CandidaturaDemonstracao();
+       
+        CandImpEstado expResult = new CandImpEstado(instance, "");
+        instance.setEstado(expResult);
+        CandImpEstado result = instance.getEstado();
+        assertEquals(expResult, result);
+      
+    }
 
 
     /**
@@ -176,47 +151,5 @@ public class CandidaturaDemonstracaoTest {
         assertEquals(expResult, result);
        
     }
-//
-//    /**
-//     * Test of verificarEstadoAtribuida method, of class CandidaturaDemonstracao.
-//     */
-//    @Test
-//    public void testVerificarEstadoAtribuida() {
-//        System.out.println("verificarEstadoAtribuida");
-//        CandidaturaDemonstracao instance = new CandidaturaDemonstracao();
-//        boolean expResult = false;
-//        boolean result = instance.verificarEstadoAtribuida();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of verificarEstadoAvaliada method, of class CandidaturaDemonstracao.
-//     */
-//    @Test
-//    public void testVerificarEstadoAvaliada() {
-//        System.out.println("verificarEstadoAvaliada");
-//        CandidaturaDemonstracao instance = new CandidaturaDemonstracao();
-//        boolean expResult = false;
-//        boolean result = instance.verificarEstadoAvaliada();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setRemovida method, of class CandidaturaDemonstracao.
-//     */
-//    @Test
-//    public void testSetRemovida() {
-//        System.out.println("setRemovida");
-//        CandidaturaDemonstracao instance = new CandidaturaDemonstracao();
-//        boolean expResult = false;
-//        boolean result = instance.setRemovida();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-    
+
 }

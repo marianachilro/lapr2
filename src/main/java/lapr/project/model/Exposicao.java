@@ -877,11 +877,7 @@ public class Exposicao implements Avaliavel, Decisivel {
         if (!Objects.equals(this.dataFim, other.dataFim)) {
             return false;
         }
-        if (!Objects.equals(this.local, other.local)) {
-            return false;
-        }
-
-        return true;
+        return Objects.equals(this.local, other.local);
     }
     
     @Override

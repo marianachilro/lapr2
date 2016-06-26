@@ -392,10 +392,7 @@ public class Avaliacao {
         if (!Objects.equals(this.fae, other.fae)) {
             return false;
         }
-        if (!Objects.equals(this.emailRepCand, other.emailRepCand)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.emailRepCand, other.emailRepCand);
     }
 
     

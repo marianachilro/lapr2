@@ -76,17 +76,4 @@ public class ListaConflitosTest {
         assertEquals(expResult, result);
     }
 
-//    /**
-//     * Test of setLista method, of class ListaConflitos.
-//     */
-//    @Test
-//    public void testSetLista() {
-//        System.out.println("setLista");
-//        List<Conflito> lc = null;
-//        ListaConflitos instance = new ListaConflitos();
-//        instance.setLista(lc);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//    
 }

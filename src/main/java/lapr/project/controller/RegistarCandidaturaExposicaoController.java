@@ -7,7 +7,6 @@ package lapr.project.controller;
 
 import java.util.List;
 import lapr.project.model.CandImpEstado;
-import lapr.project.model.CandidaturaEstado;
 import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
@@ -133,11 +132,7 @@ public class RegistarCandidaturaExposicaoController {
     
     public boolean checkEstado() {
         ExpoImpEstado es = e.getEstado();
-        if(es.setExposicaoCandidaturasAbertas() && !es.setCompleta()) {
-            return true;
-        } else { 
-            return false;
-        }
+        return es.setExposicaoCandidaturasAbertas() && !es.setCompleta();
     }
 
 }

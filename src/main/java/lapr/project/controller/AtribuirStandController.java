@@ -84,11 +84,7 @@ public class AtribuirStandController {
 
     public boolean checkEstado() {
         as = e.getEstado();
-        if (!as.setDemonstracaoCandidaturasAvaliadas()&& as.setDemonstracaoCandidaturasDecididas()) {
-            return true;
-        } else {
-            return false;
-        }
+        return !as.setDemonstracaoCandidaturasAvaliadas()&& as.setDemonstracaoCandidaturasDecididas();
     }
 
     public List<String> candToListString(List<CandidaturaExposicao> lista) {

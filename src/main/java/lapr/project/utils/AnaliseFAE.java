@@ -146,7 +146,7 @@ public class AnaliseFAE {
             desvio = Math.abs(media - mediaTotal);
             soma = soma + desvio;
         }
-        if (mediasFae.size() == 0) {
+        if (mediasFae.isEmpty()) {
             mediaDesvios = 0;
         } else {
             mediaDesvios = soma / mediasFae.size();
@@ -195,10 +195,7 @@ public class AnaliseFAE {
             return false;
         }
         final AnaliseFAE other = (AnaliseFAE) obj;
-        if (!Objects.equals(this.utilizador, other.utilizador)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.utilizador, other.utilizador);
     }
 
 }

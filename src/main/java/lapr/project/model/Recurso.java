@@ -79,10 +79,7 @@ public class Recurso {
             return false;
         }
         final Recurso other = (Recurso) obj;
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.nome, other.nome);
     }
     
     @Override

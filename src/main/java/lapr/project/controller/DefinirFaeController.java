@@ -89,10 +89,6 @@ public class DefinirFaeController {
     }
     
     public boolean checkEstado() {
-        if((as.setCriada() ) || (as.setFaeSemDemo() && !as.setCriada())) {
-            return true; 
-        } else {
-            return false;
-        }
+        return (as.setCriada() ) || (as.setFaeSemDemo() && !as.setCriada());
     }
 }

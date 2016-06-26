@@ -79,10 +79,7 @@ public class Produto {
             return false;
         }
         final Produto other = (Produto) obj;
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.nome, other.nome);
     }
     
     

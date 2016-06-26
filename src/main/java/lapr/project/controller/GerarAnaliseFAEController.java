@@ -28,7 +28,7 @@ import lapr.project.model.Utilizador;
  */
 public class GerarAnaliseFAEController {
 
-    private CentroExposicoes ce;
+    private final CentroExposicoes ce;
     private AnaliseFAE analise;
     private RegistoUtilizadores ru;
     private RegistoExposicoes re;
@@ -40,8 +40,8 @@ public class GerarAnaliseFAEController {
     private List<CandidaturaGeral> lc;
     private ListaAvaliacoes ra;
     private List<Avaliacao> la;
-    private List<Float> listMediasFae;
-    private List<AnaliseFAE> listAnalises;
+    private final List<Float> listMediasFae;
+    private final List<AnaliseFAE> listAnalises;
     private int nCand;
     private int nAval;
     private float media;
@@ -125,11 +125,7 @@ public class GerarAnaliseFAEController {
             List<CandidaturaExposicao> listC = e.getListaCandidaturas().getListCandidaturas();
             i = i + listC.size();
         }
-        if (i < 31) {
-            return true;
-        } else {
-            return false;
-        }
+        return i < 31;
     }
 
     private void somaCandTotal() {

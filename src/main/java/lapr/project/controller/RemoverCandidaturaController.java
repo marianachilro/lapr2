@@ -25,10 +25,10 @@ import lapr.project.model.Removivel;
  */
 public class RemoverCandidaturaController {
 
-    private CentroExposicoes ce;
+    private final CentroExposicoes ce;
     private Exposicao e;
     private Removivel c;
-    private String email;
+    private final String email;
     private RegistoExposicoes re;
     private ListaCandidaturasExposicoes rce;
     private ListaCandidaturasDemonstracoes rcd;
