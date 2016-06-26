@@ -82,7 +82,6 @@ public class AtualizarConflitoController {
     public List<CandidaturaExposicao> getListaCandidaturasFAEExpo() {
         List<Conflito> listaConflitos = exposicao.getListaConflitos().getListaConlitosFAE(utilizador);
         List<CandidaturaExposicao> lista = new ArrayList<>();
-        boolean b = false;
         for (Conflito c : listaConflitos) {
             lista.add(c.getCandidaturaExpo());
         }
@@ -92,11 +91,8 @@ public class AtualizarConflitoController {
     public List<CandidaturaDemonstracao> getListaCandidaturasFAEDemo() {
         List<Conflito> listaConflitos = exposicao.getListaConflitos().getListaConlitosFAE(utilizador);
         List<CandidaturaDemonstracao> lista = new ArrayList<>();
-        boolean b = false;
         for (Conflito c : listaConflitos) {
-
             lista.add(c.getCandidaturaDemo());
-
         }
         return lista;
     }
@@ -140,6 +136,7 @@ public class AtualizarConflitoController {
     public void setAlteracaoConflito() {
         this.listaConflitosFAE.remove(this.conflito);
         this.listaConflitosFAE.add(clone);
+        this.exposicao.getListaConflitos().addConflito(clone);
     }
 
     public RegistoTipoConflitos getRegistoTipoConflitos() {
@@ -163,14 +160,6 @@ public class AtualizarConflitoController {
         this.exposicao.getListaConflitos().getLista().add(this.conflito);
     }
 
-    public String selecionaEApresenta(Conflito c) {
-        this.conflito = c;
-        return this.conflito.toString();
-    }
-
-    public void removeConflito() {
-        this.listaConflitosFAE.remove(this.conflito);
-    }
 
     public void criarCloneConflito(Conflito conflito) {
         this.clone = conflito;
