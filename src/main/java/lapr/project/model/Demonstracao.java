@@ -46,7 +46,8 @@ public class Demonstracao implements Comparable<Demonstracao> {
      */
     private Data dataFimSubmissaoCandidaturas;
     /**
-     * data do fim de atualizações de conflitos para as candidaturas a uma demonstração.
+     * data do fim de atualizações de conflitos para as candidaturas a uma
+     * demonstração.
      */
     private Data dataFimAtualizacaoConflitos;
     /**
@@ -85,6 +86,7 @@ public class Demonstracao implements Comparable<Demonstracao> {
         this.realizacao = false;
         this.numeroInteressados = 0;
         this.estado = new DemonstracaoInicialEstado(this);
+        listaRecursos = new ListaRecursos();
         listaCandidaturas = new ListaCandidaturasDemonstracoes();
         listaAtribuicoes = new ListaAtribuicoes();
         listaConflitos = new ListaConflitos();
@@ -103,6 +105,7 @@ public class Demonstracao implements Comparable<Demonstracao> {
         this.realizacao = false;
         this.numeroInteressados = 0;
         this.estado = new DemonstracaoInicialEstado(this);
+        listaRecursos = new ListaRecursos();
         listaCandidaturas = new ListaCandidaturasDemonstracoes();
         listaAtribuicoes = new ListaAtribuicoes();
         listaConflitos = new ListaConflitos();

@@ -80,7 +80,15 @@ class Main {
         
         
         CentroExposicoes ce = new CentroExposicoes();
-        Exposicao e = new Exposicao();
+        Local l = new Local("Porto");
+        ce.getRegistoLocais().addLocal(l);
+        Data dati = new Data(2016, 07, 21, 20, 20, 20);
+        Data datf = new Data(2016, 07, 21, 20, 20, 23);
+        Exposicao e = new Exposicao("titulo", "descricao", dati, datf, l, dati, dati,
+                dati, dati);
+        Utilizador a = new Utilizador(3, "carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
+        ce.getRegistoUtilizadores().addUtilizador(a);
+        e.addOrganizador(a);
         List<CandidaturaExposicao> lc = new ArrayList<>();
         Utilizador gestor = new Utilizador(2, "Gestor", "gestor", "gestor@centro.pt", "aA;1", "ddddd");
         ce.getRegistoUtilizadores().getListaUtilizadores().add(gestor);
