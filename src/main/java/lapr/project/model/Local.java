@@ -69,10 +69,7 @@ public class Local {
             return false;
         }
         final Local other = (Local) obj;
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.nome, other.nome);
     }
 
 }

@@ -53,7 +53,11 @@ class Main {
         CentroExposicoes ce = new CentroExposicoes();
         Utilizador gestor = new Utilizador(2, "Gestor", "gestor", "gestor@centro.pt", "aA;1", "ddddd");
         ce.getRegistoUtilizadores().getListaUtilizadores().add(gestor);
-        
+        List<MecanismoGeralDetecaoConflitos> listaMecanismos = new ArrayList<>();
+        listaMecanismos.add(new MecanismoConflitoIdentidadeNumerica());
+        TipoConflito tipo = new TipoConflito("papeis diferentes", "um representante que tenha outro papel no centro");
+        tipo.setListaMecanismos(listaMecanismos);
+        ce.getRegistoTipoConflitos().getListaTipoConflitos().add(tipo);
 //        Utilizador u = new Utilizador(2, "joao", "jo", "jo@centro.pt", "aB;1", "dpddd");
 //        ce.getRegistoUtilizadores().getListaUtilizadores().add(u);
 //        Utilizador u1 = new Utilizador(3, "carol", "carol", "carold@centro.pt", "aA;2", "ddddd");

@@ -24,7 +24,7 @@ import lapr.project.model.RegistoUtilizadores;
  */
 public class CriarDemonstracaoController {
 
-    private String username;
+    private final String username;
     private final CentroExposicoes ce;
     private Exposicao expo;
     private Demonstracao demo;
@@ -94,11 +94,7 @@ public class CriarDemonstracaoController {
 
     public boolean checkEstado() {
         st = expo.getEstado();
-        if (st.setCriada() || (st.setFaeSemDemo() && !st.setCriada())) {
-            return true;
-        } else {
-            return false;
-        }
+        return st.setCriada() || (st.setFaeSemDemo() && !st.setCriada());
     }
     
     public List<String> recursoToListString(List<Recurso> lista) {

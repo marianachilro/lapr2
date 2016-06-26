@@ -86,6 +86,15 @@ public class Atribuicao {
      */
     @Override
     public boolean equals(Object o) {
+            if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (getClass() != o.getClass()) {
+            return false;
+        }
         Atribuicao a = (Atribuicao) o;
         return this.c.equals(a.getCandidatura()) && this.fae.equals(a.getFAE());
     }

@@ -93,10 +93,7 @@ public class Stand {
             return false;
         }
         final Stand other = (Stand) obj;
-        if (!Objects.equals(this.descricao, other.descricao)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.descricao, other.descricao);
     }
     
     

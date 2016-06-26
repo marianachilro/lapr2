@@ -140,11 +140,7 @@ public class AlterarCandidaturaController {
 
     public boolean alterarCandidatura() {
         CandidaturaEstado st = cc.getEstado();
-        if (lc.removeCandidatura(c) && lc.registaCandidatura(cc) && st.setAlterada()) {
-            return true;
-        } else {
-            return false;
-        }
+        return lc.removeCandidatura(c) && lc.registaCandidatura(cc) && st.setAlterada();
 
     }
 }

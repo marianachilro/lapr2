@@ -13,8 +13,8 @@ import java.util.TimerTask;
  */
 public class AlterarParaConflitosAtualizadosDemos extends TimerTask{
 
-    private Exposicao exposicao;
-    private CentroExposicoes centro;
+    private final Exposicao exposicao;
+    private final CentroExposicoes centro;
     
     public AlterarParaConflitosAtualizadosDemos(CentroExposicoes centro, Exposicao expo){
         this.exposicao=expo;

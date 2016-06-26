@@ -10,8 +10,6 @@ import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Keyword;
 import lapr.project.model.Local;
-import lapr.project.utils.File_CSV;
-import lapr.project.utils.Data;
 import org.junit.Test;
 
 /**
@@ -22,6 +20,7 @@ public class File_CSVTest {
 
     /**
      * Test of ficheiro method, of class File_CSV.
+     * @throws java.lang.Exception
      */
     @Test
     public void testFicheiro() throws Exception {

@@ -281,15 +281,7 @@ public class Demonstracao implements Comparable<Demonstracao> {
         return this.listaAtribuicoes;
     }
 
-    /**
-     * Devolve a lista de atribuicoes da exposição.
-     *
-     * @param fae
-     * @return lista de atribuicoes
-     */
-//    public List<Candidatura> getListaAtribuicoesFAE(FAE fae) {
-//        return listaAtribuicoes.getListaCandidaturasFAE(fae);
-//    }
+
     public boolean valida() {
         if (codigo == null || descricao == null) {
             throw new IllegalArgumentException("Demonstração inválida!");

@@ -81,9 +81,6 @@ public class AtribuirCandidaturaController {
     }
 
     public boolean checkEstado() {
-        if(st.setExposicaoConflitosAtualizados() && !st.setExposicaoConflitosDetetados() || st.setDemonstracaoConflitosAtualizados() &&!st.setDemonstracaoConflitosDetetados()){
-        return true;
-        }
-        return false;
+        return st.setExposicaoConflitosAtualizados() && !st.setExposicaoConflitosDetetados() || st.setDemonstracaoConflitosAtualizados() &&!st.setDemonstracaoConflitosDetetados();
     }
 }

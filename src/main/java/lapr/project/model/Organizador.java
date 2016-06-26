@@ -124,10 +124,7 @@ public class Organizador {
             return false;
         }
         final Organizador other = (Organizador) obj;
-        if (!Objects.equals(this.m_oUtilizador, other.m_oUtilizador)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.m_oUtilizador, other.m_oUtilizador);
     }
 
     

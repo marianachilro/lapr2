@@ -12,8 +12,8 @@ import java.util.TimerTask;
  * @author marianachilro
  */
 public class AlterarParaCandidaturasDemosAbertas extends TimerTask{
-    private CentroExposicoes centro;
-    private Exposicao exposicao;
+    private final CentroExposicoes centro;
+    private final Exposicao exposicao;
     public AlterarParaCandidaturasDemosAbertas(CentroExposicoes centro, Exposicao exposicao){
         this.centro=centro;
         this.exposicao=exposicao;

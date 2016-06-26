@@ -8,10 +8,6 @@ package lapr.project.model;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.utils.Data;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -36,18 +32,7 @@ public class ListaDemonstracoesTest {
         assertEquals(expResult, result);
     }
 
-//    /**
-//     * Test of setListaDemonstracao method, of class ListaDemonstracoes.
-//     */
-//    @Test
-//    public void testSetListaDemonstracao() {
-//        System.out.println("setListaDemonstracao");
-//        List<Demonstracao> listaDemonstracao = null;
-//        ListaDemonstracoes instance = new ListaDemonstracoes();
-//        instance.setListaDemonstracao(listaDemonstracao);
-//         TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+
 
     /**
      * Test of novaDemonstracao method, of class ListaDemonstracoes.
@@ -141,32 +126,6 @@ public class ListaDemonstracoesTest {
         ListaDemonstracoes instance = new ListaDemonstracoes();
         instance.setDataInicioSubmissaoCanididaturasDemos(data);
     }
-
-//    /**
-//     * Test of setDataFimSubmissaoCanididaturasDemos method, of class ListaDemonstracoes.
-//     */
-//    @Test
-//    public void testSetDataFimSubmissaoCanididaturasDemos() {
-//        System.out.println("setDataFimSubmissaoCanididaturasDemos");
-//        Data data = null;
-//        ListaDemonstracoes instance = new ListaDemonstracoes();
-//        instance.setDataFimSubmissaoCanididaturasDemos(data);
-//         TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setDataFimAtualizacaoConflitosDemos method, of class ListaDemonstracoes.
-//     */
-//    @Test
-//    public void testSetDataFimAtualizacaoConflitosDemos() {
-//        System.out.println("setDataFimAtualizacaoConflitosDemos");
-//        Data data = null;
-//        ListaDemonstracoes instance = new ListaDemonstracoes();
-//        instance.setDataFimAtualizacaoConflitosDemos(data);
-//         TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
 
     /**
      * Test of validaCodigo method, of class ListaDemonstracoes.

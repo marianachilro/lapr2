@@ -5,7 +5,6 @@
  */
 package lapr.project.utils;
 
-import java.util.List;
 import lapr.project.model.CandImpEstado;
 import lapr.project.model.CandidaturaGeral;
 import lapr.project.model.DemoImpEstado;
