@@ -93,13 +93,13 @@ public class AnaliseFAE {
     }
 
     public void setMediasFae(List<Float> mediasFae) {
-        this.mediasFae=mediasFae;
+        this.mediasFae = mediasFae;
     }
 
     public void setDecisao(String decisao) {
         this.decisao = decisao;
     }
-    
+
     public float getVariancia() {
         return variancia;
     }
@@ -120,15 +120,18 @@ public class AnaliseFAE {
         calcMediaClassificacoes();
         calcMediaDesvios();
         calcVariancia();
-        estatistica = (float) ((mediaDesvios - 1) / (variancia / Math.sqrt( mediasFae.size())));
-        if(estatistica > REGIAO_CRITICA) {
+        estatistica = (float) ((mediaDesvios - 1) / (variancia / Math.sqrt(mediasFae.size())));
+        if(variancia == 0 ||  Math.sqrt(mediasFae.size()) == 0 ) {
+            estatistica = 0;
+        }
+        if (estatistica > REGIAO_CRITICA) {
             decisao = "SIM";
         } else {
             decisao = "NÃO";
         }
         return estatistica;
     }
-    
+
     @Override
     public String toString() {
         return String.format("%s \t%17d\t  \t%10.3f\t  \t%11.3f\t  \t%16.3f\t  \t%7s \n", utilizador.getUsername(), nCand, mediaClassificacoes,
@@ -143,7 +146,11 @@ public class AnaliseFAE {
             desvio = Math.abs(media - mediaTotal);
             soma = soma + desvio;
         }
-        mediaDesvios = soma / mediasFae.size();
+        if (mediasFae.size() == 0) {
+            mediaDesvios = 0;
+        } else {
+            mediaDesvios = soma / mediasFae.size();
+        }
     }
 
     private void calcVariancia() {
@@ -152,13 +159,18 @@ public class AnaliseFAE {
         for (Float media : mediasFae) {
             somatorio = (float) (somatorio + (Math.pow(media, 2)));
         }
-        variancia = (float) ((somatorio - (mediasFae.size() * Math.pow(mediaTotal, 2))) / (mediasFae.size() - 1));
+        if(mediasFae.size()-1 == 0) {
+            variancia = 0;
+        } else {
+            variancia = (float) ((somatorio - (mediasFae.size() * Math.pow(mediaTotal, 2))) / (mediasFae.size() - 1));
+            
+        }
     }
-    
+
     private void calcMediaClassificacoes() {
         mediaClassificacoes = 0;
         float soma = 0;
-        for(Float media : mediasFae) {
+        for (Float media : mediasFae) {
             soma = soma + media;
         }
         mediaClassificacoes = soma / mediasFae.size();
@@ -188,7 +200,5 @@ public class AnaliseFAE {
         }
         return true;
     }
-
-    
 
 }

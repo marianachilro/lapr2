@@ -101,5 +101,19 @@ public class RemoverCandidaturaControllerTest {
         boolean result = instance.removeCandidatura();
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of getListaRemoviveis method, of class RemoverCandidaturaController.
+     */
+    @Test
+    public void testGetListaRemoviveis() {
+        System.out.println("getListaRemoviveis");
+        RemoverCandidaturaController instance = controller;
+        Exposicao e = new Exposicao();
+        instance.selectExposicao(e);
+        List<Removivel> expResult = null;
+        List<Removivel> result = instance.getListaRemoviveis();
+        assertEquals(expResult, result);
+    }
     
 }
