@@ -9,31 +9,20 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import lapr.project.controller.AtualizarConflitoController;
-import lapr.project.model.CandidaturaExposicao;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Conflito;
-import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
-import lapr.project.model.FAE;
-import lapr.project.model.ListaOrganizadores;
-import lapr.project.model.Local;
-import lapr.project.model.MecanismoConflitoIdentidadeNumerica;
-import lapr.project.model.Organizador;
-import lapr.project.model.TipoConflito;
 import lapr.project.model.Utilizador;
-import lapr.project.utils.Data;
 
 /**
  *

@@ -40,7 +40,7 @@ import lapr.project.utils.Data;
  *
  * @author marianachilro
  */
-public class EscolherExposicao extends JDialog{
+public class EscolherExposicaoFAE extends JDialog{
     
     private JFrame janelaPai;
     
@@ -54,7 +54,7 @@ public class EscolherExposicao extends JDialog{
     
     private JComboBox comboBoxExpos;
     
-    public EscolherExposicao(JFrame janelaPai, CentroExposicoes centro, Utilizador utilizador){
+    public EscolherExposicaoFAE(JFrame janelaPai, CentroExposicoes centro, Utilizador utilizador){
         this.janelaPai=janelaPai;
         this.centro=centro;
         this.utilizador=utilizador;
@@ -193,7 +193,7 @@ public class EscolherExposicao extends JDialog{
             p.add(criarPainelExposicoes());
             p.add(criarBotaoNext());
         }else{
-            JOptionPane.showMessageDialog(EscolherExposicao.this, "Não existem Exposições disponívies!",
+            JOptionPane.showMessageDialog(EscolherExposicaoFAE.this, "Não existem Exposições disponívies!",
                             "Erro", JOptionPane.ERROR_MESSAGE);
         }
         p.add(criarBotaoCancelar());
