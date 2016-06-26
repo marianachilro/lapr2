@@ -235,10 +235,10 @@ public class Utilizador {
      */
     @XmlElement
     public final void setEmail(String email) {
-        if (email == null || email.trim().isEmpty() || !(Pattern.matches("(.*)(\\@)(.*)", email))) {
+
+        if (email == null || email.trim().isEmpty()) {
             throw new IllegalArgumentException("E-mail inválido!");
         }
-
         this.email = email;
 
     }
@@ -253,49 +253,6 @@ public class Utilizador {
 
         if (password == null || password.trim().isEmpty()) {
             throw new IllegalArgumentException("Password é inválida!");
-        }
-        char pontuacao[] = {',', ';', '.', ':', '-'};
-
-        int contUpper = 0;
-        int contLower = 0;
-        int contNum = 0;
-        int contPuctuation = 0;
-        char c;
-
-        for (int i = 0; i < password.length(); i++) {
-
-            String letra = convertToASCII(password.charAt(i) + "");
-            c = letra.charAt(0);
-
-            if (Character.isWhitespace(c)) {
-                throw new IllegalArgumentException("Password sem Espaços!");
-
-            } else if (Character.isLowerCase(c)) {
-                contLower++;
-            } else if (Character.isUpperCase(c)) {
-                contUpper++;
-            } else if (Character.isDigit(c)) {
-                contNum++;
-
-            } else if (!Character.isWhitespace(c)) {
-
-                for (char p : pontuacao) {
-                    if (p == c) {
-                        contPuctuation++;
-                    }
-                }
-
-            }
-
-        }
-        if (contUpper == 0) {
-            throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos uma letra maiuscula!");
-        } else if (contLower == 0) {
-            throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos uma letra manuscula!");
-        } else if (contNum == 0) {
-            throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos um numero!");
-        } else if (contPuctuation == 0) {
-            throw new IllegalArgumentException("Password inválida! \nTem de ter pelo menos um destes carateres:\n  ,  .  ;  :  -  ");
         }
 
         this.password = password;

@@ -51,15 +51,26 @@ public class Avaliacao {
      */
     private int respostaRecomendacaoGlobal;
     /**
-     * A atribuição da avaliação.
+     * O fae da avaliacao.
      */
-    private Atribuicao atribuicao;
-
+    private String fae;
+    
     /**
-     * Atribuição por omissão.
+     * O email do representante da candidatura.
      */
-    private static final Atribuicao ATRIBUICAO_OMISSAO = new Atribuicao();
+    private String emailRepCand;
+    
+    /**
+     * FAE por omissão.
+     */
+    private static final String FAE_POR_OMISSAO = "";
+    
+    /**
+     * Email do representante da candidatura por omissao.
+     */
+     private static final String EMAIL_POR_OMISSAO = "";
 
+    
     /**
      * Resposta sobre o tema da exposicao por omissao
      */
@@ -100,7 +111,8 @@ public class Avaliacao {
      * Construtor sem parametros
      */
     public Avaliacao() {
-        this.atribuicao = ATRIBUICAO_OMISSAO;
+        this.fae=FAE_POR_OMISSAO;
+        this.emailRepCand=EMAIL_POR_OMISSAO;
         this.decisao = DECISAO_OMISSAO;
         this.txt = TXT_OMISSAO;
         this.respostaTemaExpo = RESP_TEMA_EXPO_OMISSAO;
@@ -115,7 +127,8 @@ public class Avaliacao {
      * Constrói uma instância de Avaliacao recebendo o fae, a candidatura, a
      * decisao, texto justificativo e respostas do inquerito.
      *
-     * @param atribuicao
+     * @param fae
+     * @param emailrepCand
      * @param decisao a decisao da avaliacao.
      * @param txt o texto justificativo da avaliacao.
      * @param respostaTemaExpo a resposta do inquerito sobre o tema da exposicao
@@ -128,10 +141,11 @@ public class Avaliacao {
      * @param respostaRecomendacaoGlobal a respota ao inquerito sobre a
      * recomendação global
      */
-    public Avaliacao(Atribuicao atribuicao, String decisao, String txt, int respostaTemaExpo, int respostaAdequacaoCandExpo,
+    public Avaliacao(String fae,String emailrepCand, String decisao, String txt, int respostaTemaExpo, int respostaAdequacaoCandExpo,
             int respostaAdequacaoCandDemos, int respostaAdequacaoNumConvites, int respostaRecomendacaoGlobal) {
 
-        this.atribuicao = atribuicao;
+        this.fae=fae;
+        this.emailRepCand=emailrepCand;
         setDecisao(decisao);
         setTextoJustificativo(txt);
         setRespostaTemaExpo(respostaTemaExpo);
@@ -146,19 +160,22 @@ public class Avaliacao {
      * Constrói uma instância de Avaliacao recebendo o fae, a candidatura, a
      * decisao, texto justificativo e resposta do inquerito.
      *
-     * @param atribuicao
+     * @param fae
+     * @param emailrepCand
      * @param decisao a decisao da avaliacao
      * @param txt o texto justificativo da avaliacao
      */
-    public Avaliacao(Atribuicao atribuicao, String decisao, String txt) {
-        this.atribuicao = atribuicao;
+    public Avaliacao(String fae,String emailrepCand, String decisao, String txt) {
+        this.fae=fae;
+        this.emailRepCand=emailrepCand;
         setDecisao(decisao);
         setTextoJustificativo(txt);
 
     }
 
     public Avaliacao(String demo) {
-        atribuicao = ATRIBUICAO_OMISSAO;
+        this.fae=FAE_POR_OMISSAO;
+        this.emailRepCand=EMAIL_POR_OMISSAO;
         decisao = DECISAO_OMISSAO;
         txt = TXT_OMISSAO;
     }
@@ -181,14 +198,23 @@ public class Avaliacao {
         return txt;
     }
 
-    public Atribuicao getAtribuicao() {
-        return atribuicao;
+    public String getFae() {
+        return fae;
     }
 
-    @XmlElement
-    public void setAtribuicao(Atribuicao atribuicao) {
-        this.atribuicao = atribuicao;
+    public void setFae(String fae) {
+        this.fae = fae;
     }
+
+    public String getEmailRepCand() {
+        return emailRepCand;
+    }
+
+    public void setEmailRepCand(String emailRepCand) {
+        this.emailRepCand = emailRepCand;
+    }
+
+   
 
     /**
      * Modifica a decisao.
@@ -342,38 +368,37 @@ public class Avaliacao {
      */
     @Override
     public String toString() {
-        return String.format("FAE: %s; Decisao: %s ; Justificação: %s ;%n", atribuicao.getFAE().getID(), this.decisao, this.txt);
-    }
-
-    /**
-     * Permite comparar um objecto/avalicao por parametro com outra avaliacao.
-     *
-     * @param a uma avaliacao
-     * @return boolean
-     */
-    @Override
-    public boolean equals(Object a) {
-
-        if (this == a) {
-            return true;
-        }
-
-        if (this.getClass() != a.getClass()) {
-            return false;
-        }
-
-        final Avaliacao a1 = (Avaliacao) a;
-
-        return this.atribuicao.equals(a1.getAtribuicao());
+        return String.format("FAE: %s; Decisao: %s ; Justificação: %s ;%n", this.fae, this.decisao, this.txt);
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 31 * hash + Objects.hashCode(this.atribuicao);
-
         return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Avaliacao other = (Avaliacao) obj;
+        if (!Objects.equals(this.fae, other.fae)) {
+            return false;
+        }
+        if (!Objects.equals(this.emailRepCand, other.emailRepCand)) {
+            return false;
+        }
+        return true;
+    }
+
+    
 
     public float calcMediaRatings() {
         return (respostaAdequacaoCandDemonstracao + respostaAdequacaoCandExposicao
