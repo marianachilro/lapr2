@@ -300,85 +300,8 @@ public class AtualizarConflitoControllerTest {
         instance.selecionaConflito(conf);
     }
 
-    /**
-     * Test of setAlteracaoConflito method, of class AtualizarConflitoController.
-     */
-    @Test
-    public void testSetAlteracaoConflito() {
-        System.out.println("setAlteracaoConflito");
-        CentroExposicoes centro = new CentroExposicoes();
-        Utilizador u = new Utilizador();
-        FAE f = new FAE(u);
-        centro.getRegistoUtilizadores().addUtilizador(u);
-        Exposicao e = new Exposicao();
-        e.getListaFAES().addFae(f);
-        centro.getRegistoExposicoes().addExposicao(e);
-        CandidaturaExposicao c = new CandidaturaExposicao();
-        Conflito conf = new Conflito(f, c);
-        e.getListaCandidaturas().addCandidatura(c);
-        e.getListaConflitos().addConflito(conf);
-        AtualizarConflitoController instance = new AtualizarConflitoController(centro, u);
-        instance.selecionaConflito(conf);
-        instance.setAlteracaoConflito();
-    }
 
-    /**
-     * Test of getRegistoTipoConflitos method, of class AtualizarConflitoController.
-     */
-    @Test
-    public void testGetRegistoTipoConflitos() {
-        System.out.println("getRegistoTipoConflitos");
-        AtualizarConflitoController instance = null;
-        RegistoTipoConflitos expResult = null;
-        RegistoTipoConflitos result = instance.getRegistoTipoConflitos();
-        assertEquals(expResult, result);
-    }
 
-    /**
-     * Test of setDados method, of class AtualizarConflitoController.
-     */
-    @Test
-    public void testSetDados() {
-        System.out.println("setDados");
-        AtualizarConflitoController instance = null;
-        instance.setDados();
-    }
 
-    /**
-     * Test of guardarDados method, of class AtualizarConflitoController.
-     */
-    @Test
-    public void testGuardarDados() {
-        System.out.println("guardarDados");
-        AtualizarConflitoController instance = null;
-        instance.guardarDados();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of addConflito method, of class AtualizarConflitoController.
-     */
-    @Test
-    public void testAddConflito() {
-        System.out.println("addConflito");
-        AtualizarConflitoController instance = null;
-        instance.addConflito();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of criarCloneConflito method, of class AtualizarConflitoController.
-     */
-    @Test
-    public void testCriarCloneConflito() {
-        System.out.println("criarCloneConflito");
-        Conflito conflito = null;
-        AtualizarConflitoController instance = null;
-        instance.criarCloneConflito(conflito);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }
