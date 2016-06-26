@@ -94,7 +94,7 @@ public class CriarDemonstracaoController {
 
     public boolean checkEstado() {
         st = expo.getEstado();
-        if ((st.setCriada() || (st.setFaeSemDemo() && !st.setCriada()))) {
+        if (st.setCriada() || (st.setFaeSemDemo() && !st.setCriada())) {
             return true;
         } else {
             return false;

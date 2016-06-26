@@ -154,7 +154,7 @@ public class CriarDemonstracaoUI extends JDialog {
                     txtCodigo.setText("");
                     txtDescricao.setText("");
                     JOptionPane.showMessageDialog(CriarDemonstracaoUI.this,
-                            "Dados inválidos. Introduza novamente.", "Criar Demonstração", JOptionPane.ERROR_MESSAGE);
+                            exc.getMessage(), "Criar Demonstração", JOptionPane.ERROR_MESSAGE);
                 }
                 if (controller.registaDemo()) {
                     controller.transitaEstado();

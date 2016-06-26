@@ -98,13 +98,23 @@ public class RegistarCandExpoUI extends JDialog {
                 if (!e.getValueIsAdjusting()) {
                     expo = (Exposicao) jLista.getSelectedValue();
                     controller.selectExposicao(expo);
-                    controller.getListCandidaturas();
-                    cand = controller.novaCandidatura();
-                    controller.getListaProdutos();
-                    controller.getListaKeywords();
-                    controller.getListaDemonstracoesCandidatura();
-                    lDemonsExpo = controller.getListaDemonstracoesExposicao();
-                    cb = new JComboBox(lDemonsExpo.toArray());
+                    if(controller.checkEstado()) {
+                        controller.getListCandidaturas();
+                        cand = controller.novaCandidatura();
+                        controller.getListaProdutos();
+                        controller.getListaKeywords();
+                        controller.getListaDemonstracoesCandidatura();
+                        lDemonsExpo = controller.getListaDemonstracoesExposicao();
+                        cb = new JComboBox(lDemonsExpo.toArray());
+                    } else {
+                        int i = JOptionPane.showConfirmDialog(RegistarCandExpoUI.this, "Não é possível registar candidaturas a esta exposição."
+                                + " Deseja escolher outra exposição?", "Registar Candidatura Exposição", JOptionPane.YES_NO_OPTION);
+                        if( i == JOptionPane.YES_OPTION) {
+                            jLista.clearSelection();
+                        } else {
+                            dispose();
+                        }
+                    }
                 }
             }
         });
