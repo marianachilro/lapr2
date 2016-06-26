@@ -811,27 +811,21 @@ public class MenuUI extends JFrame {
     }//GEN-LAST:event_jMenuItem27ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
-        if (utilizador != null) {
-            if (utilizador.getEmail() != null && utilizador.getEmail().equalsIgnoreCase("gestor@centro.pt")) {
+        try {
 
+            if (utilizador.getEmail() != null && utilizador.getEmail().equalsIgnoreCase("gestor@centro.pt")) {
                 dispose();
                 CriarStandUI ui = new CriarStandUI(ce, utilizador);
-
-            }
-        } else {
-            try {
-
+            } else {
                 throw new IllegalArgumentException("Não é gestor de exposição!");
-
-            } catch (IllegalArgumentException ex) {
-                JOptionPane.showMessageDialog(
-                        MenuUI.this,
-                        ex.getMessage(),
-                        "Aviso",
-                        JOptionPane.WARNING_MESSAGE);
             }
 
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(
+                    MenuUI.this,
+                    ex.getMessage(),
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
         }
 
 
@@ -978,9 +972,9 @@ public class MenuUI extends JFrame {
             boolean b = false;
             for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
                 List<Demonstracao> ld = e.getListaDemonstracoes().getListaDemonstracao();
-                for(Demonstracao d : ld) {
+                for (Demonstracao d : ld) {
                     List<CandidaturaDemonstracao> lc = d.getListaCandidaturas().getListaCandidaturasRep(utilizador.getEmail());
-                    if(!lc.isEmpty()) {
+                    if (!lc.isEmpty()) {
                         b = true;
                     }
                 }
@@ -1017,7 +1011,7 @@ public class MenuUI extends JFrame {
                 }
             }
             if (b == true) {
-                EscolherExposicaoOrganizador ui = new EscolherExposicaoOrganizador(MenuUI.this,ce, utilizador);
+                EscolherExposicaoOrganizador ui = new EscolherExposicaoOrganizador(MenuUI.this, ce, utilizador);
             } else {
                 throw new Exception("Não é organizador.");
             }
@@ -1101,7 +1095,7 @@ public class MenuUI extends JFrame {
                 }
             }
             if (b == true) {
-              EscolherExpoUC22 ui = new EscolherExpoUC22(MenuUI.this,ce,utilizador);
+                EscolherExpoUC22 ui = new EscolherExpoUC22(MenuUI.this, ce, utilizador);
             } else {
                 throw new Exception("Não é organizador.");
             }
@@ -1115,7 +1109,7 @@ public class MenuUI extends JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:    
-        AlterarPerfilUtilizadorUI ui = new AlterarPerfilUtilizadorUI(MenuUI.this,ce,utilizador.getUsername());
+        AlterarPerfilUtilizadorUI ui = new AlterarPerfilUtilizadorUI(MenuUI.this, ce, utilizador.getUsername());
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
 //    /**

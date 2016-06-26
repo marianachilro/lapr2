@@ -52,7 +52,7 @@ public class CriarDemonstracaoUI extends JDialog {
         this.ce = ce;
         this.controller = new CriarDemonstracaoController(ce, username);
         jLista = new JList();
-        if(!controller.mostrarExpo().isEmpty()) {
+        if (!controller.mostrarExpo().isEmpty()) {
             mLista = new ModeloListaExpos(controller.mostrarExpo());
             jLista.setModel(mLista);
             jLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -148,14 +148,7 @@ public class CriarDemonstracaoUI extends JDialog {
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    controller.setDadosDemonstracao(txtCodigo.getText(), txtDescricao.getText());
-                } catch (Exception exc) {
-                    txtCodigo.setText("");
-                    txtDescricao.setText("");
-                    JOptionPane.showMessageDialog(CriarDemonstracaoUI.this,
-                            exc.getMessage(), "Criar Demonstração", JOptionPane.ERROR_MESSAGE);
-                }
+                controller.setDadosDemonstracao(txtCodigo.getText(), txtDescricao.getText());
                 if (controller.registaDemo()) {
                     controller.transitaEstado();
                     JOptionPane.showMessageDialog(CriarDemonstracaoUI.this, "Demonstração criada com sucesso!",

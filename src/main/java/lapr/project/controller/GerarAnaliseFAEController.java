@@ -126,9 +126,9 @@ public class GerarAnaliseFAEController {
             i = i + listC.size();
         }
         if (i < 31) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 
