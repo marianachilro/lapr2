@@ -126,7 +126,7 @@ public class LerFicheiroXML {
             d.setEstado(new DemonstracaoConfirmadaEstado(d));
         }else if (st.getTipo().equalsIgnoreCase("demonstracaoConflitosAtualizados")){
             d.setEstado(new DemonstracaoConflitosAtualizadosEstado(d));
-        }else if (st.getTipo().equalsIgnoreCase("demostracaoConflitosDetetados")){
+        }else if (st.getTipo().equalsIgnoreCase("demonstracaoConflitosDetetados")){
             d.setEstado(new DemonstracaoConflitosDetetadosEstado(d));
         }else if (st.getTipo().equalsIgnoreCase("demonstracaoCriada")){
             d.setEstado(new DemonstracaoCriadaEstado(d));

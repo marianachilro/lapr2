@@ -189,7 +189,7 @@ public class CandidaturaExposicaoTest {
     public void testToString() {
         System.out.println("toString");
         CandidaturaExposicao instance = new CandidaturaExposicao();
-        String expResult = "";
+        String expResult = String.format("Nome Empresa: %s %n E-mail: %s %n","" ,"");
         String result = instance.toString();
         assertEquals(expResult, result);
     }

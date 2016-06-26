@@ -123,7 +123,7 @@ instance.getListaCandidaturasRep(e);
         CentroExposicoes ce = new CentroExposicoes();
         Exposicao e = new Exposicao();
         CandidaturaExposicao c = new CandidaturaExposicao("123", "whisquers saquetas", "123 rua falsa", 555666770, 03, 20);
-        c.getListaKeywords().addKeyword(new Keyword());
+        c.getListaKeywords().addKeyword(new Keyword("key"));
         e.getListaCandidaturas().addCandidatura(c);
         ce.getRegistoExposicoes().addExposicao(e);
         AlterarCandidaturaController instance = new AlterarCandidaturaController(ce, "123");
@@ -131,7 +131,7 @@ instance.getListaCandidaturasRep(e);
         CandidaturaExposicao cc = instance.clonarCandidatura(c);
         instance.setDados("joao", "asd", 911111111, 0, 0);
         List<Keyword> expResult = new ArrayList<>();
-        expResult.add(new Keyword());
+        ;
         List<Keyword> result = instance.getListaKeyWords();
         assertEquals(expResult, result);
 
