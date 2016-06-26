@@ -9,7 +9,7 @@ package lapr.project.model;
  * Representa um dos Estados possíveis da Exposicao (Estado de "Candidaturas Avaliadas Expo").
  * @author catarinarib
  */
-class ExposicaoCandidaturasExpoAvaliadasEstado extends ExpoImpEstado {
+public class ExposicaoCandidaturasExpoAvaliadasEstado extends ExpoImpEstado {
 
     /**
      * Contrutor do Estado de "Candidaturas Avaliadas Expo" da Exposição.

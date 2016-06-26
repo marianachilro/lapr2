@@ -3,9 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lapr.project.model;
+package lapr.project.utils;
 
 import java.util.List;
+import lapr.project.model.CandImpEstado;
+import lapr.project.model.CandidaturaGeral;
+import lapr.project.model.DemoImpEstado;
+import lapr.project.model.Demonstracao;
+import lapr.project.model.ExpoImpEstado;
+import lapr.project.model.Exposicao;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
