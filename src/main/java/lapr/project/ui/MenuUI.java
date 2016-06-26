@@ -1056,7 +1056,7 @@ public class MenuUI extends JFrame {
                 }
             }
 
-            EscolherExposicao ee = new EscolherExposicao(MenuUI.this, ce, utilizador);
+            EscolherExposicaoFAE ee = new EscolherExposicaoFAE(MenuUI.this, ce, utilizador);
 
         } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(

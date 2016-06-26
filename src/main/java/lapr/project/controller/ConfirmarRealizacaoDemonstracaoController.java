@@ -48,6 +48,14 @@ public class ConfirmarRealizacaoDemonstracaoController {
         this.registoExposicoes = centro.getRegistoExposicoes();
     }
     
+    public CentroExposicoes getCentro(){
+        return centro;
+    }
+    
+    public Exposicao getExposicao(){
+        return exposicao;
+    }
+    
     public List<Exposicao> getExposicoesOrganizadorEstadoCandidExpoAceites(String userName){
        RegistoUtilizadores ru = this.centro.getRegistoUtilizadores();
        List <Exposicao> lista = this.registoExposicoes.getListaExposicoesOrganizador(userName, ru);
