@@ -151,25 +151,6 @@ public class ConfirmarRealizacaoDemonstracaoControllerTest {
         assertEquals(expResult, result, 0.0);
     }
 
-    /**
-     * Test of apresentaDemonstracao method, of class
-     * ConfirmarRealizacaoDemonstracaoController.
-     */
-    @Test
-    public void testApresentaDemonstracao() {
-        System.out.println("apresentaDemonstracao");
-        CentroExposicoes centro = new CentroExposicoes();
-        Exposicao expo = new Exposicao();
-        Demonstracao demo = new Demonstracao();
-        centro.getRegistoExposicoes().addExposicao(expo);
-        expo.getListaDemonstracoes().addDemonstracao(demo);
-        ConfirmarRealizacaoDemonstracaoController instance = new ConfirmarRealizacaoDemonstracaoController(centro);
-        instance.seleciona(expo);
-        instance.seleciona(demo);
-        String expResult = demo.toString();
-        String result = instance.apresentaDemonstracao();
-        assertEquals(expResult, result);
-    }
 
     /**
      * Test of setRealizacao method, of class

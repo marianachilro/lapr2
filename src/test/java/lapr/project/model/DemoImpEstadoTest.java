@@ -24,7 +24,7 @@ public class DemoImpEstadoTest {
     public void testGetDemo() {
         System.out.println("getDemo");
         Demonstracao d1 = new Demonstracao();
-        DemoImpEstado instance = new DemoImpEstado(d1);
+        DemoImpEstado instance = new DemoImpEstado(d1,"");
         Demonstracao expResult = d1;
         Demonstracao result = instance.getDemo();
         assertEquals(expResult, result);
@@ -39,7 +39,7 @@ public class DemoImpEstadoTest {
         System.out.println("setCriada");
 
         Demonstracao d1 = new Demonstracao();
-        DemoImpEstado instance = new DemoImpEstado(d1);
+        DemoImpEstado instance = new DemoImpEstado(d1,"");
         boolean expResult = false;
         boolean result = instance.setCriada();
         assertEquals(expResult, result);
@@ -53,7 +53,7 @@ public class DemoImpEstadoTest {
     public void testSetConfirmada() {
         System.out.println("setConfirmada");
         Demonstracao d1 = new Demonstracao();
-        DemoImpEstado instance = new DemoImpEstado(d1);
+        DemoImpEstado instance = new DemoImpEstado(d1,"");
         boolean expResult = false;
         boolean result = instance.setConfirmada();
         assertEquals(expResult, result);
@@ -66,7 +66,7 @@ public class DemoImpEstadoTest {
     public void testSetNaoConfirmada() {
         System.out.println("setNaoConfirmada");
         Demonstracao d1 = new Demonstracao();
-        DemoImpEstado instance = new DemoImpEstado(d1);
+        DemoImpEstado instance = new DemoImpEstado(d1,"");
         boolean expResult = false;
         boolean result = instance.setNaoConfirmada();
         assertEquals(expResult, result);
@@ -79,7 +79,7 @@ public class DemoImpEstadoTest {
     public void testSetCandidaturasAbertas() {
         System.out.println("setCandidaturasAbertas");
         Demonstracao d1 = new Demonstracao();
-        DemoImpEstado instance = new DemoImpEstado(d1);
+        DemoImpEstado instance = new DemoImpEstado(d1,"");
         boolean expResult = false;
         boolean result = instance.setCandidaturasAbertas();
         assertEquals(expResult, result);
@@ -92,7 +92,7 @@ public class DemoImpEstadoTest {
     public void testSetCandidaturasFechadas() {
         System.out.println("setCandidaturasFechadas");
         Demonstracao d1 = new Demonstracao();
-        DemoImpEstado instance = new DemoImpEstado(d1);
+        DemoImpEstado instance = new DemoImpEstado(d1,"");
         boolean expResult = false;
         boolean result = instance.setCandidaturasFechadas();
         assertEquals(expResult, result);
@@ -105,7 +105,7 @@ public class DemoImpEstadoTest {
     public void testSetConflitosDetetados() {
         System.out.println("setConflitosDetetados");
         Demonstracao d1 = new Demonstracao();
-        DemoImpEstado instance = new DemoImpEstado(d1);
+        DemoImpEstado instance = new DemoImpEstado(d1,"");
         boolean expResult = false;
         boolean result = instance.setConflitosDetetados();
         assertEquals(expResult, result);
@@ -118,7 +118,7 @@ public class DemoImpEstadoTest {
     public void testSetConflitosAtualizados() {
         System.out.println("setConflitosAtualizados");
         Demonstracao d1 = new Demonstracao();
-        DemoImpEstado instance = new DemoImpEstado(d1);
+        DemoImpEstado instance = new DemoImpEstado(d1,"");
         boolean expResult = false;
         boolean result = instance.setConflitosAtualizados();
         assertEquals(expResult, result);
@@ -131,7 +131,7 @@ public class DemoImpEstadoTest {
     public void testSetCandidaturasAtribuidas() {
         System.out.println("setCandidaturasAtribuidas");
         Demonstracao d1 = new Demonstracao();
-        DemoImpEstado instance = new DemoImpEstado(d1);
+        DemoImpEstado instance = new DemoImpEstado(d1,"");
         boolean expResult = false;
         boolean result = instance.setCandidaturasAtribuidas();
         assertEquals(expResult, result);
@@ -144,7 +144,7 @@ public class DemoImpEstadoTest {
     public void testSetCandidaturasAvaliadas() {
         System.out.println("setCandidaturasAvaliadas");
         Demonstracao d1 = new Demonstracao();
-        DemoImpEstado instance = new DemoImpEstado(d1);
+        DemoImpEstado instance = new DemoImpEstado(d1,"");
         boolean expResult = false;
         boolean result = instance.setCandidaturasAvaliadas();
         assertEquals(expResult, result);
@@ -157,7 +157,7 @@ public class DemoImpEstadoTest {
     public void testSetCandidaturasDecididas() {
         System.out.println("setCandidaturasDecididas");
         Demonstracao d1 = new Demonstracao();
-        DemoImpEstado instance = new DemoImpEstado(d1);
+        DemoImpEstado instance = new DemoImpEstado(d1,"");
         boolean expResult = false;
         boolean result = instance.setCandidaturasDecididas();
         assertEquals(expResult, result);

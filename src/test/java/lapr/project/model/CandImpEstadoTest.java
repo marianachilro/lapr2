@@ -24,7 +24,7 @@ public class CandImpEstadoTest {
     public void testGetCandidatura() {
         System.out.println("getCandidatura");
         CandidaturaExposicao c = new CandidaturaExposicao();
-        CandImpEstado instance = new CandImpEstado(c);
+        CandImpEstado instance = new CandImpEstado(c,"");
         Candidatura expResult = c;
         Candidatura result = instance.getCandidatura();
         assertEquals(expResult, result);
@@ -38,7 +38,7 @@ public class CandImpEstadoTest {
     public void testSetEmSubmissao() {
         System.out.println("setEmMSubmissao");
         CandidaturaExposicao c = new CandidaturaExposicao();
-        CandImpEstado instance = new CandImpEstado(c);
+        CandImpEstado instance = new CandImpEstado(c,"");
         boolean expResult = false;
         boolean result = instance.setEmSubmissao();
         assertEquals(expResult, result);
@@ -52,7 +52,7 @@ public class CandImpEstadoTest {
     public void testSetAlterada() {
         System.out.println("setAlterada");
         CandidaturaExposicao c = new CandidaturaExposicao();
-        CandImpEstado instance = new CandImpEstado(c);
+        CandImpEstado instance = new CandImpEstado(c,"");
         boolean expResult = false;
         boolean result = instance.setAlterada();
         assertEquals(expResult, result);
@@ -65,7 +65,7 @@ public class CandImpEstadoTest {
     public void testSetCompleta() {
         System.out.println("setCompleta");
         CandidaturaExposicao c = new CandidaturaExposicao();
-        CandImpEstado instance = new CandImpEstado(c);
+        CandImpEstado instance = new CandImpEstado(c,"");
         boolean expResult = false;
         boolean result = instance.setCompleta();
         assertEquals(expResult, result);
@@ -78,7 +78,7 @@ public class CandImpEstadoTest {
     public void testSetConflitosDetetados() {
         System.out.println("setConflitosDetetados");
         CandidaturaExposicao c = new CandidaturaExposicao();
-        CandImpEstado instance = new CandImpEstado(c);
+        CandImpEstado instance = new CandImpEstado(c,"");
         boolean expResult = false;
         boolean result = instance.setConflitosDetetados();
         assertEquals(expResult, result);
@@ -91,7 +91,7 @@ public class CandImpEstadoTest {
     public void testSetConflitosAlterados() {
         System.out.println("setConflitosAlterados");
         CandidaturaExposicao c = new CandidaturaExposicao();
-        CandImpEstado instance = new CandImpEstado(c);
+        CandImpEstado instance = new CandImpEstado(c,"");
         boolean expResult = false;
         boolean result = instance.setConflitosAlterados();
         assertEquals(expResult, result);
@@ -104,7 +104,7 @@ public class CandImpEstadoTest {
     public void testSetEmAvaliacao() {
         System.out.println("setEmAvaliacao");
         CandidaturaExposicao c = new CandidaturaExposicao();
-        CandImpEstado instance = new CandImpEstado(c);
+        CandImpEstado instance = new CandImpEstado(c,"");
         boolean expResult = false;
         boolean result = instance.setEmAvaliacao();
         assertEquals(expResult, result);
@@ -117,7 +117,7 @@ public class CandImpEstadoTest {
     public void testSetAvaliada() {
         System.out.println("setAvaliada");
         CandidaturaExposicao c = new CandidaturaExposicao();
-        CandImpEstado instance = new CandImpEstado(c);
+        CandImpEstado instance = new CandImpEstado(c,"");
         boolean expResult = false;
         boolean result = instance.setAvaliada();
         assertEquals(expResult, result);
@@ -130,7 +130,7 @@ public class CandImpEstadoTest {
     public void testSetAceite() {
         System.out.println("setAceite");
         CandidaturaExposicao c = new CandidaturaExposicao();
-        CandImpEstado instance = new CandImpEstado(c);
+        CandImpEstado instance = new CandImpEstado(c,"");
         boolean expResult = false;
         boolean result = instance.setAceite();
         assertEquals(expResult, result);
@@ -143,7 +143,7 @@ public class CandImpEstadoTest {
     public void testSetConfirmarStand() {
         System.out.println("setConfirmarStandEstado");
         CandidaturaExposicao c = new CandidaturaExposicao();
-        CandImpEstado instance = new CandImpEstado(c);
+        CandImpEstado instance = new CandImpEstado(c,"");
         boolean expResult = false;
         boolean result = instance.setConfirmarStand();
         assertEquals(expResult, result);

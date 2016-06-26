@@ -38,7 +38,7 @@ public class Atribuicao {
 
     public Atribuicao() {
         fae = new FAE();
-        c = new CandidaturaGeral();
+      //  c = new CandidaturaGeral();
     }
 
     /**
@@ -74,7 +74,7 @@ public class Atribuicao {
      *
      * @param c
      */
-    @XmlElement(name = "candidatura")
+@XmlElement(name="candidatura")
     public void setCandidatura(CandidaturaGeral c) {
         this.c = c;
     }

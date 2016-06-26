@@ -17,7 +17,7 @@ class ExposicaoCandidaturasExpoAvaliadasEstado extends ExpoImpEstado {
      * @param exposicao a exposição que vai transitar de estado
      */
     public ExposicaoCandidaturasExpoAvaliadasEstado(Exposicao exposicao) {
-        super(exposicao);
+        super(exposicao,"exposicaoCandidaturasExpoAvaliadas");
     }
     
     /**

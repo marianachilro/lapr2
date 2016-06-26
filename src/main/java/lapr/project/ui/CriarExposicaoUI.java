@@ -293,6 +293,7 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
             String local1 = jComboBox2.getSelectedItem().toString();
             Local local = null;
 
+            if(!ce.getRegistoExposicoes().getListaExposicoes().isEmpty()){
             for (Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()) {
                 if (e.getLocal().getNome().equalsIgnoreCase(local1)) {
                     if (e.getDataInicio().getAno() == dataIni.getAno() && e.getDataInicio().getMes() == dataIni.getMes() && e.getDataInicio().getDia() == dataIni.getDia()) {
@@ -322,6 +323,7 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
 
                     }
                 }
+            }
             }
 
             if (!controller.getRegistoLocais().getListaLocais().isEmpty()) {

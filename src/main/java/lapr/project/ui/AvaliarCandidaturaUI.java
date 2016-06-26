@@ -590,10 +590,11 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                 int adqCandDemo = questionario.adqCandDemo();
                 int adqNumCov = questionario.adqNumConv();
                 int recGlobal = questionario.recGlobal();
+                String fae4=a.getFAE().getID();
+                String emailRepCand=candExp.getEmailRep();
                 
                 
-                
-                controller.setAvaliacao(a, decisao, txt, temaExpo, adqCandExpo, adqCandDemo, adqNumCov, recGlobal);
+                controller.setAvaliacao(fae4,emailRepCand, decisao, txt, temaExpo, adqCandExpo, adqCandDemo, adqNumCov, recGlobal);
 
                 if (controller.registaAvaliacao()) {
 
@@ -631,7 +632,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
                     throw new IllegalArgumentException("Justificação vazia!");
                 }
 
-                controller.setAvaliacao(a, decisao, txt);
+                controller.setAvaliacao(a.getFAE().getID(),candDemo.getEmailRep(), decisao, txt);
 
                 if (controller.registaAvaliacao()) {
 

@@ -48,14 +48,23 @@ public class ConfirmarRealizacaoDemonstracaoController {
         this.registoExposicoes = centro.getRegistoExposicoes();
     }
     
+    public CentroExposicoes getCentro(){
+        return centro;
+    }
+    
+    public Exposicao getExposicao(){
+        return exposicao;
+    }
+    
     public List<Exposicao> getExposicoesOrganizadorEstadoCandidExpoAceites(String userName){
        RegistoUtilizadores ru = this.centro.getRegistoUtilizadores();
        List <Exposicao> lista = this.registoExposicoes.getListaExposicoesOrganizador(userName, ru);
+       List <Exposicao> listaExpos = new ArrayList<>();
        for(Exposicao e : lista){
-           if(!(!e.getEstado().setExposicaoCandidaturasAtribuidas() && e.getEstado().setExposicaoCandidaturasDecididas()))
-               lista.remove(e);
+           if(!e.getEstado().setExposicaoCandidaturasAtribuidas() && e.getEstado().setExposicaoCandidaturasDecididas())
+               listaExpos.add(e);
        }
-       return lista;
+       return listaExpos;
     }
     
     public void seleciona(Exposicao e){
@@ -89,9 +98,6 @@ public class ConfirmarRealizacaoDemonstracaoController {
         return percentagem;
     }
     
-    public String apresentaDemonstracao(){
-        return this.demonstracao.toString();
-    }
     
     public void setRealizacao(boolean b){
         this.demonstracao.setRealizacao(b);

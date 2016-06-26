@@ -22,7 +22,7 @@ public class DemonstracaoCandidaturasAtribuidasEstado extends DemoImpEstado {
      * @param demonstracao a demonstração que vai transitar de estado
      */
     public DemonstracaoCandidaturasAtribuidasEstado(Demonstracao demonstracao) {
-        super(demonstracao);
+        super(demonstracao,"demonstracaoCandidaturasAtribuidas");
     }
 
     /**

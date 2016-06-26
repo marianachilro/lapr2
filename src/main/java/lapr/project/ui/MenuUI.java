@@ -407,6 +407,11 @@ public class MenuUI extends JFrame {
         jMenu9.setText("Perfil");
 
         jMenuItem1.setText("Alterar Perfil");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu9.add(jMenuItem1);
 
         jMenuBar1.add(jMenu9);
@@ -1012,7 +1017,7 @@ public class MenuUI extends JFrame {
                 }
             }
             if (b == true) {
-//                ConfirmarRealizacaoDemonstracaoUI ui = new ConfirmarRealizacaoDemonstracaoUI(MenuUI.this,ce,);
+                EscolherExposicaoOrganizador ui = new EscolherExposicaoOrganizador(MenuUI.this,ce, utilizador);
             } else {
                 throw new Exception("Não é organizador.");
             }
@@ -1067,7 +1072,7 @@ public class MenuUI extends JFrame {
                 }
             }
 
-            EscolherExposicao ee = new EscolherExposicao(MenuUI.this, ce, utilizador);
+            EscolherExposicaoFAE ee = new EscolherExposicaoFAE(MenuUI.this, ce, utilizador);
 
         } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(
@@ -1096,7 +1101,7 @@ public class MenuUI extends JFrame {
                 }
             }
             if (b == true) {
-//              GerarEstatisticasCandidaturaUI ui = new GerarEstatisticasCandidaturaUI(MenuUI.this,ce,);
+              EscolherExpoUC22 ui = new EscolherExpoUC22(MenuUI.this,ce,utilizador);
             } else {
                 throw new Exception("Não é organizador.");
             }
@@ -1107,6 +1112,11 @@ public class MenuUI extends JFrame {
 
 
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:    
+        AlterarPerfilUtilizadorUI ui = new AlterarPerfilUtilizadorUI(MenuUI.this,ce,utilizador.getUsername());
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
 //    /**
 //     * @param args the command line arguments

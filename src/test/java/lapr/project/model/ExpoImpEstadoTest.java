@@ -24,7 +24,7 @@ public class ExpoImpEstadoTest {
     public void testGetExposicao() {
         System.out.println("getExposicao");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         Exposicao expResult = expo;
         Exposicao result = instance.getExposicao();
         assertEquals(expResult, result);
@@ -38,7 +38,7 @@ public class ExpoImpEstadoTest {
         System.out.println("setCriada");
         
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setCriada();
         assertEquals(expResult, result);
@@ -51,7 +51,7 @@ public class ExpoImpEstadoTest {
     public void testSetFaeSemDemo() {
         System.out.println("setFaeSemDemo");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setFaeSemDemo();
         assertEquals(expResult, result);
@@ -64,7 +64,7 @@ public class ExpoImpEstadoTest {
     public void testSetDemoSemFae() {
         System.out.println("setDemoSemFae");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setDemoSemFae();
         assertEquals(expResult, result);
@@ -77,7 +77,7 @@ public class ExpoImpEstadoTest {
     public void testSetCompleta() {
         System.out.println("setCompleta");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setCompleta();
         assertEquals(expResult, result);
@@ -90,7 +90,7 @@ public class ExpoImpEstadoTest {
     public void testSetExposicaoCandidaturasAbertas() {
         System.out.println("setExposicaoCandidaturasAbertas");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setExposicaoCandidaturasAbertas();
         assertEquals(expResult, result);
@@ -103,7 +103,7 @@ public class ExpoImpEstadoTest {
     public void testSetExposicaoCandidaturasFechadas() {
         System.out.println("setExposicaoCandidaturasFechadas");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado (expo);
+        ExpoImpEstado instance = new ExpoImpEstado (expo,"");
         boolean expResult = false;
         boolean result = instance.setExposicaoCandidaturasFechadas();
         assertEquals(expResult, result);
@@ -116,7 +116,7 @@ public class ExpoImpEstadoTest {
     public void testSetExposicaoConflitosDetetados() {
         System.out.println("setExposicaoConflitosDetetados");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setExposicaoConflitosDetetados();
         assertEquals(expResult, result);
@@ -129,7 +129,7 @@ public class ExpoImpEstadoTest {
     public void testSetExposicaoConflitosAtualizados() {
         System.out.println("setExposicaoConflitosAtualizados");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setExposicaoConflitosAtualizados();
         assertEquals(expResult, result);
@@ -142,7 +142,7 @@ public class ExpoImpEstadoTest {
     public void testSetExposicaoCandidaturasAtribuidas() {
         System.out.println("setExposicaoCandidaturasAtribuidas");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setExposicaoCandidaturasAtribuidas();
         assertEquals(expResult, result);
@@ -155,7 +155,7 @@ public class ExpoImpEstadoTest {
     public void testSetExposicaoCandidaturasAvaliadas() {
         System.out.println("setExposicaoCandidaturasAvaliadas");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setExposicaoCandidaturasAvaliadas();
         assertEquals(expResult, result);
@@ -168,7 +168,7 @@ public class ExpoImpEstadoTest {
     public void testSetExposicaoCandidaturasDecididas() {
         System.out.println("setExposicaoCandidaturasDecididas");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setExposicaoCandidaturasDecididas();
         assertEquals(expResult, result);
@@ -181,7 +181,7 @@ public class ExpoImpEstadoTest {
     public void testSetConfirmacaoRealizacaoDemos() {
         System.out.println("setConfirmacaoRealizacaoDemos");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setConfirmacaoRealizacaoDemos();
         assertEquals(expResult, result);
@@ -194,7 +194,7 @@ public class ExpoImpEstadoTest {
     public void testSetDemonstracaoCandidaturasAbertas() {
         System.out.println("setDemonstracaoCandidaturasAbertas");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setDemonstracaoCandidaturasAbertas();
         assertEquals(expResult, result);
@@ -207,7 +207,7 @@ public class ExpoImpEstadoTest {
     public void testSetDemonstracaoCandidaturasFechadas() {
         System.out.println("setDemonstracaoCandidaturasFechadas");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setDemonstracaoCandidaturasFechadas();
         assertEquals(expResult, result);
@@ -220,7 +220,7 @@ public class ExpoImpEstadoTest {
     public void testSetDemonstracaoConflitosDetetados() {
         System.out.println("setDemonstracaoConflitosDetetados");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setDemonstracaoConflitosDetetados();
         assertEquals(expResult, result);
@@ -233,7 +233,7 @@ public class ExpoImpEstadoTest {
     public void testSetDemonstracaoConflitosAtualizados() {
         System.out.println("setDemonstracaoConflitosAtualizados");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setDemonstracaoConflitosAtualizados();
         assertEquals(expResult, result);
@@ -246,7 +246,7 @@ public class ExpoImpEstadoTest {
     public void testSetDemonstracaoCandidaturasAtribuidas() {
         System.out.println("setDemonstracaoCandidaturasAtribuidas");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setDemonstracaoCandidaturasAtribuidas();
         assertEquals(expResult, result);
@@ -259,7 +259,7 @@ public class ExpoImpEstadoTest {
     public void testSetDemonstracaoCandidaturasAvaliadas() {
         System.out.println("setDemonstracaoCandidaturasAvaliadas");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setDemonstracaoCandidaturasAvaliadas();
         assertEquals(expResult, result);
@@ -272,7 +272,7 @@ public class ExpoImpEstadoTest {
     public void testSetDemonstracaoCandidaturasDecididas() {
         System.out.println("setDemonstracaoCandidaturasDecididas");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setDemonstracaoCandidaturasDecididas();
         assertEquals(expResult, result);
@@ -285,7 +285,7 @@ public class ExpoImpEstadoTest {
     public void testSetStandsAtribuidos() {
         System.out.println("setStandsAtribuidos");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setStandsAtribuidos();
         assertEquals(expResult, result);
@@ -298,7 +298,7 @@ public class ExpoImpEstadoTest {
     public void testSetStandsConfirmados() {
         System.out.println("setStandsConfirmados");
         Exposicao expo = new Exposicao();
-        ExpoImpEstado instance = new ExpoImpEstado(expo);
+        ExpoImpEstado instance = new ExpoImpEstado(expo,"");
         boolean expResult = false;
         boolean result = instance.setStandsConfirmados();
         assertEquals(expResult, result);

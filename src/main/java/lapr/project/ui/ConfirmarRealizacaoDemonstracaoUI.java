@@ -36,7 +36,7 @@ public class ConfirmarRealizacaoDemonstracaoUI extends JDialog {
 
     private final ConfirmarRealizacaoDemonstracaoController controller;
     
-    private final JFrame janelaPai;
+    private final JDialog janelaPai;
 
     private final CentroExposicoes centro;
 
@@ -68,12 +68,12 @@ public class ConfirmarRealizacaoDemonstracaoUI extends JDialog {
 
     private JButton botaoConfirmar;
 
-    public ConfirmarRealizacaoDemonstracaoUI(JFrame janelaPai, CentroExposicoes centro, Exposicao exposicao) {
+    public ConfirmarRealizacaoDemonstracaoUI(JDialog janelaPai,ConfirmarRealizacaoDemonstracaoController controller) {
         super(janelaPai, "Confirmar Realização de Demonstração", true);
         this.janelaPai=janelaPai;
-        this.centro = centro;
-        this.exposicao = exposicao;
-        this.controller = new ConfirmarRealizacaoDemonstracaoController(centro);
+        this.centro = controller.getCentro();
+        this.exposicao = controller.getExposicao();
+        this.controller = controller;
         controller.seleciona(exposicao);
         setModal(true);
         setLayout(new BorderLayout());
@@ -320,6 +320,7 @@ public class ConfirmarRealizacaoDemonstracaoUI extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.transitaEstadoDemo();
+                comboBoxDemonstracoes.removeItem(demonstracao);
                 botaoSim.setEnabled(true);
                 botaoNao.setEnabled(true);
                 comboBoxDemonstracoes.setSelectedIndex(0);

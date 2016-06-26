@@ -89,7 +89,7 @@ public class Conflito {
      * @return caso esta seja de uma Demonstracao
      */
     public CandidaturaDemonstracao getCandidaturaDemo(){
-        if(c.getListaDemonstracoes().getListaDemonstracao() == null)
+        if(c.getListaDemonstracoes().getListaDemonstracao().isEmpty())
             return (CandidaturaDemonstracao) c;
         return null;
     }
@@ -128,7 +128,7 @@ public class Conflito {
      *
      * @param tipo o novo tipo do conflito
      */
-    @XmlElement(name = "candidatura")
+    @XmlElement(name = "tipo")
     public void setTipo(TipoConflito tipo) {
         this.tipo = tipo;
     }

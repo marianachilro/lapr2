@@ -126,7 +126,7 @@ public class AvaliarCandidaturaControllerTest {
         CandidaturaExposicao c = new CandidaturaExposicao("rep@centro.pt", "nome empresa", "morada", 919999999, 23, 5);
         instance.selectCandidatura(c);
 
-        instance.setAvaliacao(atribuicao, decisao, txt, respostaTemaExpo, respostaAdequacaoCand, respostaAdequacaoCandDemo, respostaAdequacaoNumConvites, respostaRecomendacaoGlobal);
+        instance.setAvaliacao(fae.getID(),c.getEmailRep(), decisao, txt, respostaTemaExpo, respostaAdequacaoCand, respostaAdequacaoCandDemo, respostaAdequacaoNumConvites, respostaRecomendacaoGlobal);
 
     }
 
@@ -145,7 +145,7 @@ public class AvaliarCandidaturaControllerTest {
         AvaliarCandidaturaController instance = new AvaliarCandidaturaController(ce, fae);
         CandidaturaExposicao c = new CandidaturaExposicao("rep@centro.pt", "nome empresa", "morada", 919999999, 23, 5);
         instance.selectCandidatura(c);
-        instance.setAvaliacao(atribuicao, decisao, txt);
+        instance.setAvaliacao(fae.getID(),c.getEmailRep(), decisao, txt);
 
     }
 

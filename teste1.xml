@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<centroExposicoes>
+    <registoExposicoes>
+        <exposicao>
+            <candidaturasAceites>0</candidaturasAceites>
+            <candidaturasRejeitadas>0</candidaturasRejeitadas>
+            <dataFim>
+                <ano>2017</ano>
+                <mes>5</mes>
+                <dia>2</dia>
+                <hora>5</hora>
+                <minuto>6</minuto>
+                <segundos>7</segundos>
+            </dataFim>
+            <descricao></descricao>
+            <estado/>
+            <registoFAEs/>
+            <registoCandidaturas/>
+            <registoConflitos/>
+            <registoDemonstracoes/>
+            <registoFAEs/>
+            <registoOrganizadores/>
+            <titulo></titulo>
+        </exposicao>
+    </registoExposicoes>
+    <locais/>
+    <mecanismos/>
+    <recursos/>
+    <stands/>
+    <registoTipoConflitos/>
+    <registoUtilizadoresConfirmados/>
+    <registoUtilizadoresNaoConfirmados/>
+</centroExposicoes>

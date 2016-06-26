@@ -23,8 +23,9 @@ public class ImportarDadosUI {
                 int resposta = fileChooser.showOpenDialog(null);
                 if (resposta == JFileChooser.APPROVE_OPTION) {
                     File ficheiro = fileChooser.getSelectedFile();          
-          controller.lerCentro(ficheiro);
-                }
-                MenuUI ui = new MenuUI(ce,u);
+          
+               
+                MenuUI ui = new MenuUI(controller.lerCentro(ficheiro),u);
+    }
     }
 }
