@@ -19,7 +19,7 @@ public class AvaliacaoTest {
      */
     @Test
     public void testGetDecisaoAndSetNome() {
-        
+
         System.out.println("Teste GetDecisaoAndSetNome");
         String nome = "TesteDecisao";
         Avaliacao instance = new Avaliacao();
@@ -35,7 +35,7 @@ public class AvaliacaoTest {
      */
     @Test
     public void testGetTxtAndSetTxt() {
-        
+
         System.out.println("Teste GetTxtAndSetTxt");
         String nome = "TesteTxt";
         Avaliacao instance = new Avaliacao();
@@ -46,16 +46,12 @@ public class AvaliacaoTest {
 
     }
 
-  
-
- 
-
     /**
      * Test of getRespostaTemaExpo method, of class Avaliacao.
      */
     @Test
     public void testGetRespostaTemaExpoAndSetRespostaTemaExpo() {
-        
+
         System.out.println("TesteRespostaTemaExpo");
         int num = 2;
         Avaliacao instance = new Avaliacao();
@@ -70,7 +66,7 @@ public class AvaliacaoTest {
      */
     @Test
     public void testGetRespostaAdequacaoCandAndSetRespostaAdequacaoCand() {
-        
+
         System.out.println("TesteRespostaAdequacaoCand");
         int num = 2;
         Avaliacao instance = new Avaliacao();
@@ -85,7 +81,7 @@ public class AvaliacaoTest {
      */
     @Test
     public void testGetRespostaAdequacaoNumConvitesAndSetRespostaAdequacaoNumConvites() {
-        
+
         System.out.println("TesteRespostaAdequacaoNumConvites");
         int num = 2;
         Avaliacao instance = new Avaliacao();
@@ -100,7 +96,7 @@ public class AvaliacaoTest {
      */
     @Test
     public void testGetRespostaRecomendacaoGlobalAndSetRespostaRecomendacaoGlobal() {
-        
+
         System.out.println("TesteRespostaRecomendacaoGlobal");
         int num = 2;
         Avaliacao instance = new Avaliacao();
@@ -110,26 +106,30 @@ public class AvaliacaoTest {
         assertEquals(expResult, result);
     }
 
-//    /**
-//     * Test of toString method, of class Avaliacao.
-//     */
-//    @Test
-//    public void testToString() {
-//        
-//        System.out.println("TestetoString");
-//        Atribuicao a =new Atribuicao();
-////        Avaliacao instance = new Avaliacao(a, "decisao", "txt");
-//        String expResult = String.format("FAE: %s; Decisao: %s ; Justificação: %s ;%n", a.getFAE().getID(),"decisao", "txt");
-//        String result = instance.toString();
-//        assertEquals(expResult, result);
-//    }
+    /**
+     * Test of toString method, of class Avaliacao.
+     */
+    @Test
+    public void testToString() {
+
+        System.out.println("TestetoString");
+        Atribuicao a = new Atribuicao();
+        Utilizador u = new Utilizador(2, "joao", "jo", "jo@centro.pt", "aB;1", "dpddd");
+
+        Utilizador u1 = new Utilizador(3, "carol", "carol", "carold@centro.pt", "aA;2", "ddddd");
+
+        Avaliacao instance = new Avaliacao(u.getUsername(), u1.getEmail(), "decisao", "txt");
+        String expResult = String.format("FAE: %s; Decisao: %s ; Justificação: %s ;%n", u.getUsername(), "decisao", "txt");
+        String result = instance.toString();
+        assertEquals(expResult, result);
+    }
 
     /**
      * Test of equals method, of class Avaliacao.
      */
     @Test
     public void testEquals() {
-        
+
         System.out.println("TesteEquals");
         Object a = new Avaliacao();
         Avaliacao instance = new Avaliacao();
@@ -148,25 +148,27 @@ public class AvaliacaoTest {
         System.out.println("TesteEquals");
         Object a = new Avaliacao();
         Avaliacao instance = new Avaliacao();
-//        instance.setAtribuicao(new Atribuicao(new FAE(new Utilizador(3,"asd", "asd", "123@asd.com", "aA1;", "adada")),new CandidaturaExposicao()));
+        instance.setFae("fae");
+        instance.setEmailRepCand("rep@centro.pt");
         boolean expResult = false;
         boolean result = instance.equals(a);
         assertEquals(expResult, result);
 
     }
 
-//    /**
-//     * Test of equals method, of class Avaliacao.
-//     */
-//    @Test
-//    public void testEqualsMesmaRef() {
-//
-//        System.out.println("TesteEquals");
-//        Avaliacao instance = new Avaliacao();
-//        Object a = instance;
-//        instance.setAtribuicao(new Atribuicao());
-//        boolean expResult = true;
-//        boolean result = instance.equals(a);
-//        assertEquals(expResult, result);
-//    }
+    /**
+     * Test of equals method, of class Avaliacao.
+     */
+    @Test
+    public void testEqualsMesmaRef() {
+
+        System.out.println("TesteEquals");
+        Avaliacao instance = new Avaliacao();
+        Object a = instance;
+        instance.setFae("");
+        instance.setEmailRepCand("");
+        boolean expResult = true;
+        boolean result = instance.equals(a);
+        assertEquals(expResult, result);
+    }
 }
