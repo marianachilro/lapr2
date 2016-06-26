@@ -128,7 +128,7 @@ public class Conflito {
      *
      * @param tipo o novo tipo do conflito
      */
-    @XmlElement(name = "candidatura")
+    @XmlElement(name = "tipo")
     public void setTipo(TipoConflito tipo) {
         this.tipo = tipo;
     }

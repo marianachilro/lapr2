@@ -19,7 +19,7 @@ public class DemonstracaoNaoConfirmadaEstado extends DemoImpEstado {
      * @param demonstracao a demonstração que vai transitar de estado
      */
     public DemonstracaoNaoConfirmadaEstado(Demonstracao demonstracao) {
-        super(demonstracao);
+        super(demonstracao,"demonstracaoNaoConfirmada");
     }
 
     /**

@@ -14,10 +14,10 @@ public class ExposicaoCandidaturasExpoDecididasEstado extends ExpoImpEstado{
     /**
      * Contrutor do Estado de "Candidaturas Decididas Expo" da Exposição.
      *
-     * @param exposicao a exposição que vai transitar de estado
+     * @param expo
      */
     public ExposicaoCandidaturasExpoDecididasEstado(Exposicao expo){
-        super(expo);
+        super(expo,"exposicaoCandidaturasExpoDecididas");
     }
 
     /**

@@ -22,7 +22,7 @@ public class ExposicaoConflitosAtualizadosDemosEstado extends ExpoImpEstado impl
      * @param exposicao a exposição que vai transitar de estado
      */
     public ExposicaoConflitosAtualizadosDemosEstado(Exposicao exposicao) {
-        super(exposicao);
+        super(exposicao,"exposicaoConflitosAtualizadosDemos");
     }
 
     /**

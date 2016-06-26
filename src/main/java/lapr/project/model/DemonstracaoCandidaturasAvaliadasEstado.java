@@ -19,7 +19,7 @@ public class DemonstracaoCandidaturasAvaliadasEstado extends DemoImpEstado {
      * @param demonstracao a demonstração que vai transitar de estado
      */
     public DemonstracaoCandidaturasAvaliadasEstado(Demonstracao demonstracao) {
-        super(demonstracao);
+        super(demonstracao,"demonstracaoCandidaturasAvaliadas");
     }
     
     @Override

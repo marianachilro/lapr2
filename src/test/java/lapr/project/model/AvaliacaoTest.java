@@ -41,7 +41,7 @@ public class AvaliacaoTest {
         Avaliacao instance = new Avaliacao();
         instance.setTextoJustificativo(nome);
         String expResult = "TesteTxt";
-        String result = instance.getTxt();
+        String result = instance.getTextoJustificativo();
         assertEquals(expResult, result);
 
     }

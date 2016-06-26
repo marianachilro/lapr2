@@ -194,14 +194,14 @@ public class Avaliacao {
      *
      * @return texto justificativo da avalicao
      */
-    public String getTxt() {
+    public String getTextoJustificativo() {
         return txt;
     }
 
     public String getFae() {
         return fae;
     }
-
+@XmlElement
     public void setFae(String fae) {
         this.fae = fae;
     }
@@ -209,7 +209,7 @@ public class Avaliacao {
     public String getEmailRepCand() {
         return emailRepCand;
     }
-
+@XmlElement
     public void setEmailRepCand(String emailRepCand) {
         this.emailRepCand = emailRepCand;
     }

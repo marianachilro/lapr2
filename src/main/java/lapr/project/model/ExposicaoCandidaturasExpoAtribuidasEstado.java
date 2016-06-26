@@ -5,8 +5,6 @@
  */
 package lapr.project.model;
 
-import lapr.project.utils.Data;
-
 
 
 /**
@@ -21,7 +19,7 @@ public class ExposicaoCandidaturasExpoAtribuidasEstado extends ExpoImpEstado {
      * @param e a exposicao que vai transitar de estado
      */
     public ExposicaoCandidaturasExpoAtribuidasEstado(Exposicao e) {
-        super(e);
+        super(e,"exposicaoCandidaturasExpoAtribuidas");
     }
 
     /**

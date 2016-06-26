@@ -11,9 +11,7 @@ package lapr.project.model;
  *
  * @author marianachilro
  */
-public class DemonstracaoCandidaturasFechadasEstado  extends DemoImpEstado {
-
-  
+public class DemonstracaoCandidaturasFechadasEstado extends DemoImpEstado {
 
     /**
      * Contrutor do Estado de Candidaturas Fechadas da Demonstração.
@@ -21,9 +19,9 @@ public class DemonstracaoCandidaturasFechadasEstado  extends DemoImpEstado {
      * @param demonstracao a demonstração que vai transitar de estado
      */
     public DemonstracaoCandidaturasFechadasEstado(Demonstracao demonstracao) {
-super(demonstracao);    }
+        super(demonstracao, "DemonstracaoCandidaturasFechadas");
+    }
 
-    
     /**
      * Método que indica que a Demonstração está no Estado "Candidaturas
      * Fechadas".
@@ -51,7 +49,6 @@ super(demonstracao);    }
         return false;
     }
 
-    
     /**
      * Verifica se a Demonstração pode mudar para o Estado "Conflitos
      * Detetados".

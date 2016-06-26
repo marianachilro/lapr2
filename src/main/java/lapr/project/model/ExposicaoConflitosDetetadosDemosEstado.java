@@ -5,9 +5,6 @@
  */
 package lapr.project.model;
 
-import java.util.GregorianCalendar;
-import lapr.project.utils.Data;
-
 /**
  * Representa um dos Estados possíveis da Exposicao (Estado de "Conflitos Detetados Demos").
  * @author marianachilro
@@ -20,7 +17,7 @@ public class ExposicaoConflitosDetetadosDemosEstado extends ExpoImpEstado{
      * @param exposicao a exposição que vai transitar de estado
      */
     public ExposicaoConflitosDetetadosDemosEstado(Exposicao exposicao){
-        super(exposicao);
+        super(exposicao,"exposicaoConflitosDetetadosDemos");
     }
     
     /**

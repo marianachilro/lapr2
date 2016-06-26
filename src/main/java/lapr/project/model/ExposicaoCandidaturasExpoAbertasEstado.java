@@ -17,7 +17,7 @@ public class ExposicaoCandidaturasExpoAbertasEstado extends ExpoImpEstado{
      * @param exposicao a demonstração que vai transitar de estado
      */
     public ExposicaoCandidaturasExpoAbertasEstado(Exposicao exposicao){
-        super(exposicao);
+        super(exposicao,"exposicaoCandidaturasExpoAbertas");
     }
 
     /**

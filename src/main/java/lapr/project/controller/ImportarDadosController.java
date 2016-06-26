@@ -27,10 +27,10 @@ public class ImportarDadosController {
    public ImportarDadosController(CentroExposicoes ce){
        this.ce=ce;
    }
-   public void lerCentro(File ficheiro){
+   public CentroExposicoes lerCentro(File ficheiro){
        LerFicheiroXML ler = new LerFicheiroXML(ficheiro);
        ce=ler.lerCentro();
-       
+       return ce;
    }
    public void criarTimers(){
        for(Exposicao e : ce.getRegistoExposicoes().getListaExposicoes()){

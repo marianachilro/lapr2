@@ -5,9 +5,6 @@
  */
 package lapr.project.model;
 
-import java.util.GregorianCalendar;
-import lapr.project.utils.Data;
-
 /**
  * Representa um dos Estados possíveis da Demonstração (Estado de "Conflitos
  * Detetados").
@@ -22,7 +19,7 @@ public class DemonstracaoConflitosDetetadosEstado extends DemoImpEstado {
      * @param demonstracao a demonstração que vai transitar de estado
      */
     public DemonstracaoConflitosDetetadosEstado(Demonstracao demonstracao) {
-        super(demonstracao);
+        super(demonstracao,"demostracaoConflitosDetetados");
     }
 
     /**

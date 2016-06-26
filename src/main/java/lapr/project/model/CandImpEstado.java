@@ -18,18 +18,45 @@ public class CandImpEstado implements CandidaturaEstado {
    /**
     * Candidatura a que o estado se refere
     */
-    @XmlElement
+  
     private final CandidaturaGeral cand;
-    
-   
-
-    public CandImpEstado(CandidaturaGeral cand) {
+  
+   /**
+    * string com o nome da classe do estado.
+    */
+     @XmlElement
+    private final String tipo;
+    private final static String TIPO_OMISSAO = "";
+   /**
+    * construtor sem parametros.
+    */
+    public CandImpEstado(){
+     cand=new CandidaturaGeral();  
+     this.tipo=TIPO_OMISSAO;
+   }
+/**
+ * contrutor com parametros.
+ * @param cand
+ * @param tipo 
+ */
+    public CandImpEstado(CandidaturaGeral cand, String tipo) {
         this.cand = cand;
+        this.tipo=tipo;
     }
+   
+    
     
  public CandidaturaGeral getCandidatura(){
         return cand;
     }
+ /**
+  * Método que retorna o tipo da candidatura.
+  * @return 
+  */
+ public String getTipo(){
+    return tipo;
+}
+ 
     
     @Override
     public boolean setEmSubmissao() {

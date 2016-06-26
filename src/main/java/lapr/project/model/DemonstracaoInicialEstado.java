@@ -18,7 +18,7 @@ public class DemonstracaoInicialEstado extends DemoImpEstado {
      * @param demonstracao a demonstração que vai transitar de estado
      */
     public DemonstracaoInicialEstado(Demonstracao demonstracao) {
-        super(demonstracao);
+        super(demonstracao,"demonstracaoInicial");
     }
 
     /**

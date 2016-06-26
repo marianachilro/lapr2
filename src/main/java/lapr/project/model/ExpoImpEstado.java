@@ -5,21 +5,34 @@
  */
 package lapr.project.model;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author marianachilro
  */
+@XmlRootElement
 public class ExpoImpEstado implements ExposicaoEstado{
     private final Exposicao exposicao;
+   @XmlElement
+    private final String tipo;
+    private final static String TIPO_OMISSAO="";
     
+public ExpoImpEstado(){
+    this.exposicao = new Exposicao();
+    this.tipo=TIPO_OMISSAO;
+}
+    public ExpoImpEstado(Exposicao expo,String tipo) {
+        this.exposicao=expo;
+        this.tipo=tipo;
+    }
     public Exposicao getExposicao(){
         return exposicao;
     }
-
-    public ExpoImpEstado(Exposicao expo) {
-        this.exposicao=expo;
-    }
-
+public String getTipo(){
+    return tipo;
+}
     @Override
     public boolean setCriada() {
         return false;
