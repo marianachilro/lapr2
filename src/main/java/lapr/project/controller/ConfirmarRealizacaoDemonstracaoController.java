@@ -59,11 +59,12 @@ public class ConfirmarRealizacaoDemonstracaoController {
     public List<Exposicao> getExposicoesOrganizadorEstadoCandidExpoAceites(String userName){
        RegistoUtilizadores ru = this.centro.getRegistoUtilizadores();
        List <Exposicao> lista = this.registoExposicoes.getListaExposicoesOrganizador(userName, ru);
+       List <Exposicao> listaExpos = new ArrayList<>();
        for(Exposicao e : lista){
-           if(!(!e.getEstado().setExposicaoCandidaturasAtribuidas() && e.getEstado().setExposicaoCandidaturasDecididas()))
-               lista.remove(e);
+           if(!e.getEstado().setExposicaoCandidaturasAtribuidas() && e.getEstado().setExposicaoCandidaturasDecididas())
+               listaExpos.add(e);
        }
-       return lista;
+       return listaExpos;
     }
     
     public void seleciona(Exposicao e){

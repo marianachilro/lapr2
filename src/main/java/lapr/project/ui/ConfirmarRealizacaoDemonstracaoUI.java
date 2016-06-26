@@ -320,6 +320,7 @@ public class ConfirmarRealizacaoDemonstracaoUI extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.transitaEstadoDemo();
+                comboBoxDemonstracoes.removeItem(demonstracao);
                 botaoSim.setEnabled(true);
                 botaoNao.setEnabled(true);
                 comboBoxDemonstracoes.setSelectedIndex(0);

@@ -60,7 +60,7 @@ public class EscolherExposicaoOrganizador extends JDialog {
         this.centro = centro;
         this.utilizador = utilizador;
         this.controller = new ConfirmarRealizacaoDemonstracaoController(centro);
-        this.listaExposOrganizador = centro.getRegistoExposicoes().getExposicoesOrganizadorEstadoCandidaturasAvaliadas(utilizador.getUsername(), centro.getRegistoUtilizadores());
+        this.listaExposOrganizador = controller.getExposicoesOrganizadorEstadoCandidExpoAceites(utilizador.getUsername());
 
         setModal(true);
         setLayout(new BorderLayout());
