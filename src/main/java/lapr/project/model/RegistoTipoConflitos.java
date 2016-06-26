@@ -67,6 +67,10 @@ public class RegistoTipoConflitos {
     public TipoConflito newTipoConflito() {
         return new TipoConflito();
     }
+    
+    public void addConflito(TipoConflito t){
+        this.listaConflitos.add(t);
+    }
 
     /**
      * Método que valida se o tipo de conflito é único.

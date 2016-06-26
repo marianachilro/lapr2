@@ -89,7 +89,7 @@ public class Conflito {
      * @return caso esta seja de uma Demonstracao
      */
     public CandidaturaDemonstracao getCandidaturaDemo(){
-        if(c.getListaDemonstracoes().getListaDemonstracao() == null)
+        if(c.getListaDemonstracoes().getListaDemonstracao().isEmpty())
             return (CandidaturaDemonstracao) c;
         return null;
     }
