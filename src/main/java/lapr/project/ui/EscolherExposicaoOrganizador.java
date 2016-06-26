@@ -75,139 +75,139 @@ public class EscolherExposicaoOrganizador extends JDialog {
 
     }
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CentroExposicoes ce = new CentroExposicoes();
-
-                TipoConflito tipo = new TipoConflito("Identidade Numérica",
-                        "A mesma identidade exerce funções de identidades/atores diferentes. "
-                        + "(e.g. o FAE é o Representante da Candidatura)");
-                MecanismoConflitoIdentidadeNumerica m = new MecanismoConflitoIdentidadeNumerica();
-                tipo.getListaMecanismos().add(m);
-                ce.getRegistoTipoConflitos().getListaTipoConflitos().add(tipo);
-
-                TipoConflito tipo1 = new TipoConflito("dkjlbwdljsB",
-                        "KLDhc lkdjcbasb)");
-                ce.getRegistoTipoConflitos().getListaTipoConflitos().add(tipo1);
-
-                Utilizador utill = new Utilizador(1, "evbddba", "evfa1", "blavsba@centro.pt", "M-aay1", "keyw1");
-                ce.getRegistoUtilizadores().addUtilizador(utill);
-                Organizador o = new Organizador(utill);
-                Utilizador utilll = new Utilizador(1, "evbdsddba", "edvfa1", "blavdsba@centro.pt", "M-aday1", "keywo1");
-                ce.getRegistoUtilizadores().addUtilizador(utilll);
-                Organizador o1 = new Organizador(utilll);
-                List<Organizador> listaOrgs = new ArrayList<>();
-                listaOrgs.add(o);
-                listaOrgs.add(o1);
-                Exposicao expo = new Exposicao("titulo", "descrição", new Data(2017, 1, 1, 1, 1, 1), new Data(2017, 2, 1, 1, 1, 4), new Local("nome"), new Data(2017, 3, 1, 1, 1, 1),
-                        new Data(2017, 4, 1, 1, 1, 1), new Data(2017, 5, 1, 1, 1, 1), new Data(2017, 6, 1, 1, 1, 1));
-                expo.setListaOrganizadores(new ListaOrganizadores(listaOrgs));
-                ce.getRegistoExposicoes().addExposicao(expo);
-                boolean b = expo.valida();
-                expo.getEstado().setCriada();
-                expo.getEstado().setDemoSemFae();
-                expo.getEstado().setCompleta();
-                expo.getEstado().setExposicaoCandidaturasAbertas();
-                expo.getEstado().setExposicaoCandidaturasFechadas();
-                expo.getEstado().setExposicaoConflitosDetetados();
-
-                Exposicao expo1 = new Exposicao("titulo1", "descriçã1o", new Data(2017, 1, 1, 1, 1, 2), new Data(2017, 2, 1, 1, 1, 4), new Local("nome"), new Data(2017, 3, 1, 1, 1, 1),
-                        new Data(2017, 4, 1, 1, 1, 1), new Data(2017, 5, 1, 1, 1, 1), new Data(2017, 6, 1, 1, 1, 1));
-                expo1.setListaOrganizadores(new ListaOrganizadores(listaOrgs));
-                ce.getRegistoExposicoes().addExposicao(expo1);
-                boolean bo = expo1.valida();
-                expo1.getEstado().setCriada();
-                expo1.getEstado().setDemoSemFae();
-                expo1.getEstado().setCompleta();
-                expo1.getEstado().setExposicaoCandidaturasAbertas();
-
-                CandidaturaExposicao c = new CandidaturaExposicao();
-                c.setEmailRep("email@centro.pt");
-                c.getEstado().setEmSubmissao();
-                c.getEstado().setAlterada();
-                c.getEstado().setCompleta();
-                c.getEstado().setConflitosDetetados();
-                c.getEstado().setConflitosAlterados();
-                c.getEstado().setEmAvaliacao();
-                c.getEstado().setAvaliada();
-                c.getEstado().setAceite();
-                expo.getListaCandidaturas().addCandidatura(c);
-                CandidaturaExposicao c1 = new CandidaturaExposicao();
-                c1.setEmailRep("email1@centro.pt");
-                c1.setEmailRep("email@centro.pt");
-                c1.getEstado().setEmSubmissao();
-                c1.getEstado().setAlterada();
-                c1.getEstado().setCompleta();
-                c1.getEstado().setConflitosDetetados();
-                c1.getEstado().setConflitosAlterados();
-                c1.getEstado().setEmAvaliacao();
-                c1.getEstado().setAvaliada();
-                c1.getEstado().setAceite();
-                expo.getListaCandidaturas().addCandidatura(c1);
-                CandidaturaExposicao c2 = new CandidaturaExposicao();
-                c2.setEmailRep("email2@centro.pt");
-                c2.setEmailRep("email@centro.pt");
-                c2.getEstado().setEmSubmissao();
-                c2.getEstado().setAlterada();
-                c2.getEstado().setCompleta();
-                c2.getEstado().setConflitosDetetados();
-                c2.getEstado().setConflitosAlterados();
-                c2.getEstado().setEmAvaliacao();
-                c2.getEstado().setAvaliada();
-                c2.getEstado().setAceite();
-                expo.getListaCandidaturas().addCandidatura(c2);
-                
-                expo.getEstado().setExposicaoConflitosAtualizados();
-                expo.getEstado().setExposicaoCandidaturasAtribuidas();
-                expo.getEstado().setExposicaoCandidaturasAvaliadas();
-                expo.getEstado().setExposicaoCandidaturasDecididas();
-
-                Demonstracao d = new Demonstracao("codigo1", "descricao");
-                d.setNumeroInteressados(2);
-                expo.getListaDemonstracoes().addDemonstracao(d);
-                d.getEstado().setCriada();
-                Demonstracao d1 = new Demonstracao("coddigo1", "descricao1");
-                d1.setNumeroInteressados(1);
-                expo.getListaDemonstracoes().addDemonstracao(d1);
-                d1.getEstado().setCriada();
-
-                Utilizador util = new Utilizador(1, "eva", "eva1", "email@centro.pt", "M-ay1", "key1");
-                ce.getRegistoUtilizadores().addUtilizador(util);
-                FAE f = new FAE(util);
-                expo.getListaFAES().addFae(f);
-                Conflito conf = new Conflito(f, c);
-                conf.setTipo(tipo);
-                expo.getListaConflitos().addConflito(conf);
-
-                new EscolherExposicaoOrganizador(null, ce, utill).setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                CentroExposicoes ce = new CentroExposicoes();
+//
+//                TipoConflito tipo = new TipoConflito("Identidade Numérica",
+//                        "A mesma identidade exerce funções de identidades/atores diferentes. "
+//                        + "(e.g. o FAE é o Representante da Candidatura)");
+//                MecanismoConflitoIdentidadeNumerica m = new MecanismoConflitoIdentidadeNumerica();
+//                tipo.getListaMecanismos().add(m);
+//                ce.getRegistoTipoConflitos().getListaTipoConflitos().add(tipo);
+//
+//                TipoConflito tipo1 = new TipoConflito("dkjlbwdljsB",
+//                        "KLDhc lkdjcbasb)");
+//                ce.getRegistoTipoConflitos().getListaTipoConflitos().add(tipo1);
+//
+//                Utilizador utill = new Utilizador(1, "evbddba", "evfa1", "blavsba@centro.pt", "M-aay1", "keyw1");
+//                ce.getRegistoUtilizadores().addUtilizador(utill);
+//                Organizador o = new Organizador(utill);
+//                Utilizador utilll = new Utilizador(1, "evbdsddba", "edvfa1", "blavdsba@centro.pt", "M-aday1", "keywo1");
+//                ce.getRegistoUtilizadores().addUtilizador(utilll);
+//                Organizador o1 = new Organizador(utilll);
+//                List<Organizador> listaOrgs = new ArrayList<>();
+//                listaOrgs.add(o);
+//                listaOrgs.add(o1);
+//                Exposicao expo = new Exposicao("titulo", "descrição", new Data(2017, 1, 1, 1, 1, 1), new Data(2017, 2, 1, 1, 1, 4), new Local("nome"), new Data(2017, 3, 1, 1, 1, 1),
+//                        new Data(2017, 4, 1, 1, 1, 1), new Data(2017, 5, 1, 1, 1, 1), new Data(2017, 6, 1, 1, 1, 1));
+//                expo.setListaOrganizadores(new ListaOrganizadores(listaOrgs));
+//                ce.getRegistoExposicoes().addExposicao(expo);
+//                boolean b = expo.valida();
+//                expo.getEstado().setCriada();
+//                expo.getEstado().setDemoSemFae();
+//                expo.getEstado().setCompleta();
+//                expo.getEstado().setExposicaoCandidaturasAbertas();
+//                expo.getEstado().setExposicaoCandidaturasFechadas();
+//                expo.getEstado().setExposicaoConflitosDetetados();
+//
+//                Exposicao expo1 = new Exposicao("titulo1", "descriçã1o", new Data(2017, 1, 1, 1, 1, 2), new Data(2017, 2, 1, 1, 1, 4), new Local("nome"), new Data(2017, 3, 1, 1, 1, 1),
+//                        new Data(2017, 4, 1, 1, 1, 1), new Data(2017, 5, 1, 1, 1, 1), new Data(2017, 6, 1, 1, 1, 1));
+//                expo1.setListaOrganizadores(new ListaOrganizadores(listaOrgs));
+//                ce.getRegistoExposicoes().addExposicao(expo1);
+//                boolean bo = expo1.valida();
+//                expo1.getEstado().setCriada();
+//                expo1.getEstado().setDemoSemFae();
+//                expo1.getEstado().setCompleta();
+//                expo1.getEstado().setExposicaoCandidaturasAbertas();
+//
+//                CandidaturaExposicao c = new CandidaturaExposicao();
+//                c.setEmailRep("email@centro.pt");
+//                c.getEstado().setEmSubmissao();
+//                c.getEstado().setAlterada();
+//                c.getEstado().setCompleta();
+//                c.getEstado().setConflitosDetetados();
+//                c.getEstado().setConflitosAlterados();
+//                c.getEstado().setEmAvaliacao();
+//                c.getEstado().setAvaliada();
+//                c.getEstado().setAceite();
+//                expo.getListaCandidaturas().addCandidatura(c);
+//                CandidaturaExposicao c1 = new CandidaturaExposicao();
+//                c1.setEmailRep("email1@centro.pt");
+//                c1.setEmailRep("email@centro.pt");
+//                c1.getEstado().setEmSubmissao();
+//                c1.getEstado().setAlterada();
+//                c1.getEstado().setCompleta();
+//                c1.getEstado().setConflitosDetetados();
+//                c1.getEstado().setConflitosAlterados();
+//                c1.getEstado().setEmAvaliacao();
+//                c1.getEstado().setAvaliada();
+//                c1.getEstado().setAceite();
+//                expo.getListaCandidaturas().addCandidatura(c1);
+//                CandidaturaExposicao c2 = new CandidaturaExposicao();
+//                c2.setEmailRep("email2@centro.pt");
+//                c2.setEmailRep("email@centro.pt");
+//                c2.getEstado().setEmSubmissao();
+//                c2.getEstado().setAlterada();
+//                c2.getEstado().setCompleta();
+//                c2.getEstado().setConflitosDetetados();
+//                c2.getEstado().setConflitosAlterados();
+//                c2.getEstado().setEmAvaliacao();
+//                c2.getEstado().setAvaliada();
+//                c2.getEstado().setAceite();
+//                expo.getListaCandidaturas().addCandidatura(c2);
+//                
+//                expo.getEstado().setExposicaoConflitosAtualizados();
+//                expo.getEstado().setExposicaoCandidaturasAtribuidas();
+//                expo.getEstado().setExposicaoCandidaturasAvaliadas();
+//                expo.getEstado().setExposicaoCandidaturasDecididas();
+//
+//                Demonstracao d = new Demonstracao("codigo1", "descricao");
+//                d.setNumeroInteressados(2);
+//                expo.getListaDemonstracoes().addDemonstracao(d);
+//                d.getEstado().setCriada();
+//                Demonstracao d1 = new Demonstracao("coddigo1", "descricao1");
+//                d1.setNumeroInteressados(1);
+//                expo.getListaDemonstracoes().addDemonstracao(d1);
+//                d1.getEstado().setCriada();
+//
+//                Utilizador util = new Utilizador(1, "eva", "eva1", "email@centro.pt", "M-ay1", "key1");
+//                ce.getRegistoUtilizadores().addUtilizador(util);
+//                FAE f = new FAE(util);
+//                expo.getListaFAES().addFae(f);
+//                Conflito conf = new Conflito(f, c);
+//                conf.setTipo(tipo);
+//                expo.getListaConflitos().addConflito(conf);
+//
+//                new EscolherExposicaoOrganizador(null, ce, utill).setVisible(true);
+//            }
+//        });
+//    }
 
     public JPanel criarPainelInfo() {
         JPanel p = new JPanel(new BorderLayout());

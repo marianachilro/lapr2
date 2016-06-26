@@ -38,7 +38,7 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
 
     private final GerarEstatisticasCandidaturaController controller;
 
-    private final JFrame janelaPai;
+    private final JDialog janelaPai;
 
     private final Exposicao exposicao;
 
@@ -60,11 +60,11 @@ public class GerarEstatisticasCandidaturaUI extends JDialog {
 
     private JTextField txtRespostaRecomendacaoGlobal;
 
-    public GerarEstatisticasCandidaturaUI(JFrame janelaPai, CentroExposicoes centro, Exposicao exposicao) {
+    public GerarEstatisticasCandidaturaUI(JDialog janelaPai, GerarEstatisticasCandidaturaController controller) {
         super(janelaPai, "Estatística Candidatura", true);
         this.janelaPai = janelaPai;
-        this.centro = centro;
-        this.exposicao = exposicao;
+        this.centro = controller.getCentro();
+        this.exposicao = controller.getExposicao();
         this.controller = new GerarEstatisticasCandidaturaController(centro);
         controller.seleciona(exposicao);
         setModal(true);

@@ -38,6 +38,13 @@ public class GerarEstatisticasCandidaturaController {
         this.registoExpos=centro.getRegistoExposicoes();
     }
     
+    public CentroExposicoes getCentro(){
+        return this.centro;
+    }
+    
+    public Exposicao getExposicao(){
+        return this.exposicao;
+    }
     public List <Exposicao> getExposicoesOrganizadorEstadoCandidaturasAvaliadas(String username, RegistoUtilizadores ru){
         return this.registoExpos.getExposicoesOrganizadorEstadoCandidaturasAvaliadas(username, ru);
         

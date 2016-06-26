@@ -1006,7 +1006,7 @@ public class MenuUI extends JFrame {
                 }
             }
             if (b == true) {
-//                ConfirmarRealizacaoDemonstracaoUI ui = new ConfirmarRealizacaoDemonstracaoUI(MenuUI.this,ce,);
+                EscolherExposicaoOrganizador ui = new EscolherExposicaoOrganizador(MenuUI.this,ce, utilizador);
             } else {
                 throw new Exception("Não é organizador.");
             }
@@ -1090,7 +1090,7 @@ public class MenuUI extends JFrame {
                 }
             }
             if (b == true) {
-//              GerarEstatisticasCandidaturaUI ui = new GerarEstatisticasCandidaturaUI(MenuUI.this,ce,);
+              EscolherExpoUC22 ui = new EscolherExpoUC22(MenuUI.this,ce,utilizador);
             } else {
                 throw new Exception("Não é organizador.");
             }
