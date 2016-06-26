@@ -24,6 +24,8 @@ public class AlterarPerfilUtilizadorController {
     public AlterarPerfilUtilizadorController(CentroExposicoes centro, String username){
         this.centro= centro;
         this.username=username;
+        this.ru = this.centro.getRegistoUtilizadores();
+        this.utilizador=ru.getUtilizador(username);
     }
     
     public Utilizador getUtilizador(){
